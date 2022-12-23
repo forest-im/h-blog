@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import styled from 'styled-components';
+import Link from "next/link";
+import styled from "styled-components";
 
 export default function PostList({ postsData }) {
   return (
@@ -7,6 +7,7 @@ export default function PostList({ postsData }) {
       {postsData.map(({ id, tags, date, title, param }) => {
         return (
           <Link
+            key={id}
             className="link"
             href={param ? `/posts/${param}/${id}` : `/posts/${id}`}
           >
