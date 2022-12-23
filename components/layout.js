@@ -48,11 +48,8 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 800px;
+  width: 100%;
+  min-width: 300px;
   max-width: 800px;
   line-height: 1.625;
-
-  @media (max-width: 800px) {
-    min-width: 300px;
-  }
 `;
