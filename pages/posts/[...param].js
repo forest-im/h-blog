@@ -1,9 +1,13 @@
-import Head from 'next/head';
-import Layout from '../../components/layout';
-import { getAllPostIds, getPostData } from '../../lib/posts';
-import styled from 'styled-components';
+import Head from "next/head";
+import Layout from "../../components/layout";
+import { getAllPostIds, getPostData } from "../../lib/posts";
+import styled from "styled-components";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import MarkDownRenderer from "../../components/markdownrenderer";
 
 export default function Post({ postData }) {
+  console.log(postData);
   return (
     <Layout>
       <Container>
@@ -13,7 +17,8 @@ export default function Post({ postData }) {
         <Article>
           <Heading1>{postData.title}</Heading1>
           <small>{postData.date}</small>
-          <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+          <MarkDownRenderer>{postData.content}</MarkDownRenderer>
+          {/* <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} /> */}
         </Article>
       </Container>
     </Layout>

@@ -17,26 +17,27 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }) {
   const router = useRouter();
 
-  if (router.isFallback) {
-    return (
-      <Loading>
-        <div class="lds-default">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </Loading>
-    );
-  }
+  // if (router.isFallback) {
+  //   // console.log("hihi");
+  //   return (
+  //     <Loading>
+  //       <div class="lds-default">
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //       </div>
+  //     </Loading>
+  //   );
+  // }
 
   return (
     <Layout home>
