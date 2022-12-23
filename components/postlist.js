@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function PostList({ postsData }) {
   return (
     <Container>
-      {postsData.map(({ id, tags, date, title, param }) => {
+      {postsData.map(({ id, tags, date, title, param, content }) => {
         return (
           <Link
             key={id}
@@ -47,6 +47,7 @@ const PostCard = styled.div`
   margin: 1rem;
   padding: 1rem;
   border-radius: 10px;
+
   text-align: left;
 
   .title_wrapper {
@@ -66,6 +67,7 @@ const PostCard = styled.div`
 
   &:hover {
     background-color: #f7fbff;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   }
 `;
 

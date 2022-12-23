@@ -1,14 +1,16 @@
-import Link from 'next/link';
-import { useState } from 'react';
-import styled from 'styled-components';
+import Link from "next/link";
+import { useState } from "react";
+import styled from "styled-components";
 
 export default function Nav() {
-  const menuItem = ['All', 'tags'];
-  const [activeItem, setActiveItem] = useState('All');
+  const menuItem = ["All", "tags"];
+  const [activeItem, setActiveItem] = useState("All");
 
   return (
     <Container>
       <Link href="/">Blog</Link>
+      <Transparency>공백</Transparency>
+      <Link href="/posts/daily/2212">Daily</Link>
     </Container>
   );
 }
@@ -38,6 +40,10 @@ const Container = styled.div`
     border-bottom: 2px solid black;
     padding: 0;
   } */
+`;
+
+const Transparency = styled.span`
+  color: transparent; 
 `;
 
 const Image = styled.img`

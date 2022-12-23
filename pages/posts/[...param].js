@@ -3,11 +3,21 @@ import Layout from "../../components/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import MarkDownRenderer from "../../components/markdownrenderer";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+
+const MarkDownRenderer = dynamic(
+  () => import("../../components/markdownrenderer"),
+  { ssr: false }
+);
 
 export default function Post({ postData }) {
-  console.log(postData);
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>loading...</div>;
+  }
+
   return (
     <Layout>
       <Container>
@@ -15,10 +25,11 @@ export default function Post({ postData }) {
           <title>{postData.title}</title>
         </Head>
         <Article>
-          <Heading1>{postData.title}</Heading1>
-          <small>{postData.date}</small>
-          <MarkDownRenderer>{postData.content}</MarkDownRenderer>
-          {/* <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} /> */}
+          <div className="markdown-body">
+            <Heading1>{postData.title}</Heading1>
+            <small>{postData.date}</small>
+            <MarkDownRenderer post={postData.content} />
+          </div>
         </Article>
       </Container>
     </Layout>
@@ -47,8 +58,8 @@ export async function getStaticProps({ params }) {
 }
 
 const Container = styled.div`
-  margin: 1rem;
-  padding: 1rem;
+  /* margin: 1rem;
+  padding: 1rem; */
 `;
 
 const Heading1 = styled.h1`

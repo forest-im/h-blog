@@ -1,6 +1,6 @@
 ---
 title: 'blog 만들기'
-tag: algorithm, JS
+tag: node
 date: 2022-12-23 15:56:45
 ---
 

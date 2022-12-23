@@ -1,6 +1,6 @@
 ---
 title: 타입
-tag: algorithm, JS
+tag: 책, JS
 date: 2022-12-23 19:40:54
 ---
 
