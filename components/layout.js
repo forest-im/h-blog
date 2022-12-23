@@ -9,10 +9,11 @@ export default function Layout({ children, home }) {
     <Container>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <title>alex-blog</title>
+        <title>{"Blog | 임현정"}</title>
         <meta name="description" content="Alex's blog" />
         <meta property="og:image" content="/images/profile.png" />
         <meta name="og:title" content={"h-alex-blog"} />
+        <meta property="og:description" content="공부한 것을 기록합니다." />
         <meta name="twitter:card" content="/images/profile.png" />
       </Head>
       <Main>
