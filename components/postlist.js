@@ -86,7 +86,7 @@ const TagDateWrapper = styled.div`
     padding: 0 8px;
     margin: 6px 6px 3px 0;
     border-radius: 3px;
-    font-size: 14px;
+    font-size: 12px;
     background-color: #e0f3ff;
   }
 

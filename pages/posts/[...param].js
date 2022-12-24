@@ -4,6 +4,7 @@ import { getAllPostIds, getPostData } from "../../lib/posts";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import Comments from "../../components/comments";
 
 const MarkDownRenderer = dynamic(
   () => import("../../components/markdownrenderer"),
@@ -29,6 +30,7 @@ export default function Post({ postData }) {
           <MarkDownRenderer post={postData.content} />
         </div>
       </article>
+      <Comments />
     </Layout>
   );
 }
