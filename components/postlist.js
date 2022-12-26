@@ -1,10 +1,19 @@
+import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 export default function PostList({ postsData }) {
+  const router = useRouter();
+
+  const handleClickTag = function (e, tag) {
+    e.preventDefault();
+    router.push(`tag?v=${tag}`);
+  };
+
   return (
     <Container>
-      {postsData.map(({ id, tags, date, title, param, content }) => {
+      {postsData.map(({ id, tags, date, title, param }) => {
         return (
           <Link
             key={id}
@@ -19,7 +28,11 @@ export default function PostList({ postsData }) {
                 <div className="tag_wrapper">
                   {tags.map((tag, i) => {
                     return (
-                      <div className="tag" key={i + tag}>
+                      <div
+                        onClick={(e) => handleClickTag(e, tag)}
+                        className="tag"
+                        key={i + tag}
+                      >
                         {tag}
                       </div>
                     );

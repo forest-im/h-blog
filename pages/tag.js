@@ -3,21 +3,22 @@ import PostList from "../components/postlist";
 import Layout from "../components/layout";
 import { getSortedPostsData } from "../lib/posts";
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+export async function getServerSideProps(context) {
+  const tag = context.query.v;
+  const postsList = getSortedPostsData(tag);
 
   return {
     props: {
-      allPostsData,
+      postsList,
     },
   };
 }
 
-export default function Home({ allPostsData }) {
+export default function Tag({ postsList }) {
   return (
     <Layout home>
       <PostListSection>
-        <PostList postsData={allPostsData} />
+        <PostList postsData={postsList} />
       </PostListSection>
     </Layout>
   );
