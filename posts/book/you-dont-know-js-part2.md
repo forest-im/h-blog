@@ -1,6 +1,6 @@
 ---
 title: 스코프와 클로저 (정리)
-tag: YOU DON'T KNOW JS, 책
+tag: YOU DON'T KNOW JS, 책, JS
 date: 2022-12-24 18:49:58
 ---
 

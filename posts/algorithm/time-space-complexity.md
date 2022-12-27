@@ -1,5 +1,5 @@
 ---
-title: '시간 복잡도, 공간 복잡도'
+title: "시간 복잡도, 공간 복잡도"
 tag: 알고리즘
 date: 2022-12-23 22:20:35
 ---
@@ -13,7 +13,7 @@ date: 2022-12-23 22:20:35
 ## 공간 복잡도
 
 - 대부분의 원시값(booleans, numbers, undefined, null)은 constant space를 가진다.
-  - String은 다르다. 문자열은 O(n)공간이 필요하다.
+- String은 다르다. 문자열은 O(n)공간이 필요하다.
 - reference 타입 - 배열, 객체 -> O(n)
 
 ```js
@@ -36,8 +36,9 @@ var twoSum = function (nums, target) {
 };
 ```
 
-- 변수로 설정된 부분은 모두 number형의 변수입니다. string을 제외한 원시값의 공간복잡도는 O1을 가지기에 공간 복잡도는 O1입니다.
-- return 시에 배열을 리턴하게되지만 입력값인 nums의 배열의 크기에 상관없이 같은 길이의 배열을 리턴하므로 On이 아닌 O1 공간복잡도라고 생각했습니다.
+- 변수로 설정된 부분은 모두 number형의 변수입니다.
+- string을 제외한 원시값의 공간복잡도는 O1을 가지기에 공간 복잡도는 O1입니다.
+- 입력값인 nums의 배열의 크기에 상관없이 같은 길이의 배열을 리턴
 
 ```js
 var twoSum2 = function (nums, target) {
@@ -57,4 +58,5 @@ var twoSum2 = function (nums, target) {
 ```
 
 - 사용한 공간은 storedNumberAndIndex 객체와 for문 안의 i
-- forEach 메서드로 인해서 storedNumberAndIndex의 객체는 입력된 값의 배열 길이에 비례하여 공간이 커지게 되고, 객체와 배열은 기본적으로 On 공간복잡도를 가지기 때문에 On입니다.
+- 객체와 배열은 기본적으로 On 공간복잡도를 가지기 때문에 On입니다.
+- forEach 메서드로 인해서 storedNumberAndIndex의 객체는 입력된 값의 배열 길이에 비례하여 공간이 커지게 된다.
