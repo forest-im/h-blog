@@ -1,4 +1,5 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import { light, dark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import {
@@ -18,6 +19,7 @@ export default function MarkDownRenderer({ post }) {
   return (
     <div>
       <ReactMarkdown
+        rehypePlugins={[rehypeRaw]}
         components={{
           code({ inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || "");
