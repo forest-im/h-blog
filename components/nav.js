@@ -10,7 +10,7 @@ export default function Nav() {
     <Container>
       <Link href="/">Blog</Link>
       <Transparency>공백</Transparency>
-      <Link href="/posts/daily/2212">Daily</Link>
+      {/* <Link href="/posts/daily/2212">Daily</Link> */}
     </Container>
   );
 }

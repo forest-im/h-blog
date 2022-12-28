@@ -20,7 +20,7 @@ export default function MarkDownRenderer({ post }) {
   return (
     <div>
       <ReactMarkdown
-        rehypePlugins={[rehypeRaw]}
+        rehypePlugins={[remarkGfm, rehypeRaw]}
         components={{
           code({ inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || "");

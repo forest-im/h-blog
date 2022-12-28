@@ -1,0 +1,147 @@
+---
+title: Stack, Queue
+tag: 자료구조, Stack, Queue
+date: 2022-12-28 17:39:47
+---
+
+<br />
+
+## Stack
+
+- 좀 더 압축적인 데이터 구조
+- 후입 선출 LIFO
+- 연결 리스트를 사용할 수도 있다.
+- Call Stack
+- Undo/Redo
+- 브라우저 방문 기록
+- push, pop 상수시간
+
+## Big O of Stacks
+
+|           |      |
+| --------- | ---- |
+| Insertion | O(1) |
+| Removal   | O(1) |
+| Searching | O(N) |
+| Access    | O(N) |
+
+### 연결리스트로 stack 만들어보기
+
+```js
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class Stack {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  }
+
+  push(val) {
+    const newNode = new Node(val);
+
+    this.size++;
+
+    if (!this.first) {
+      this.first = newNode;
+      this.last = newNode;
+    } else {
+      const temp = this.first;
+      this.first = newNode;
+      this.first.next = temp;
+    }
+
+    return ++this.size;
+  }
+
+  pop() {
+    if (!this.first) {
+      return null;
+    }
+
+    if (!this.size) {
+      this.last = null;
+    }
+
+    const temp = this.first;
+
+    this.first = this.first.next;
+    this.size--;
+
+    return temp.value;
+  }
+}
+```
+
+- 연결 리스트로 만들 때는 shift를 이용해서 상수 시간이 되도록 만들기
+
+## Queue
+
+- 추가, 제거 이게 다임
+- FIFO, 선입선출, 들어간 순서대로 나온다.
+- 배열을 사용하면 간단하게 만들 수 있지만 성능을 신경써야 하는 경우라면 직접 큐 클래스를 만드는 것이 좋다.
+
+## Big O of Queues
+
+|           |      |
+| --------- | ---- |
+| Insertion | O(1) |
+| Removal   | O(1) |
+| Searching | O(N) |
+| Access    | O(N) |
+
+- 일반적으로 enqueue, dequeue만 쓴다.
+
+## class로 queue 만들어보기
+
+```js
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class Queue {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  }
+
+  enqueue(value) {
+    const newNode = new Node(value);
+
+    if (!this.size) {
+      this.first = newNode;
+      this.last = newNode;
+    } else {
+      this.last.next = newNode;
+      this.last = newNode;
+    }
+
+    return ++this.size;
+  }
+
+  dequeue() {
+    if (!this.size) return null;
+
+    if (this.size === 1) {
+      this.last = null;
+    }
+
+    const temp = this.first;
+    this.first = this.first.next;
+    this.size--;
+
+    return temp.value;
+  }
+}
+```
+
+- 앞에 추가하고, tail을 삭제하면 삭제할 때 모든 노드르 순회해야 함으로 이점이 없으므로 앞에서 삭제하고 tail에 추가하는 식으로.
