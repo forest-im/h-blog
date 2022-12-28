@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import PostList from "../components/postlist";
-import Layout from "../components/layout";
 import { getSortedPostsData } from "../lib/posts";
 
 export async function getStaticProps() {
@@ -15,11 +14,9 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
   return (
-    <Layout home>
-      <PostListSection>
-        <PostList postsData={allPostsData} />
-      </PostListSection>
-    </Layout>
+    <PostListSection>
+      <PostList postsData={allPostsData} />
+    </PostListSection>
   );
 }
 

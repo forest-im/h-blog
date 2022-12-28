@@ -1,10 +1,10 @@
 import Head from "next/head";
-import Layout from "../../components/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Comments from "../../components/comments";
+import Link from "next/link";
 
 const MarkDownRenderer = dynamic(
   () => import("../../components/markdownrenderer"),
@@ -19,7 +19,7 @@ export default function Post({ postData }) {
   }
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>{postData.title}</title>
       </Head>
@@ -31,7 +31,10 @@ export default function Post({ postData }) {
         </div>
       </article>
       <Comments />
-    </Layout>
+      <HomeLink>
+        <Link href="/">← Back to home</Link>
+      </HomeLink>
+    </>
   );
 }
 
@@ -63,4 +66,8 @@ const Heading1 = styled.h1`
   font-weight: 800;
   letter-spacing: -0.05rem;
   margin: 0;
+`;
+
+const HomeLink = styled.div`
+  margin: 0 auto;
 `;

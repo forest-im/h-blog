@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import PostList from "../components/postlist";
-import Layout from "../components/layout";
 import { getSortedPostsData } from "../lib/posts";
 
 export async function getServerSideProps(context) {
@@ -16,11 +15,9 @@ export async function getServerSideProps(context) {
 
 export default function Tag({ postsList }) {
   return (
-    <Layout home>
-      <PostListSection>
-        <PostList postsData={postsList} />
-      </PostListSection>
-    </Layout>
+    <PostListSection>
+      <PostList postsData={postsList} />
+    </PostListSection>
   );
 }
 
