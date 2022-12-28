@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }) {
       <Layout>
         {isPageLoading ? (
           <Loading>
-            <span class="loader"></span>
+            <span className="loader"></span>
           </Loading>
         ) : (
           <Component {...pageProps} />

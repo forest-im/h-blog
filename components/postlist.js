@@ -69,7 +69,8 @@ const PostCard = styled.div`
 
   .title {
     font-weight: 400;
-    margin: 0;
+    font-size: 20px;
+    margin-bottom: 5px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 1;
