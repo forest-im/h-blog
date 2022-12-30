@@ -1,20 +1,24 @@
 import styled from "styled-components";
 import PostList from "../components/postlist";
-import { getSortedPostsData } from "../lib/posts";
+import TagList from "../components/taglist";
+import { getSortedPostsData, getSortedTagsData } from "../lib/posts";
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
+  const allTagsData = getSortedTagsData();
 
   return {
     props: {
       allPostsData,
+      allTagsData,
     },
   };
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData, allTagsData }) {
   return (
     <PostListSection>
+      <TagList tagsData={allTagsData} />
       <PostList postsData={allPostsData} />
     </PostListSection>
   );
