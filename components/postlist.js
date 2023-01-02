@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -8,12 +8,13 @@ export default function PostList({ postsData }) {
 
   const handleClickTag = function (e, tag) {
     e.preventDefault();
+
     router.push(`tag?v=${tag}`);
   };
 
   return (
     <Container>
-      {postsData.map(({ id, tags, date, title, param }) => {
+      {postsData && postsData.map(({ id, tags, date, title, param }) => {
         return (
           <Link
             key={id}
@@ -26,7 +27,8 @@ export default function PostList({ postsData }) {
               </div>
               <TagDateWrapper>
                 <div className="tag_wrapper">
-                  {tags.map((tag, i) => {
+                  {/* {tags.map((tag, i) => { */}
+                  {Object.keys(tags).map((tag, i) => {
                     return (
                       <div
                         onClick={(e) => handleClickTag(e, tag)}

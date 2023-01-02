@@ -1,6 +1,7 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
+import remarkToc from "remark-toc";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import { light, dark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import {

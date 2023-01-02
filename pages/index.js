@@ -18,7 +18,7 @@ export async function getStaticProps() {
 export default function Home({ allPostsData, allTagsData }) {
   return (
     <PostListSection>
-      <TagList tagsData={allTagsData} />
+      <TagList tagsData={allTagsData} postsData={allPostsData} />
       <PostList postsData={allPostsData} />
     </PostListSection>
   );

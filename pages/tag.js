@@ -1,12 +1,13 @@
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import PostList from "../components/postlist";
 import TagList from "../components/taglist";
 
 import { getSortedPostsData, getSortedTagsData } from "../lib/posts";
 
-export async function getServerSideProps(context) {
-  const tag = context.query.v;
-  const postsList = getSortedPostsData(tag);
+export async function getStaticProps() {
+  const postsList = getSortedPostsData();
   const allTagsData = getSortedTagsData();
 
   return {
@@ -18,10 +19,19 @@ export async function getServerSideProps(context) {
 }
 
 export default function Tag({ postsList, allTagsData }) {
+  const router = useRouter();
+  const [tagPostLists, setTagPostLists] = useState();
+
+  useEffect(() => {
+    if (!router.query.v) return;
+
+    setTagPostLists(postsList.filter((item) => !!item.tags[router.query.v]));
+  }, [postsList, router.query.v]);
+
   return (
     <PostListSection>
       <TagList tagsData={allTagsData} />
-      <PostList postsData={postsList} />
+      <PostList postsData={tagPostLists} />
     </PostListSection>
   );
 }
