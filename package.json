@@ -25,5 +25,8 @@
     "remark-html": "^15.0.1",
     "remark-toc": "^8.0.1",
     "styled-components": "^5.3.6"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.0.7"
   }
 }

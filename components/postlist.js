@@ -14,38 +14,38 @@ export default function PostList({ postsData }) {
 
   return (
     <Container>
-      {postsData && postsData.map(({ id, tags, date, title, param }) => {
-        return (
-          <Link
-            key={id}
-            className="link"
-            href={param ? `/posts/${param}/${id}` : `/posts/${id}`}
-          >
-            <PostCard>
-              <div className="title_wrapper">
-                <div className="title">{title}</div>
-              </div>
-              <TagDateWrapper>
-                <div className="tag_wrapper">
-                  {/* {tags.map((tag, i) => { */}
-                  {Object.keys(tags).map((tag, i) => {
-                    return (
-                      <div
-                        onClick={(e) => handleClickTag(e, tag)}
-                        className="tag"
-                        key={i + tag}
-                      >
-                        {tag}
-                      </div>
-                    );
-                  })}
+      {postsData &&
+        postsData.map(({ id, tags, date, title, param }) => {
+          return (
+            <Link
+              key={id}
+              className="link"
+              href={param ? `/posts/${param}/${id}` : `/posts/${id}`}
+            >
+              <PostCard>
+                <div className="title_wrapper">
+                  <div className="title">{title}</div>
                 </div>
-                <div className="date">{date}</div>
-              </TagDateWrapper>
-            </PostCard>
-          </Link>
-        );
-      })}
+                <TagDateWrapper>
+                  <div className="tag_wrapper">
+                    {Object.keys(tags).map((tag, i) => {
+                      return (
+                        <div
+                          onClick={(e) => handleClickTag(e, tag)}
+                          className="tag"
+                          key={i + tag}
+                        >
+                          {tag}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="date">{date}</div>
+                </TagDateWrapper>
+              </PostCard>
+            </Link>
+          );
+        })}
     </Container>
   );
 }
@@ -73,7 +73,6 @@ const PostCard = styled.div`
     font-weight: 400;
     font-size: 20px;
     margin-bottom: 5px;
-    overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
