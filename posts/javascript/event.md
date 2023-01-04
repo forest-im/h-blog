@@ -4,20 +4,48 @@ tag: DOM, Event, JS, 스터디01
 date: 2022-12-27 16:38:40
 ---
 
-### TL;DR
+<div className="toc">
+<!-- vscode-markdown-toc -->
+<div>
+
+- [TL;DR](#TLDR)  
+- [Event Handler](#EventHandler)  
+- [Event 핸들러 등록](#Event)  
+
+1. [Event 핸들러 등록 방법](#Event-1)
+2. [event 객체의 공통 프로퍼티](#event)
+3. [버블링하지 않는 이벤트](#버블링하지-않는-이벤트)  
+4. [Event Propagation 이벤트 전파](#EventPropagation)  
+   4.1. [Capturing phase](#Capturingphase)  
+   4.2. [Target phase](#Targetphase)  
+   4.3. [Bubbling phase](#Bubblingphase)  
+   4.4. [Bubbling 막기 stopPropagation()](#BubblingstopPropagation)  
+5. [Event Delegation 이벤트 위임](#EventDelegation)  
+   5.1. [이벤트 위임의 장점](#-1)
+
+</div>
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+</div>
+
+### 1. <a name='TLDR'></a>TL;DR
+
 event propagation에는 3가지 단계가 있다. 이벤트 캡처링 단계, 타겟 단계, 이벤트 버블링 단계이다. 이벤트 캡처링은 최상위 조상에서부터 핸들러가 있는지 확인하고 있다면 실행하는 단계를 이벤트 타겟이 있는 위치까지 반복해서 전파되는 방식이다. 타겟 단계는 이벤트가 타겟에 도착해 실행되는 단계이고, 이벤트 버블링은 이벤트 캡처링과 반대로 이벤트 타겟에서부터 이벤트 핸들러가 있는지 있다면 실행하고, 조상으로 부터 올라가며 이 단계를 반복하는 방법이다.
 
-이벤트 위임이란, 하위의 여러 DOM 요소에 이벤트 핸들러를 할당하는 대신 상위의 DOM요소 하나에만 이벤트 핸들러를 설정해 하위 DOM 요소의 이벤트를 상위 요소에게 위임하는 방법이다. 여러 핸들러를 할당하지 않아도 되어서 메모리의 이점을 가질 수 있다. 이벤트 위임을 하려면 꼭 이벤트 버블링이 일어나야 한다. 
+이벤트 위임이란, 하위의 여러 DOM 요소에 이벤트 핸들러를 할당하는 대신 상위의 DOM요소 하나에만 이벤트 핸들러를 설정해 하위 DOM 요소의 이벤트를 상위 요소에게 위임하는 방법이다. 여러 핸들러를 할당하지 않아도 되어서 메모리의 이점을 가질 수 있다. 이벤트 위임을 하려면 꼭 이벤트 버블링이 일어나야 한다.
 
-### Event Handler
+### 2. <a name='EventHandler'></a>Event Handler
 
 이벤트가 발생했을 때 호출될 함수
 
-### Event 핸들러 등록
+### 3. <a name='Event'></a>Event 핸들러 등록
 
 이벤트 발생시 브라우저에게 이벤트 함수 호출을 위임하는 것
 
-## Event 핸들러 등록 방법
+## 1. <a name='Event-1'></a>Event 핸들러 등록 방법
 
 1. 이벤트 핸들러 어트리뷰트 방식(인라인 이벤트 핸들러) 사용하지 말 것  
    `<button onClick="sayHi('alex')">button</button>`
@@ -43,7 +71,7 @@ targetBtn.onclick = function () {
 - 다수의 이벤트 핸들러를 할당할 수 있다.
 - 마지막 매개변수에는 이벤트를 캐치할 이벤트 전파 단계를 설정한다.
 
-## event 객체의 공통 프로퍼티
+## 2. <a name='event'></a>event 객체의 공통 프로퍼티
 
 Event 인터페이스, 즉 Event.prototype에 정의되어 있는 이벤트 관련 프로퍼티는 UIEvent, CustomEvent, MouseEvent 등 모든 파생 이벤트 객체에 상속된다.  
 ➡ 즉 Event 인터페이스의 이벤트 관련 프로퍼티는 **모든 이벤트 객체** 가 상속받는 공통 프로퍼티다.
@@ -65,13 +93,13 @@ Event 인터페이스, 즉 Event.prototype에 정의되어 있는 이벤트 관�
   - 사용자의 행위에 의해 발생한 이벤트인지 여부 (인위적으로 발생시킨 이벤트(click...)의 경우 false
 - `timeStamp`
 
-## 버블링하지 않는 이벤트
+## 3. <a name='버블링하지-않는-이벤트'></a>버블링하지 않는 이벤트
 
 - 포커스 이벤트 `focus`/`blur`
 - 리소스 이벤트 `load`/`unload`/`abort`/`error`
 - 마우스 이벤트 `mouseenter`/`mouseleave`
 
-## Event Propagation 이벤트 전파
+## 4. <a name='EventPropagation'></a>Event Propagation 이벤트 전파
 
 DOM 요소 노드에서 발생한 이벤트는 DOM 트리를 통해 전파된다. 이를 이벤트 전파라고 한다.
 
@@ -82,29 +110,32 @@ DOM 요소 노드에서 발생한 이벤트는 DOM 트리를 통해 전파된다
 
 ![event-propagation](https://developer.mozilla.org/ko/docs/Learn/JavaScript/Building_blocks/Events/bubbling-capturing.png)
 
-### Capturing phase
+### 4.1. <a name='Capturingphase'></a>Capturing phase
 
 - 간단하게 최상위 조상에서 시작해 아래로 전파된다.
 - 브라우저는 요소의 가장 바깥쪽의 조상(`<html>`)에 이벤트 핸들러가 있는지 확인한다. 있다면 그것을 실행하고 내부로 들어와 이벤트 핸들러가 등록된 요소에 닿을 때까지 반복한다.
 
-### Target phase
+### 4.2. <a name='Targetphase'></a>Target phase
 
 - 이벤트가 타깃 요소에 도착해 실행된다.
 
-### Bubbling phase
+### 4.3. <a name='Bubblingphase'></a>Bubbling phase
 
 - 캡처링과 정확히 반대의 일을 한다.
 - 간단하게 이벤트 타깃에서 조상으로 전파된다.
 - 이벤트가 일어난 곳에서부터 이벤트 핸들러가 있는지 확인한다. 있다면 그것을 실행하고, 상위 요소로 이동해 이벤트 핸들러가 등록되어있는지 확인하고, 등록되어 있다면 실행한다. document 요소(html)에 닿을 때까지 반복한다.
 
-### Bubbling 막기 stopPropagation()
+### 4.4. <a name='BubblingstopPropagation'></a>Bubbling 막기 stopPropagation()
+
 - `stopPropagation()`을 이용해 버블링을 멈출 수 있지만 추천하지 않는다.
 - 버블링은 이벤트 위임의 이점을 취할 수 있게 한다.
 
-## Event Delegation 이벤트 위임
+## 5. <a name='EventDelegation'></a>Event Delegation 이벤트 위임
+
 - 여러 개의 하위 DOM 요소에 각각 이벤트 핸들러를 등록하는 대신, 하나의 상위 DOM 요소에 이벤트 핸들러를 등록하는 방법
 - `event.target`을 이용하면 어디서 이벤트가 발생했는지 알 수 있다. 이를 이용해 이벤트를 핸들링한다.
 
-### 이벤트 위임의 장점
+### 5.1. <a name='-1'></a>이벤트 위임의 장점
+
 - 동적으로 하위 DOM 요소를 추가하더라도 일일히 이벤트 핸들러를 할당하지 않아도 된다.
 - 많은 핸들러를 할당하지 않아도 되기 때문에 단순해지고 메모리가 절약된다.

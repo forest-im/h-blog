@@ -4,12 +4,25 @@ tag: 자료구조, 스터디01
 date: 2022-12-27 20:36:26
 ---
 
-## Tree란?
+<div className="toc">
+<!-- vscode-markdown-toc -->
+
+1. [Tree란?](#Tree)
+2. [Binary Search Tree란?](#BinarySearchTree)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+</div>
+
+## 1. <a name='Tree'></a>Tree란?
 
 - 하나의 경로로 이루어져있는 비선형 데이터 구조로 그래프의 일종이다.
 - 선형 데이터 구조에서는 어떤 연산을 수행하기 위해서는 데이터 크기가 커질수록 시간복잡도가 증가하게 된다. 트리 데이터 구조는 비선형 데이터 구조이므로 더 빠르고 쉽게 액세스할 수 있다.
 
-## Binary Search Tree란?
+## 2. <a name='BinarySearchTree'></a>Binary Search Tree란?
 
 - 이진 트리 자료 구조
 - 이진 탐색 트리

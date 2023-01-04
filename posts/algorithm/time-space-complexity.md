@@ -4,13 +4,27 @@ tag: 알고리즘
 date: 2022-12-23 22:20:35
 ---
 
-## 빅오의 본질
+<div className="toc">
+<!-- vscode-markdown-toc -->
+
+1. [빅오의 본질](#)
+2. [공간 복잡도](#-1)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
+</div>
+
+## 1. <a name=''></a>빅오의 본질
 
 - 빅오의 본질이란 데이터가 늘어날 때 알고리즘의 성능이 어떻게 바뀌는지가 중요한 것
 - 컴퓨터 과학에서 O(logN)은 사실 O(log2N)을 줄여부르는 말. 편의를 위해 차수 2를 생략한 것
 - N을 2로 나눠서 1이 될 때 까지의 단계수가 걸린다는 뜻
 
-## 공간 복잡도
+## 2. <a name='-1'></a>공간 복잡도
 
 - 대부분의 원시값(booleans, numbers, undefined, null)은 constant space를 가진다.
 - String은 다르다. 문자열은 O(n)공간이 필요하다.
