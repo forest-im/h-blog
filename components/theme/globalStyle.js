@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+@import
+url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
 html,
 body {
@@ -9,7 +11,24 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.6;
-  /* font-size: 18px; */
+
+  .toc {
+    display: flex;
+    justify-content: space-around;
+    padding: 2em 0 1rem 0;
+    border: 1px solid #ededed;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #d4d4d4;
+
+    a {
+      color: #73b0ff;
+
+      &:hover {
+      color: #006fff;
+    }
+    }
+  }
 }
 
 img {
@@ -17,6 +36,7 @@ img {
 }
 
 * {
+  font-family: 'Noto Sans KR', sans-serif;
   box-sizing: border-box;
 }
 
