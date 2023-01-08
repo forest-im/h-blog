@@ -108,7 +108,7 @@ var deleteDuplicates = function (head) {
 
   // newList value가 101인 경우는 [1, 1] or [1,1,1,1,1] 이런 경우 newList의 값이 [1]이 되어있을 것이므로
   // null을 리턴해준다.
-  return newList.val === 101 ? newList.next : newList;
+  return newList.val === 101 ? null : newList;
 };
 ```
 
