@@ -64,26 +64,6 @@ var deleteDuplicates = function (head) {
         if (copyNewList.val === 101) {
           copyNewList.val = currentNode.val;
         } else {
-          copyNewList.next = new ListNode(currentNode.val);
-          copyNewList = copyNewList.next;
-        }
-      }
-    }
-
-    // 여기서 passed는 만약 [1, 2, 3]이 주어졌을 때
-    // currentNode.val가 3이면 passed는 2이다.
-    if (passed !== currentNode.val) {
-      if (
-        // currentNode의 next가 있을 때와 없을 때를 같이 조건문 처리해주었음
-        // next가 있을 때는 현재 값과 다음 값이 같지 않을 때만 값이 추가되도록 해주었다.
-        !currentNode.next ||
-        (currentNode.next && currentNode.val !== currentNode.next.val)
-      ) {
-        // 이 조건문의 경우는 [1, 1, 2, 3] 같은 경우, currentNode value가 2, passed가 1일 때 해당한다.
-        // 앞이 1, 1로 중복되어 copyNewList value가 101이 되어있을 것이므로
-        if (copyNewList.val === 101) {
-          copyNewList.val = currentNode.val;
-        } else {
           // 원래 코드는
           // copyNewList.next = new ListNode(currentNode.val);
           // copyNewList = copyNewList.next;
@@ -95,8 +75,8 @@ var deleteDuplicates = function (head) {
       }
     }
 
-    // 원래는 currentNode의 value로 새로운 리스트를 만들어서 값을 할당했는데 지금은
-    // currentNode자체를 할당해주고 있어서 node 전체가 할당이 되고 있다. passed와 currentNode value가 같으면
+    // passed와 currentNode가 같지 않을 때 currentNode자체를 할당해주고 있기 때문에 node 전체가 할당이 되고 있다.
+    // passed와 currentNode value가 같으면
     // copyNewList.next를 null을 넣어 참조를 끊어준다.
     if (passed === currentNode.val) {
       copyNewList.next = null;
