@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -70,7 +70,7 @@ const PostCard = styled.div`
   }
 
   .title {
-    font-weight: 400;
+    font-weight: 500;
     font-size: 20px;
     margin-bottom: 5px;
     display: -webkit-box;
@@ -112,21 +112,5 @@ const TagDateWrapper = styled.div`
     text-align: center;
     margin: 0;
     min-width: 66px;
-  }
-`;
-
-const PostListSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  gap: 0.5rem;
-
-  .link {
-    color: black;
-
-    &:hover {
-      background-color: #fffee0;
-      text-decoration: none;
-    }
   }
 `;

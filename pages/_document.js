@@ -33,40 +33,18 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css"
-            integrity="sha512-zb2pp+R+czM7GAemdSUQt6jFmr3qCo6ikvBgVU6F5GvwEDR0C2sefFiPEJ9QUpmAKdD5EqDUdNRtbOYnbF/eyQ=="
-            crossOrigin="anonymous"
-            referrerPolicy="no-referrer"
-          />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
             rel="stylesheet"
           />
-          <style>
-            {`	.markdown-body {
-              box-sizing: border-box;
-              min-width: 200px;
-              max-width: 980px;
-              margin: 0 auto;
-              padding: 45px;
-            }
-
-            .markdown-body pre{
-              border-radius: 10px;
-              border: 1px solid gray;
-              background-color: rgb(253, 253, 253);
-            }
-
-            @media (max-width: 767px) {
-              .markdown-body {
-                padding: 15px;
-              }
-            }`}
-          </style>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+          ></link>
         </Head>
         <body>
           <Main />

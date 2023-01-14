@@ -3,6 +3,7 @@ import { base, lightTheme } from "../components/theme/default";
 import styled, { ThemeProvider } from "styled-components";
 import { usePageLoading } from "../hooks/usePageLoading";
 import Layout from "../components/layout";
+import "../styles/markdown.css";
 
 export default function App({ Component, pageProps }) {
   const { isPageLoading } = usePageLoading();

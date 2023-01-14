@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Comments from "../../components/comments";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 const MarkDownRenderer = dynamic(
   () => import("../../components/markdownrenderer"),
@@ -12,11 +13,7 @@ const MarkDownRenderer = dynamic(
 );
 
 export default function Post({ postData }) {
-  const router = useRouter();
-
-  if (router.isFallback) {
-    return <div>loading...</div>;
-  }
+  const ref = useRef();
 
   return (
     <>
@@ -27,7 +24,9 @@ export default function Post({ postData }) {
         <div className="markdown-body">
           <Heading1>{postData.title}</Heading1>
           <small>{postData.date}</small>
-          <MarkDownRenderer post={postData.content} />
+          <div ref={ref}>
+            <MarkDownRenderer post={postData.content} />
+          </div>
         </div>
       </article>
       <Comments />

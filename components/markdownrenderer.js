@@ -6,6 +6,7 @@ import remarkToc from "remark-toc";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import coy from "react-syntax-highlighter/dist/cjs/styles/prism/coy";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function MarkDownRenderer({ post }) {
   const [editedPost, setEditedPost] = useState(post);
@@ -14,9 +15,10 @@ export default function MarkDownRenderer({ post }) {
     const main = async function () {
       const file = await remark()
         .use(remarkToc)
+        .use(remarkGfm)
         .process(await post);
 
-      setEditedPost(String(file));
+      setEditedPost(() => String(file));
     };
 
     main();
@@ -42,6 +44,92 @@ export default function MarkDownRenderer({ post }) {
               <code className={className} {...props}>
                 {children}
               </code>
+            );
+          },
+          h1: ({ node, ...props }) => {
+            const replaceBlank = props.children[0].replace(/\s/g, "-");
+            const removeBracket = replaceBlank
+              .replace(/[\(\)]/g, "")
+              .toLowerCase();
+            return (
+              <>
+                <h1>
+                  <a name={`${removeBracket}`} href={`#${removeBracket}`} />
+                  {props.children[0]}
+                </h1>
+              </>
+            );
+          },
+          h2: ({ node, ...props }) => {
+            const replaceBlank = props.children[0].replace(/\s/g, "-");
+            const removeBracket = replaceBlank
+              .replace(/[\(\)|!|@|#|$|%|^|&|*|(|)|,|>|<|.|{|}]/g, "")
+              .toLowerCase();
+
+            return (
+              <>
+                <h2>
+                  <a name={`${removeBracket}`} href={`#${removeBracket}`} />
+                  {props.children[0]}
+                </h2>
+              </>
+            );
+          },
+          h3: ({ node, ...props }) => {
+            const replaceBlank = props?.children[0].replace(/\s/g, "-");
+            const removeBracket = replaceBlank
+              .replace(/[\(\)]/g, "")
+              .toLowerCase();
+            return (
+              <>
+                <h3>
+                  <a name={`${removeBracket}`} href={`#${removeBracket}`} />
+                  {props.children[0]}
+                </h3>
+              </>
+            );
+          },
+          h4: ({ node, ...props }) => {
+            const replaceBlank = props.children[0].replace(/\s/g, "-");
+            const removeBracket = replaceBlank
+              .replace(/[\(\)]/g, "")
+              .toLowerCase();
+            return (
+              <>
+                <h4>
+                  <a name={`${removeBracket}`} href={`#${removeBracket}`} />
+                  {props.children[0]}
+                </h4>
+              </>
+            );
+          },
+          h5: ({ node, ...props }) => {
+            console.log(props);
+            const replaceBlank = props.children[0].replace(/\s/g, "-");
+            const removeBracket = replaceBlank
+              .replace(/[\(\)]/g, "")
+              .toLowerCase();
+            return (
+              <>
+                <h4>
+                  <a name={`${removeBracket}`} href={`#${removeBracket}`} />
+                  {props.children[0]}
+                </h4>
+              </>
+            );
+          },
+          h6: ({ node, ...props }) => {
+            const replaceBlank = props.children[0].replace(/\s/g, "-");
+            const removeBracket = replaceBlank
+              .replace(/[\(\)]/g, "")
+              .toLowerCase();
+            return (
+              <>
+                <h4>
+                  <a name={`${removeBracket}`} href={`#${removeBracket}`} />
+                  {props.children[0]}
+                </h4>
+              </>
             );
           },
         }}

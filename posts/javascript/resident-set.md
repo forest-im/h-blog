@@ -40,7 +40,7 @@ v8 엔진의 메모리 구조. 프로그램을 실행하면 메모리의 Residen
 
 - 힙은 동적 메모리 할당에 사용된다.
 - 스택과 달리 프로그램은 포인터를 사용하여 힙에서 데이터를 조회해야 한다.
-  - (js는 포인터가 없다. 이 설명은 대략적인 프로그램에 대한 설명으로 보아야 한다. js에서는 객체가 js의 포인터라고 생각할 수 있겠다. 다른 언어와 달리 포인터의 실제 주소나 실제 값을 볼 수 없으며 가리키는 주소에서 값을 얻을 수 있다. [Javascript 메모리 할당: 힙 및 스택](https://stackoverflow.com/questions/69334818/javascript-memory-allocation-heap-and-stack))
+  - ([Javascript 메모리 할당: 힙 및 스택](https://stackoverflow.com/questions/69334818/javascript-memory-allocation-heap-and-stack))
 - 데이터를 조회하는 과정이 더 복잡하기 때문에 스택보다 느리지만 스택보다 더 많은 데이터를 저장할 수 있다.
 - 힙은 응용 프로그램의 스레드 간에 공유된다.
 - 동적 특성으로 인해 힙은 관리하기 까다로우며 대부분의 메모리 관리 문제가 발생하는 곳이며 언어의 자동 메모리 관리 솔루션이 시작되는 곳이다.

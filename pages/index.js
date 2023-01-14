@@ -15,6 +15,8 @@ export async function getStaticProps() {
   };
 }
 
+// https://stackoverflow.com/questions/67624601/how-to-implement-infinite-scroll-in-next-js
+
 export default function Home({ allPostsData, allTagsData }) {
   return (
     <PostListSection>

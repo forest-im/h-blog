@@ -1,8 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-@import
-url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
 html,
 body {
@@ -32,11 +30,29 @@ body {
 }
 
 img {
+  margin-top: 1rem;
+}
+
+li {
+  /* list-style: circle; */
+}
+
+li:before {
+    /* content: "‣"; */
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0px 5px 6px 0px;
+}
+
+a:hover {
+  content: "‣";
+}
+
+img {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;    border-radius: 0.5rem;
 }
 
 * {
-  font-family: 'Noto Sans KR', sans-serif;
   box-sizing: border-box;
 }
 

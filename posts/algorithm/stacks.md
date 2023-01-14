@@ -5,25 +5,21 @@ date: 2022-12-28 17:39:47
 ---
 
 <div className="toc">
-<!-- vscode-markdown-toc -->
+<!-- TOC tocDepth:2..3 chapterDepth:2..6 -->
 
-- 1. [Stack](#Stack)
-- 2. [Big O of Stacks](#BigOofStacks)
-  - 2.1. [연결리스트로 stack 만들어보기](#stack)
-- 3. [Queue](#Queue)
-- 4. [Big O of Queues](#BigOofQueues)
-- 5. [class로 queue 만들어보기](#classqueue)
+- [Stack](#stack)
+- [Big O of Stacks](#big-o-of-stacks)
+  - [연결리스트로 stack 만들어보기](#연결리스트로-stack-만들어보기)
+- [Queue](#queue)
+- [Big O of Queues](#big-o-of-queues)
+- [class로 queue 만들어보기](#class로-queue-만들어보기)
 
-<!-- vscode-markdown-toc-config
-	numbering=true
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
+<!-- /TOC -->
 </div>
 
 <br />
 
-## 1. <a name='Stack'></a>Stack
+## Stack
 
 - 좀 더 압축적인 데이터 구조
 - 후입 선출 LIFO
@@ -33,7 +29,7 @@ date: 2022-12-28 17:39:47
 - 브라우저 방문 기록
 - push, pop 상수시간
 
-## 2. <a name='BigOofStacks'></a>Big O of Stacks
+## Big O of Stacks
 
 |           |      |
 | --------- | ---- |
@@ -42,7 +38,7 @@ date: 2022-12-28 17:39:47
 | Searching | O(N) |
 | Access    | O(N) |
 
-### 2.1. <a name='stack'></a>연결리스트로 stack 만들어보기
+### 연결리스트로 stack 만들어보기
 
 ```js
 class Node {
@@ -97,13 +93,13 @@ class Stack {
 
 - 연결 리스트로 만들 때는 shift를 이용해서 상수 시간이 되도록 만들기
 
-## 3. <a name='Queue'></a>Queue
+## Queue
 
 - 추가, 제거 이게 다임
 - FIFO, 선입선출, 들어간 순서대로 나온다.
 - 배열을 사용하면 간단하게 만들 수 있지만 성능을 신경써야 하는 경우라면 직접 큐 클래스를 만드는 것이 좋다.
 
-## 4. <a name='BigOofQueues'></a>Big O of Queues
+## Big O of Queues
 
 |           |      |
 | --------- | ---- |
@@ -114,7 +110,7 @@ class Stack {
 
 - 일반적으로 enqueue, dequeue만 쓴다.
 
-## 5. <a name='classqueue'></a>class로 queue 만들어보기
+## class로 queue 만들어보기
 
 ```js
 class Node {
