@@ -16,13 +16,14 @@ export default function App({ Component, pageProps }) {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Layout>
-        {isPageLoading ? (
+        <Component {...pageProps} />
+        {/* {isPageLoading ? (
           <Loading>
             <span className="loader"></span>
           </Loading>
         ) : (
           <Component {...pageProps} />
-        )}
+        )} */}
       </Layout>
     </ThemeProvider>
   );
