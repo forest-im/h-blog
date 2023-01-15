@@ -18,7 +18,7 @@ export default function PostList({ postsData }) {
         postsData.map(({ id, tags, date, title, param }) => {
           return (
             <Link
-              key={id}
+              key={id + date}
               className="link"
               href={param ? `/posts/${param}/${id}` : `/posts/${id}`}
             >

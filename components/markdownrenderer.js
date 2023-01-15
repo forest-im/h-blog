@@ -27,7 +27,7 @@ export default function MarkDownRenderer({ post }) {
   return (
     <div>
       <ReactMarkdown
-        rehypePlugins={[remarkGfm, rehypeRaw]}
+        rehypePlugins={[rehypeRaw, remarkGfm]}
         components={{
           code({ inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || "");

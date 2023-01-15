@@ -13,7 +13,21 @@ const MarkDownRenderer = dynamic(
 );
 
 export default function Post({ postData }) {
-  const ref = useRef();
+  const commentRef = useRef();
+
+  useEffect(() => {
+    if (!commentRef.current.childNodes.length) {
+      const scriptElem = document.createElement("script");
+      scriptElem.src = "https://utteranc.es/client.js";
+      scriptElem.async = true;
+      scriptElem.setAttribute("repo", "h-alex2/h-blog");
+      scriptElem.setAttribute("issue-term", "pathname");
+      scriptElem.setAttribute("theme", "github-light");
+      scriptElem.setAttribute("label", "blog-comment");
+      scriptElem.crossOrigin = "anonymous";
+      commentRef.current.appendChild(scriptElem);
+    }
+  }, []);
 
   return (
     <>
@@ -24,12 +38,10 @@ export default function Post({ postData }) {
         <div className="markdown-body">
           <Heading1>{postData.title}</Heading1>
           <small>{postData.date}</small>
-          <div ref={ref}>
-            <MarkDownRenderer post={postData.content} />
-          </div>
+          <MarkDownRenderer post={postData.content} />
         </div>
       </article>
-      <Comments />
+      <section ref={commentRef} />
       <HomeLink>
         <Link href="/">← Back to home</Link>
       </HomeLink>

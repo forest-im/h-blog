@@ -17,13 +17,6 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <Layout>
         <Component {...pageProps} />
-        {/* {isPageLoading ? (
-          <Loading>
-            <span className="loader"></span>
-          </Loading>
-        ) : (
-          <Component {...pageProps} />
-        )} */}
       </Layout>
     </ThemeProvider>
   );

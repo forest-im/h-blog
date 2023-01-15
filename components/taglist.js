@@ -19,16 +19,14 @@ export default function TagsList({ tagsData }) {
         </Link>
         {tagsData.map((tag) => {
           return (
-            <>
-              <Tag
-                clicked={router.query.v === tag.name}
-                onClick={(e) => handleClickTag(e, tag.name)}
-                key={tag.name}
-              >
-                <span className="count">#</span>
-                {tag.name} <span className="count">{tag.value}</span>
-              </Tag>
-            </>
+            <Tag
+              clicked={router.query.v === tag.name}
+              onClick={(e) => handleClickTag(e, tag.name)}
+              key={tag.name}
+            >
+              <span className="count">#</span>
+              {tag.name} <span className="count">{tag.value}</span>
+            </Tag>
           );
         })}
       </TagsWrapper>
