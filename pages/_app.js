@@ -3,6 +3,7 @@ import { base, lightTheme } from "../components/theme/default";
 import styled, { ThemeProvider } from "styled-components";
 import { usePageLoading } from "../hooks/usePageLoading";
 import Layout from "../components/layout";
+import { Analytics } from "@vercel/analytics/react";
 import "../styles/markdown.css";
 
 export default function App({ Component, pageProps }) {
@@ -13,12 +14,15 @@ export default function App({ Component, pageProps }) {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+      <Analytics />
+    </>
   );
 }
 
