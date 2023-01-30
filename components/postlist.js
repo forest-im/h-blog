@@ -15,7 +15,7 @@ export default function PostList({ postsData }) {
   return (
     <Container>
       {postsData &&
-        postsData.map(({ id, tags, date, title, param }) => {
+        postsData.map(({ id, tags, date, title, param, password }) => {
           return (
             <Link
               key={id + date}
@@ -24,7 +24,9 @@ export default function PostList({ postsData }) {
             >
               <PostCard>
                 <div className="title_wrapper">
-                  <div className="title">{title}</div>
+                  <div className="title">
+                    {password ? "🔒 " + title : title}
+                  </div>
                 </div>
                 <TagDateWrapper>
                   <div className="tag_wrapper">

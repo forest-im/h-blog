@@ -29,16 +29,29 @@ body {
   }
 }
 
+table {
+  font-size: 0.9rem;
+}
+
+table td {
+  padding: 0;
+}
+
 img {
-  margin-top: 1rem;
+  margin: 1.5rem 0;
 }
 
 li {
+  color: #4d4d4d;
   /* list-style: circle; */
 }
 
+li::marker {
+  color: #b8b8b8;
+
+}
+
 li:before {
-    /* content: "‣"; */
     display: inline-block;
     vertical-align: middle;
     padding: 0px 5px 6px 0px;
