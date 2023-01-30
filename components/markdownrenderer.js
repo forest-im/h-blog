@@ -104,7 +104,6 @@ export default function MarkDownRenderer({ post }) {
             );
           },
           h5: ({ node, ...props }) => {
-            console.log(props);
             const replaceBlank = props.children[0].replace(/\s/g, "-");
             const removeBracket = replaceBlank
               .replace(/[\(\)]/g, "")
