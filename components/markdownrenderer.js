@@ -6,7 +6,6 @@ import remarkToc from "remark-toc";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import coy from "react-syntax-highlighter/dist/cjs/styles/prism/coy";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 
 export default function MarkDownRenderer({ post }) {
   const [editedPost, setEditedPost] = useState(post);
