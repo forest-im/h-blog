@@ -8,6 +8,9 @@
 	let mode;
 
 	onMount(() => {
+		if (!localStorage.theme) {
+			localStorage.theme = "dark";
+		}
 		mode = localStorage.theme;
 		theme.changeTheme(mode);
 	});

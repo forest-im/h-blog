@@ -20,7 +20,7 @@
 				)}
 			>
 				{#if !$page.route.id.includes("til")}
-					<div class="mx-4 w-[800px] min-w-[300px] max-w-[800px] px-4 text-sm font-light">
+					<div class="mx-4 min-w-[300px] max-w-[800px] px-4 text-sm font-light">
 						Personal blog by Hyunjung Im.
 					</div>
 				{/if}
