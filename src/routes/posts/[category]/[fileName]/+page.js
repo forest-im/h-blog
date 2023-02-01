@@ -1,30 +1,23 @@
-// import { slugFromPath } from '$lib/slugFromPath';
-import { error } from '@sveltejs/kit';
-
-const slugFromPath = (path) => path.match(/([\w-]+)\.(svelte\.md|md|svx)/i)?.[1] ?? null;
+import { error } from "@sveltejs/kit";
+import slugFromPath from "$lib/utils/slugFromPath";
 
 export const load = async ({ params }) => {
 	const { fileName } = params;
 
-	const modules = import.meta.glob(`/src/posts/*/*.{md,svx,svelte.md}`);
+	const modules = Object.entries(
+		import.meta.glob(`/src/posts/*/*.{md,svx,svelte.md}`, { eager: true })
+	);
 
-	let match = {};
-
-	for (const [path, resolver] of Object.entries(modules)) {
+	for (const [path, resolver] of modules) {
 		if (slugFromPath(path) === fileName) {
-			match = { path, resolver };
-			break;
+			const { metadata, default: component } = resolver;
+
+			return {
+				component,
+				metadata
+			};
 		}
 	}
 
-	const post = await match?.resolver?.();
-
-	if (!post) {
-		throw error(404);
-	}
-
-	return {
-		component: post.default,
-		frontmatter: post.metadata
-	};
+	throw error(404, "Post not found");
 };

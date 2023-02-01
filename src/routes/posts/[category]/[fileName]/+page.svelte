@@ -1,14 +1,14 @@
 <script>
-	import PageHead from '$lib/postLayoutComponents/PageHead.svelte';
-	import PostTitle from '$lib/postLayoutComponents/PostTitle.svelte';
-	import PostMeta from '$lib/postLayoutComponents/PostMeta.svelte';
+	import PageHead from "$lib/components/PageHead.svelte";
+	import PostTitle from "$lib/components/PostTitle.svelte";
+
 	export let data;
-	// console.log(data);
 	$: component = data.component;
 </script>
 
-<PageHead title={data.frontmatter.title} description={data.frontmatter.description} />
-<PostTitle title={data.frontmatter.title} />
-<!-- <PostMeta date={data.frontmatter.date} /> -->
-<div>test</div>
-<svelte:component this={component} />
+<article>
+	<PageHead title={data.metadata.title} description={data.metadata.description} />
+	<PostTitle title={data.metadata.title} />
+
+	<svelte:component this={component} />
+</article>
