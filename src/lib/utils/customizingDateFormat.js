@@ -1,4 +1,4 @@
-const customizingDateFormat = (date) => {
+export default function customizingDateFormat(date) {
 	const stringDate = date.toISOString();
 
 	const dateObj = {
@@ -8,6 +8,4 @@ const customizingDateFormat = (date) => {
 	};
 
 	return `${dateObj.year}-${dateObj.month}-${dateObj.date}`;
-};
-
-export default customizingDateFormat;
+}
