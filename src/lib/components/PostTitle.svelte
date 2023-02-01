@@ -1,39 +1,24 @@
 <script>
-	export let slug = '';
+	import clsx from "clsx";
+
+	export let slug = "";
 	export let title;
 	export let category;
 
 	const id = slug
 		.toLowerCase()
-		.replace(/[^a-zA-Z ]/g, '')
-		.replace(/\s/g, '-');
-	const href = slug ? `/posts/${category}/${slug}` : '#' + id;
+		.replace(/[^a-zA-Z ]/g, "")
+		.replace(/\s/g, "-");
+	const href = slug ? `/posts/${category}/${slug}` : "#" + id;
 </script>
 
-{#if slug}
-	<h3 class="heading" class:large={!slug} {id}>
-		<a {href}>
-			{title}
-		</a>
-	</h3>
-{:else}
-	<h2 class="heading" class:large={!slug} {id}>
-		<a {href}>
-			{title}
-		</a>
-	</h2>
-{/if}
-
-<style>
-	h2 {
-		margin: 0;
-	}
-	.heading {
-		margin: 0;
-		font-size: 1.8rem;
-	}
-	.large {
-		margin-top: calc(var(--spacing-unit) * 12);
-		font-size: 2.2rem;
-	}
-</style>
+<h1
+	class={clsx(
+		"not-prose m-1 ml-0",
+		"text-lg font-semibold text-defaultColor-900 dark:text-darkDefaultColor-900"
+	)}
+>
+	<a {href}>
+		{title}
+	</a>
+</h1>

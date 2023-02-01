@@ -1,21 +1,20 @@
 <script>
-	import customizingDateFormat from '$lib/utils/customizingDateFormat';
-
+	import { goto } from "$app/navigation";
 	export let date;
-	const formattedDate = customizingDateFormat(date);
+	export let tags;
+
+	function handleClick(tag) {
+		return goto(`/tag/${tag}`);
+	}
 </script>
 
-<p>
-	<span class="date">{formattedDate}</span>
-</p>
-
-<style>
-	p {
-		margin: 0;
-		margin-bottom: calc(var(--spacing-unit) * 4);
-	}
-
-	.date {
-		color: var(--color-text-secondary);
-	}
-</style>
+<div class="flex flex-wrap text-sm font-normal">
+	{#each tags as tag}
+		<div on:click|preventDefault={() => handleClick(tag)} on:keydown={handleClick} class="tag">
+			{tag}
+		</div>
+	{/each}
+</div>
+<div class="date">
+	{date}
+</div>

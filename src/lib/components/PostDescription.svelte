@@ -1,22 +1,7 @@
 <script>
-	export let description = '';
-	export let category;
-	export let slug = '';
-
-	const href = slug && `/posts/${category}/${slug}`;
+	export let description = "";
 </script>
 
-<p>
+<p class="m-0 truncate text-defaultColor-800 dark:text-darkDefaultColor-700">
 	{description}
-
-	{#if slug}
-		<a {href}>Read More &rarr;</a>
-	{/if}
 </p>
-
-<style>
-	p {
-		margin: 0;
-		margin-bottom: calc(var(--spacing-unit) * 8);
-	}
-</style>
