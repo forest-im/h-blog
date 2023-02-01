@@ -2,6 +2,7 @@
 title: 지뢰찾기 만들기
 tag: React, class component
 date: 2023-01-22 18:45:38
+published: false
 ---
 
 ## 이 프로젝트를 통해 배워야할 것

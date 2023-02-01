@@ -3,6 +3,7 @@ title: Just Javascript - 01 Mental Models
 tag: JS
 date: 2023-01-20 14:31:03
 password: pizza
+published: false
 ---
 
 ```js

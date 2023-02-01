@@ -7,6 +7,7 @@ const modules = Object.entries(
 );
 
 export const posts = modules
+	.filter(([, post]) => post.metadata.published !== false)
 	.map(([path, post]) => {
 		const splitPath = path.split("/");
 		const dateObj = new Date(post.metadata.date);

@@ -2,6 +2,7 @@
 title: vite
 tag: vite
 date: 2023-01-28 19:43:53
+published: false
 ---
 
 ## Snowpack

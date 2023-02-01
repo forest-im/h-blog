@@ -2,6 +2,7 @@
 title: Cross Origin Resource Sharing(CORS)
 tag: HTTP, CORS
 date: 2023-01-04 17:35:09
+published: false
 ---
 
 ## 동일 출처 정책(same origin policy) & 교차 출처 리소스 공유(cors)

@@ -1,7 +1,6 @@
 ---
 title: Svelte로 블로그 만들기
-description: 하나의 경로로 이루어져있는 비선형 데이터 구조로 그래프의 일종이다.
-tag: Svelte, 하나의, adsf, asdfasd, adsfadsfsdf, asdfadsfsdfsdf, asdfadsf
+tag: Svelte
 date: 2023-01-29 14:01:55
 ---
 

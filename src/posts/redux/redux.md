@@ -2,6 +2,7 @@
 title: redux
 tag: Redux
 date: 2023-01-25 18:54:51
+published: false
 ---
 
 [redux-docs-connectAPI 사용](https://react-redux.js.org/tutorials/connect)

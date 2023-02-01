@@ -2,6 +2,7 @@
 title: TypeScript 강의 정리
 tag: TS
 date: 2022-12-28 17:18:27
+published: false
 ---
 
 [ TypeScript 마스터 with Webpack & React](https://www.udemy.com/course/typescript-with-webpack-react/)  

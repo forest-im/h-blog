@@ -2,6 +2,7 @@
 title: Java Script Event Loop
 tag: GC, JS, 스터디01, v8, Heap, Stack
 date: 2022-12-28 00:24:48
+published: false
 ---
 
 - 단일 호출 스택(Call Stack)을 사용하며, 요청이 들어올 때마다 해당 요청을 순차적으로 호출 스택에 담아 처리한다.

@@ -2,6 +2,7 @@
 title: Presentational and Container Components
 tag: Redux, React
 date: 2023-01-23 10:25:57
+published: false
 ---
 
 [React Redux :: React Redux 입문 (Provider, Connect, mapStateToProps, mapDispatchToProps)](https://velog.io/@iamhayoung/React-Redux-React-Redux-%EC%9E%85%EB%AC%B8-Provider-Connect-mapStateToProps-mapDispatchToProps)
