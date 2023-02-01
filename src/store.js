@@ -1,6 +1,16 @@
 import { writable } from "svelte/store";
 import { DEFAULT_COUNT } from "$lib/constants/postDefaultValue";
 
+export const theme = (() => {
+	const { subscribe, set, update } = writable("light");
+
+	return {
+		subscribe,
+		changeTheme: (theme) => update(() => theme),
+		reset: () => set(DEFAULT_COUNT)
+	};
+})();
+
 export const count = (() => {
 	const { subscribe, set, update } = writable(DEFAULT_COUNT);
 

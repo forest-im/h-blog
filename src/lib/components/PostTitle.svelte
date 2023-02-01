@@ -1,4 +1,5 @@
 <script>
+	import { page } from "$app/stores";
 	import clsx from "clsx";
 
 	export let slug = "";
@@ -13,9 +14,10 @@
 </script>
 
 <h1
-	class={clsx(
+class={clsx(
 		"not-prose m-1 ml-0",
-		"text-lg font-semibold text-defaultColor-900 dark:text-darkDefaultColor-900"
+		"text-lg font-semibold text-defaultColor-900 dark:text-darkDefaultColor-900",
+		$page.route.id.includes("posts") && "my-20 text-center text-3xl"
 	)}
 >
 	<a {href}>

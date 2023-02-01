@@ -1,18 +1,23 @@
 <script>
 	import { onMount } from "svelte";
 	import { page } from "$app/stores";
+	import { theme } from "../../store";
 	import profile02 from "$lib/images/profile02.png";
 	import clsx from "clsx";
 
 	let mode;
 
-	onMount(() => (mode = localStorage.theme));
+	onMount(() => {
+		mode = localStorage.theme;
+		theme.changeTheme(mode);
+	});
 
 	function handleToggle() {
 		document.documentElement.classList.toggle("dark");
 		localStorage.theme = localStorage.theme === "dark" ? "light" : "dark";
 
 		mode = localStorage.theme;
+		theme.changeTheme(mode);
 	}
 </script>
 
@@ -21,7 +26,7 @@
 >
 	<nav class="w-[800px] min-w-[300px] max-w-[800px] px-4 pt-4 text-defaultColor-700">
 		<div class={clsx("flex w-full items-center justify-between font-light")}>
-			<div class="flex items-center mx-4">
+			<div class="mx-4 flex items-center">
 				<div>
 					<a href="/">
 						<img src={profile02} alt="profile" class="m-0 mb-5 mr-5 h-20 w-20 shadow-none" />

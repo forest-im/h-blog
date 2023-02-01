@@ -1,7 +1,8 @@
 <script>
+	import clsx from "clsx";
 	import TilList from "$lib/components/TilList.svelte";
 	import menu from "$lib/images/menu.png";
-	import { isOpenMenu, isOpenModal } from "../../store";
+	import { isOpenMenu, isOpenModal, theme } from "../../store";
 
 	export let data;
 
@@ -33,7 +34,10 @@
 		<img
 			on:click={isOpenMenu.toggle}
 			on:keydown={isOpenMenu.toggle}
-			class="sticky top-[125px] z-10 m-2 ml-0 block h-5 w-5 cursor-pointer"
+			class={clsx(
+				"sticky top-[125px] z-10 m-2 ml-0 block h-5 w-5 cursor-pointer",
+				$theme === "dark" && "invert"
+			)}
 			src={menu}
 			alt="menu-icon"
 		/>
@@ -41,7 +45,10 @@
 		<img
 			on:click={isOpenModal.toggle}
 			on:keydown={isOpenModal.toggle}
-			class="sticky top-[125px] z-10 m-2 ml-0 block h-5 w-5 cursor-pointer"
+			class={clsx(
+				"sticky top-[125px] z-10 m-2 ml-0 block h-5 w-5 cursor-pointer",
+				$theme === "dark" && "invert"
+			)}
 			src={menu}
 			alt="menu-icon"
 		/>
