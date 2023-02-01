@@ -21,6 +21,7 @@
 		"@tailwindcss/typography": "^0.5.9",
 		"@types/cookie": "^0.5.1",
 		"autoprefixer": "^10.4.13",
+		"cssnano": "^5.1.14",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
@@ -34,6 +35,8 @@
 		"rehype-katex-svelte": "^1.1.2",
 		"rehype-slug": "^5.1.0",
 		"remark-abbr": "^1.4.1",
+		"remark-gfm": "^3.0.1",
+		"remark-html": "^15.0.1",
 		"remark-math": "^3.0.1",
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
@@ -41,15 +44,11 @@
 		"tailwindcss": "^3.2.4",
 		"typescript": "^4.9.3",
 		"vite": "^4.0.0",
-		"vitest": "^0.25.3"
-	},
-	"type": "module",
-	"dependencies": {
+		"vitest": "^0.25.3",
 		"clsx": "^1.2.1",
 		"eslint-plugin-tailwindcss": "^3.8.2",
-		"prism-material-themes": "^1.0.4",
-		"remark-gfm": "^3.0.1",
-		"remark-html": "^15.0.1",
-		"tailwind-scrollbar-hide": "^1.1.7"
-	}
+		"prism-material-themes": "^1.0.4"
+	},
+	"type": "module",
+	"dependencies": {}
 }
