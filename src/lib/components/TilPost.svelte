@@ -8,7 +8,7 @@
 	{#each tils as { default: component, metadata }}
 		<div
 			class={clsx(
-				"flex flex-col justify-evenly rounded-xl p-4 text-left text-defaultColor-900 shadow-customSm dark:text-darkDefaultColor-900 max-[640px]:shadow-none"
+				"flex flex-col justify-evenly rounded-xl p-4 text-left text-defaultColor-900 shadow-customSm dark:border-[1px] dark:border-solid dark:border-darkDefaultColor-500 dark:text-darkDefaultColor-900 max-[640px]:shadow-none"
 			)}
 		>
 			<div>
