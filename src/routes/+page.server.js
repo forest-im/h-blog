@@ -1,30 +1,8 @@
-const slugFromPath = (path) => path.match(/([\w-]+)\.(svelte\.md|md|svx)/i)?.[1] ?? null;
+import { count } from "../store";
+import { posts, tags } from "$lib/data/posts";
 
-const MAX_POSTS = 10;
+let countValue;
 
-export const load = async () => {
-	const modules = import.meta.glob(`/src/posts/*/*.{md,svx,svelte.md}`);
-	const modulesArr = Object.entries(modules);
+count.subscribe((value) => (countValue = value));
 
-	const postPromises = modulesArr.map(([path, resolver]) =>
-		resolver()
-			.then((post) => {
-				const splitPath = path.split('/');
-
-				return {
-					slug: slugFromPath(path),
-					category: splitPath[splitPath.length - 2],
-					...post.metadata
-				};
-			})
-			.catch((err) => console.log(err))
-	);
-
-	const posts = await Promise.all(postPromises);
-
-	const publishedPosts = posts
-		.slice(0, MAX_POSTS)
-		.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1));
-
-	return { props: publishedPosts };
-};
+export const load = async () => ({ posts: posts.slice(0, countValue), tags });

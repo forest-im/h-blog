@@ -1,27 +1,9 @@
 <script>
-	import PageHead from '$lib/postLayoutComponents/PageHead.svelte';
-	import PostTitle from '$lib/postLayoutComponents/PostTitle.svelte';
-	import PostMeta from '$lib/postLayoutComponents/PostMeta.svelte';
-	import PostDescription from '$lib/postLayoutComponents/PostDescription.svelte';
+	import PostList from "$lib/components/PostList.svelte";
+	import TagList from "$lib/components/TagList.svelte";
 
 	export let data;
 </script>
 
-<PageHead />
-
-<section>
-	{#each data.props as { slug, title, description, category }}
-		<PostTitle {slug} {title} {category} />
-		<PostDescription {slug} {description} {category} />
-	{/each}
-</section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		/* justify-content: center;
-		align-items: center; */
-		flex: 0.6;
-	}
-</style>
+<TagList tags={data.tags} />
+<PostList posts={data.posts} />
