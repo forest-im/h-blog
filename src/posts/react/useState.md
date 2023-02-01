@@ -9,10 +9,10 @@ type: blog
   - [클로저 예시 01](#클로저-예시-01)
   - [클로저 예시 02 - 모듈](#클로저-예시-02---모듈)
 - [useState](#usestate)
-  - [🎾 예제 1](#🎾-예제-1)
-  - [🎾 예제 2 - 오래된 클로저](#🎾-예제-2---오래된-클로저)
-  - [🎾 예제 3 - React 복제본 만들기](#🎾-예제-3---react-복제본-만들기)
-  - [🎾 예제 3 - 2 - React 복제본 만들기](#🎾-예제-3---2---react-복제본-만들기)
+  - [ 예제 1](#-예제-1)
+  - [ 예제 2 - 오래된 클로저](#-예제-2---오래된-클로저)
+  - [ 예제 3 - React 복제본 만들기](#-예제-3---react-복제본-만들기)
+  - [ 예제 3 - 2 - React 복제본 만들기](#-예제-3---2---react-복제본-만들기)
   - [정리](#정리)
 
 <br />
@@ -117,7 +117,7 @@ const [state, setState] = useState(initialValue);
 `state`값이 바뀌면 리렌더링 된다는 건 알겠는데..🧐 왜 `setState`로 값을 바꾸자마자 바꾼 값을 `state`로 출력할 수 없을까?  
 -> 미리 말하자면 setState를 작동시킨 후 state와 setState는 서로 다른 클로저를 참조한다. setState가 참조하고 있는 건 이미 업데이트 된 클로저를 참조하고 state가 참조하고 있는 클로저는 setState를 실행시키기 전의 클로저 즉 렌더링이 일어나고 나서의 클로저를 참조하고 있다. (렌더링 후의 state, setState의 클로저는 같다. setState로 업데이트를 시켰을 때 클로저가 달라지는 것이다.)
 
-### 🎾 예제 1
+### 예제 1
 
 아주 기본적인 형태의 useState를 만들어보자.
 
@@ -146,7 +146,7 @@ console.log(foo()); // logs 1 - new initialValue, despite exact same call
 
 - 근데 우리는 `state`값을 가져올 때 함수호출을 이용해서 가져오지 않는다. 그리고 이런 상태라면 `setState`되자마자 `state`의 값이 바뀌게 될 것 같다.
 
-### 🎾 예제 2 - 오래된 클로저
+### 예제 2 - 오래된 클로저
 
 ```js
 function useState(initialValue) {
@@ -172,7 +172,7 @@ console.log(foo); // 0
 - `_val` 자체를 `return`했기 때문에 여기서 foo의 클로저는 더 이상 업데이트 되지 않고 갇혀있다.
 - `setFoo()`를 아무리 많이 호출해도 `setFoo`의 클로저와 `foo`의 클로저는 다르기 때문에 값은 더 이상 업데이트 되지 않는다.
 
-### 🎾 예제 3 - React 복제본 만들기
+### 예제 3 - React 복제본 만들기
 
 ```js
 // 01
@@ -230,7 +230,7 @@ App = MyReact.render(Counter); // render: { count: 1 }
 `MyReact`의 `render`를 실행시켜 클로저를 업데이트 시켜줌으로써 `useState`의 `setState`로 인해 바뀐 `state` `_val`값을 업데이트 할 수 있게되었다.
 근데 우리가 쓰는 `setState`에서는 안에 콜백함수를 이용할 수 있었다. 그것과 똑같이 만들어보자.
 
-### 🎾 예제 3 - 2 - React 복제본 만들기
+### 예제 3 - 2 - React 복제본 만들기
 
 ```js
 // 01
