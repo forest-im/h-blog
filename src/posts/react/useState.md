@@ -1,0 +1,336 @@
+---
+title: 클로저와 useState
+tag: React, Hooks
+date: 2023-01-14 23:50:16
+type: blog
+---
+
+- [클로저란?](#클로저란)
+  - [클로저 예시 01](#클로저-예시-01)
+  - [클로저 예시 02 - 모듈](#클로저-예시-02---모듈)
+- [useState](#usestate)
+  - [🎾 예제 1](#🎾-예제-1)
+  - [🎾 예제 2 - 오래된 클로저](#🎾-예제-2---오래된-클로저)
+  - [🎾 예제 3 - React 복제본 만들기](#🎾-예제-3---react-복제본-만들기)
+  - [🎾 예제 3 - 2 - React 복제본 만들기](#🎾-예제-3---2---react-복제본-만들기)
+  - [정리](#정리)
+
+<br />
+
+> react 훅들과 클로저과 관련있다는 걸 이제야 알았고.. 반성의 의미로 포스트를 작성해본다. 💩
+
+## 클로저란?
+
+클로저는 함수와 그 함수가 선언됐을 때의 렉시컬 환경의 조합이다. 간단히 말해 "함수가 선언될 시 그 주변 환경을 기억하는 것" 이다.
+
+- 보통 함수 내부의 지역 변수는 해당 함수의 생명 주기 즉 실행이 끝난 경우 지역변수도 함께 사라지게 된다. 하지만 **해당 함수 내부** 에 **다른 함수가 존재** 하고 그 함수가 지역 변수 즉 부모의 변수를 참조하고 있으면 부모의 **생명 주기가 끝나더라도 지역 변수가 사라지지 않고** 그 변수에 **계속적으로 접근할 수 있다.** (설명을 위해 변수라고 했지만 변수를 렉시컬 스코프라고 바꾼다면 더 맞는 표현이 될 것 같다.)
+- 클로저는 렉시컬 스코프에 의존해 코드를 작성한 결과로 그냥 발생한다. 모든 코드에서 클로저는 생성되고 사용된다.
+
+<br />
+사실 계속 의미를 되짚어봐도 잘 모르겠다. 제일 와닿았던 말은 첫 줄에 있는 "함수가 선언될 시 그 주변 환경을 기억하는 것" 이 문장이었다.  이해가 안되니 클로저를 사용한 코드의 예시를 보자.
+<br />
+
+### 클로저 예시 01
+
+```js
+var fn;
+
+function foo() {
+	var a = 2;
+
+	function baz() {
+		console.log(a);
+	}
+
+	fn = baz;
+	// 전역변수 fn에 foo함수의 스코프를 가지는 baz함수를 주입시켰다.
+}
+
+function bar() {
+	fn();
+}
+
+foo();
+
+bar(); // console -> 2
+```
+
+fn안의 함수는 foo()함수의 환경을 기억하고 있어 변수 a의 값이 출력된다.
+
+### 클로저 예시 02 - 모듈
+
+- 모듈은 클로저의 능력을 활용하면서 표면적으로는 콜백과 상관없는 코드 패턴들이 있다. 그중 가장 강력한 패턴이다.
+
+```js
+function CoolModule() {
+	var something = "cool";
+	var another = [1, 2, 3];
+
+	function doSomething() {
+		console.log(something);
+	}
+
+	function doAnother() {
+		console.log(another.join("!"));
+	}
+
+	return {
+		doSomething: doSomething,
+		doAnother: doAnother
+	};
+}
+
+var foo = CoolModule();
+
+foo.doSomething(); // cool
+foo.doAnother(); // 1!2!3!
+```
+
+- 이들 모두 `CoolModule()`의 내부 스코프를 렉시컬 스코프(당연히 클로저도 따라온다)로 가진다.
+- 위 코드와 같은 자바스크립트 패턴을 모듈이라고 부른다.
+- `CoolModule()` 함수내의 변수는 외부에서 접근할 수 없지만 안의 `doSomething`, `doAnother` 함수를 이용해 값을 출력해볼 수 있다.
+- 클로저를 이용해 getter/setter의 기능을 구현할 수 있다.
+
+---
+
+🧐 왜 모듈까지 설명하게 되었을까? 그 이유는 useState의 구현이 모듈로 이루어져있기 때문이다.
+
+## useState
+
+여기서는 [Deep dive: How do React hooks really work?](https://www.netlify.com/blog/2019/03/11/deep-dive-how-do-react-hooks-really-work/)의 예제를 사용했습니다.  
+(번역된 글도 있으니 꼭 읽어보시길 추천 [[번역] 심층 분석: React Hook은 실제로 어떻게 동작할까?](https://hewonjeong.github.io/deep-dive-how-do-react-hooks-really-work-ko/))  
+실제 구현이 궁금하다면 [React의 useState 내부 동작 방식과 클로저](https://www.kyoung-jnn.com/posts/react-useState)글을 추천합니다.
+<br/>
+
+![react-closure](https://raw.githubusercontent.com/h-alex2/h-blog/70cde2776138361c3f320b6b651494fa8a272a60/public/posts/react-closure.png)
+(😇)
+
+<br/>
+
+```js
+const [state, setState] = useState(initialValue);
+```
+
+➢ `useState`는 배열을 `return` 하는 `useState`함수의 값을 구조분해 할당을 사용하여 getter인 `state`, setter인 `setState`를 값을 사용하는 방식이다.
+<br />
+
+`state`값이 바뀌면 리렌더링 된다는 건 알겠는데..🧐 왜 `setState`로 값을 바꾸자마자 바꾼 값을 `state`로 출력할 수 없을까?  
+-> 미리 말하자면 setState를 작동시킨 후 state와 setState는 서로 다른 클로저를 참조한다. setState가 참조하고 있는 건 이미 업데이트 된 클로저를 참조하고 state가 참조하고 있는 클로저는 setState를 실행시키기 전의 클로저 즉 렌더링이 일어나고 나서의 클로저를 참조하고 있다. (렌더링 후의 state, setState의 클로저는 같다. setState로 업데이트를 시켰을 때 클로저가 달라지는 것이다.)
+
+### 🎾 예제 1
+
+아주 기본적인 형태의 useState를 만들어보자.
+
+```js
+function useState(initialValue) {
+	var _val = initialValue; // 지역 변수 _val를 선언하고, initialValue를 할당합니다.
+
+	function state() {
+		// state함수는 내부 함수이고, 클로저입니다.
+		return _val; // state()는 부모 함수에 정의된 _val을 참조합니다.
+	}
+
+	function setState(newVal) {
+		// same
+		_val = newVal; // _val를 변경합니다.
+	}
+
+	return [state, setState]; // 외부에서 사용하기 위해 값은 노출하지 않고 함수를 노출합니다.
+}
+var [foo, setFoo] = useState(0);
+
+console.log(foo()); // logs 0 - the initialValue we gave
+setFoo(1); // sets _val inside useState's scope
+console.log(foo()); // logs 1 - new initialValue, despite exact same call
+```
+
+- 근데 우리는 `state`값을 가져올 때 함수호출을 이용해서 가져오지 않는다. 그리고 이런 상태라면 `setState`되자마자 `state`의 값이 바뀌게 될 것 같다.
+
+### 🎾 예제 2 - 오래된 클로저
+
+```js
+function useState(initialValue) {
+	var _val = initialValue;
+
+	function setState(newVal) {
+		_val = newVal;
+		console.log("setState", _val);
+	}
+
+	return [_val, setState];
+}
+
+var [foo, setFoo] = useState(0);
+
+console.log(foo); // 0
+setFoo(1); // log -> 'setState', 1
+console.log(foo); // 0
+setFoo(2); // log -> 'setState', 2
+console.log(foo); // 0
+```
+
+- `_val` 자체를 `return`했기 때문에 여기서 foo의 클로저는 더 이상 업데이트 되지 않고 갇혀있다.
+- `setFoo()`를 아무리 많이 호출해도 `setFoo`의 클로저와 `foo`의 클로저는 다르기 때문에 값은 더 이상 업데이트 되지 않는다.
+
+### 🎾 예제 3 - React 복제본 만들기
+
+```js
+// 01
+
+const MyReact = (function () {
+	let _val; // 모듈 MyReact 스코프 안에 state를 잡아놓습니다.
+
+	return {
+		render(Component) {
+			// component 함수가 인자로 들어가는 render 메서드를 정의.
+			const Comp = Component();
+			Comp.render();
+
+			return Comp;
+		},
+
+		useState(initialValue) {
+			_val = _val || initialValue; // 매 실행마다 새로 할당됩니다.
+
+			function setState(newVal) {
+				_val = newVal;
+			}
+
+			return [_val, setState];
+		}
+	};
+})();
+```
+
+모듈 패턴을 이용한 작은 React 복제본.
+
+- `React`와 마찬가지로 컴포넌트 상태를 추적한다.(이 예제에서는 컴포넌트 `_val` 상태만 추적함).
+- 이 디자인을 통해 `MyReact`는 함수 구성 요소를 '렌더링'하여 올바른 클로저로 매번 내부 `_val`의 값을 할당할 수 있다.
+
+```js
+// 02
+
+function Counter() {
+	const [count, setCount] = MyReact.useState(0);
+
+	return {
+		click: () => setCount(count + 1),
+		render: () => console.log("render:", { count })
+	};
+}
+
+let App;
+
+App = MyReact.render(Counter); // render: { count: 0 }
+App.click(); // setCount(count + 1)을 실행합니다.
+App = MyReact.render(Counter); // render: { count: 1 }
+// state가 바뀌면 rerendering이 일어나니 똑같이 rendering을 일으켜 값을 확인합니다.
+```
+
+`MyReact`의 `render`를 실행시켜 클로저를 업데이트 시켜줌으로써 `useState`의 `setState`로 인해 바뀐 `state` `_val`값을 업데이트 할 수 있게되었다.
+근데 우리가 쓰는 `setState`에서는 안에 콜백함수를 이용할 수 있었다. 그것과 똑같이 만들어보자.
+
+### 🎾 예제 3 - 2 - React 복제본 만들기
+
+```js
+// 01
+// 나머지는 위와 같고, 주석이 써져있는 부분만 다름
+
+const MyReact = (function () {
+	let _val;
+
+	return {
+		render(Component) {
+			const Comp = Component();
+			Comp.render();
+
+			return Comp;
+		},
+
+		useState(initialValue) {
+			_val = _val || initialValue;
+
+			function setState(newVal) {
+				_val = typeof newVal === "function" ? newVal(_val) : newVal; // newVal이 함수면 인자 _val을 넣어 실행해주고 값이라면 새로 할당해줍니다.
+			}
+
+			return [_val, setState];
+		}
+	};
+})();
+```
+
+- `setState`에 콜백함수를 넣을 수 있게 하기 위해 `setState`의 `newVal` 매개변수의 타입으로 삼항연산자 조건을 걸어주었다.
+  - 타입이 함수라면 `_val`을 인자로 함수 실행, 함수가 아니라면 값 할당
+
+```js
+function Counter() {
+	const [count, setCount] = MyReact.useState(0);
+
+	return {
+		click: () => {
+			// test를 위해서 두 개의 setState를 만들었다.
+			setCount((prev) => {
+				// test용 console.log
+				console.log("첫 번째 setCount");
+				console.log("prev", prev);
+				console.log("count", count);
+
+				return prev + 1;
+			});
+
+			setCount((prev) => {
+				// test용 console.log
+				console.log("두 번째 setCount");
+				console.log("prev", prev);
+				console.log("count", count);
+
+				return prev + 1;
+			});
+		},
+		render: () => console.log("render:", { count })
+	};
+}
+let App;
+
+App = MyReact.render(Counter); // render: { count: 0 }
+App.click();
+// 첫 번째 setCount
+// prev 0
+// count 0
+// 두 번째 setCount
+// prev 1
+// count 0
+App = MyReact.render(Counter); // render: { count: 2 }
+
+App.click();
+// 첫 번째 setCount
+// prev 2
+// count 2
+// 두 번째 setCount
+// prev 3
+// count 2
+App = MyReact.render(Counter); // render: { count: 4 }
+```
+
+useState는 클로저를 이용해 만들어졌기 때문에 useState()의 값을 할당받은 후 setState를 한 번이라도 동작시키게 되면 state의 클로저와 setState의 클로저는 같은 스코프를 참고하지 않는다. state의 클로저를 set한 결과물에 맞춰주려면 rendering이 일어나 올바른 클로저로 업데이트 되어야 한다.
+
+### 정리
+
+- setState를 작동시키면 state와 setState의 클로저는 달라진다.
+  - 같은 setState를 여러 개 사용할 때 위의 setState에서 바꾼 값을 이용하려면 setState에 콜백을 넣어 인자값을 이용하면 리렌더링 되기 전에도 바뀐 값을 이용할 수 있게 된다. (setState의 클로저는 동일하므로 서로 같은 클로저를 참조하기 때문)
+- useState가 구현된 부분을 찾아보게 되면 의존성을 주입받는 부분은 reconciliation 모듈로 따로 분리되어 있다고 한다. 구현부를 보는 것도 이해하는 것에 큰 도움이 되겠지만 큰 프로젝트의 모듈을 살펴보는 게 생각보다는 쉽지 않은 작업이라 내 선에서 이해될 수 있는 만큼만 정리해보았다.  
+  추후에 모듈들을 살펴보면서 fiber도 함께 구경해보고 싶다. 훅들의 관리를 연결리스트로 해주고 있다고 하는데 궁금궁금.
+- react 렌더링부터 다시 정리하면서 찾아보고 있는데 너무 모르고 쓴 부분이 많은 것 같다. 렌더링, 라이프 사이클에 대해 확실히 익힌 후에 최적화를 생각했더라면 더 쉽게 접근할 수 있었겠구나 싶다. 순서가 반대로 되어버렸지만 이제 알게된 부분이 많은 만큼 더 공부해야겠다.
+
+> 출처
+
+- [Deep dive: How do React hooks really work?](https://www.netlify.com/blog/2019/03/11/deep-dive-how-do-react-hooks-really-work/)
+- [[번역] 심층 분석: React Hook은 실제로 어떻게 동작할까?](https://hewonjeong.github.io/deep-dive-how-do-react-hooks-really-work-ko/)
+- [Javascript 모듈 패턴과 Closure(클로저)](https://www.js2uix.com/frontend/study-js-closure/)
+
+> 읽어볼 글
+
+- [useReducer vs useState) 2-1. React fiber](https://velog.io/@jihyeonjeong11/useReducer-vs-useState-2-1.-React-fiber)
+- [React 톺아보기 - 03. Hooks_1](https://goidle.github.io/react/in-depth-react-hooks_1/#1-%EC%9D%98%EC%A1%B4%EC%84%B1%EC%9D%84-%EA%B4%80%EB%A6%AC%ED%95%98%EB%8A%94-reactsharedinternalsjs%EC%99%80-shared-%ED%8C%A8%ED%82%A4%EC%A7%80)
+- [React의 useState 내부 동작 방식과 클로저](https://www.kyoung-jnn.com/posts/react-useState)

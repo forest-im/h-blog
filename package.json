@@ -1,33 +1,55 @@
 {
-  "name": "alex-blog",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@next/font": "13.1.0",
-    "@vercel/analytics": "^0.1.8",
-    "eslint": "8.30.0",
-    "eslint-config-next": "13.1.0",
-    "github-markdown-css": "^5.1.0",
-    "gray-matter": "^4.0.3",
-    "next": "13.1.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-markdown": "^8.0.4",
-    "react-syntax-highlighter": "^15.5.0",
-    "rehype-raw": "^6.1.1",
-    "remark": "^14.0.2",
-    "remark-gfm": "^3.0.1",
-    "remark-html": "^15.0.1",
-    "remark-toc": "^8.0.1",
-    "styled-components": "^5.3.6"
-  },
-  "devDependencies": {
-    "babel-plugin-styled-components": "^2.0.7"
-  }
+	"name": "myapp",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+		"test": "playwright test",
+		"test:unit": "vitest",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"devDependencies": {
+		"@fontsource/fira-mono": "^4.5.10",
+		"@neoconfetti/svelte": "^1.0.0",
+		"@playwright/test": "^1.28.1",
+		"@sveltejs/adapter-static": "^1.0.5",
+		"@sveltejs/kit": "^1.0.0",
+		"@tailwindcss/typography": "^0.5.9",
+		"@types/cookie": "^0.5.1",
+		"autoprefixer": "^10.4.13",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"mdsvex": "^0.10.6",
+		"postcss": "^8.4.21",
+		"prettier": "^2.8.3",
+		"prettier-plugin-svelte": "^2.8.1",
+		"prettier-plugin-tailwindcss": "^0.2.2",
+		"rehype-autolink-headings": "^6.1.1",
+		"rehype-katex": "^6.0.2",
+		"rehype-katex-svelte": "^1.1.2",
+		"rehype-slug": "^5.1.0",
+		"remark-abbr": "^1.4.1",
+		"remark-math": "^3.0.1",
+		"svelte": "^3.54.0",
+		"svelte-check": "^3.0.1",
+		"svelte-preprocess": "^5.0.1",
+		"tailwindcss": "^3.2.4",
+		"typescript": "^4.9.3",
+		"vite": "^4.0.0",
+		"vitest": "^0.25.3"
+	},
+	"type": "module",
+	"dependencies": {
+		"clsx": "^1.2.1",
+		"eslint-plugin-tailwindcss": "^3.8.2",
+		"prism-material-themes": "^1.0.4",
+		"remark-gfm": "^3.0.1",
+		"remark-html": "^15.0.1",
+		"tailwind-scrollbar-hide": "^1.1.7"
+	}
 }
