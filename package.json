@@ -1,6 +1,6 @@
 {
-	"name": "myapp",
-	"version": "0.0.1",
+	"name": "alex-dev-blog",
+	"version": "2.0.0",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
