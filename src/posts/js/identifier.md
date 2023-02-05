@@ -116,19 +116,19 @@ x = 5; // 변수 할당문
 
 ```js
 +'' + // 0
-	'0' + // 0
-	'1' + // 1
-	'string' + // NaN
-	true + // 1
-	false + // 0
-	null + // 0
-	undefined + // NaN
-	Symbol() + // TypeError: Cannot convert a Symbol value to a number
-	// 객체 타입
-	{} + // NaN
-	[] + // 0
-	[10, 20] + // NaN
-	function () {}; // NaN
+  '0' + // 0
+  '1' + // 1
+  'string' + // NaN
+  true + // 1
+  false + // 0
+  null + // 0
+  undefined + // NaN
+  Symbol() + // TypeError: Cannot convert a Symbol value to a number
+  // 객체 타입
+  {} + // NaN
+  [] + // 0
+  [10, 20] + // NaN
+  function () {}; // NaN
 ```
 
 3. 불리언 타입으로 변환

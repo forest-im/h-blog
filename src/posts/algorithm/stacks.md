@@ -36,52 +36,52 @@ date: 2022-12-28 17:39:47
 
 ```js
 class Node {
-	constructor(value) {
-		this.value = value;
-		this.next = null;
-	}
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
 }
 
 class Stack {
-	constructor() {
-		this.first = null;
-		this.last = null;
-		this.size = 0;
-	}
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  }
 
-	push(val) {
-		const newNode = new Node(val);
+  push(val) {
+    const newNode = new Node(val);
 
-		this.size++;
+    this.size++;
 
-		if (!this.first) {
-			this.first = newNode;
-			this.last = newNode;
-		} else {
-			const temp = this.first;
-			this.first = newNode;
-			this.first.next = temp;
-		}
+    if (!this.first) {
+      this.first = newNode;
+      this.last = newNode;
+    } else {
+      const temp = this.first;
+      this.first = newNode;
+      this.first.next = temp;
+    }
 
-		return ++this.size;
-	}
+    return ++this.size;
+  }
 
-	pop() {
-		if (!this.first) {
-			return null;
-		}
+  pop() {
+    if (!this.first) {
+      return null;
+    }
 
-		if (!this.size) {
-			this.last = null;
-		}
+    if (!this.size) {
+      this.last = null;
+    }
 
-		const temp = this.first;
+    const temp = this.first;
 
-		this.first = this.first.next;
-		this.size--;
+    this.first = this.first.next;
+    this.size--;
 
-		return temp.value;
-	}
+    return temp.value;
+  }
 }
 ```
 
@@ -108,46 +108,46 @@ class Stack {
 
 ```js
 class Node {
-	constructor(value) {
-		this.value = value;
-		this.next = null;
-	}
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
 }
 
 class Queue {
-	constructor() {
-		this.first = null;
-		this.last = null;
-		this.size = 0;
-	}
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  }
 
-	enqueue(value) {
-		const newNode = new Node(value);
+  enqueue(value) {
+    const newNode = new Node(value);
 
-		if (!this.size) {
-			this.first = newNode;
-			this.last = newNode;
-		} else {
-			this.last.next = newNode;
-			this.last = newNode;
-		}
+    if (!this.size) {
+      this.first = newNode;
+      this.last = newNode;
+    } else {
+      this.last.next = newNode;
+      this.last = newNode;
+    }
 
-		return ++this.size;
-	}
+    return ++this.size;
+  }
 
-	dequeue() {
-		if (!this.size) return null;
+  dequeue() {
+    if (!this.size) return null;
 
-		if (this.size === 1) {
-			this.last = null;
-		}
+    if (this.size === 1) {
+      this.last = null;
+    }
 
-		const temp = this.first;
-		this.first = this.first.next;
-		this.size--;
+    const temp = this.first;
+    this.first = this.first.next;
+    this.size--;
 
-		return temp.value;
-	}
+    return temp.value;
+  }
 }
 ```
 

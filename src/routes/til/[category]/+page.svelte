@@ -1,7 +1,7 @@
 <script>
-	import TilPost from "$lib/components/TilPost.svelte";
+  import TilPost from "$lib/components/TilPost.svelte";
 
-	export let data;
+  export let data;
 </script>
 
 <TilPost tils={data.tilsInTheCurrentCategory} />

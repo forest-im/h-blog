@@ -73,16 +73,16 @@ https://tailwindcss.com/docs/typography-plugin
 
 ```js
 {#if slug}
-	<h3 class="heading" class:large={!slug} {id}>
-		<a {href}>
-			{title}
-		</a>
-	</h3>
+  <h3 class="heading" class:large={!slug} {id}>
+    <a {href}>
+      {title}
+    </a>
+  </h3>
 {:else}
-	<h2 class="heading" class:large={!slug} {id}>
-		<a {href}>
-			{title}
-		</a>
-	</h2>
+  <h2 class="heading" class:large={!slug} {id}>
+    <a {href}>
+      {title}
+    </a>
+  </h2>
 {/if}
 ```

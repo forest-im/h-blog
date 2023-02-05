@@ -21,151 +21,151 @@ date: 2022-12-27 20:36:26
 
 ```js
 class Node {
-	constructor(val) {
-		this.val = val;
-		this.left = null;
-		this.right = null;
-	}
+  constructor(val) {
+    this.val = val;
+    this.left = null;
+    this.right = null;
+  }
 }
 
 class Bst {
-	constructor() {
-		this.root = null;
-	}
+  constructor() {
+    this.root = null;
+  }
 
-	insert(value) {
-		const node = new Node(value);
+  insert(value) {
+    const node = new Node(value);
 
-		if (this.root === null) {
-			return (this.root = node);
-		}
+    if (this.root === null) {
+      return (this.root = node);
+    }
 
-		let current = this.root;
+    let current = this.root;
 
-		while (true) {
-			if (current.val < value) {
-				if (current.right === null) {
-					return (current.right = node);
-				}
+    while (true) {
+      if (current.val < value) {
+        if (current.right === null) {
+          return (current.right = node);
+        }
 
-				current = current.right;
-			} else {
-				if (current.left === null) {
-					return (current.left = node);
-				}
+        current = current.right;
+      } else {
+        if (current.left === null) {
+          return (current.left = node);
+        }
 
-				current = current.left;
-			}
-		}
-	}
+        current = current.left;
+      }
+    }
+  }
 
-	find(value) {
-		if (this.root.val === null) return null;
+  find(value) {
+    if (this.root.val === null) return null;
 
-		let current = this.root;
+    let current = this.root;
 
-		while (current) {
-			if (current.val === value) return current;
+    while (current) {
+      if (current.val === value) return current;
 
-			if (current.val < value) {
-				current = current.right;
-			} else {
-				current = current.left;
-			}
-		}
+      if (current.val < value) {
+        current = current.right;
+      } else {
+        current = current.left;
+      }
+    }
 
-		return null;
-	}
+    return null;
+  }
 
-	BFS() {
-		const queue = [];
-		const visited = [];
+  BFS() {
+    const queue = [];
+    const visited = [];
 
-		queue.push(this.root);
+    queue.push(this.root);
 
-		while (queue.length) {
-			const node = queue.shift();
-			visited.push(node.val);
+    while (queue.length) {
+      const node = queue.shift();
+      visited.push(node.val);
 
-			if (node.left) {
-				queue.push(node.left);
-			}
+      if (node.left) {
+        queue.push(node.left);
+      }
 
-			if (node.right) {
-				queue.push(node.right);
-			}
-		}
+      if (node.right) {
+        queue.push(node.right);
+      }
+    }
 
-		return visited;
-	}
+    return visited;
+  }
 
-	DFSPreOrder() {
-		const current = this.root;
-		const visited = [];
+  DFSPreOrder() {
+    const current = this.root;
+    const visited = [];
 
-		function traverse(node) {
-			visited.push(node.val);
+    function traverse(node) {
+      visited.push(node.val);
 
-			if (node.left) {
-				traverse(node.left);
-			}
+      if (node.left) {
+        traverse(node.left);
+      }
 
-			if (node.right) {
-				traverse(node.right);
-			}
+      if (node.right) {
+        traverse(node.right);
+      }
 
-			return;
-		}
+      return;
+    }
 
-		traverse(current);
+    traverse(current);
 
-		return visited;
-	}
+    return visited;
+  }
 
-	DFSPostOrder() {
-		const current = this.root;
-		const visited = [];
+  DFSPostOrder() {
+    const current = this.root;
+    const visited = [];
 
-		function traverse(node) {
-			if (node.left) {
-				traverse(node.left);
-			}
+    function traverse(node) {
+      if (node.left) {
+        traverse(node.left);
+      }
 
-			if (node.right) {
-				traverse(node.right);
-			}
+      if (node.right) {
+        traverse(node.right);
+      }
 
-			visited.push(node.val);
+      visited.push(node.val);
 
-			return;
-		}
+      return;
+    }
 
-		traverse(current);
+    traverse(current);
 
-		return visited;
-	}
+    return visited;
+  }
 
-	DFSInOrder() {
-		const current = this.root;
-		const visited = [];
+  DFSInOrder() {
+    const current = this.root;
+    const visited = [];
 
-		function traverse(node) {
-			if (node.left) {
-				traverse(node.left);
-			}
+    function traverse(node) {
+      if (node.left) {
+        traverse(node.left);
+      }
 
-			visited.push(node.val);
+      visited.push(node.val);
 
-			if (node.right) {
-				traverse(node.right);
-			}
+      if (node.right) {
+        traverse(node.right);
+      }
 
-			return;
-		}
+      return;
+    }
 
-		traverse(current);
+    traverse(current);
 
-		return visited;
-	}
+    return visited;
+  }
 }
 ```

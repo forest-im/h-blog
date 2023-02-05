@@ -1,32 +1,32 @@
 <script>
-	import PageHead from "$lib/components/PageHead.svelte";
-	import PostTitle from "$lib/components/PostTitle.svelte";
-	import { onMount } from "svelte/internal";
+  import PageHead from "$lib/components/PageHead.svelte";
+  import PostTitle from "$lib/components/PostTitle.svelte";
+  import { onMount } from "svelte/internal";
 
-	export let data;
-	$: component = data.component;
+  export let data;
+  $: component = data.component;
 
-	let commentSection;
+  let commentSection;
 
-	onMount(() => {
-		if (commentSection.childNodes.length) return;
-		const scriptElem = document.createElement("script");
-		scriptElem.src = "https://utteranc.es/client.js";
-		scriptElem.async = true;
-		scriptElem.setAttribute("repo", "h-alex2/h-blog");
-		scriptElem.setAttribute("issue-term", "pathname");
-		scriptElem.setAttribute("theme", "github-light");
-		scriptElem.setAttribute("label", "blog-comment");
-		scriptElem.crossOrigin = "anonymous";
-		commentSection.appendChild(scriptElem);
-	});
+  onMount(() => {
+    if (commentSection.childNodes.length) return;
+    const scriptElem = document.createElement("script");
+    scriptElem.src = "https://utteranc.es/client.js";
+    scriptElem.async = true;
+    scriptElem.setAttribute("repo", "h-alex2/h-blog");
+    scriptElem.setAttribute("issue-term", "pathname");
+    scriptElem.setAttribute("theme", "github-light");
+    scriptElem.setAttribute("label", "blog-comment");
+    scriptElem.crossOrigin = "anonymous";
+    commentSection.appendChild(scriptElem);
+  });
 </script>
 
 <article>
-	<PageHead title={data.metadata.title} description={data.metadata.description} />
-	<PostTitle title={data.metadata.title} />
+  <PageHead title={data.metadata.title} description={data.metadata.description} />
+  <PostTitle title={data.metadata.title} />
 
-	<svelte:component this={component} />
+  <svelte:component this={component} />
 
-	<section bind:this={commentSection} class="my-10" />
+  <section bind:this={commentSection} class="my-10" />
 </article>

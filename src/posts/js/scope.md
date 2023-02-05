@@ -86,17 +86,17 @@ date: 2023-01-04 11:47:10
 
 ```js
 var Counter = (function () {
-	var num = 0;
+  var num = 0;
 
-	return {
-		increase() {
-			return ++num;
-		},
+  return {
+    increase() {
+      return ++num;
+    },
 
-		decrease() {
-			return --num;
-		}
-	};
+    decrease() {
+      return --num;
+    }
+  };
 })();
 ```
 

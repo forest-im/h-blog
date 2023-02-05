@@ -3,72 +3,72 @@
 @import "tailwindcss/utilities";
 
 .scrollbar-hide {
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 .transition {
-	transition: 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 @layer base {
-	* {
-		@apply text-defaultColor-900 dark:text-zinc-200;
-	}
+  * {
+    @apply text-defaultColor-900 dark:text-zinc-200;
+  }
 
-	html {
-		@apply box-border max-h-screen;
-	}
+  html {
+    @apply box-border max-h-screen;
+  }
 
-	header {
-		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	}
+  header {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
 
-	body {
-		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  body {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
-		@apply scrollbar-hide my-0 mx-auto bg-darkDefaultColor-900 p-0 dark:bg-defaultColor-900;
-	}
+    @apply scrollbar-hide my-0 mx-auto bg-darkDefaultColor-900 p-0 dark:bg-defaultColor-900;
+  }
 
-	.all-prose {
-		@apply prose prose-neutral prose-a:no-underline dark:prose-invert;
-	}
+  .all-prose {
+    @apply prose prose-neutral prose-a:no-underline dark:prose-invert;
+  }
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply text-zinc-900;
-	}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-zinc-900;
+  }
 
-	a {
-		@apply no-underline dark:text-darkDefaultColor-900;
-	}
+  a {
+    @apply no-underline dark:text-darkDefaultColor-900;
+  }
 
-	hr {
-		@apply border-zinc-100 dark:border-zinc-700/25;
-	}
+  hr {
+    @apply border-zinc-100 dark:border-zinc-700/25;
+  }
 
-	img {
-		@apply my-6 block max-w-full shadow-xl;
-	}
+  img {
+    @apply my-6 block max-w-full shadow-xl;
+  }
 
-	.tag {
-		@apply my-1 ml-0 mb-1 mt-2 mr-2 rounded bg-pointColor-700 p-2 py-0 px-2  dark:bg-darkPointColor-700;
-	}
+  .tag {
+    @apply my-1 ml-0 mb-1 mt-2 mr-2 rounded bg-pointColor-700 p-2 py-0 px-2  dark:bg-darkPointColor-700;
+  }
 
-	.date {
-		@apply mt-2 text-xs font-light text-defaultColor-700 dark:text-darkDefaultColor-700 max-sm:hidden;
-	}
+  .date {
+    @apply mt-2 text-xs font-light text-defaultColor-700 dark:text-darkDefaultColor-700 max-sm:hidden;
+  }
 
-	.post-list-container {
-		@apply m-4 flex cursor-pointer flex-col justify-evenly rounded-xl p-4 text-left text-defaultColor-900 hover:bg-pointColor-500
-		hover:shadow-customSm dark:text-darkDefaultColor-900 dark:hover:bg-darkPointColor-500 dark:hover:shadow-customDarkSm;
-	}
+  .post-list-container {
+    @apply m-4 flex cursor-pointer flex-col justify-evenly rounded-xl p-4 text-left text-defaultColor-900 hover:bg-pointColor-500
+    hover:shadow-customSm dark:text-darkDefaultColor-900 dark:hover:bg-darkPointColor-500 dark:hover:shadow-customDarkSm;
+  }
 }

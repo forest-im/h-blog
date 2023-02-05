@@ -93,11 +93,11 @@ connect 함수는 리액트 앱의 하위 컴포넌트에서 redux store를 접�
 
 ```js
 function addTodoWithDispatch(text) {
-	const action = {
-		type: ADD_TODO,
-		text
-	};
-	dispatch(action);
+  const action = {
+    type: ADD_TODO,
+    text
+  };
+  dispatch(action);
 }
 ```
 
@@ -105,10 +105,10 @@ function addTodoWithDispatch(text) {
 
 ```js
 function addTodo(text) {
-	return {
-		type: ADD_TODO,
-		text
-	};
+  return {
+    type: ADD_TODO,
+    text
+  };
 }
 ```
 
@@ -149,15 +149,15 @@ import { connect } from 'react-redux';
 class myContainer extends Component {}
 
 function mapStateToProps(state) {
-	// You return what it will show up as props of myContainer
-	return {
-		property: this.state.property
-	};
+  // You return what it will show up as props of myContainer
+  return {
+    property: this.state.property
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-	// Whenever property is called, it should be passed to all reducers
-	return bindActionCreators({ property: property }, dispatch);
+  // Whenever property is called, it should be passed to all reducers
+  return bindActionCreators({ property: property }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(myContainer);

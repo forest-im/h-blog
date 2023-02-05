@@ -21,21 +21,21 @@ date: 2022-12-23 22:20:35
 
 ```js
 var twoSum = function (nums, target) {
-	let left = 0;
-	let right = nums.length - 1;
+  let left = 0;
+  let right = nums.length - 1;
 
-	while (left < right) {
-		if (nums[left] + nums[right] === target) {
-			return [left, right];
-		}
+  while (left < right) {
+    if (nums[left] + nums[right] === target) {
+      return [left, right];
+    }
 
-		if (left === right - 1) {
-			left++;
-			right = nums.length - 1;
-		} else {
-			right--;
-		}
-	}
+    if (left === right - 1) {
+      left++;
+      right = nums.length - 1;
+    } else {
+      right--;
+    }
+  }
 };
 ```
 
@@ -45,15 +45,15 @@ var twoSum = function (nums, target) {
 
 ```js
 var twoSum2 = function (nums, target) {
-	const storedNumberAndIndex = {};
+  const storedNumberAndIndex = {};
 
-	nums.forEach((number, index) => (storedNumberAndIndex[number] = index));
+  nums.forEach((number, index) => (storedNumberAndIndex[number] = index));
 
-	for (let i = 0; i < nums.length; i++) {
-		if (storedNumberAndIndex[target - nums[i]] && storedNumberAndIndex[target - nums[i]] !== i) {
-			return [storedNumberAndIndex[target - nums[i]], i];
-		}
-	}
+  for (let i = 0; i < nums.length; i++) {
+    if (storedNumberAndIndex[target - nums[i]] && storedNumberAndIndex[target - nums[i]] !== i) {
+      return [storedNumberAndIndex[target - nums[i]], i];
+    }
+  }
 };
 ```
 

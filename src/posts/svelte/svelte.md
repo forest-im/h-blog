@@ -11,7 +11,7 @@ published: false
 
 ```js
 <script>
-	let src = '/tutorial/image.gif';
+  let src = '/tutorial/image.gif';
 </script>
 
 <img {src} alt="a man">
@@ -21,16 +21,16 @@ vite-plugin-svelte로 vite를 설정하는 스벨트킷을 사용하는 것이 �
 
 ```js
 <script>
-	let count = 0;
-	$: doubled = count * 2;
+  let count = 0;
+  $: doubled = count * 2;
 
-	function handleClick() {
-		count += 1;
-	}
+  function handleClick() {
+    count += 1;
+  }
 </script>
 
 <button on:click={handleClick}>
-	{count} doubled is {doubled}
+  {count} doubled is {doubled}
 </button>
 ```
 
@@ -44,8 +44,8 @@ vite-plugin-svelte로 vite를 설정하는 스벨트킷을 사용하는 것이 �
 
 ```js
 function addNumber() {
-	numbers.push(numbers.length + 1);
-	numbers = numbers;
+  numbers.push(numbers.length + 1);
+  numbers = numbers;
 }
 ```
 
@@ -57,23 +57,23 @@ function addNumber() {
 
 ```js
 <script>
-	let user = { loggedIn: false };
+  let user = { loggedIn: false };
 
-	function toggle() {
-		user.loggedIn = !user.loggedIn;
-	}
+  function toggle() {
+    user.loggedIn = !user.loggedIn;
+  }
 </script>
 
 {#if user.loggedIn}
-	<button on:click={toggle}>
-		Log out
-	</button>
+  <button on:click={toggle}>
+    Log out
+  </button>
 {/if}
 
 {#if !user.loggedIn}
-	<button on:click={toggle}>
-		Log in
-	</button>
+  <button on:click={toggle}>
+    Log in
+  </button>
 {/if}
 ```
 
@@ -91,23 +91,23 @@ function addNumber() {
 
 ```js
 {#if user.loggedIn}
-	<button on:click={toggle}>
-		Log out
-	</button>
+  <button on:click={toggle}>
+    Log out
+  </button>
 {:else}
-	<button on:click={toggle}>
-		Log in
-	</button>
+  <button on:click={toggle}>
+    Log in
+  </button>
 {/if}
 ```
 
 ```js
 {#if x > 10}
-	<p>{x} is greater than 10</p>
+  <p>{x} is greater than 10</p>
 {:else if 5 > x}
-	<p>{x} is less than 5</p>
+  <p>{x} is less than 5</p>
 {:else}
-	<p>{x} is between 5 and 10</p>
+  <p>{x} is between 5 and 10</p>
 {/if}
 ```
 
@@ -115,21 +115,21 @@ function addNumber() {
 
 ```js
 <script>
-	let cats = [
-		{ id: 'J---aiyznGQ', name: 'Keyboard Cat' },
-		{ id: 'z_AbfPXTKms', name: 'Maru' },
-		{ id: 'OUtn3pvWmpg', name: 'Henri The Existential Cat' }
-	];
+  let cats = [
+    { id: 'J---aiyznGQ', name: 'Keyboard Cat' },
+    { id: 'z_AbfPXTKms', name: 'Maru' },
+    { id: 'OUtn3pvWmpg', name: 'Henri The Existential Cat' }
+  ];
 </script>
 
 <h1>The Famous Cats of YouTube</h1>
 
 <ul>
-	{#each cats as cat}
-		<li><a target="_blank" href="https://www.youtube.com/watch?v={cat.id}" rel="noreferrer">
-			{cat.name}
-		</a></li>
-	{/each}
+  {#each cats as cat}
+    <li><a target="_blank" href="https://www.youtube.com/watch?v={cat.id}" rel="noreferrer">
+      {cat.name}
+    </a></li>
+  {/each}
 </ul>
 ```
 
@@ -145,22 +145,22 @@ function addNumber() {
 ```js
 {#await promise}
 <p>
-	...waiting
+  ...waiting
 </p>
 {:then number}
 <p>
-	The number is {number}
+  The number is {number}
 </p>
 {:catch error}
 <p>
-	{error.message}
+  {error.message}
 </p>
 {/await}
 
 // 또는
 
 {#await promise then number}
-	<p>the number is {number}</p>
+  <p>the number is {number}</p>
 {/await}
 ```
 
@@ -193,30 +193,30 @@ settimeout 콜백처럼 나중에 내부에서 호출할 수 없다. 이건 컴�
 ```js
 // App.svelte
 <script>
-	import Inner from './Inner.svelte';
+  import Inner from './Inner.svelte';
 
-	function handleMessage(event) {
-		alert(event.detail.text);
-	}
+  function handleMessage(event) {
+    alert(event.detail.text);
+  }
 </script>
 
 <Inner on:myevent={handleMessage}/>
 
 // Inner.svelte
 <script>
-	import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher } from "svelte";
 
-	const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher();
 
-	function sayHello() {
-		dispatch('myevent', {
-			text: 'Hello'
-		})
-	}
+  function sayHello() {
+    dispatch('myevent', {
+      text: 'Hello'
+    })
+  }
 </script>
 
 <button on:click={sayHello}>
-	Click to say hello
+  Click to say hello
 </button>
 
 ```
@@ -228,14 +228,14 @@ settimeout 콜백처럼 나중에 내부에서 호출할 수 없다. 이건 컴�
 
 ```js
 <script>
-	import Inner from './Inner.svelte';
-	import { createEventDispatcher } from 'svelte';
+  import Inner from './Inner.svelte';
+  import { createEventDispatcher } from 'svelte';
 
-	const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher();
 
-	function forward(event) {
-		dispatch('message', event.datail);
-	}
+  function forward(event) {
+    dispatch('message', event.datail);
+  }
 
 </script>
 
@@ -252,7 +252,7 @@ settimeout 콜백처럼 나중에 내부에서 호출할 수 없다. 이건 컴�
 
 ```
 <script>
-	let name = 'world';
+  let name = 'world';
 </script>
 
 <input bind:value={name}>
@@ -264,18 +264,18 @@ settimeout 콜백처럼 나중에 내부에서 호출할 수 없다. 이건 컴�
 
 ```html
 <script>
-	let a = 1;
-	let b = 2;
+  let a = 1;
+  let b = 2;
 </script>
 
 <label>
-	<input type="number" bind:value="{a}" min="0" max="10" />
-	<input type=range bind:value={a} min=0 max=10/ >
+  <input type="number" bind:value="{a}" min="0" max="10" />
+  <input type=range bind:value={a} min=0 max=10/ >
 </label>
 
 <label>
-	<input type="number" bind:value="{b}" min="0" max="10" />
-	<input type="range" bind:value="{b}" min="0" max="10" />
+  <input type="number" bind:value="{b}" min="0" max="10" />
+  <input type="range" bind:value="{b}" min="0" max="10" />
 </label>
 
 <p>{a} + {b} = {a + b}</p>
@@ -314,11 +314,11 @@ settimeout 콜백처럼 나중에 내부에서 호출할 수 없다. 이건 컴�
 import { onDestroy } from "svelte";
 
 export function onInterval(callback, milliseconds) {
-	const interval = setInterval(callback, milliseconds);
+  const interval = setInterval(callback, milliseconds);
 
-	onDestroy(() => {
-		clearInterval(interval);
-	});
+  onDestroy(() => {
+    clearInterval(interval);
+  });
 }
 ```
 
