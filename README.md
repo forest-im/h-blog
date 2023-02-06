@@ -57,6 +57,31 @@ React 라이브러리는 이미 대중적으로 많은 곳에서 사용하고 �
 
 ### fs에서 glob으로 변경
 
+```js
+const modules = Object.entries(
+  import.meta.glob(`/src/posts/*/*.{md,svx,svelte.md}`, { eager: true })
+);
+
+export const posts = modules
+  .filter(([_, post]) => post.metadata.published !== false)
+  .map(([path, post]) => {
+    const splitPath = path.split("/");
+    const date = new Date(post.metadata.date);
+    const allTagsArr = post.metadata.tag.split(",").map((tag) => tag.trim());
+
+    return {
+      ...post.metadata,
+      tag: sortByRemovingDuplicates(pallTagsArr),
+      slug: slugFromPath(path),
+      category: splitPath[splitPath.length - 2],
+      timeStamp: date.getTime() / 1000,
+      date: customizingDateFormat(date)
+    };
+  })
+  .sort((a, b) => {
+    return a.timeStamp < b.timeStamp ? 1 : -1;
+  });
+```
 여러 모듈을 한 번에 가져올 수 있는 방법인 `vite`의 `glob`을 사용했습니다. file system을 사용하지 않고 `*.md`게시물을 가져올 수 있었습니다. 모든 posts를 들고오는 util 함수가 v1에서는 80줄을 넘어가는 반면 `glob`을 이용하니 30줄로 끝낼 수 있었습니다.
 
 동기적으로 가져오기 위해 `eager` 속성을 사용하였습니다.
