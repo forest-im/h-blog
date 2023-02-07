@@ -1,13 +1,14 @@
 import customizingDateFormat from "$lib/utils/customizingDateFormat.js";
 import sortByRemovingDuplicates from "$lib/utils/sortByRemovingDuplicates";
 import slugFromPath from "$lib/utils/slugFromPath";
+import { dev } from "$app/environment";
 
 const modules = Object.entries(
   import.meta.glob(`/src/posts/*/*.{md,svx,svelte.md}`, { eager: true })
 );
 
 export const posts = modules
-  .filter(([, post]) => post.metadata.published !== false)
+  .filter(([, post]) => post.metadata.published !== false || dev)
   .map(([path, post]) => {
     const splitPath = path.split("/");
     const dateObj = new Date(post.metadata.date);
@@ -49,12 +50,6 @@ export const postsByCategory = Object.entries(
     } else {
       allCategory[category] = [data];
     }
-
-    // if (allCategory[category]) {
-    // 	allCategory[category].push(post.title);
-    // } else {
-    // 	allCategory[category] = [post.title];
-    // }
 
     return allCategory;
   }, {})
