@@ -12,7 +12,9 @@
       <div class="post-list-container">
         <div>
           <PostTitle {slug} {title} {category} />
-          <PostDescription {description} />
+          {#if description}
+            <PostDescription {description} />
+          {/if}
         </div>
         <div class="align-center flex flex-row items-start justify-between">
           <PostMeta tags={tag} {date} />
