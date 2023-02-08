@@ -19,7 +19,7 @@
           $page.route.id.includes("til") && "lg:max-w-[1200px]"
         )}
       >
-        {#if !$page.route.id.includes("til") && !$page.route.id.includes("projects")}
+        {#if $page.route.id === '/'}
           <div class="mx-4 min-w-[300px] max-w-[800px] px-4 text-sm font-light">
             Personal blog by Hyunjung Im.
           </div>

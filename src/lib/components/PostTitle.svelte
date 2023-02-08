@@ -17,7 +17,7 @@
 class={clsx(
     "not-prose m-1 ml-0",
     "text-lg font-semibold text-defaultColor-900 dark:text-darkDefaultColor-900",
-    $page.route.id.includes("posts") && "my-20 text-center text-3xl"
+    $page.route.id.includes("posts") && "mt-20 text-2xl"
   )}
 >
   <a {href}>
