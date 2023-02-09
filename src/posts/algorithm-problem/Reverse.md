@@ -4,11 +4,14 @@ tag: 알고리즘-문제-풀이, leetcode, Grind 75, Number
 date: 2023-02-07 10:46:58
 ---
 
+
 |Date|Link|Time to solve|Submissions|
 |-|-|-|
 |2023.02.06|https://leetcode.com/problems/reverse-integer/description/|00:40:00|0 fail 1 Accepted|
 
 ## First to solve
+
+
 
 ```js
 const reverse = function (x) {

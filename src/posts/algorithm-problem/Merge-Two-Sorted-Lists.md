@@ -1,12 +1,12 @@
 ---
 title: Leetcode 21. Merge Two Sorted Lists
 tag: 알고리즘-문제-풀이, leetcode, Grind 75, linked-list
-date: 2023-02-06 14:19:17
+date: 2023-01-19 14:19:17
 ---
 
 |Date|Link|Time to solve|Submissions|
 |-|-|-|
-|2023.02.06|https://leetcode.com/problems/merge-two-sorted-lists/|01:12:00|2 fail 1 Accepted|
+|2023.01.19|https://leetcode.com/problems/merge-two-sorted-lists/|01:12:00|2 fail 1 Accepted|
 
 ## First to solve
 
