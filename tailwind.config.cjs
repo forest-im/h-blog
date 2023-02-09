@@ -10,12 +10,16 @@ module.exports = {
 			colors: {
 				pointColor: {
 					900: "#3e86f6",
+					800: "#2e455c",
+					850: "#43bfa4",
 					700: "#e0f3ff",
 					500: "#f7fbff"
 				},
 				pointInvertColor: "#ffe16b",
 				darkPointColor: {
 					900: "#3e86f6",
+					800: "#2e455c",
+					850: "#43bfa4",
 					700: "#323845",
 					500: "#171717"
 				},
