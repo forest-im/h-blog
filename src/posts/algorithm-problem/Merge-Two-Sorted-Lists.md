@@ -1,6 +1,6 @@
 ---
 title: Leetcode 21. Merge Two Sorted Lists
-tag: 알고리즘-문제-풀이, leetcode, Grind 75
+tag: 알고리즘-문제-풀이, leetcode, Grind 75, linked-list
 date: 2023-02-06 14:19:17
 ---
 

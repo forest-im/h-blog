@@ -1,8 +1,13 @@
 ---
 title: Leetcode 82. Remove Duplicates from Sorted List II
-tag: 알고리즘-문제-풀이, leetcode
+tag: 알고리즘-문제-풀이, leetcode, linked-list
 date: 2023-01-08 13:12:52
 ---
+
+|Date|Link|Time to solve|Submissions|
+|-|-|-|
+|2023.01.08|https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/|x|2 fail 1 Accepted|
+
 
 [82. Remove Duplicates from Sorted List II](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)
 
