@@ -78,7 +78,7 @@ pre[class*="language-"] {
   color: rgb(199, 146, 234);
 }
 
-.namespace, .token.parameter{
+.namespace, .token.parameter, .interpolation{
   color: rgb(178, 204, 214);
 }
 
