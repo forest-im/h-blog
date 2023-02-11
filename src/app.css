@@ -2,13 +2,16 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.scrollbar-hide::-webkit-scrollbar
+{
+	width: 10px;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+.scrollbar-hide::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+  border-radius: 10px;
+	border: 2px solid #555555;
 }
 
 .transition {
