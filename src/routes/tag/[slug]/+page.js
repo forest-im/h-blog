@@ -1,19 +1,19 @@
-import { posts, tags } from "$lib/data/posts";
+import { allPosts, tags } from "$lib/data/posts";
 import { error } from "@sveltejs/kit";
 
 export const load = async ({ params }) => {
-  const { slug } = params;
+	const { slug } = params;
+	console.log(allPosts);
+	const matchPosts = allPosts.filter((post) => {
+		return post.tag.includes(slug);
+	});
 
-  const matchPosts = posts.filter((post) => {
-    return post.tag.includes(slug);
-  });
+	if (!matchPosts.length) {
+		throw error(404, "Post not found");
+	}
 
-  if (!matchPosts.length) {
-    throw error(404, "Post not found");
-  }
-
-  return {
-    posts: matchPosts,
-    tags
-  };
+	return {
+		posts: matchPosts,
+		tags
+	};
 };

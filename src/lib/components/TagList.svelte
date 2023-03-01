@@ -20,7 +20,7 @@
             !$page.params.slug && "bg-pointInvertColor dark:text-defaultColor-800"
           )}
         >
-          #All
+          #Blog
         </div>
       </a>
       {#each tags.slice(0, tagCount) as tag}

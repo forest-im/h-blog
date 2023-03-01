@@ -22,7 +22,7 @@
   });
 </script>
 
-<article>
+<article class="mx-4 px-4">
   <PageHead title={data.metadata.title} description={data.metadata.description} />
   <PostTitle title={data.metadata.title} />
   <div class="text-sm">{data.metadata.date.slice(0, 10)}</div >

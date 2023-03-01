@@ -16,7 +16,7 @@
             <img src={profile02} alt="profile" class="m-0 mb-5 mr-5 h-20 w-20 shadow-none" />
           </a>
         </div>
-        <Entry entry='/' name='All'/>
+        <Entry entry='/' name='Blog'/>
         <Entry entry='/til' name='TIL'/>
         <Entry entry='/projects' name='Projects'/>
       </div>

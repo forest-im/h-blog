@@ -1,8 +1,8 @@
 import { count } from "../store";
-import { posts, tags } from "$lib/data/posts";
+import { blogPosts, posts, tags } from "$lib/data/posts";
 
 let countValue;
 
 count.subscribe((value) => (countValue = value));
 
-export const load = async () => ({ posts: posts.slice(0, countValue), tags });
+export const load = async () => ({ posts: blogPosts.slice(0, countValue), tags });

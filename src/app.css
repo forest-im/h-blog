@@ -20,7 +20,7 @@
 
 @layer base {
   * {
-    @apply text-defaultColor-900 dark:text-zinc-200;
+    /* @apply text-defaultColor-900 dark:text-zinc-200; */
   }
 
   html {
@@ -38,7 +38,7 @@
   }
 
   .all-prose {
-    @apply prose prose-neutral prose-a:no-underline dark:prose-invert;
+    @apply prose prose-slate prose-a:no-underline dark:prose-invert;
   }
 
   h1,
