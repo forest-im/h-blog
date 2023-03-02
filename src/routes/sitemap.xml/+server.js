@@ -1,4 +1,4 @@
-import { posts } from "$lib/data/posts";
+import { allPosts } from "$lib/data/posts";
 import { URL } from "$lib/constants/metadata";
 
 export const prerender = true;
@@ -31,7 +31,7 @@ export async function GET({ setHeaders }) {
         <loc>${URL}</loc>
         <priority>1.0</priority>
       </url>
-      ${posts
+      ${allPosts
 				.map(
 					(post) => `<url>
             <loc>${getPostUrl(post.category, post.slug)}</loc>
