@@ -16,7 +16,7 @@
       <main
         class={clsx(
           "all-prose flex w-full min-w-[300px] max-w-[800px] flex-col justify-center",
-          $page.route.id.includes("til") && "lg:max-w-[1200px]"
+          $page.route?.id?.includes("til") && "lg:max-w-[1200px]"
         )}
       >
         {#if $page.route.id === '/'}
