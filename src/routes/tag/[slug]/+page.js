@@ -3,7 +3,6 @@ import { error } from "@sveltejs/kit";
 
 export const load = async ({ params }) => {
 	const { slug } = params;
-	console.log(allPosts);
 	const matchPosts = allPosts.filter((post) => {
 		return post.tag.includes(slug);
 	});

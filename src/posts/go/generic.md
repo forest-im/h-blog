@@ -173,7 +173,7 @@ func main() {
 }
 ```
 
-- [자주 쓰는 타입 정의된 패키지](golang.org/x/exp/constraints)
+<!-- - [자주 쓰는 타입 정의된 패키지](golang.org/x/exp/constraints) -->
   - type Complex
   - type Float
   - type Integer

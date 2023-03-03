@@ -28,7 +28,6 @@ export const isOpenMenu = (() => {
     subscribe,
     toggle: () =>
       update((val) => {
-        console.log("menu");
         return !val;
       })
   };
@@ -41,7 +40,6 @@ export const isOpenModal = (() => {
     subscribe,
     toggle: () =>
       update((val) => {
-        console.log("modal", val);
         return !val;
       }),
     closeModal: () => update(() => false)
