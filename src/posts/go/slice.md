@@ -2,7 +2,6 @@
 title: 슬라이스
 tag: golang
 date: 2023-02-14 00:44:26
-published: false
 ---
 
 ## 슬라이스

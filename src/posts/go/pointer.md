@@ -2,7 +2,6 @@
 title: Pointer
 tag: golang
 date: 2023-02-12 23:39:07
-published: false
 ---
 
 ## Pointer

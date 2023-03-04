@@ -2,7 +2,6 @@
 title: 구조체 Structure
 tag: golang
 date: 2023-02-12 22:38:49
-published: false
 ---
 
 ## 구조체 Structure

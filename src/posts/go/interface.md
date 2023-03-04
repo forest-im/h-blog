@@ -2,7 +2,6 @@
 title: 인터페이스
 tag: golang
 date: 2023-02-15 15:23:15
-published: false
 ---
 
 ## 인터페이스

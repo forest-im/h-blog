@@ -2,7 +2,6 @@
 title: SOLID
 tag: golang
 date: 2023-02-16 01:18:55
-published: false
 ---
 
 ## SOLID

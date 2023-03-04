@@ -2,7 +2,6 @@
 title: 변수, 연산자, if, switch
 tag: golang
 date: 2023-02-11 20:32:25
-published: false
 ---
 
 ## 연산자 Operator

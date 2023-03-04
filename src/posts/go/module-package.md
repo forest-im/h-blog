@@ -2,7 +2,6 @@
 title: 모듈과 패키지
 tag: golang
 date: 2023-02-13 17:24:57
-published: false
 ---
 
 ## 모듈

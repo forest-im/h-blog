@@ -2,7 +2,6 @@
 title: Generic
 tag: golang
 date: 2023-02-16 19:45:39
-published: false
 ---
 
 ## Generic 프로그래밍

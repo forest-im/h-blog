@@ -2,7 +2,6 @@
 title: for
 tag: golang
 date: 2023-02-12 16:12:29
-published: false
 ---
 
 ## for

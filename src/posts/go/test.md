@@ -2,7 +2,6 @@
 title: test
 tag: golang
 date: 2023-02-16 15:09:10
-published: false
 ---
 
 ## 테스트 규칙

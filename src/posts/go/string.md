@@ -2,7 +2,6 @@
 title: 문자열
 tag: golang
 date: 2023-02-13 13:18:25
-published: false
 ---
 
 ## 문자열
@@ -18,9 +17,6 @@ func main() {
   `
 
 	fmt.Println(poet1, poet2)
-	// 하하 하하
-  // 엔터이당
-  // 엔터이당
 }
 ```
 

@@ -2,7 +2,6 @@
 title: "어셈블리어와 컴파일이란?"
 tag: nodejs, nextjs
 date: 2023-03-03 17:58:37
-published: false
 type: blog
 ---
 

@@ -2,7 +2,6 @@
 title: 메서드
 tag: golang
 date: 2023-02-14 14:32:42
-published: false
 ---
 
 ## 메서드

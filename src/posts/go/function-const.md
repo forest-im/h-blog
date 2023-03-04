@@ -2,7 +2,6 @@
 title: 함수, 상수
 tag: golang
 date: 2023-02-11 23:51:35
-published: false
 ---
 
 - 입력이 들어가면 연산을 해서 출력이 나옴

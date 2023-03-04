@@ -2,7 +2,6 @@
 title: 배열
 tag: golang
 date: 2023-02-12 17:43:45
-published: false
 ---
 
 ## 배열
