@@ -9,7 +9,7 @@
 
 <div
   class={clsx(
-    "mr-5 text-xl hover:text-pointColor-900",
+    "mr-5 text-xl hover:text-pointColor-900 max-[400px]:mr-1",
     $page.route.id === entry && "text-pointColor-900"
   )}
   >

@@ -11,7 +11,7 @@
 <PageHead />
 <body>
   <Header />
-  <div class="mx-auto flex min-h-screen flex-col py-0 px-4">
+  <div class="mx-auto flex min-h-screen flex-col py-0 px-0">
     <div class="flex flex-col items-center">
       <main
         class={clsx(
