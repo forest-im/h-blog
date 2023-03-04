@@ -4,6 +4,7 @@
   import { onMount } from "svelte/internal";
 
   export let data;
+
   $: component = data.component;
 
   let commentSection;
@@ -23,7 +24,7 @@
 </script>
 
 <article class="mx-4 px-4">
-  <PageHead title={data.metadata.title} description={data.metadata.description} />
+  <PageHead title={data.metadata.title} description={data.metadata.description} image={data.metadata.image} />
   <PostTitle title={data.metadata.title} />
   <div class="text-sm">{data.metadata.date.slice(0, 10)}</div >
   <hr />
