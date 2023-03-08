@@ -72,7 +72,7 @@ export async function build(options: BuildOptions) {
 directory, making it faster to install npm dependencies for
 future builds.
 
-[`build()`](#build)가 완료된 후 실행되는 **선택적** 내보내기 함수입니다. 구현은 사용자 프로젝트에서 다음 빌드 실행을 위해 작업 디렉터리에 미리 채워질 `File` 객체를 반환해야 합니다. 사용 사례의 예로 `@vercel/node`는 이 함수를 사용하여 `node_modules` 디렉터리를 캐시하여 향후 빌드에 대한 npm 종속성을 더 빠르게 설치합니다.
+`build()`가 완료된 후 실행되는 **선택적** 내보내기 함수입니다. 구현은 사용자 프로젝트에서 다음 빌드 실행을 위해 작업 디렉터리에 미리 채워질 `File` 객체를 반환해야 합니다. 사용 사례의 예로 `@vercel/node`는 이 함수를 사용하여 `node_modules` 디렉터리를 캐시하여 향후 빌드에 대한 npm 종속성을 더 빠르게 설치합니다.
 
 **Example:**
 
@@ -156,8 +156,7 @@ export async function startDevServer(options: StartDevServerOptions) {
 - 보안상의 이유로 각 배포마다 새로운 샌드박스가 생성됩니다.
 - 샌드박스는 실행 사이에 정리되어 빌드 간에 남아있는 임시 파일이 공유되지 않도록 합니다.
 
-내보내는 모든 API([`analyze()`](#analyze), [`build()`](#build),
-[`prepareCache()`](#preparecache), etc.)가 동일한 프로세스에서 실행되는 것은 보장되지 않지만, 노출하는 파일 시스템(예: workPath 및 [`getWritableDirectory`](#getWritableDirectory) 호출 결과)은 유지됩니다.
+내보내는 모든 API(`analyze()`, `build()`, `prepareCache()`, etc.)가 동일한 프로세스에서 실행되는 것은 보장되지 않지만, 노출하는 파일 시스템(예: workPath 및 `getWritableDirectory` 호출 결과)은 유지됩니다.
 
 이러한 단계 간에 상태를 공유해야 하는 경우 파일시스템을 사용하세요.
 
@@ -187,7 +186,7 @@ export async function startDevServer(options: StartDevServerOptions) {
 - `java8.al2` (not `java8`)
 - `dotnetcore`
 
-사용자 정의 런타임이 이러한 람다 런타임 중 하나를 기반으로 하는 경우, 대규모 환경을 지원은 추가 구성 없이 사용할 수 있습니다. 사용자 정의 런타임 기반 `provided`, `provided.al2` 런타임을 포함하여 다른 Lambda 런타임을 기반으로 하는 사용자 정의 런타임은 런타임 래퍼 지원을 구현하고 [`createLambda`](<#createlambda()>)를 호출할 때 `supportsWrapper` 플래그를 통해 이를 표시해야 합니다.
+사용자 정의 런타임이 이러한 람다 런타임 중 하나를 기반으로 하는 경우, 대규모 환경을 지원은 추가 구성 없이 사용할 수 있습니다. 사용자 정의 런타임 기반 `provided`, `provided.al2` 런타임을 포함하여 다른 Lambda 런타임을 기반으로 하는 사용자 정의 런타임은 런타임 래퍼 지원을 구현하고 `createLambda`를 호출할 때 `supportsWrapper` 플래그를 통해 이를 표시해야 합니다.
 
 사용자 정의 런타임에 런타임 래퍼에 대한 지원을 추가하려면 먼저 부트스트랩 스크립트에서
 `AWS_LAMBDA_EXEC_WRAPPER` 환경 변수의 값을 확인합니다. 이 값은
@@ -230,7 +229,7 @@ fi
 
 기존 부트스트랩 프로세스를 대체하는 가장 좋은 방법은 [`execve`](https://www.man7.org/linux/man-pages/man2/execve.2.html) 시스콜을 사용하는 것입니다. 실행 중인 프로세스를 래퍼로 대체하기 위해 `bash`에서 `exec`를 사용하여 동일한 PID와 환경을 유지하면 됩니다.
 
-런타임 래퍼에 대한 지원이 포함되면 [`createLambda`](<#createlambda()>) 호출에서 `supportsWrapper`가 `true`로 설정되어 있는지 확인합니다. 이렇게 하면 빌드 프로세스가 이 런타임에 대한 대규모 환경 지원을 활성화하도록 알려줍니다.
+런타임 래퍼에 대한 지원이 포함되면 `createLambda` 호출에서 `supportsWrapper`가 `true`로 설정되어 있는지 확인합니다. 이렇게 하면 빌드 프로세스가 이 런타임에 대한 대규모 환경 지원을 활성화하도록 알려줍니다.
 
 ### Utilities as peerDependencies
 
@@ -268,9 +267,9 @@ import { File } from "@vercel/build-utils";
 
 유효한 `파일` 유형은 다음과 같습니다:
 
-- [`FileRef`](#fileref)
-- [`FileFsRef`](#filefsref)
-- [`FileBlob`](#fileblob)
+- `FileRef`
+- `FileFsRef`
+- `FileBlob`
 
 ### `FileRef`
 
@@ -304,7 +303,7 @@ import { FileFsRef } from "@vercel/build-utils";
 
 **Methods:**
 
-`static async fromStream({ mode: Number, stream: Stream, fsPath: String }): FileFsRef`: FileFsRef는 `Stream`에서 [FileFsRef](#FileFsRef)의 인스턴스를 생성하고, 모드와 함께 파일을 fsPath에 배치합니다.
+`static async fromStream({ mode: Number, stream: Stream, fsPath: String }): FileFsRef`: FileFsRef는 `Stream`에서 `FileFsRef`의 인스턴스를 생성하고, 모드와 함께 파일을 fsPath에 배치합니다.
 toStream(): Stream은 파일 본문의 [Stream](https://nodejs.org/api/stream.html)을 만듭니다.
 
 ### `FileBlob`
@@ -322,7 +321,7 @@ import { FileBlob } from "@vercel/build-utils";
 
 **Methods:**
 
-- `static async fromStream({ mode: Number, stream: Stream }): FileBlob` creates an instance of a [FileBlob](#FileBlob) from [`Stream`](https://nodejs.org/api/stream.html) with `mode`
+- `static async fromStream({ mode: Number, stream: Stream }): FileBlob` creates an instance of a FileBlob from [`Stream`](https://nodejs.org/api/stream.html) with `mode`
 - `toStream(): Stream` creates a [Stream](https://nodejs.org/api/stream.html) of the file body
 
 ### `Lambda`
@@ -331,7 +330,7 @@ import { FileBlob } from "@vercel/build-utils";
 import { Lambda } from "@vercel/build-utils";
 ```
 
-서버리스 함수를 나타내는 [class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)입니다. 인스턴스는 `files`, `handler`, `runtime`, `environment`를 [`createLambda`](#createlambda) 헬퍼에 객체로 제공하여 생성할 수 있습니다. 이 클래스의 인스턴스는 직접 생성해서는 안 됩니다. 대신, [`createLambda`](#createlambda) 도우미 함수를 호출하세요.
+서버리스 함수를 나타내는 [class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)입니다. 인스턴스는 `files`, `handler`, `runtime`, `environment`를 `createLambda` 헬퍼에 객체로 제공하여 생성할 수 있습니다. 이 클래스의 인스턴스는 직접 생성해서는 안 됩니다. 대신, `createLambda` 도우미 함수를 호출하세요.
 
 **Properties:**
 
@@ -368,7 +367,7 @@ Signature: `createLambda(Object spec): Lambda`
 import { createLambda } from "@vercel/build-utils";
 ```
 
-Constructor for the [`Lambda`](#lambda) type.
+Constructor for the `Lambda` type.
 
 ```js
 const { createLambda, FileBlob } = require("@vercel/build-utils");
@@ -389,14 +388,14 @@ Signature: `download(): Files`
 import { download } from "@vercel/build-utils";
 ```
 
-이 유틸리티를 사용하면 [`Files`](#files) 데이터 구조의 내용을 다운로드할 수 있습니다.
+이 유틸리티를 사용하면 `Files` 데이터 구조의 내용을 다운로드할 수 있습니다.
 구조체의 내용을 다운로드하여 그 안에 표현된 파일 시스템을 생성합니다.
 
 Files`는 파일을 추상적으로 표현하는 방식이므로, 다음과 같이 생각할 수 있습니다.
 다운로드()`는 가상 파일 시스템을 *실제*로 만드는 방법이라고 생각할 수 있습니다.
 
 선택적\*\* `meta` 프로퍼티가 전달되면(
-[`build()`](#build)의 인수)가 전달되면 변경된 파일만 다운로드됩니다.
+`build()`의 인수)가 전달되면 변경된 파일만 다운로드됩니다.
 이는 해당 객체 내부의 `filesRemoved` 및 `filesChanged`를 사용하여 결정됩니다.
 
 ```js
@@ -411,9 +410,9 @@ Signature: `glob(): Files`
 import { glob } from "@vercel/build-utils";
 ```
 
-이 유틸리티를 사용하면 파일 시스템을 *scan*하여 일치하는 글로브 검색 문자열의 [`Files`](#files) 표현을 반환할 수 있습니다. 다운로드`](# 다운로드)의 반대라고 생각하면 됩니다.
+이 유틸리티를 사용하면 파일 시스템을 *scan*하여 일치하는 글로브 검색 문자열의 `Files` 표현을 반환할 수 있습니다. 다운로드의 반대라고 생각하면 됩니다.
 
-다음의 간단한 예제는 모든 것을 파일시스템에 다운로드한 후 다시 반환합니다(따라서 전달된 [`Files`](#files)를 다시 생성하기만 하면 됩니다):
+다음의 간단한 예제는 모든 것을 파일시스템에 다운로드한 후 다시 반환합니다(따라서 전달된 `Files`를 다시 생성하기만 하면 됩니다):
 
 ```js
 const { glob, download } = require('@vercel/build-utils');
@@ -442,7 +441,7 @@ Signature: `rename(Files, Function): Files`
 import { rename } from "@vercel/build-utils";
 ```
 
-경로를 나타내는 [`Files`](#files) 개체의 키 이름을 바꿉니다. 예를 들어 접미사 `*.go`를 제거하려면 다음과 같이 사용할 수 있습니다:
+경로를 나타내는 `Files` 개체의 키 이름을 바꿉니다. 예를 들어 접미사 `*.go`를 제거하려면 다음과 같이 사용할 수 있습니다:
 
 ```js
 const rename = require('@vercel/build-utils')
