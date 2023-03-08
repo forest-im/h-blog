@@ -38,7 +38,7 @@
   }
 
   .all-prose {
-    @apply prose prose-slate prose-a:no-underline dark:prose-invert;
+    @apply prose prose-slate prose-a:decoration-dotted dark:prose-invert prose-a:decoration-pointColor-900 prose-a:underline-offset-1;
   }
 
   h1,
