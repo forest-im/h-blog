@@ -1,9 +1,11 @@
 <script>
-  import PostList from "$lib/components/PostList.svelte";
-  import TagList from "$lib/components/TagList.svelte";
+	import PostList from "$lib/components/PostList.svelte";
+	import TagList from "$lib/components/TagList.svelte";
 
-  export let data;
+	export let data;
 </script>
 
-<TagList tags={data.tags} />
-<PostList posts={data.posts} />
+<div class="not-prose">
+	<TagList tags={data.tags} />
+	<PostList posts={data.posts} />
+</div>

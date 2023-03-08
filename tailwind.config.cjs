@@ -13,7 +13,11 @@ module.exports = {
 					800: "#2e455c",
 					850: "#43bfa4",
 					700: "#e0f3ff",
-					500: "#f7fbff"
+					500: "#f7fbff",
+					400: "#001629"
+				},
+				pastelColor: {
+					bluePastel: "#edf7ff"
 				},
 				pointInvertColor: "#ffe16b",
 				darkPointColor: {
@@ -37,6 +41,9 @@ module.exports = {
 					700: "#a1a1a1",
 					600: "#757575",
 					500: "#4f4f4f"
+				},
+				darkPastelColor: {
+					bluePastel: "#303030"
 				}
 			},
 			boxShadow: {

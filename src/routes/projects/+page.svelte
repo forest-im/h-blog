@@ -8,7 +8,7 @@
   import story2 from "$lib/images/projects/story2.png"
 </script>
 
-<div class="grid md:grid-cols-2 gap-2 auto-rows-max justify-items-center">
+<div class="not-prose grid md:grid-cols-2 gap-2 auto-rows-max justify-items-center">
   <a href="https://www.storystorage.me/">
     <div class="my-10">
       <h4 class="text-center">Story Storage</h4>

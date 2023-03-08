@@ -55,7 +55,7 @@
   {/if}
   <div class="flex w-full flex-row justify-center transition">
     {#if $isOpenMenu}
-      <div class="max-[1100px]:min-w-[200px] max-[1100px]:max-w-[200px] max-lg:hidden">
+      <div class="not-prose max-[1100px]:min-w-[200px] max-[1100px]:max-w-[200px] max-lg:hidden">
         <TilList postsByCategory={data.postsByCategory} />
       </div>
     {/if}
