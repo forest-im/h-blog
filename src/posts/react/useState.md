@@ -40,18 +40,18 @@ type: blog
 var fn;
 
 function foo() {
-  var a = 2;
+	const a = 2;
 
-  function baz() {
-    console.log(a);
-  }
+	function baz() {
+		console.log(a);
+	}
 
-  fn = baz;
-  // 전역변수 fn에 foo함수의 스코프를 가지는 baz함수를 주입시켰다.
+	fn = baz;
+	// 전역변수 fn에 foo함수의 스코프를 가지는 baz함수를 주입시켰다.
 }
 
 function bar() {
-  fn();
+	fn();
 }
 
 foo();
@@ -67,24 +67,24 @@ fn안의 함수는 foo()함수의 환경을 기억하고 있어 변수 a의 값�
 
 ```js
 function CoolModule() {
-  var something = "cool";
-  var another = [1, 2, 3];
+	const something = "cool";
+	const another = [1, 2, 3];
 
-  function doSomething() {
-    console.log(something);
-  }
+	function doSomething() {
+		console.log(something);
+	}
 
-  function doAnother() {
-    console.log(another.join("!"));
-  }
+	function doAnother() {
+		console.log(another.join("!"));
+	}
 
-  return {
-    doSomething: doSomething,
-    doAnother: doAnother
-  };
+	return {
+		doSomething: doSomething,
+		doAnother: doAnother
+	};
 }
 
-var foo = CoolModule();
+const foo = CoolModule();
 
 foo.doSomething(); // cool
 foo.doAnother(); // 1!2!3!
@@ -127,21 +127,21 @@ const [state, setState] = useState(initialValue);
 
 ```js
 function useState(initialValue) {
-  var _val = initialValue; // 지역 변수 _val를 선언하고, initialValue를 할당합니다.
+	let _val = initialValue; // 지역 변수 _val를 선언하고, initialValue를 할당합니다.
 
-  function state() {
-    // state함수는 내부 함수이고, 클로저입니다.
-    return _val; // state()는 부모 함수에 정의된 _val을 참조합니다.
-  }
+	function state() {
+		// state함수는 내부 함수이고, 클로저입니다.
+		return _val; // state()는 부모 함수에 정의된 _val을 참조합니다.
+	}
 
-  function setState(newVal) {
-    // same
-    _val = newVal; // _val를 변경합니다.
-  }
+	function setState(newVal) {
+		// same
+		_val = newVal; // _val를 변경합니다.
+	}
 
-  return [state, setState]; // 외부에서 사용하기 위해 값은 노출하지 않고 함수를 노출합니다.
+	return [state, setState]; // 외부에서 사용하기 위해 값은 노출하지 않고 함수를 노출합니다.
 }
-var [foo, setFoo] = useState(0);
+const [foo, setFoo] = useState(0);
 
 console.log(foo()); // logs 0 - the initialValue we gave
 setFoo(1); // sets _val inside useState's scope
@@ -154,17 +154,17 @@ console.log(foo()); // logs 1 - new initialValue, despite exact same call
 
 ```js
 function useState(initialValue) {
-  var _val = initialValue;
+	let _val = initialValue;
 
-  function setState(newVal) {
-    _val = newVal;
-    console.log("setState", _val);
-  }
+	function setState(newVal) {
+		_val = newVal;
+		console.log("setState", _val);
+	}
 
-  return [_val, setState];
+	return [_val, setState];
 }
 
-var [foo, setFoo] = useState(0);
+const [foo, setFoo] = useState(0);
 
 console.log(foo); // 0
 setFoo(1); // log -> 'setState', 1
@@ -182,27 +182,27 @@ console.log(foo); // 0
 // 01
 
 const MyReact = (function () {
-  let _val; // 모듈 MyReact 스코프 안에 state를 잡아놓습니다.
+	let _val; // 모듈 MyReact 스코프 안에 state를 잡아놓습니다.
 
-  return {
-    render(Component) {
-      // component 함수가 인자로 들어가는 render 메서드를 정의.
-      const Comp = Component();
-      Comp.render();
+	return {
+		render(Component) {
+			// component 함수가 인자로 들어가는 render 메서드를 정의.
+			const Comp = Component();
+			Comp.render();
 
-      return Comp;
-    },
+			return Comp;
+		},
 
-    useState(initialValue) {
-      _val = _val || initialValue; // 매 실행마다 새로 할당됩니다.
+		useState(initialValue) {
+			_val = _val || initialValue; // 매 실행마다 새로 할당됩니다.
 
-      function setState(newVal) {
-        _val = newVal;
-      }
+			function setState(newVal) {
+				_val = newVal;
+			}
 
-      return [_val, setState];
-    }
-  };
+			return [_val, setState];
+		}
+	};
 })();
 ```
 
@@ -215,12 +215,12 @@ const MyReact = (function () {
 // 02
 
 function Counter() {
-  const [count, setCount] = MyReact.useState(0);
+	const [count, setCount] = MyReact.useState(0);
 
-  return {
-    click: () => setCount(count + 1),
-    render: () => console.log("render:", { count })
-  };
+	return {
+		click: () => setCount(count + 1),
+		render: () => console.log("render:", { count })
+	};
 }
 
 let App;
@@ -241,26 +241,26 @@ App = MyReact.render(Counter); // render: { count: 1 }
 // 나머지는 위와 같고, 주석이 써져있는 부분만 다름
 
 const MyReact = (function () {
-  let _val;
+	let _val;
 
-  return {
-    render(Component) {
-      const Comp = Component();
-      Comp.render();
+	return {
+		render(Component) {
+			const Comp = Component();
+			Comp.render();
 
-      return Comp;
-    },
+			return Comp;
+		},
 
-    useState(initialValue) {
-      _val = _val || initialValue;
+		useState(initialValue) {
+			_val = _val || initialValue;
 
-      function setState(newVal) {
-        _val = typeof newVal === "function" ? newVal(_val) : newVal; // newVal이 함수면 인자 _val을 넣어 실행해주고 값이라면 새로 할당해줍니다.
-      }
+			function setState(newVal) {
+				_val = typeof newVal === "function" ? newVal(_val) : newVal; // newVal이 함수면 인자 _val을 넣어 실행해주고 값이라면 새로 할당해줍니다.
+			}
 
-      return [_val, setState];
-    }
-  };
+			return [_val, setState];
+		}
+	};
 })();
 ```
 
@@ -269,31 +269,31 @@ const MyReact = (function () {
 
 ```js
 function Counter() {
-  const [count, setCount] = MyReact.useState(0);
+	const [count, setCount] = MyReact.useState(0);
 
-  return {
-    click: () => {
-      // test를 위해서 두 개의 setState를 만들었다.
-      setCount((prev) => {
-        // test용 console.log
-        console.log("첫 번째 setCount");
-        console.log("prev", prev);
-        console.log("count", count);
+	return {
+		click: () => {
+			// test를 위해서 두 개의 setState를 만들었다.
+			setCount((prev) => {
+				// test용 console.log
+				console.log("첫 번째 setCount");
+				console.log("prev", prev);
+				console.log("count", count);
 
-        return prev + 1;
-      });
+				return prev + 1;
+			});
 
-      setCount((prev) => {
-        // test용 console.log
-        console.log("두 번째 setCount");
-        console.log("prev", prev);
-        console.log("count", count);
+			setCount((prev) => {
+				// test용 console.log
+				console.log("두 번째 setCount");
+				console.log("prev", prev);
+				console.log("count", count);
 
-        return prev + 1;
-      });
-    },
-    render: () => console.log("render:", { count })
-  };
+				return prev + 1;
+			});
+		},
+		render: () => console.log("render:", { count })
+	};
 }
 let App;
 
