@@ -72,7 +72,9 @@ export const recentTils = modules
 		);
 	})
 	.slice(0, 5)
-	.map((post) => post[1]);
+	.map((post) => {
+		return { slug: post[0].slice(11, -3), ...post[1] };
+	});
 
 export const getTilsInTheCurrentCategory = (category) => {
 	const modules = Object.entries(
