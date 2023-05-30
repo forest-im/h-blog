@@ -1,6 +1,6 @@
 ---
 title: Tree
-tag: Tree
+tag: 자료구조
 date: 2022-04-26 00:24:48
 ---
 

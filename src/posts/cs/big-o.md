@@ -1,6 +1,6 @@
 ---
 title: Big O
-tag: BigO
+tag: 시간복잡도
 date: 2022-04-06 00:24:48
 ---
 

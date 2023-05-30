@@ -1,6 +1,6 @@
 ---
 title: Hash Table
-tag: HashTable
+tag: 자료구조
 date: 2022-04-13 00:24:48
 ---
 

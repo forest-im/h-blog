@@ -1,47 +1,90 @@
 <script>
-  import airmind2 from "$lib/images/projects/airmind2.png"
-  import blog from "$lib/images/projects/blog.png"
-  import blog2 from "$lib/images/projects/blog2.png"
-  import mind1 from "$lib/images/projects/mind1.png"
-  import mind2 from "$lib/images/projects/mind2.png"
-  import story1 from "$lib/images/projects/story1.png"
-  import story2 from "$lib/images/projects/story2.png"
+	import airmind2 from "$lib/images/projects/airmind2.png";
+	import blog from "$lib/images/projects/blog.png";
+	import blog2 from "$lib/images/projects/blog2.png";
+	import mind1 from "$lib/images/projects/mind1.png";
+	import mind2 from "$lib/images/projects/mind2.png";
+	import story1 from "$lib/images/projects/story1.png";
+	import story2 from "$lib/images/projects/story2.png";
 </script>
 
-<div class="not-prose grid md:grid-cols-2 gap-2 auto-rows-max justify-items-center">
-  <a href="https://www.storystorage.me/">
-    <div class="my-10">
-      <h4 class="text-center">Story Storage</h4>
-      <div class="min-w-[350px] max-w-[350px] max-h-[220px] overflow-hidden rounded-2xl shadow-xl my-10 relative z-10">
-        <img class="scale-125 shadow-none translate-x-10" src={story2} alt="img" />
-        <img class="scale-150 shadow-none translate-x-20 translate-y-3 absolute top-0 left-0 z-10 hover:opacity-0 opacity-1 ease-in-out duration-300" src={story1} alt="img" />
-      </div>
-    </div>
-  </a>
-  <a href="https://aoa.air-mind.live/">
-    <div class="my-10">
-      <h4 class="text-center">Air Mind</h4>
-      <div class="min-w-[350px] max-w-[350px] max-h-[220px] overflow-hidden rounded-2xl shadow-xl my-10">
-        <img class="scale-125 shadow-none top-0 left-0 z-20 hover:scale-150 ease-in-out duration-300 scale" src={airmind2} alt="img" />
-      </div>
-    </div>
-  </a>
-  <a href="https://minesweeper-by-alex.netlify.app/">
-    <div class="my-10">
-      <h4 class="text-center">Minesweeper</h4>
-      <div class="min-w-[350px] max-w-[350px] max-h-[220px] overflow-hidden rounded-2xl shadow-xl my-10 relative z-10">
-        <img class="scale-150 shadow-none" src={mind2} alt="img" />
-        <img class="scale-150 shadow-none absolute top-0 left-0 z-20 hover:opacity-0 opacity-1 ease-in-out duration-300" src={mind1} alt="img" />
-      </div>
-    </div>
-  </a>
-  <a href="https://www.im-alex.dev/">
-    <div class="my-10">
-      <h4 class="text-center">Blog</h4>
-      <div class="min-w-[350px] max-w-[350px] max-h-[220px] overflow-hidden rounded-2xl shadow-xl my-10 relative z-10">
-        <img class="scale-150 shadow-none translate-y-2" src={blog2} alt="img" />
-        <img class="scale-150 shadow-none translate-y-2 absolute top-0 left-0 z-20 hover:opacity-0 opacity-1 ease-in-out duration-300" src={blog} alt="img" />
-      </div>
-    </div>
-  </a>
+<div class="not-prose grid auto-rows-max justify-items-center gap-2 md:grid-cols-2">
+	<a href="https://www.jaamtoast.click">
+		<div class="my-10">
+			<h4 class="text-center">Jaam Toast</h4>
+			<div
+				class="relative z-10 my-10 max-h-[220px] min-w-[350px] max-w-[350px] overflow-hidden rounded-2xl shadow-xl"
+			>
+				<img
+					class="scale-125 shadow-none"
+					src="https://github.com/h-alex2/h-blog/assets/84281505/15386626-c026-4dbb-a083-d7ca9a0ba165"
+					alt="img"
+				/>
+				<img
+					class="opacity-1  absolute top-0 left-0 z-10 scale-125 duration-300 ease-in-out first-letter:shadow-none hover:opacity-0"
+					src="https://github.com/h-alex2/h-blog/assets/84281505/70a0953f-0e5c-42b0-ac3d-0073a9579eaa"
+					alt="img"
+				/>
+			</div>
+		</div>
+	</a>
+	<a href="https://www.storystorage.me/">
+		<div class="my-10">
+			<h4 class="text-center">Story Storage</h4>
+			<div
+				class="relative z-10 my-10 max-h-[220px] min-w-[350px] max-w-[350px] overflow-hidden rounded-2xl shadow-xl"
+			>
+				<img class="translate-x-10 scale-125 shadow-none" src={story2} alt="img" />
+				<img
+					class="opacity-1 absolute top-0 left-0 z-10 translate-x-20 translate-y-3 scale-150 shadow-none duration-300 ease-in-out hover:opacity-0"
+					src={story1}
+					alt="img"
+				/>
+			</div>
+		</div>
+	</a>
+	<a href="https://aoa.air-mind.live/">
+		<div class="my-10">
+			<h4 class="text-center">Air Mind</h4>
+			<div
+				class="my-10 max-h-[220px] min-w-[350px] max-w-[350px] overflow-hidden rounded-2xl shadow-xl"
+			>
+				<img
+					class="scale top-0 left-0 z-20 scale-125 shadow-none duration-300 ease-in-out hover:scale-150"
+					src={airmind2}
+					alt="img"
+				/>
+			</div>
+		</div>
+	</a>
+	<a href="https://minesweeper-by-alex.netlify.app/">
+		<div class="my-10">
+			<h4 class="text-center">Minesweeper</h4>
+			<div
+				class="relative z-10 my-10 max-h-[220px] min-w-[350px] max-w-[350px] overflow-hidden rounded-2xl shadow-xl"
+			>
+				<img class="scale-150 shadow-none" src={mind2} alt="img" />
+				<img
+					class="opacity-1 absolute top-0 left-0 z-20 scale-150 shadow-none duration-300 ease-in-out hover:opacity-0"
+					src={mind1}
+					alt="img"
+				/>
+			</div>
+		</div>
+	</a>
+	<a href="https://www.im-alex.dev/">
+		<div class="my-10">
+			<h4 class="text-center">Blog</h4>
+			<div
+				class="relative z-10 my-10 max-h-[220px] min-w-[350px] max-w-[350px] overflow-hidden rounded-2xl shadow-xl"
+			>
+				<img class="translate-y-2 scale-150 shadow-none" src={blog2} alt="img" />
+				<img
+					class="opacity-1 absolute top-0 left-0 z-20 translate-y-2 scale-150 shadow-none duration-300 ease-in-out hover:opacity-0"
+					src={blog}
+					alt="img"
+				/>
+			</div>
+		</div>
+	</a>
 </div>

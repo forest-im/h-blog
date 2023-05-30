@@ -1,6 +1,6 @@
 ---
 title: Sort
-tag: Sort
+tag: 자료구조
 date: 2022-05-07 00:24:48
 ---
 
