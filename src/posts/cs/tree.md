@@ -6,6 +6,24 @@ date: 2022-04-26 00:24:48
 
 # Tree , Binary Search Tree
 
+<!-- TOC tocDepth:2..3 chapterDepth:2..6 -->
+
+- [Tree 란?](#tree-란)
+- [왜 Tree 데이터 구조인가?](#왜-tree-데이터-구조인가)
+- [Tree 데이터 구조의 기본 용어](#tree-데이터-구조의-기본-용어)
+- [언제 사용하나요?](#언제-사용하나요)
+- [트리 데이터 구조의 타입](#트리-데이터-구조의-타입)
+- [트리 데이터 구조의 속성](#트리-데이터-구조의-속성)
+- [트리 데이터 구조의 Applications](#트리-데이터-구조의-applications)
+- [Big O](#big-o)
+- [Big O - worst case](#big-o---worst-case)
+- [트리 순회 (Tree Traversal)](#트리-순회-tree-traversal)
+- [(BST) 검색 작업](#bst-검색-작업)
+- [(BST) 삽입 작업](#bst-삽입-작업)
+- [(BST) 삭제 작업](#bst-삭제-작업)
+
+<!-- /TOC -->
+
 ## Tree 란?
 
 <a href="https://www.geeksforgeeks.org/introduction-to-tree-data-structure/" target="_blank">

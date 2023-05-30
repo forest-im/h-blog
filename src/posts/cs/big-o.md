@@ -12,7 +12,7 @@ date: 2022-04-06 00:24:48
 
 <a href="https://betterprogramming.pub/a-beginners-guide-to-big-o-notation-pt-1-19ec031b698b" target='_black'><img src="https://miro.medium.com/max/1400/1*5VctXSES5PrSk-5lPb_CCg.jpeg" > </a>
 
-## 1. O(1) : Constant time
+## O(1) Constant time
 
 입력 데이터의 크기에 상관없이 언제나 일정한 시간이 걸리는 알고리즘입니다.
 
@@ -33,7 +33,7 @@ arr.pop(); // [1, 2, 3]
 
 - 어떤 숫자를 입력하든 계산하는 데는 같은 시간이 걸립니다. 이것을 constant time complexity 라고 합니다.
 
-## 2. O(n) : linear time
+## O(n) linear time
 
 입력 데이터의 크기에 비례해서 처리 시간이 걸리는 알고리즘을 표현합니다.
 
@@ -66,7 +66,7 @@ arr.unshift(0); // [0, 1, 2, 3, 4]
 arr.shift(); // [2, 3, 4]
 ```
 
-## 3. O(n²) : quadratic time
+## O(n²) quadratic time
 
 - 입력 데이터 크기의 제곱만큼 처리시간이 걸리는 알고리즘을 표현합니다.
 - 배열의 길이가 늘어날 때마다 처리시간의 부담이 더 커집니다.
@@ -92,9 +92,9 @@ let result2 = multiplyAll([1, 2, 3, 4], [5, 3, 1, 8]); // 170
   2.  두 숫자 곱하기 (또다른 n²연산)
   3.  total에 더하기 (또다른 n²연산)
 
-## 4. O(nm) quadratic time
+## O(nm) quadratic time
 
-## 5. O(2^n) (n승) exponential time (2배씩 n번 늘어남)
+## O(2^n) (n승) exponential time (2배씩 n번 늘어남)
 
 입력이 1 증가할 때마다 연산 수가 2배씩 증가하는 알고리즘입니다.  
 이 알고리즘은 확장성이 매우 좋지 않으므로 피하는 것이 좋지만 O(2^n)가 가장 최악의 Big O는 아닙니다.
@@ -125,7 +125,7 @@ fibonacci(4); // 3
 fibonacci(5); // 5
 ```
 
-## 6. O(log n) : Logarithmic Complexity
+## O(log n) Logarithmic Complexity
 
 - 데이터가 커지면 커질수록 효율이 극대화됩니다.
 - 검색 / 정렬 알고리즘의 꽃이며 보통 대규모 컬렉션을 처리할 때 가장 효율적인 방법
@@ -158,9 +158,9 @@ let loopsE = logTime(Array(16)); // 4 loops
 for 루프에서 i의 현재 값을 2로 곱하므로 i는 1에서 2, 4, 8, 16...이 됩니다.
 즉 루프마다 2배가 됩니다. 예제에서 볼 수 있듯이 입력 배열의 길이를 두 배로 늘릴 때마다 연산 수는 매회 1회씩 증가합니다. 연산의 수를 보면 입력의 크기가 계속 늘어나도 연산의 수는 그다지 늘어나지 않는 걸 볼 수 있습니다.
 
-## 7. O(sqrt(n)) : square root
+## O(sqrt(n)) square root
 
-## 8. O(n!) : Factorial time complexity
+## O(n!) Factorial time complexity
 
 최악의 알고리즘입니다.
 

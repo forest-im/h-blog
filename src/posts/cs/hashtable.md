@@ -6,6 +6,21 @@ date: 2022-04-13 00:24:48
 
 # Hash Table
 
+<!-- TOC tocDepth:2..3 chapterDepth:2..6 -->
+
+- [What is a Hash Table?](#what-is-a-hash-table)
+- [Benefits of Hash Table](#benefits-of-hash-table)
+- [Drawbacks of Hash Table](#drawbacks-of-hash-table)
+- [Hash Table의 기본 작업과 Big O](#hash-table의-기본-작업과-big-o)
+- [Hash Function](#hash-function)
+- [Hash algorithm collision](#hash-algorithm-collision)
+- [collision 해결 방법](#collision-해결-방법)
+- [1. Separate chaining](#1-separate-chaining)
+- [2. Open addressing 개방 주소법](#2-open-addressing-개방-주소법)
+  - [probing](#probing)
+
+<!-- /TOC -->
+
 ## What is a Hash Table?
 
 - 일반적인 의미로 hash란 고기와 감자를 잘게 다진 요리를 뜻합니다. 예로 해시브라운이 있습니다.
