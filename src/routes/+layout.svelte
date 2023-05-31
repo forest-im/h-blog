@@ -8,7 +8,6 @@
 	import PageHead from "$lib/components/PageHead.svelte";
 </script>
 
-<PageHead />
 <body>
 	<Header />
 	<div class="mx-auto flex min-h-screen flex-col py-0 px-0">
