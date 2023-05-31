@@ -46,7 +46,7 @@
 			on:click={isOpenModal.toggle}
 			on:keydown={isOpenModal.toggle}
 			class={clsx(
-				"sticky top-[125px] z-10 m-2 ml-0 block h-5 w-5 cursor-pointer",
+				"m-2 sticky top-[125px] z-10 h-5 w-5 cursor-pointer",
 				$theme === "dark" && "invert"
 			)}
 			src={menu}
