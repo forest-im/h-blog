@@ -1,5 +1,5 @@
 import { count } from "../store";
-import { blogPosts, posts, tags } from "$lib/data/posts";
+import { blogPosts, tags } from "$lib/data/posts";
 
 let countValue;
 

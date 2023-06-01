@@ -5,7 +5,5 @@
 	export let data;
 </script>
 
-<div class="not-prose">
-	<TagList tags={data.tags} />
-	<PostList posts={data.posts} />
-</div>
+<TagList tags={data.tags} />
+<PostList posts={data.posts} />

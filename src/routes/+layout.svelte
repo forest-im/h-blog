@@ -8,14 +8,15 @@
 	import PageHead from "$lib/components/PageHead.svelte";
 </script>
 
+<PageHead />
 <body>
 	<Header />
-	<div class="mx-auto flex min-h-screen flex-col py-0 px-0">
+	<div class="mx-auto flex min-h-screen flex-col py-0 px-4">
 		<div class="flex flex-col items-center">
 			<main
 				class={clsx(
 					"all-prose flex w-full min-w-[300px] max-w-[800px] flex-col justify-center",
-					$page.route?.id?.includes("til") && "lg:max-w-[1200px]"
+					$page?.route?.id.includes("til") && "lg:max-w-[1200px]"
 				)}
 			>
 				{#if $page.route.id === "/"}
