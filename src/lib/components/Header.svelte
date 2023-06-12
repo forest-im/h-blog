@@ -1,5 +1,6 @@
 <script>
 	import clsx from "clsx";
+	import { page } from "$app/stores";
 	import profile02 from "$lib/images/profile02.png";
 	import Entry from "$lib/components/Entry.svelte";
 	import ToggleThemeInput from "$lib/components/ToggleThemeInput.svelte";
@@ -31,7 +32,7 @@
 				<Entry entry="/" name="Blog" />
 				<Entry entry="/til" name="TIL" />
 				<Entry entry="/projects" name="Projects" />
-				{#if w < 801}
+				{#if w < 801 && $page.route.id.includes("til")}
 					<img
 						on:click={isOpenModal.toggle}
 						on:keydown={isOpenModal.toggle}

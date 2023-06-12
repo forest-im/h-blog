@@ -134,6 +134,16 @@ end procedure
 
 데이터가 크면 클수록 느려집니다.
 
+## Selection Sort 선택 정렬
+
+- In Place 정렬
+- 첫 번째 순서에서는 가장 최솟값을 넣는다.
+- 두 번째 순서에서는 남은 값 중에서 최솟값을 넣는다.
+
+![selectionSort](https://upload.wikimedia.org/wikipedia/commons/3/3e/Sorting_selection_sort_anim.gif?20220209224152)
+
+## Special Sort (버블 정렬 응용)
+
 ## Insertion Sort 삽입 정렬
 
 자료 배열의 모든 요소를 앞에서부터 차례대로 이미 정렬된 배열 부분과 비교하여, 자신의 위치를 찾아 삽입함으로써 정렬을 완성하는 알고리즘입니다.  
@@ -144,7 +154,7 @@ end procedure
 - 두 번째 요소부터 시작 (왼쪽과 비교해야해서)
 - 이진 검색을 사용하여 일반 삽입 정렬에서 비교 횟수를 줄일 수 있습니다.
   - 이진 삽입 정렬은 이진 검색을 사용하여 각 반복에서 선택한 항목을 삽입할 적절한 위치를 찾습니다.
-  - 정상적인 삽입에서 정렬은 최악의 경우 O(i)(i번째 반복)을 취합니다. 이진 검색을 사용하여 O(logi)로 줄일 수 있어요. 알고리즘은 전체적으로 각 삽입에 필요한 일련의 스왑으로 인해 여전히 최악의 실행 시간이 O(n^2)입니다. <https://www.geeksforgeeks.org/binary-insertion-sort/>
+  - 정상적인 삽입에서 정렬은 최악의 경우 O(i)(i번째 반복)을 취합니다. 이진 검색을 사용하여 O(logi)로 줄일 수 있어요. 알고리즘은 전체적으로 각 삽입에 필요한 일련의 스왑으로 인해 여전히 최악의 실행 시간이 O(n^2)입니다. [link](https://www.geeksforgeeks.org/binary-insertion-sort/)
 
 ### Binary Insertion Sort 이진 삽입 정렬
 
@@ -238,7 +248,9 @@ Divide and Conquer
 2. Conquer: 서브 문제를 해결한다.
 3. Combine: 쪼개진 걸 통합한다.
 
-(Bubble Sort by geeksforgeeks)[https://www.geeksforgeeks.org/quiz-bubblesort-gq/]
-(특별한 정렬 알고리즘들 by S/W 멤버십 기술 블로그)[http://www.secmem.org/blog/2019/04/10/special-sorts/]
-(The Sound of Sorting - "Audibilization" and Visualization of Sorting Algorithms)[https://panthema.net/2013/sound-of-sorting/]
-Save
+- 출처
+
+  [Bubble Sort by geeksforgeeks](https://www.geeksforgeeks.org/quiz-bubblesort-gq/)
+  [특별한 정렬 알고리즘들 by S/W 멤버십 기술 블로그](http://www.secmem.org/blog/2019/04/10/special-sorts/)
+  [The Sound of Sorting - "Audibilization" and Visualization of Sorting Algorithms](https://panthema.net/2013/sound-of-sorting/)
+  Save

@@ -16,7 +16,7 @@
 	}
 </script>
 
-<div
+<aside
 	data-til-list="til-list"
 	class={clsx(
 		"scrollbar-hide 0.2s color sticky top-[150px] ease-in-out",
@@ -34,7 +34,7 @@
 					class={clsx(
 						"w-full cursor-pointer border-solid p-2 font-bold hover:shadow-md",
 						$page.params.category === category
-							? "text-pointColor-800 dark:text-white"
+							? "text-pointColor-850"
 							: "text-defaultColor-600"
 					)}
 					data-til-list="til-list"
@@ -43,7 +43,7 @@
 						on:click={(e) => handleCategoryClick(e, category)}
 						on:keydown={handleCategoryClick}
 						class={clsx(
-							"mr-2 rounded border-[1px] border-solid pl-[3px] pb-[2px] text-center text-defaultColor-500 hover:text-red-500"
+							"mr-2 rounded border-[1px] border-solid pb-[2px] pl-[3px] text-center text-defaultColor-500 hover:text-red-500"
 						)}
 						data-til-list="til-list"
 					>
@@ -70,4 +70,4 @@
 			{/if}
 		</div>
 	{/each}
-</div>
+</aside>

@@ -1,5 +1,5 @@
 ---
-title: 'DOM Event'
+title: "DOM Event"
 tag: DOM, Event, JS, 스터디01
 date: 2022-12-27 16:38:40
 ---
@@ -34,17 +34,21 @@ event propagation에는 3가지 단계가 있다. 이벤트 캡처링 단계, �
 
 ## Event 핸들러 등록 방법
 
-1. 이벤트 핸들러 어트리뷰트 방식(인라인 이벤트 핸들러) 사용하지 말 것  
+1. 이벤트 핸들러 어트리뷰트 방식(인라인 이벤트 핸들러) 사용하지 말 것
+   <div class="table-wrapper">
+
    `<button onClick="sayHi('alex')">button</button>`
+
+   </div>
 
 - html과 js를 섞는 건 좋지 않은 방법이다.
 
 2. 이벤트 핸들러 프로퍼티 방식
 
 ```js
-var targetBtn = document.getElementById('target');
+var targetBtn = document.getElementById("target");
 targetBtn.onclick = function () {
-	alert('Hello world');
+	alert("Hello world");
 	// 실행 >> Hello world
 };
 ```
@@ -52,8 +56,12 @@ targetBtn.onclick = function () {
 - 오직 하나의 핸들러만을 등록할 수 있다.
 - 구식 방법
 
-3. addEventListener 메서드 방식  
+3. addEventListener 메서드 방식
+   <div class="table-wrapper">
+
    `EventTarget.addEventListener('eventType', functionName [, useCapture])`
+
+   </div>
 
 - 다수의 이벤트 핸들러를 할당할 수 있다.
 - 마지막 매개변수에는 이벤트를 캐치할 이벤트 전파 단계를 설정한다.

@@ -9,11 +9,12 @@
 	let w;
 
 	function handleClickBg(e) {
-		if (!$isOpenModal || w > 800 || e.target.nodeName === "IMG" || e.target.dataset.tilList) return;
-
 		if ($isOpenModal && w < 801) {
+			console.log("hi");
 			isOpenModal.closeModal();
 		}
+
+		if (!$isOpenModal || w > 800 || e.target.nodeName === "IMG" || e.target.dataset.tilList) return;
 	}
 </script>
 
@@ -24,41 +25,37 @@
 	on:keydown={handleClickBg}
 >
 	<div class="absolute">
-		{#if $isOpenModal && w < 801}
-			<div class="fixed top-[125px]">
-				<TilList isModal={true} postsByCategory={data.postsByCategory} />
+		{#if w < 801}
+			<div class="fixed top-[125] z-50 ml-10">
+				{#if $isOpenModal && w < 801}
+					<TilList isModal={true} postsByCategory={data.postsByCategory} />
+				{/if}
 			</div>
 		{/if}
 	</div>
-	{#if w > 800}
+</div>
+
+<div class="flex justify-center transition">
+	<div
+		class={clsx(
+			"not-prose max-[1100px]:max-w-[200px] max-[800px]:hidden",
+			$isOpenMenu ? "max-[1100px]:min-w-[200px]" : ""
+		)}
+	>
 		<img
 			on:click={isOpenMenu.toggle}
 			on:keydown={isOpenMenu.toggle}
 			class={clsx(
-				"sticky top-[125px] z-10 m-2 ml-0 block h-5 w-5 cursor-pointer",
-				$theme === "dark" && "invert"
+				"sticky top-[125px] z-10 m-1 mb-4 block h-5 w-5 cursor-pointer max-[800px]:hidden",
+				$theme === "dark" && "invert",
+				$isOpenMenu && "mr-5"
 			)}
 			src={menu}
 			alt="menu-icon"
 		/>
-	{:else}
-		<img
-			on:click={isOpenModal.toggle}
-			on:keydown={isOpenModal.toggle}
-			class={clsx(
-				"sticky top-[125px] z-10 m-2 ml-0 block h-5 w-5 cursor-pointer",
-				$theme === "dark" && "invert"
-			)}
-			src={menu}
-			alt="menu-icon"
-		/>
-	{/if}
-	<div class="flex w-full flex-row justify-center transition">
 		{#if $isOpenMenu}
-			<div class="max-[1100px]:min-w-[200px] max-[1100px]:max-w-[200px] max-lg:hidden">
-				<TilList postsByCategory={data.postsByCategory} />
-			</div>
+			<TilList isModal={false} postsByCategory={data.postsByCategory} />
 		{/if}
-		<slot />
 	</div>
+	<slot />
 </div>

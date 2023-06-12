@@ -186,11 +186,8 @@ factorial(14); // SMOKE & FLAMES!!
 
 13만 입력해도 70초가 걸립니다.
 
-> 출처
->
-> 1. Big O Notation in JavaScript | The Ultimate Beginners Guide with Examples (2021). https://www.doabledanny.com/big-o-notation-in-javascript
-> 2. [자료구조 알고리즘] 빅오(Big-O)표기법 완전정복 . (2018). https://www.youtube.com/watch?v=6Iq5iMCVsXA&t=329s.
-> 3. Big O Notation — Time Complexity in Javascript . (2020). https://medium.com/analytics-vidhya/big-o-notation-time-complexity-in-javascript-f97f356de2c4.
-> 4. 빅오 표기법(Big O notation)과 자바스크립트 (2018). https://aidanbae.github.io/code/algorithm/bigo/
-> 5. [자료구조] 시간복잡도 with JavaScript (2021). https://overcome-the-limits.tistory.com/18
->    Save
+- [Big O Notation in JavaScript | The Ultimate Beginners Guide with Examples (2021).](https://www.doabledanny.com/big-o-notation-in-javascript)
+- [[자료구조 알고리즘] 빅오(Big-O)표기법 완전정복 . (2018).](https://www.youtube.com/watch?v=6Iq5iMCVsXA&t=329s)
+- [Big O Notation — Time Complexity in Javascript . (2020). ](https://medium.com/analytics-vidhya/big-o-notation-time-complexity-in-javascript-f97f356de2c4)
+- [빅오 표기법(Big O notation)과 자바스크립트 (2018).](https://aidanbae.github.io/code/algorithm/bigo/)
+- [[자료구조] 시간복잡도 with JavaScript (2021).](https://overcome-the-limits.tistory.com/18)

@@ -3,7 +3,7 @@
 @import "tailwindcss/utilities";
 
 .scrollbar-hide::-webkit-scrollbar {
-	width: 10px;
+	/* width: 10px; */
 }
 
 .scrollbar-hide::-webkit-scrollbar-thumb {
@@ -14,6 +14,10 @@
 
 .transition {
 	transition: 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.table-wrapper {
+	@apply overflow-x-scroll;
 }
 
 @layer base {
@@ -32,11 +36,11 @@
 	body {
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
-		@apply scrollbar-hide my-0 mx-auto bg-darkDefaultColor-900 p-0 dark:bg-defaultColor-900;
+		@apply scrollbar-hide mx-auto my-0 bg-darkDefaultColor-900 p-0 dark:bg-defaultColor-900;
 	}
 
 	.all-prose {
-		@apply prose prose-slate prose-a:decoration-transparent dark:prose-invert;
+		@apply prose prose-slate whitespace-normal dark:prose-invert prose-a:decoration-transparent;
 	}
 
 	h1,
@@ -45,11 +49,19 @@
 	h4,
 	h5,
 	h6 {
-		@apply text-zinc-900;
+		@apply whitespace-normal text-zinc-900;
+	}
+
+	li {
+		@apply block overflow-x-scroll;
+	}
+
+	code {
+		@apply block overflow-x-scroll;
 	}
 
 	a {
-		@apply no-underline dark:text-darkDefaultColor-900;
+		@apply block overflow-x-scroll no-underline dark:text-darkDefaultColor-900;
 	}
 
 	hr {
@@ -61,7 +73,7 @@
 	}
 
 	.tag {
-		@apply my-1 ml-0 mb-1 mt-2 mr-2 rounded bg-pointColor-700 p-2 py-0 px-2  dark:bg-darkPointColor-700;
+		@apply my-1 mb-1 ml-0 mr-2 mt-2 rounded bg-pointColor-700 p-2 px-2 py-0  dark:bg-darkPointColor-700;
 	}
 
 	.date {

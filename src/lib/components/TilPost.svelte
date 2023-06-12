@@ -4,7 +4,7 @@
 	export let tils;
 </script>
 
-<div class="w-full px-3 max-[640px]:w-[500px]">
+<div class="m-3 w-full p-3 max-[640px]:w-[500px]">
 	{#each tils as { default: component, metadata }}
 		<div
 			class={clsx(
