@@ -2,11 +2,17 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.scrollbar-hide::-webkit-scrollbar {
-	/* width: 10px; */
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
 }
 
-.scrollbar-hide::-webkit-scrollbar-thumb {
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
 	background-color: #000000;
 	border-radius: 10px;
 	border: 2px solid #555555;
@@ -17,7 +23,7 @@
 }
 
 .table-wrapper {
-	@apply overflow-x-scroll;
+	@apply no-scrollbar overflow-x-scroll;
 }
 
 @layer base {
@@ -36,7 +42,7 @@
 	body {
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
-		@apply scrollbar-hide mx-auto my-0 bg-darkDefaultColor-900 p-0 dark:bg-defaultColor-900;
+		@apply scrollbar mx-auto my-0 bg-darkDefaultColor-900 p-0 dark:bg-defaultColor-900;
 	}
 
 	.all-prose {
@@ -53,15 +59,15 @@
 	}
 
 	li {
-		@apply block overflow-x-scroll;
+		@apply no-scrollbar block whitespace-normal;
 	}
 
 	code {
-		@apply block overflow-x-scroll;
+		@apply no-scrollbar block overflow-x-scroll;
 	}
 
 	a {
-		@apply block overflow-x-scroll no-underline dark:text-darkDefaultColor-900;
+		@apply block whitespace-normal no-underline dark:text-darkDefaultColor-900;
 	}
 
 	hr {
