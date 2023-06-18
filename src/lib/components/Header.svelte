@@ -6,7 +6,7 @@
 	import ToggleThemeInput from "$lib/components/ToggleThemeInput.svelte";
 	import menu from "$lib/images/menu.png";
 
-	import { isOpenMenu, isOpenModal, theme } from "../../store";
+	import { isOpenModal, theme } from "../../store";
 
 	let w;
 </script>
@@ -30,7 +30,6 @@
 					</a>
 				</div>
 				<Entry entry="/" name="Blog" />
-				<Entry entry="/til" name="TIL" />
 				<Entry entry="/projects" name="Projects" />
 				{#if w < 801 && $page.route.id.includes("til")}
 					<img

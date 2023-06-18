@@ -59,15 +59,15 @@
 	}
 
 	li {
-		@apply no-scrollbar block whitespace-normal;
+		@apply no-scrollbar whitespace-normal;
 	}
 
 	code {
-		@apply no-scrollbar block overflow-x-scroll;
+		@apply no-scrollbar overflow-x-scroll;
 	}
 
 	a {
-		@apply block whitespace-normal no-underline dark:text-darkDefaultColor-900;
+		@apply whitespace-normal no-underline dark:text-darkDefaultColor-900;
 	}
 
 	hr {

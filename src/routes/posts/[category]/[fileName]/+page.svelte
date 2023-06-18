@@ -29,7 +29,7 @@
 	tag={data.metadata.tag}
 	date={data.metadata.date}
 />
-<article class="mx-4 px-4">
+<article class="mx-4">
 	<PostTitle title={data.metadata.title} />
 	<div class="text-sm">{data.metadata.date.slice(0, 10)}</div>
 	<hr />
