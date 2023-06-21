@@ -3,8 +3,21 @@ title: Proxy에 대해 알아보기 (+ Reverse Proxy, Foward Proxy)
 tag: proxy
 date: 2023-06-21 12:25:31
 description: 프록시에 대해 알아봅니다.
-published: false
 type: blog
+---
+
+<!-- TOC tocDepth:2..3 chapterDepth:2..6 -->
+
+- [Proxy](#proxy)
+  - [Proxy란?](#proxy란)
+  - [Foward Proxy](#foward-proxy)
+  - [Reverse Proxy](#reverse-proxy)
+  - [Reverse Proxy 설정을 하는 이유](#reverse-proxy-설정을-하는-이유)
+  - [리버스 프록시 설정은 어떻게 할까?](#리버스-프록시-설정은-어떻게-할까)
+- [출처 및 참조](#출처-및-참조)
+
+<!-- /TOC -->
+
 ---
 
 [EC2 배포 포스트](https://www.im-alex.dev/posts/noPublished/aws-ec2)에 프록시를 함께 정리했더니 너무 길어져서 따로 분리한다..😂
