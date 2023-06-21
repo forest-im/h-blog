@@ -1,5 +1,6 @@
 <script>
 	import airmind2 from "$lib/images/projects/airmind2.png";
+	import PageHead from "$lib/components/PageHead.svelte";
 	import blog from "$lib/images/projects/blog.png";
 	import blog2 from "$lib/images/projects/blog2.png";
 	import mind1 from "$lib/images/projects/mind1.png";
@@ -8,6 +9,12 @@
 	import story2 from "$lib/images/projects/story2.png";
 </script>
 
+<PageHead
+	title="Alex's Projects"
+	description="진행했던 프로젝트 리스트입니다."
+	tag="projects"
+	date="2022-12-23T09:12:21.158Z"
+/>
 <div class="not-prose grid auto-rows-max justify-items-center gap-2 md:grid-cols-2">
 	<a href="https://www.jaamtoast.click">
 		<div class="my-10">
