@@ -26,6 +26,11 @@
 	@apply no-scrollbar overflow-x-scroll;
 }
 
+.point {
+	color: red;
+	font-weight: bold;
+}
+
 @layer base {
 	* {
 		/* @apply text-defaultColor-900 dark:text-zinc-200; */
@@ -67,7 +72,7 @@
 	}
 
 	a {
-		@apply whitespace-normal no-underline dark:text-darkDefaultColor-900;
+		@apply whitespace-normal no-underline hover:text-pointColor-900 dark:text-darkDefaultColor-900;
 	}
 
 	hr {

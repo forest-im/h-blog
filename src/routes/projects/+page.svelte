@@ -16,12 +16,14 @@
 				class="relative z-10 my-10 max-h-[220px] min-w-[350px] max-w-[350px] overflow-hidden rounded-2xl shadow-xl"
 			>
 				<img
+					width="400"
 					class="scale-125 shadow-none"
 					src="https://github.com/h-alex2/h-blog/assets/84281505/15386626-c026-4dbb-a083-d7ca9a0ba165"
 					alt="img"
 				/>
 				<img
-					class="opacity-1  absolute top-0 left-0 z-10 scale-125 duration-300 ease-in-out first-letter:shadow-none hover:opacity-0"
+					width="400"
+					class="opacity-1 absolute left-0 top-0 z-10 scale-125 duration-300 ease-in-out first-letter:shadow-none hover:opacity-0"
 					src="https://github.com/h-alex2/h-blog/assets/84281505/70a0953f-0e5c-42b0-ac3d-0073a9579eaa"
 					alt="img"
 				/>
@@ -34,9 +36,10 @@
 			<div
 				class="relative z-10 my-10 max-h-[220px] min-w-[350px] max-w-[350px] overflow-hidden rounded-2xl shadow-xl"
 			>
-				<img class="translate-x-10 scale-125 shadow-none" src={story2} alt="img" />
+				<img width="400" class="translate-x-10 scale-125 shadow-none" src={story2} alt="img" />
 				<img
-					class="opacity-1 absolute top-0 left-0 z-10 translate-x-20 translate-y-3 scale-150 shadow-none duration-300 ease-in-out hover:opacity-0"
+					width="400"
+					class="opacity-1 absolute left-0 top-0 z-10 translate-x-20 translate-y-3 scale-150 shadow-none duration-300 ease-in-out hover:opacity-0"
 					src={story1}
 					alt="img"
 				/>
@@ -50,7 +53,8 @@
 				class="my-10 max-h-[220px] min-w-[350px] max-w-[350px] overflow-hidden rounded-2xl shadow-xl"
 			>
 				<img
-					class="scale top-0 left-0 z-20 scale-125 shadow-none duration-300 ease-in-out hover:scale-150"
+					width="400"
+					class="scale left-0 top-0 z-20 scale-125 shadow-none duration-300 ease-in-out hover:scale-150"
 					src={airmind2}
 					alt="img"
 				/>
@@ -63,9 +67,10 @@
 			<div
 				class="relative z-10 my-10 max-h-[220px] min-w-[350px] max-w-[350px] overflow-hidden rounded-2xl shadow-xl"
 			>
-				<img class="scale-150 shadow-none" src={mind2} alt="img" />
+				<img width="400" class="scale-150 shadow-none" src={mind2} alt="img" />
 				<img
-					class="opacity-1 absolute top-0 left-0 z-20 scale-150 shadow-none duration-300 ease-in-out hover:opacity-0"
+					width="400"
+					class="opacity-1 absolute left-0 top-0 z-20 scale-150 shadow-none duration-300 ease-in-out hover:opacity-0"
 					src={mind1}
 					alt="img"
 				/>
@@ -78,9 +83,10 @@
 			<div
 				class="relative z-10 my-10 max-h-[220px] min-w-[350px] max-w-[350px] overflow-hidden rounded-2xl shadow-xl"
 			>
-				<img class="translate-y-2 scale-150 shadow-none" src={blog2} alt="img" />
+				<img width="400" class="translate-y-2 scale-150 shadow-none" src={blog2} alt="img" />
 				<img
-					class="opacity-1 absolute top-0 left-0 z-20 translate-y-2 scale-150 shadow-none duration-300 ease-in-out hover:opacity-0"
+					width="400"
+					class="opacity-1 absolute left-0 top-0 z-20 translate-y-2 scale-150 shadow-none duration-300 ease-in-out hover:opacity-0"
 					src={blog}
 					alt="img"
 				/>
