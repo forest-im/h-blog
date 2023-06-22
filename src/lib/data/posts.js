@@ -11,7 +11,7 @@ export const allPosts = modules
 	.filter(([, post]) => post.metadata?.published !== false || dev)
 	.map(([path, post]) => {
 		const splitPath = path.split("/");
-		const dateObj = new Date(post.metadata.date);
+		const dateObj = new Date(post.metadata?.date);
 
 		return {
 			...post.metadata,
@@ -23,9 +23,7 @@ export const allPosts = modules
 			type: post.metadata.type
 		};
 	})
-	.sort((a, b) => {
-		return a.timeStamp < b.timeStamp ? 1 : -1;
-	});
+	.sort((a, b) => (a.timeStamp < b.timeStamp ? 1 : -1));
 
 export const blogPosts = allPosts.filter((post) => post.type === "blog");
 
@@ -33,9 +31,7 @@ export const tilPosts = allPosts.filter((post) => post.type !== "blog");
 
 export const tags = Object.entries(
 	allPosts
-		.reduce((allTagsArr, post) => {
-			return [...allTagsArr, ...post.tag];
-		}, [])
+		.reduce((allTagsArr, post) => [...allTagsArr, ...post.tag], [])
 		.reduce((tagCountObj, tag) => {
 			const trimTag = tag.trim();
 			tagCountObj[trimTag] = tagCountObj[trimTag] + 1 || 1;
@@ -66,15 +62,12 @@ export const postsByCategory = Object.entries(
 
 export const recentTils = modules
 	.filter(([, post]) => post.metadata.type !== "blog")
-	.sort((a, b) => {
-		return (
+	.sort(
+		(a, b) =>
 			new Date(b[1].metadata.date).getTime() / 1000 - new Date(a[1].metadata.date).getTime() / 1000
-		);
-	})
+	)
 	.slice(0, 5)
-	.map((post) => {
-		return { slug: post[0].slice(11, -3), ...post[1] };
-	});
+	.map((post) => ({ slug: post[0].slice(11, -3), ...post[1] }));
 
 export const getTilsInTheCurrentCategory = (category) => {
 	const modules = Object.entries(
