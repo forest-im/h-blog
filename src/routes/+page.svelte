@@ -2,6 +2,9 @@
 	import { onMount } from "svelte/internal";
 	import { currentToc, currentPage } from "$lib/store";
 	import profile04 from "$lib/images/profile04.png";
+	import Category from "$lib/components/Category.svelte";
+
+	export let data;
 
 	onMount(() => {
 		currentPage.reset();
@@ -9,6 +12,7 @@
 	});
 </script>
 
+<Category categories={data.categories} postsCount={data.posts.length} />
 <div class="all-prose m-4 min-h-[60vh] max-w-full">
 	<div class="flex items-center justify-end">
 		<h1 class="m-0 text-right dark:text-white">
