@@ -42,6 +42,18 @@
 	font-weight: bold;
 }
 
+.active_toc {
+	font-weight: bold;
+}
+
+.category {
+	transition: transform 0.3s ease-out;
+}
+
+.active_category {
+	transform: translateX(0);
+}
+
 @layer base {
 	* {
 		/* @apply text-defaultColor-900 dark:text-zinc-200; */

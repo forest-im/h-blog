@@ -1,13 +1,16 @@
 <script>
 	import PageHead from "$lib/components/PageHead.svelte";
-	import { onMount } from "svelte/internal";
+	import { onDestroy, onMount } from "svelte/internal";
 	import { afterUpdate } from "svelte/internal";
 	import { currentToc, isOpenMenu, isOpenToc } from "$lib/store";
 	import Toc from "$lib/components/Toc.svelte";
 	import Category from "$lib/components/Category.svelte";
+	import { browser } from "$app/environment";
 
 	export let data;
 	let commentSection;
+	let observer;
+
 	$: component = data.component;
 
 	afterUpdate(() => {
@@ -21,6 +24,21 @@
 		if (!$isOpenToc) {
 			isOpenToc.toggle();
 		}
+
+		if (browser) {
+			const handleIntersect = (entries, observer) => {
+				entries.forEach((entry) => {
+					const id = entry.target.getAttribute("id");
+
+					if (entry.intersectionRatio > 0) {
+						document.querySelectorAll(".toc").forEach((toc) => toc.classList.remove("active_toc"));
+
+						document.querySelector(`aside ul li a[href="#${id}"]`).classList.add("active_toc");
+					}
+				});
+			};
+			observer = new IntersectionObserver(handleIntersect);
+		}
 		if (commentSection.childNodes.length) return;
 		const scriptElem = document.createElement("script");
 		scriptElem.src = "https://utteranc.es/client.js";
@@ -32,6 +50,18 @@
 		scriptElem.crossOrigin = "anonymous";
 		commentSection.appendChild(scriptElem);
 	});
+
+	$: if ($currentToc) {
+		$currentToc.forEach((section) => {
+			observer?.observe(section);
+		});
+	}
+
+	onDestroy(() => {
+		if (observer) {
+			observer.disconnect();
+		}
+	});
 </script>
 
 <PageHead
@@ -40,9 +70,7 @@
 	tag={data.metadata.tag}
 	date={data.metadata.date}
 />
-{#if isOpenMenu}
-	<Category categories={data.categories} postsCount={data.postsCount} />
-{/if}
+<Category categories={data.categories} postsCount={data.postsCount} />
 {#if isOpenToc}
 	<Toc />
 {/if}

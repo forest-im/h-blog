@@ -22,7 +22,7 @@
 				<li class={clsx(toc.nodeName !== "H2" ? "ml-5 list-disc" : " pt-2")}>
 					<a
 						href={`#${toc.id}`}
-						class="scroll-smooth text-sm font-[400] text-gray-500 active:text-red-50"
+						class="toc scroll-smooth text-sm font-[400] text-gray-500 active:text-red-50"
 					>
 						{toc.textContent}
 					</a>
