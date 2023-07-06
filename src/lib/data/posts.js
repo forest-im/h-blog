@@ -8,7 +8,8 @@ const modules = Object.entries(
 );
 
 export const allPosts = modules
-	.filter(([, post]) => post.metadata?.published !== false || dev)
+	// .filter(([, post]) => post.metadata?.published !== false || dev)
+	.filter(([, post]) => post.metadata?.published !== false)
 	.map(([path, post]) => {
 		const splitPath = path.split("/");
 		const dateObj = new Date(post.metadata?.date);
@@ -23,9 +24,13 @@ export const allPosts = modules
 			type: post.metadata.type
 		};
 	})
-	.sort((a, b) => (a.timeStamp < b.timeStamp ? 1 : -1));
+	.sort((a, b) => (a.date < b.date ? 1 : -1));
+
+export const posts = (page) => allPosts.slice(5 * page - 5, page * 5);
 
 export const blogPosts = allPosts.filter((post) => post.type === "blog");
+
+export const getPosts = (category) => allPosts.filter((post) => post.category === category);
 
 export const tilPosts = allPosts.filter((post) => post.type !== "blog");
 
@@ -39,6 +44,22 @@ export const tags = Object.entries(
 			return tagCountObj;
 		}, {})
 ).sort((a, b) => b[1] - a[1]);
+
+export const categories = Object.entries(
+	allPosts.reduce((allCategories, post) => {
+		if (allCategories[post.category]) {
+			allCategories[post.category].push({ title: post.title, slug: post.slug });
+		} else {
+			allCategories[post.category] = [{ title: post.title, slug: post.slug }];
+		}
+
+		return allCategories;
+	}, {})
+).sort((a, b) => {
+	return b[1].length - a[1].length;
+});
+
+// export const categories = "hi";
 
 export const postsByCategory = Object.entries(
 	tilPosts.reduce((allCategory, post) => {

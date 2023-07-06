@@ -1,49 +1,53 @@
 <script>
 	import clsx from "clsx";
-	import { page } from "$app/stores";
 	import profile02 from "$lib/images/profile02.png";
-	import Entry from "$lib/components/Entry.svelte";
 	import ToggleThemeInput from "$lib/components/ToggleThemeInput.svelte";
 	import menu from "$lib/images/menu.png";
-
-	import { isOpenModal, theme } from "../../store";
+	import { isOpenMenu, theme, currentPage } from "$lib/store";
 
 	let w;
 </script>
 
 <header
-	class={"sticky top-0 z-50 flex w-full justify-center bg-darkDefaultColor-900 dark:bg-defaultColor-900"}
+	class={"sticky top-0 z-10 my-3 flex justify-center bg-darkDefaultColor-900 dark:bg-defaultColor-900"}
 	bind:clientWidth={w}
 >
-	<nav
-		class="w-[800px] min-w-[300px] max-w-[800px] px-4 pt-4 text-defaultColor-700 max-[400px]:px-0"
-	>
-		<div class={clsx("flex w-full items-center justify-between font-light max-sm:flex-col")}>
-			<div class="mx-5 flex w-full items-center">
-				<div>
-					<a href="/">
-						<img
-							src={profile02}
-							alt="profile"
-							class="m-0 mb-5 mr-5 h-20 w-20 min-w-[5rem] shadow-none max-[400px]:mr-1"
-						/>
-					</a>
-				</div>
-				<Entry entry="/" name="Blog" />
-				<Entry entry="/projects" name="Projects" />
-				{#if w < 801 && $page.route.id.includes("til")}
+	<div class={clsx("flex w-full items-center justify-between font-light ")}>
+		<div class="mx-5 flex w-full items-center justify-between">
+			<div class="flex items-center">
+				<a href="/" class="block">
 					<img
-						on:click={isOpenModal.toggle}
-						on:keydown={isOpenModal.toggle}
+						on:click={currentPage.reset}
+						on:keydown={currentPage.reset}
+						src={profile02}
+						alt="profile"
+						class="m-0 h-20 w-20 min-w-[5rem] shadow-none"
+					/>
+				</a>
+			</div>
+			<div class="flex h-full items-center gap-4">
+				<ToggleThemeInput />
+				<div class="cursor-pointer"><a href="/categories/all">POSTS</a></div>
+				<div class="cursor-pointer" on:click={currentPage.reset} on:keydown={currentPage.reset}>
+					<a href="/tags">TAGS</a>
+				</div>
+				<div class="cursor-pointer">
+					<a
+						href="/categories/til/til-2023"
+						on:click={currentPage.reset}
+						on:keydown={currentPage.reset}>TIL</a
+					>
+				</div>
+				<div>
+					<img
+						on:click={isOpenMenu.toggle}
+						on:keydown={isOpenMenu.toggle}
 						class={clsx("h-5 w-5 cursor-pointer", $theme === "dark" && "invert")}
 						src={menu}
 						alt="menu-icon"
 					/>
-				{/if}
-				<div class="flex w-full justify-end">
-					<ToggleThemeInput />
 				</div>
 			</div>
 		</div>
-	</nav>
+	</div>
 </header>

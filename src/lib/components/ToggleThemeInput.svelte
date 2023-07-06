@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from "svelte";
-	import { theme } from "../../store";
+	import { theme } from "$lib/store";
 	import clsx from "clsx";
 
 	let mode;
@@ -23,7 +23,7 @@
 </script>
 
 {#if mode}
-	<div class="mr-4">
+	<div>
 		<input
 			on:change={handleToggle}
 			type="checkbox"
