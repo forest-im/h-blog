@@ -12,10 +12,21 @@
 	scrollbar-width: none; /* Firefox */
 }
 
-.scrollbar::-webkit-scrollbar-thumb {
-	background-color: #000000;
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+	width: 7px;
+	background-color: transparent;
+	color: gray;
+}
+
+::-webkit-scrollbar-thumb {
+	background: gray;
 	border-radius: 10px;
-	border: 2px solid #555555;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 .transition {
@@ -47,11 +58,11 @@
 	body {
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
-		@apply scrollbar mx-auto my-0 bg-darkDefaultColor-900 p-0 dark:bg-defaultColor-900;
+		@apply m-0 h-full overflow-x-hidden bg-darkDefaultColor-900 p-0 dark:bg-defaultColor-900;
 	}
 
 	.all-prose {
-		@apply prose prose-slate whitespace-normal dark:prose-invert prose-a:decoration-transparent;
+		@apply prose prose-slate whitespace-normal p-5 dark:prose-invert prose-a:decoration-transparent;
 	}
 
 	h1,
@@ -72,7 +83,7 @@
 	}
 
 	a {
-		@apply whitespace-normal no-underline hover:text-pointColor-900 dark:text-darkDefaultColor-900;
+		@apply whitespace-normal no-underline dark:text-darkDefaultColor-900;
 	}
 
 	hr {
