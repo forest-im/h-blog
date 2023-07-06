@@ -17,7 +17,7 @@
 		"@neoconfetti/svelte": "^1.0.0",
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-static": "^1.0.5",
-		"@sveltejs/kit": "^1.0.0",
+		"@sveltejs/kit": "^1.21.0",
 		"@tailwindcss/typography": "^0.5.9",
 		"@types/cookie": "^0.5.1",
 		"autoprefixer": "^10.4.13",
@@ -50,7 +50,6 @@
 		"vitest": "^0.25.3"
 	},
 	"type": "module",
-	"dependencies": {},
 	"main": "index.js",
 	"repository": "https://github.com/h-alex2/h-blog.git",
 	"author": "임현정 | Alex Im <84281505+h-alex2@users.noreply.github.com>",
