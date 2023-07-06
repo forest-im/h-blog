@@ -4,7 +4,7 @@ import { URL } from "$lib/constants/metadata";
 export const prerender = true;
 
 // make sure this matches your post route
-const getPostUrl = (category, slug) => `${URL}/post/${category}/${slug}`;
+const getPostUrl = (category, slug) => `${URL}/categories/${category}/${slug}`;
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}

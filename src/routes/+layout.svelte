@@ -1,30 +1,28 @@
 <script>
 	import "../app.css";
 	import "../prism.css";
-	import clsx from "clsx";
-	import { page } from "$app/stores";
 	import Header from "$lib/components/Header.svelte";
 	import Footer from "$lib/components/Footer.svelte";
+	import ResponsiveLayer from "$lib/components/ResponsiveLayer.svelte";
 </script>
 
 <body>
-	<Header />
-	<div class="mx-auto flex min-h-screen flex-col px-4 py-0">
-		<div class="flex flex-col items-center">
-			<main
-				class={clsx(
-					"all-prose flex w-full min-w-[300px] max-w-[800px] flex-col justify-center",
-					$page?.route?.id.includes("til") && "lg:max-w-[1000px]"
-				)}
-			>
-				{#if $page.route.id === "/"}
-					<div class="mx-4 min-w-[300px] max-w-[800px] px-4 text-sm font-light">
-						Personal blog by Hyunjung Im.
+	<div class="mx-auto flex min-h-[101vh] w-screen min-w-[350px] flex-col justify-center">
+		<main class="relative flex flex-1 flex-col">
+			<ResponsiveLayer>
+				<div class="max-[800px]:w-full min-[800px]:min-w-[800px] max-w-[800px]">
+					<Header />
+					<div
+						on:click={() => window && window.scrollTo(0, 0)}
+						on:keydown={() => window && window.scrollTo(0, 0)}
+						class="fixed bottom-8 right-8 z-40 inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-slate-300 opacity-90 shadow-md"
+					>
+						↑
 					</div>
-				{/if}
-				<slot />
-			</main>
-			<Footer />
-		</div>
+					<slot />
+					<Footer />
+				</div>
+			</ResponsiveLayer>
+		</main>
 	</div>
 </body>
