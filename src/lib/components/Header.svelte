@@ -4,6 +4,7 @@
 	import ToggleThemeInput from "$lib/components/ToggleThemeInput.svelte";
 	import menu from "$lib/images/menu.png";
 	import { isOpenMenu, theme, currentPage } from "$lib/store";
+	import { page } from "$app/stores";
 
 	let w;
 </script>
@@ -27,8 +28,14 @@
 			</div>
 			<div class="flex h-full items-center gap-4">
 				<ToggleThemeInput />
-				<div class="cursor-pointer"><a href="/categories/all">POSTS</a></div>
-				<div class="cursor-pointer" on:click={currentPage.reset} on:keydown={currentPage.reset}>
+				<div class={clsx("cursor-pointer", $page.route.id.includes("categories") && "underline")}>
+					<a href="/categories/all">POSTS</a>
+				</div>
+				<div
+					class={clsx("cursor-pointer", $page.route.id.includes("tags") && "underline")}
+					on:click={currentPage.reset}
+					on:keydown={currentPage.reset}
+				>
 					<a href="/tags">TAGS</a>
 				</div>
 				<!-- <div class="cursor-pointer">
