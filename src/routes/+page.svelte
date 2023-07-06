@@ -47,7 +47,7 @@
 			<a href="https://github.com/vaco-algo/slack-server" target="_blank">Picker Bot(슬랙봇)</a
 			></span
 		>을 운영하고 있습니다. <br />
-		<br />신기술에도 관심이 많지만 무엇보다 중요한 것은 기초를 확실히 이해하는 것이 중요하다고
+		<br />신기술에도 관심이 많지만, 무엇보다 중요한 것은 기초를 확실히 이해하는 것이 중요하다고
 		생각합니다. 공부한 것을 조금 더 깊이 이해하기 위해 블로그를 활용하고 있습니다.
 		<br />
 	</div>
@@ -101,14 +101,14 @@
 	</div>
 
 	<p class="leading-7">
-		Jaam Toast 프로젝트에서는 어떻게 하면 조금 더 유지보수 하기 쉽게 구조를 짤 수 있을지를
+		Jaam Toast 프로젝트에서는 어떻게 하면 조금 더 유지보수하기 쉽게 구조를 짤 수 있을지를
 		중점적으로 고민했습니다.
 	</p>
 	<ul class="leading-5">
 		<li>레이어드 아키텍처 적용</li>
 		<ul>
 			<li>프레젠테이션, 도메인, 인프라 레이어를 분리해 각 레이어의 책임만 관리하도록 구성</li>
-			<li>의존성을 분리해 각각의 인프라 변경시에도 다른 레이어에 영향가지 않도록 구성</li>
+			<li>의존성을 분리해 각각의 인프라 변경 시 다른 레이어에 영향 가지 않도록 구성</li>
 		</ul>
 		<li>inversify를 이용해 추상화된 인터페이스를 통해 DI 적용하여 결합도 감소</li>
 		<li>
@@ -144,7 +144,7 @@
 			>를 사용해 번들 청크 생성하여 초기 렌더링 속도 개선
 		</li>
 		<li>
-			Js dom을 이용해 사이트 favicon을 얻을 수 있는 <a
+			JS DOM을 이용해 사이트 favicon을 얻을 수 있는 <a
 				class="hover:text-pointColor-900"
 				href="https://github.com/jaam-toast/favicon/blob/main/app/getFavicon.ts"
 				target="_blank">favicon 유틸</a
@@ -235,7 +235,7 @@
 			<li>아토믹 디자인 패턴을 통해 각각의 컴포넌트가 SRP를 지킬 수 있도록 구성</li>
 		</ul>
 		<li>
-			문자열에서 소스 코드로 변환 하기 위해 DOM Node로 변환 후 DFS 탐색을 이용한 JSX Parser 제작
+			문자열에서 소스 코드로 변환하기 위해 DOM Node로 변환 후 DFS 탐색을 이용한 JSX Parser 제작
 			<a
 				class="hover:text-pointColor-900"
 				href="https://github.com/story-storage-project/storystorage-client#jsx-parser-%EC%A0%9C%EC%9E%91"
@@ -321,7 +321,7 @@
 
 	<h3 class="mb-0">Pick Bot (개인 프로젝트)</h3>
 	<p class="my-0">참가자를 모집하고 리뷰어를 매칭하는 슬랙봇</p>
-	<sub class="my-0">기간 : 22.12.10 - 진행중</sub>
+	<sub class="my-0">기간 : 22.12.10 - 진행 중</sub>
 	<div class="my-10">
 		<div class="flex justify-center">
 			<div class="max-h-[220px] min-h-[100px] w-[800px] overflow-hidden rounded-2xl shadow-xl">
@@ -356,7 +356,7 @@
 		<li>22년 12월부터 계속해서 유지 보수 중</li>
 		<li>무료 배포 사이트를 이용하기 위해 cron을 적용해 sleep 방지 기능 추가</li>
 		<ul>
-			<li>현재 cron작업이 계속 꺼지는 버그로 인해 EC2 배포 로직으로 변경 (cron 작업 해결중)</li>
+			<li>현재 cron작업이 계속 꺼지는 버그로 인해 EC2 배포 로직으로 변경 (cron 작업 해결 중)</li>
 		</ul>
 	</ul>
 
