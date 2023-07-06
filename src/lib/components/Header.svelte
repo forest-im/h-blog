@@ -31,13 +31,13 @@
 				<div class="cursor-pointer" on:click={currentPage.reset} on:keydown={currentPage.reset}>
 					<a href="/tags">TAGS</a>
 				</div>
-				<div class="cursor-pointer">
+				<!-- <div class="cursor-pointer">
 					<a
 						href="/categories/til/til-2023"
 						on:click={currentPage.reset}
 						on:keydown={currentPage.reset}>TIL</a
 					>
-				</div>
+				</div> -->
 				<div>
 					<img
 						on:click={isOpenMenu.toggle}
