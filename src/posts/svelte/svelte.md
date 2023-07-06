@@ -1,9 +1,8 @@
 ---
-title: Svelte
+title: Svelte 기초 정리
 description: 하나의 경로로 이루어져있는 비선형 데이터 구조로 그래프의 일종이다.
 tag: Svelte
 date: 2023-01-28 19:43:40
-published: false
 ---
 
 - React, Vue와 유사하지만 스벨트는 런타임 시 애플리케이션 코드를 해석하는 대신 빌드 시 앱을 js로 변환한다. -> 프레임워크 추상화의 성능 비용을 지불하지 않으며 앱이 처음 로드될 때 패널티 발생 x
@@ -44,8 +43,8 @@ vite-plugin-svelte로 vite를 설정하는 스벨트킷을 사용하는 것이 �
 
 ```js
 function addNumber() {
-  numbers.push(numbers.length + 1);
-  numbers = numbers;
+	numbers.push(numbers.length + 1);
+	numbers = numbers;
 }
 ```
 
@@ -264,18 +263,18 @@ settimeout 콜백처럼 나중에 내부에서 호출할 수 없다. 이건 컴�
 
 ```html
 <script>
-  let a = 1;
-  let b = 2;
+	let a = 1;
+	let b = 2;
 </script>
 
 <label>
-  <input type="number" bind:value="{a}" min="0" max="10" />
-  <input type=range bind:value={a} min=0 max=10/ >
+	<input type="number" bind:value="{a}" min="0" max="10" />
+	<input type=range bind:value={a} min=0 max=10/ >
 </label>
 
 <label>
-  <input type="number" bind:value="{b}" min="0" max="10" />
-  <input type="range" bind:value="{b}" min="0" max="10" />
+	<input type="number" bind:value="{b}" min="0" max="10" />
+	<input type="range" bind:value="{b}" min="0" max="10" />
 </label>
 
 <p>{a} + {b} = {a + b}</p>
@@ -314,11 +313,11 @@ settimeout 콜백처럼 나중에 내부에서 호출할 수 없다. 이건 컴�
 import { onDestroy } from "svelte";
 
 export function onInterval(callback, milliseconds) {
-  const interval = setInterval(callback, milliseconds);
+	const interval = setInterval(callback, milliseconds);
 
-  onDestroy(() => {
-    clearInterval(interval);
-  });
+	onDestroy(() => {
+		clearInterval(interval);
+	});
 }
 ```
 
@@ -334,8 +333,3 @@ export function onInterval(callback, milliseconds) {
 
 스벨트에서 구성 요소 상태를 업데이트하면 돔이 즉시 업데이트되지 않는다. 다른 컴포넌트를 포함하여 적용해야 하는 다른 변경 사항이 있는지 확인하기 위해 다음 마이크로 작업까지 기다린다. -> 그렇게 하면 불필요한 작업을 피하고 브라우저가 작업을 보다 효과적으로 처리..
 -> 태스크를 완료하고 나서 화면이 갱신되도록 되어 있듬
-
-asdflasdjflaskjflsa
-
-## Store
-asldfjalsdkjf

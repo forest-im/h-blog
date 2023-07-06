@@ -1,5 +1,5 @@
 ---
-title: 인터페이스
+title: golang - 인터페이스 정리
 tag: golang
 date: 2023-02-15 15:23:15
 ---

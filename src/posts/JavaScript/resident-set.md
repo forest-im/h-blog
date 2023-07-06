@@ -1,5 +1,5 @@
 ---
-title: "Garbage Collection 자동 메모리 관리"
+title: Garbage Collection 자동 메모리 관리
 tag: GC, JS, 스터디01, v8, Heap, Stack
 date: 2022-12-28 00:24:48
 ---

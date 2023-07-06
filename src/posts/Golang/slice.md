@@ -1,5 +1,5 @@
 ---
-title: 슬라이스
+title: golang - 슬라이스 정리
 tag: golang
 date: 2023-02-14 00:44:26
 ---

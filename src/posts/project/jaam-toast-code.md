@@ -1,12 +1,12 @@
 ---
-title: jaam toast code
+title: Jaam Toast 기존 코드 이해하기
 tag: project
 date: 2023-03-10 01:44:06
 ---
 
-코드 톺아보기
+Jaam Toast 프로젝트에 들어가기 앞서 기존의 코드를 이해하기 위해 정리해본다.
 
-# route - repos
+## route - repos
 
 ```js
 const reposRouter = (app: Router) => {
@@ -45,7 +45,7 @@ const reposRouter = (app: Router) => {
 
 ---
 
-# routes - deploy - post
+## routes - deploy - post
 
 ```js
 route.post(
@@ -149,7 +149,7 @@ const instanceParams = {
 
 ---
 
-# DeployController.deployDomain
+## DeployController.deployDomain
 
 ## 사용 scripts
 
@@ -203,7 +203,7 @@ const instanceParams = {
 
 ---
 
-# DeployController.deployCertbot
+## DeployController.deployCertbot
 
 ## 사용 scripts
 
@@ -269,7 +269,7 @@ const instanceParams = {
 
 - 자식 프로세스 사용해서 certbot command 실행
 
-# DeployController.deployLogs
+## DeployController.deployLogs
 
 ## 사용 scripts
 
@@ -324,66 +324,80 @@ const instanceParams = {
   - [Class FilterLogEventsCommand](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-cloudwatch-logs/classes/filterlogeventscommand.html)
   - 지정된 로그 그룹의 로그 이벤트 나열함. 기본적으로 이 작업은 1MB(최대 10,000개의 로그 이벤트)에 들어갈 수 있는 만큼의 로그 이벤트 또는 지정된 시간 범위 내에서 발견된 모든 이벤트를 반환함.
 
-# DeployController.deploySaveData
+## DeployController.deploySaveData
+
 ## 사용 scripts
 
 ## 로직 순서
+
 - 세션 시작 (트랜잭션 사용)
   - 레포 생성
   - User에 레포 추가
 - 세션 종료
 
-# DeployController.deployFilterData
+## DeployController.deployFilterData
+
 ## 로직
+
 - 데이터 response로 전송
 
-# routes - deploy - get
+## routes - deploy - get
+
 ```js
-  route.get(
-    "/:user_id",
-    validateSchema(
-      Joi.object({
-        user_id: Joi.string().regex(/^[a-f\d]{24}$/i),
-      }),
-      "params[user_id]",
-    ),
-    DeployController.getUserDeployList,
-  );
+route.get(
+	"/:user_id",
+	validateSchema(
+		Joi.object({
+			user_id: Joi.string().regex(/^[a-f\d]{24}$/i)
+		}),
+		"params[user_id]"
+	),
+	DeployController.getUserDeployList
+);
 ```
 
-# DeployController.getUserDeployList
+## DeployController.getUserDeployList
+
 ## 로직
+
 - 유저 모델에서 id와 맞는 값 찾아서 myRepos 값만 response로 전송
 
-# routes - deploy - delete
+## routes - deploy - delete
+
 ```js
-  route.delete(
-    "/:user_id/:repo_id",
-    validateSchema(
-      Joi.object({
-        user_id: Joi.string().regex(/^[a-f\d]{24}$/i),
-      }),
-      "params[user_id]",
-    ),
-    UpdateController.deleteDeployment,
-  );
+route.delete(
+	"/:user_id/:repo_id",
+	validateSchema(
+		Joi.object({
+			user_id: Joi.string().regex(/^[a-f\d]{24}$/i)
+		}),
+		"params[user_id]"
+	),
+	UpdateController.deleteDeployment
+);
 ```
 
-# UpdateController.deleteDeployment
+## UpdateController.deleteDeployment
+
 ## 사용 scripts
+
 - `deleteLogStream`
   - `DeleteLogStreamCommand`
 - `describeInstanceIp`
   - `DescribeInstancesCommand` 저장된 인스턴스 또는 모든 인스턴스를 설명함
 - `changeDNSRecord`
+
 ## 로직
+
 - 세션 시작
-  - 유저 모델 업데이트 
+  - 유저 모델 업데이트
   - 레포 모델에서 삭제
 - 세션 종료
 
 ## changeDNSRecord
+
 ### 사용 scripts
+
 - `ChangeResourceRecordSetsCommand`
   - 지정된 도메인 이름 또는 하위 도메인 이름에 대한 권한 있는 DNS 정보가 포함된 리소스 레코드 집합을 만들거나, 변경하거나 삭제한다.
 - `terminateInstance`

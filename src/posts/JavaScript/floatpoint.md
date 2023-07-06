@@ -3,7 +3,6 @@ title: JavaScript에서 0.1 + 0.2는 0.3일까?
 tag: float-point
 date: 2022-05-07 14:21:16
 description: 당연히 0.3이겠죠~
-published: true
 type: blog
 ---
 

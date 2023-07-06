@@ -1,5 +1,5 @@
 ---
-title: Go!
+title: golang - 입문 정리
 tag: golang
 date: 2023-02-07 09:46:50
 published: false
