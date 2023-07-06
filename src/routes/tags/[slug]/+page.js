@@ -1,4 +1,4 @@
-import { allPosts, tags } from "$lib/data/posts";
+import { allPosts, tags, categories } from "$lib/data/posts";
 import { error } from "@sveltejs/kit";
 
 export const load = async ({ params }) => {
@@ -12,6 +12,7 @@ export const load = async ({ params }) => {
 	}
 
 	return {
+		categories,
 		posts: matchPosts,
 		tags
 	};
