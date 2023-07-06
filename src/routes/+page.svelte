@@ -324,7 +324,7 @@
 	<sub class="my-0">기간 : 22.12.10 - 진행중</sub>
 	<div class="my-10">
 		<div class="flex justify-center">
-			<div class="max-h-[220px] min-h-[200px] w-[800px] overflow-hidden rounded-2xl shadow-xl">
+			<div class="max-h-[220px] min-h-[100px] w-[800px] overflow-hidden rounded-2xl shadow-xl">
 				<a
 					href="https://github.com/vaco-algo/slack-server/assets/84281505/065db85e-cc9a-4f82-8a39-10d1b7b26685"
 					target="_blank"
