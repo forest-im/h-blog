@@ -12,6 +12,7 @@
 			<ResponsiveLayer>
 				<div class="max-w-[800px] max-[800px]:w-full min-[800px]:min-w-[800px]">
 					<Header />
+					<div class="min-h-[80px]" />
 					<div
 						on:click={() => window && window.scrollTo(0, 0)}
 						on:keydown={() => window && window.scrollTo(0, 0)}

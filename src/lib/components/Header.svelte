@@ -10,7 +10,7 @@
 </script>
 
 <header
-	class={"sticky top-0 z-30 my-3 flex w-[800px] justify-center bg-darkDefaultColor-900 dark:bg-defaultColor-900"}
+	class={"fixed top-0 z-30 mb-3 flex w-[800px] justify-center bg-darkDefaultColor-900 dark:bg-defaultColor-900"}
 	bind:clientWidth={w}
 >
 	<div class={clsx("flex w-full items-center justify-between font-light ")}>
