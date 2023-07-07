@@ -1,11 +1,11 @@
 <script>
-	import PageHead from "$lib/components/PageHead.svelte";
 	import { onDestroy, onMount } from "svelte/internal";
 	import { afterUpdate } from "svelte/internal";
+	import { browser } from "$app/environment";
+	import PageHead from "$lib/components/PageHead.svelte";
 	import { currentToc, isOpenMenu, isOpenToc } from "$lib/store";
 	import Toc from "$lib/components/Toc.svelte";
 	import Category from "$lib/components/Category.svelte";
-	import { browser } from "$app/environment";
 
 	export let data;
 	let commentSection;
@@ -14,7 +14,7 @@
 	$: component = data.component;
 
 	afterUpdate(() => {
-		currentToc.addToc(Array.from(document.querySelectorAll("h2, h3")));
+		currentToc.addToc(Array.from(document.querySelectorAll("h1, h2, h3")).slice(1));
 	});
 
 	onMount(() => {
@@ -26,20 +26,34 @@
 		}
 
 		if (browser) {
-			const handleIntersect = (entries, observer) => {
+			const handleIntersect = (entries) => {
 				entries.forEach((entry) => {
 					const id = entry.target.getAttribute("id");
 
 					if (entry.intersectionRatio > 0) {
+						const currentToc = document.querySelector(`aside ul li a[href="#${id}"]`);
+						const tocContainer = currentToc.closest("aside");
+
 						document.querySelectorAll(".toc").forEach((toc) => toc.classList.remove("active_toc"));
 
-						document.querySelector(`aside ul li a[href="#${id}"]`).classList.add("active_toc");
+						currentToc.classList.add("active_toc");
+
+						if (tocContainer) {
+							tocContainer.scrollTo({
+								top: currentToc.offsetTop - tocContainer.offsetHeight / 2,
+								behavior: "smooth"
+							});
+						}
 					}
 				});
 			};
 			observer = new IntersectionObserver(handleIntersect);
 		}
-		if (commentSection.childNodes.length) return;
+
+		if (commentSection.childNodes.length) {
+			return;
+		}
+
 		const scriptElem = document.createElement("script");
 		scriptElem.src = "https://utteranc.es/client.js";
 		scriptElem.async = true;
@@ -52,9 +66,7 @@
 	});
 
 	$: if ($currentToc) {
-		$currentToc.forEach((section) => {
-			observer?.observe(section);
-		});
+		$currentToc.forEach((section) => observer?.observe(section));
 	}
 
 	onDestroy(() => {

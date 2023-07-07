@@ -29,7 +29,7 @@
 		<br />
 
 		<span
-			>7년간 <a href="https://www.youtube.com/watch?v=bgoC3MI-EtI" target="_blank"
+			>7년간 <a class="font-normal" href="https://www.youtube.com/watch?v=bgoC3MI-EtI" target="_blank"
 				>VFX 영상 컴포지터</a
 			></span
 		>

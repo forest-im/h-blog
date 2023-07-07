@@ -74,7 +74,7 @@
 	}
 
 	.all-prose {
-		@apply prose prose-slate whitespace-normal p-5 dark:prose-invert prose-a:decoration-transparent;
+		@apply prose prose-slate whitespace-normal p-5 dark:prose-invert prose-h1:pt-10 prose-h1:text-3xl  prose-h1:font-black  prose-a:text-inherit prose-a:decoration-transparent;
 	}
 
 	h1,
@@ -95,7 +95,7 @@
 	}
 
 	a {
-		@apply whitespace-normal no-underline dark:text-darkDefaultColor-900;
+		@apply whitespace-normal text-inherit no-underline dark:text-darkDefaultColor-900;
 	}
 
 	hr {

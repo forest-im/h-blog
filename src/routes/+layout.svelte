@@ -10,7 +10,7 @@
 	<div class="mx-auto flex min-h-[101vh] w-screen min-w-[350px] flex-col justify-center">
 		<main class="relative flex flex-1 flex-col">
 			<ResponsiveLayer>
-				<div class="max-[800px]:w-full min-[800px]:min-w-[800px] max-w-[800px]">
+				<div class="max-w-[800px] max-[800px]:w-full min-[800px]:min-w-[800px]">
 					<Header />
 					<div
 						on:click={() => window && window.scrollTo(0, 0)}
