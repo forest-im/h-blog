@@ -1,11 +1,11 @@
-import { allPosts } from "$lib/data/posts";
+import { Posts } from "$lib/data/posts";
 import { URL } from "$lib/constants/metadata";
 
 export const prerender = true;
 
 // make sure this matches your post route
 const getPostUrl = (category, slug) => `${URL}/categories/${category}/${slug}`;
-
+const posts = new Posts();
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
@@ -31,7 +31,8 @@ export async function GET({ setHeaders }) {
         <loc>${URL}</loc>
         <priority>1.0</priority>
       </url>
-      ${allPosts
+      ${posts
+				.getAllPosts()
 				.map(
 					(post) => `<url>
             <loc>${getPostUrl(post.category, post.slug)}</loc>

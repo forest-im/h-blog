@@ -14,20 +14,22 @@
 
 <div class="box-border min-h-[75vh] max-w-[800px]">
 	<div class="m-8">
-		<h1 class="text-4xl font-bold dark:text-white">Tags <span class="text-pointInvertColor">#</span></h1>
+		<h1 class="text-4xl font-bold dark:text-white">
+			Tags <span class="text-pointInvertColor">#</span>
+		</h1>
 	</div>
 	<div class="flex flex-col items-center justify-center">
 		<div class="m-4 mb-0 flex flex-wrap overflow-auto whitespace-nowrap p-4">
 			{#each tags.slice(0, tagCountLimit) as tag}
-				<a href={`/tags/${tag[0]}`}>
+				<a href={`/tags/${tag.name}?pages=1`}>
 					<div
 						class={clsx(
 							"tag-container dark:border-gray",
-							$page.params.slug === tag[0] && "bg-pointInvertColor dark:text-defaultColor-800"
+							$page.params.slug === tag.name && "bg-pointInvertColor dark:text-defaultColor-800"
 						)}
 					>
-						#{tag[0]}
-						<span class="text-defaultColor-700 dark:text-darkDefaultColor-700">{tag[1]}</span>
+						#{tag.name}
+						<span class="text-defaultColor-700 dark:text-darkDefaultColor-700">{tag.count}</span>
 					</div>
 				</a>
 			{/each}

@@ -28,11 +28,11 @@
 			</a>
 			<div class="flex h-full items-center gap-4">
 				<ToggleThemeInput />
-				<a href="/categories/all">
+				<a href="/categories/all?pages=1">
 					<div
 						class={clsx(
 							"cursor-pointer hover:text-pointColor-900",
-							$page.route.id.includes("categories") && "underline"
+							$page?.route?.id?.includes("categories") && "underline"
 						)}
 					>
 						POSTS
@@ -42,7 +42,7 @@
 					<div
 						class={clsx(
 							"cursor-pointer hover:text-pointColor-900",
-							$page.route.id.includes("tags") && "underline"
+							$page?.route?.id?.includes("tags") && "underline"
 						)}
 						on:click={currentPage.reset}
 						on:keydown={currentPage.reset}
@@ -50,13 +50,6 @@
 						TAGS
 					</div>
 				</a>
-				<!-- <div class="cursor-pointer">
-					<a
-						href="/categories/til/til-2023"
-						on:click={currentPage.reset}
-						on:keydown={currentPage.reset}>TIL</a
-					>
-				</div> -->
 				<div>
 					<img
 						on:click={isOpenMenu.toggle}

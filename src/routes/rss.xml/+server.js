@@ -2,7 +2,7 @@
 // It is OK to delete this file if you don't want an RSS feed.
 // credit: https://scottspence.com/posts/make-an-rss-feed-with-sveltekit#add-posts-for-the-rss-feed
 
-import { allPosts } from "$lib/data/posts";
+import { Posts } from "$lib/data/posts";
 import { NAME, URL } from "$lib/constants/metadata";
 
 export const prerender = true;
@@ -10,6 +10,7 @@ export const prerender = true;
 // update this to something more appropriate for your website
 const websiteDescription = `${NAME}'s blog`;
 const postsUrl = `${URL}/posts`;
+const posts = new Posts();
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -26,7 +27,8 @@ export async function GET({ setHeaders }) {
         <link>${URL}</link>
         <description>${websiteDescription}</description>
         <atom:link href="${URL}/rss.xml" rel="self" type="application/rss+xml" />
-        ${allPosts
+        ${posts
+					.getAllPosts()
 					.map(
 						(post) =>
 							`

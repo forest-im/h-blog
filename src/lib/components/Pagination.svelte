@@ -1,11 +1,16 @@
 <script>
+	import { page } from "$app/stores";
+	import { goto } from "$app/navigation";
+	import { browser } from "$app/environment";
 	import { currentPage } from "$lib/store";
 	import { DEFAULT_POSTS_COUNT, DEFAULT_PAGES_COUNT } from "$lib/constants/postDefaultValue";
+	import clsx from "clsx";
 
 	export let count;
 
 	let pageArr = [];
 	let endOfPage;
+	let slug = $page.params.slug;
 
 	function getPageArr(allPosts, currentPage, defaultPostsCount, defaultPagesCount) {
 		const currentPagesCount = Math.ceil(currentPage / defaultPagesCount);
@@ -23,6 +28,12 @@
 	$: if ($currentPage) {
 		endOfPage = Math.ceil(count / DEFAULT_POSTS_COUNT);
 		pageArr = getPageArr(count, $currentPage, DEFAULT_POSTS_COUNT, DEFAULT_PAGES_COUNT);
+
+		if (browser) {
+			$page.route.id === "/tags/[slug]"
+				? goto(`/tags/${slug}?pages=${$currentPage}`)
+				: goto(`/categories/${slug}?pages=${$currentPage}`);
+		}
 	}
 </script>
 
@@ -39,14 +50,14 @@
 	{#each pageArr as page}
 		<div
 			class="inline-flex w-10 cursor-pointer justify-center"
-			on:click={() => currentPage.clickPage(page)}
-			on:keydown={() => currentPage.clickPage(page)}
+			on:click={() => {
+				currentPage.clickPage(page);
+			}}
+			on:keydown={() => {
+				currentPage.clickPage(page);
+			}}
 		>
-			{#if page === $currentPage}
-				<span class="text-pointColor-900">{page}</span>
-			{:else}
-				<span>{page}</span>
-			{/if}
+			<span class={clsx(page === $currentPage && "text-pointColor-900")}>{page}</span>
 		</div>
 	{/each}
 	<div

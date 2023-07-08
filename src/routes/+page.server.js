@@ -1,6 +1,10 @@
-import { categories, allPosts } from "$lib/data/posts";
+import { Posts } from "$lib/data/posts";
 
-export const load = async () => ({
-	posts: allPosts,
-	categories
-});
+export const load = async () => {
+	const posts = new Posts();
+
+	return {
+		categories: posts.getAllCategories(),
+		postCount: posts.getPostCount()
+	};
+};

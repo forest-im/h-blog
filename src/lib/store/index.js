@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import { DEFAULT_POSTS_COUNT } from "$lib/constants/postDefaultValue";
+import { DEFAULT_PAGES_COUNT, DEFAULT_POSTS_COUNT } from "$lib/constants/postDefaultValue";
 
 export const currentPage = (() => {
 	const { subscribe, set, update } = writable(1);
@@ -14,7 +14,7 @@ export const currentPage = (() => {
 			}),
 		clickNextMultiplePage: (allPosts) =>
 			update((page) => {
-				const p = page + DEFAULT_POSTS_COUNT;
+				const p = page + DEFAULT_PAGES_COUNT;
 				const max = Math.ceil(allPosts / DEFAULT_POSTS_COUNT) - 1;
 
 				return p > max ? max : p;

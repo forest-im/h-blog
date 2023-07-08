@@ -5,5 +5,5 @@
 	export let data;
 </script>
 
-<Category categories={data.categories} allPostsLength={data.posts.length} />
+<Category categories={data.categories} postCount={data.postCount} />
 <TagList tags={data.tags} />

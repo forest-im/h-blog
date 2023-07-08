@@ -12,7 +12,7 @@
 	});
 </script>
 
-<Category categories={data.categories} postsCount={data.posts.length} />
+<Category categories={data.categories} postCount={data.postCount} />
 <div class="all-prose m-4 min-h-[60vh] max-w-full">
 	<div class="flex items-center justify-end">
 		<h1 class="m-0 text-right dark:text-white">
@@ -29,8 +29,10 @@
 		<br />
 
 		<span
-			>7년간 <a class="font-normal" href="https://www.youtube.com/watch?v=bgoC3MI-EtI" target="_blank"
-				>VFX 영상 컴포지터</a
+			>7년간 <a
+				class="font-normal"
+				href="https://www.youtube.com/watch?v=bgoC3MI-EtI"
+				target="_blank">VFX 영상 컴포지터</a
 			></span
 		>
 		일을 하며 그래픽 지식과 커뮤니케이션 스킬을 배웠습니다. <br /> 반복적인 작업이 많은 영상 일을
@@ -101,8 +103,8 @@
 	</div>
 
 	<p class="leading-7">
-		Jaam Toast 프로젝트에서는 어떻게 하면 조금 더 유지보수하기 쉽게 구조를 짤 수 있을지를
-		중점적으로 고민했습니다.
+		Jaam Toast 프로젝트에서는 어떻게 하면 조금 더 유지보수하기 쉽게 구조를 짤 수 있을지를 중점적으로
+		고민했습니다.
 	</p>
 	<ul class="leading-5">
 		<li>레이어드 아키텍처 적용</li>

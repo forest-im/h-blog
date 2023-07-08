@@ -82,7 +82,7 @@
 	tag={data.metadata.tag}
 	date={data.metadata.date}
 />
-<Category categories={data.categories} postsCount={data.postsCount} />
+<Category categories={data.categories} postCount={data.postsCount} />
 {#if isOpenToc}
 	<Toc />
 {/if}

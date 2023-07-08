@@ -4,7 +4,7 @@
 	import { page } from "$app/stores";
 
 	export let categories;
-	export let postsCount;
+	export let postCount;
 </script>
 
 {#if $displaySize !== "desktop" && $isOpenMenu}
@@ -22,21 +22,23 @@
 >
 	<ul class="list-none leading-8">
 		<li class="cursor-pointer">
-			<a href={`/`}>
+			<a href={`/categories/all?pages=1`}>
 				<span class="hover:font-bold">전체 보기</span>
 			</a>
-			<span class="text-neutral-500">({postsCount})</span>
+			<span class="text-neutral-500">({postCount})</span>
 		</li>
-		{#each categories as [category, posts]}
+		{#each categories as category}
 			<li class="cursor-pointer">
-				<a href={`/categories/${category}`} class="font-normal">
+				<a href={`/categories/${category.name}/pages/1`} class="font-normal">
 					<span
 						class={clsx(
 							"m-0",
-							$page.params.slug === category ? "font-bold text-pointColor-900" : "hover:font-bold"
+							$page.params.slug === category.name
+								? "font-bold text-pointColor-900"
+								: "hover:font-bold"
 						)}
-						>{category}
-					</span><span class="text-neutral-500">({posts.length})</span>
+						>{category.name}
+					</span><span class="text-neutral-500">({category.count})</span>
 				</a>
 			</li>
 		{/each}

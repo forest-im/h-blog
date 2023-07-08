@@ -1,19 +1,21 @@
-import { allPosts, tags, categories } from "$lib/data/posts";
+import { Posts } from "$lib/data/posts";
 import { error } from "@sveltejs/kit";
 
-export const load = async ({ params }) => {
-	const { slug } = params;
-	const matchPosts = allPosts.filter((post) => {
-		return post.tag.includes(slug);
-	});
+export const load = async (options) => {
+	const { params, url } = options;
+	const page = url.searchParams.get("pages");
+	const { slug: tag } = params;
+	const posts = new Posts();
+	const matchPosts = posts.getPostsByTag(page, tag);
+	console.log({ page, matchPosts });
 
 	if (!matchPosts.length) {
 		throw error(404, "Post not found");
 	}
 
 	return {
-		categories,
+		categories: posts.getAllCategories(),
 		posts: matchPosts,
-		tags
+		postCount: posts.getAllPostsByTag(tag).length
 	};
 };
