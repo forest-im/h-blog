@@ -29,7 +29,7 @@
 		</li>
 		{#each categories as category}
 			<li class="cursor-pointer">
-				<a href={`/categories/${category.name}/pages/1`} class="font-normal">
+				<a href={`/categories/${category.name}?pages=1`} class="font-normal">
 					<span
 						class={clsx(
 							"m-0",
