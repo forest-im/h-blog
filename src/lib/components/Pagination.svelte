@@ -28,6 +28,7 @@
 	$: if ($currentPage) {
 		endOfPage = Math.ceil(count / DEFAULT_POSTS_COUNT);
 		pageArr = getPageArr(count, $currentPage, DEFAULT_POSTS_COUNT, DEFAULT_PAGES_COUNT);
+		slug = $page.params.slug;
 
 		if (browser) {
 			$page.route.id === "/tags/[slug]"

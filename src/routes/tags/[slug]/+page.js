@@ -2,12 +2,10 @@ import { Posts } from "$lib/data/posts";
 import { error } from "@sveltejs/kit";
 
 export const load = async (options) => {
-	const { params, url } = options;
-	const page = url.searchParams.get("pages");
+	const { params } = options;
 	const { slug: tag } = params;
 	const posts = new Posts();
-	const matchPosts = posts.getPostsByTag(page, tag);
-	console.log({ page, matchPosts });
+	const matchPosts = posts.getAllPostsByTag(tag);
 
 	if (!matchPosts.length) {
 		throw error(404, "Post not found");

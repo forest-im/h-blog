@@ -8,21 +8,18 @@ export class Posts {
 	constructor() {
 		this.allModules = Object.entries(
 			import.meta.glob(`/src/posts/*/*.{md,svx,svelte.md}`, { eager: true })
-		);
+		).filter(([, post]) => post.metadata?.published !== false || dev);
 		this.modules = this.allModules;
 		this.allPostCount = this.modules.length;
 		this.posts = null;
 	}
 
 	filterModulesByCategory(category = "all") {
-		this.modules = this.modules.filter(([path, post]) => {
+		this.modules = this.modules.filter(([path]) => {
 			const splitPath = path.split("/");
 			const currentCategory = splitPath[splitPath.length - 2];
 
-			return (
-				(post.metadata?.published !== false || dev) &&
-				(category === "all" || category === currentCategory)
-			);
+			return category === "all" || category === currentCategory;
 		});
 
 		return this;

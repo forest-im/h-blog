@@ -3,8 +3,18 @@
 	import PostMeta from "$lib/components/PostMeta.svelte";
 	import PostDescription from "$lib/components/PostDescription.svelte";
 	import { page } from "$app/stores";
+	import { currentPage } from "$lib/store";
+	import { DEFAULT_POSTS_COUNT } from "$lib/constants/postDefaultValue";
+
+	const getCurrentPosts = (posts, page) =>
+		posts.slice(DEFAULT_POSTS_COUNT * (page - 1), page * DEFAULT_POSTS_COUNT);
 
 	export let posts;
+	let currentPosts = getCurrentPosts(posts, $currentPage);
+
+	$: if ($currentPage) {
+		currentPosts = getCurrentPosts(posts, $currentPage);
+	}
 </script>
 
 <section class="min-h-[60vh]">
@@ -15,7 +25,7 @@
 		<span class="text-sm text-zinc-500">깊이 이해하기 위해 공부한 것을 정리하는 공간입니다. </span>
 	</div>
 	<hr />
-	{#each posts as { slug, title, date, description, category, tag }}
+	{#each currentPosts as { slug, title, date, description, category, tag }}
 		<a href={slug && `/categories/${category}/${slug}`}>
 			<div class="post-list-container">
 				<div>
