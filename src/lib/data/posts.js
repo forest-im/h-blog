@@ -8,7 +8,12 @@ export class Posts {
 	constructor() {
 		this.allModules = Object.entries(
 			import.meta.glob(`/src/posts/*/*.{md,svx,svelte.md}`, { eager: true })
-		).filter(([, post]) => post.metadata?.published !== false || dev);
+		).filter(([path, post]) => {
+			const splitPath = path.split("/");
+			const category = splitPath[splitPath.length - 2];
+
+			return (post.metadata?.published !== false && category !== "noPublished") || dev;
+		});
 		this.modules = this.allModules;
 		this.allPostCount = this.modules.length;
 		this.posts = null;
