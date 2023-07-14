@@ -30,6 +30,8 @@
 				<ToggleThemeInput />
 				<a href="/categories/all?pages=1">
 					<div
+						on:click={currentPage.reset}
+						on:keydown={currentPage.reset}
 						class={clsx(
 							"cursor-pointer hover:text-pointColor-900",
 							$page?.route?.id?.includes("categories") && "underline"
