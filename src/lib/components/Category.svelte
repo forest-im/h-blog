@@ -22,14 +22,14 @@
 >
 	<ul class="list-none leading-8">
 		<li class="cursor-pointer">
-			<a href={`/categories/all?pages=1`}>
+			<a href={`/categories/all?page=1`}>
 				<span class="hover:font-bold">전체 보기</span>
 			</a>
 			<span class="text-neutral-500">({postCount})</span>
 		</li>
 		{#each categories as category}
 			<li class="cursor-pointer">
-				<a href={`/categories/${category.name}?pages=1`} class="font-normal">
+				<a href={`/categories/${category.name}?page=1`} class="font-normal">
 					<span
 						class={clsx(
 							"m-0",

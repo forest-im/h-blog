@@ -21,7 +21,7 @@
 	<div class="flex flex-col items-center justify-center">
 		<div class="m-4 mb-0 flex flex-wrap overflow-auto whitespace-nowrap p-4">
 			{#each tags.slice(0, tagCountLimit) as tag}
-				<a href={`/tags/${tag.name}?pages=1`}>
+				<a href={`/tags/${tag.name}?page=1`}>
 					<div
 						class={clsx(
 							"tag-container dark:border-gray",

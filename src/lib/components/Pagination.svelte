@@ -5,12 +5,20 @@
 	import { currentPage } from "$lib/store";
 	import { DEFAULT_POSTS_COUNT, DEFAULT_PAGES_COUNT } from "$lib/constants/postDefaultValue";
 	import clsx from "clsx";
+	import { onMount } from "svelte";
 
 	export let count;
 
 	let pageArr = [];
 	let endOfPage;
 	let slug = $page.params.slug;
+
+	onMount(() => {
+		if ($page.route.id === "/categories/[slug]") {
+			goto(`/categories/${slug}?page=${$page.url.searchParams.get("page")}`);
+		}
+		currentPage.setPage(parseInt($page.url.searchParams.get("page")));
+	});
 
 	function getPageArr(allPosts, currentPage, defaultPostsCount, defaultPagesCount) {
 		const currentPagesCount = Math.ceil(currentPage / defaultPagesCount);
@@ -32,8 +40,8 @@
 
 		if (browser) {
 			$page.route.id === "/tags/[slug]"
-				? goto(`/tags/${slug}?pages=${$currentPage}`)
-				: goto(`/categories/${slug}?pages=${$currentPage}`);
+				? goto(`/tags/${slug}?page=${$currentPage}`)
+				: goto(`/categories/${slug}?page=${$currentPage}`);
 		}
 	}
 </script>

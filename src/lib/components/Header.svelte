@@ -28,7 +28,7 @@
 			</a>
 			<div class="flex h-full items-center gap-4">
 				<ToggleThemeInput />
-				<a href="/categories/all?pages=1">
+				<a href="/categories/all?page=1">
 					<div
 						on:click={currentPage.reset}
 						on:keydown={currentPage.reset}

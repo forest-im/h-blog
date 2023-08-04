@@ -23,6 +23,7 @@ export const currentPage = (() => {
 		clickNextPage: () => update((page) => page + 1),
 		clickPage: (currentPage) => update(() => currentPage),
 		clickEndPage: (allPosts) => update(() => Math.ceil(allPosts / DEFAULT_POSTS_COUNT) - 1),
+		setPage: (page) => update(() => page),
 		reset: () => set(1)
 	};
 })();
