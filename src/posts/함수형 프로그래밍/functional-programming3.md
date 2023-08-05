@@ -5,7 +5,7 @@ description: 한다 나는 함수형 프로그래밍
 date: 2023-08-05 21:50:00
 ---
 
-자바스크립트로 알아보는 함수형 프로그래밍 (ES5) 강의를 보고 정리한 글입니다.
+유인동님의 자바스크립트로 알아보는 함수형 프로그래밍 (ES5) 강의를 보고 정리한 글입니다.
 
 ## 함수형 사고방식
 
@@ -87,6 +87,8 @@ for (let i = 0; i < temp_users.length; i++) {
 ```
 
 - 코드를 보면 중복이 많다.
+
+## `filter`와 `map`을 만들어서 개선해보기
 
 ```js
 function _filter(list, predi) {
@@ -172,7 +174,7 @@ function _map(list, mapper) {
 }
 ```
 
-- `for`문을 돌면서 안에서 하는 일을 완전히 위임하는 함수이다.
+- `for`문을 돌면서 안에서 하는 일을 `_each`에게 완전히 위임하게 된다.
 
 ## 다형성
 
@@ -498,7 +500,9 @@ console.log(
 - 찾아내기: `fine`, `some`, `every` 등
 - 접기: `reduce`, `min`, `max`, `group_by`, `count_by`
 
-### 수집하기 - `map`을 이용해 `values`만들기
+## 수집하기
+
+### `map`을 이용해 `values`만들기
 
 ```js
 function _values(data) {
@@ -521,7 +525,7 @@ console.log(_map(_identity)(users[0])); // [1, "ID", 36]
 var _values = _map(_identity);
 ```
 
-### 수집하기 - `map`을 이용해 `pluck` 만들기
+### `map`을 이용해 `pluck` 만들기
 
 - 배열 내부의 객체에 있는 key를 이용해 값들을 수집하는 함수
 
@@ -535,7 +539,9 @@ console.log(_pluck(users, "name"));
 console.log(_pluck(users, "id"));
 ```
 
-### 거르기 - `filter`를 이용해 `reject`만들기
+## 거르기
+
+### `filter`를 이용해 `reject`만들기
 
 - `reject`는 `filter`와 반대로 true로 평가되는 값들을 제외시킨다.
 
@@ -584,7 +590,7 @@ function _reject(data, predi) {
 - `_negate`를 만들어 더 간결하게 만들 수도 있다.
 - 순수 함수를 계속 평가 시점을 다루거나 함수를 리턴하거나.. 이런 식으로 함수들 간의 조합을 이용하는 것이 함수형 프로그래밍
 
-### 거르기 - `filter`를 이용해 `compact`만들기
+### `filter`를 이용해 `compact`만들기
 
 - truthy한 값만 남기는 것
 
@@ -594,7 +600,9 @@ const _compact = _filter(_identity);
 console.log(_compact([0, 1, 2, null, false])); // [1, 2]
 ```
 
-## 찾아내기 - `find` 만들기
+## 찾아내기
+
+### `find` 만들기
 
 ```js
 const _find = _curryr((list, predi) => {
@@ -614,7 +622,7 @@ _go(
 );
 ```
 
-## 찾아내기 - `find_index`만들기
+### `find_index`만들기
 
 ```js
 function _find_index(list, predi) {
@@ -628,7 +636,7 @@ function _find_index(list, predi) {
 }
 ```
 
-### 찾아내기 - `find_index`를 이용해 `some` 만들기
+### `find_index`를 이용해 `some` 만들기
 
 - `_some([1, 2, 5, 10, 20], val => val > 10);` 이 조건에 맞는 값이 하나라도 있으면 `true`가 된다.
 
@@ -646,7 +654,7 @@ const _some = (data, predi) => {
 };
 ```
 
-### 찾아내기 - `find_index`를 이용해 `every` 만들기
+### `find_index`를 이용해 `every` 만들기
 
 - 모든 값이 predi에 만족해야 `true`가 나온다.
 
@@ -656,7 +664,9 @@ const _every = (data, predi) => {
 };
 ```
 
-### 접기 - `reduce`를 이용해 `min` 만들기
+## 접기
+
+### `reduce`를 이용해 `min` 만들기
 
 ```js
 function _min(data) {
@@ -666,7 +676,7 @@ function _min(data) {
 }
 ```
 
-### 접기 - `reduce`를 이용해 `max` 만들기
+### `reduce`를 이용해 `max` 만들기
 
 ```js
 function _max(data) {
@@ -676,7 +686,7 @@ function _max(data) {
 }
 ```
 
-### 접기 - `reduce`를 이용해 `min_by` 만들기
+### `reduce`를 이용해 `min_by` 만들기
 
 ```js
 const _min_by = _curryr((data, iter) => {
@@ -686,7 +696,7 @@ const _min_by = _curryr((data, iter) => {
 });
 ```
 
-### 접기 - `reduce`를 이용해 `max_by` 만들기
+### `reduce`를 이용해 `max_by` 만들기
 
 ```js
 const _max_by = _curryr((data, iter) => {
@@ -704,7 +714,7 @@ _go(
 console.log(_max_by([1, 2, 4, 10, 5, -4, -11], Math.abs)); // -11
 ```
 
-### 접기 - `reduce`를 이용해 `group_by` 만들기
+### `reduce`를 이용해 `group_by` 만들기
 
 - 특정 조건을 통해 그룹을 만들어주는 함수
 
@@ -796,7 +806,7 @@ console.log(_group_by(users, (user) => user.name[0])); // 첫 글자로 그루�
 
 - 이렇게 10대 20대... 로 groupping 할 수 있다.
 
-### 접기 - `reduce`를 이용해 `count_by` 만들기
+### `reduce`를 이용해 `count_by` 만들기
 
 ```js
 const _count_by = _curryr((data, iter) => {
