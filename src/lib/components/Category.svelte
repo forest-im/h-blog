@@ -2,6 +2,7 @@
 	import clsx from "clsx";
 	import { isOpenMenu, displaySize } from "$lib/store";
 	import { page } from "$app/stores";
+	import { currentPage } from "$lib/store";
 
 	export let categories;
 	export let postCount;
@@ -31,6 +32,8 @@
 			<li class="cursor-pointer">
 				<a href={`/categories/${category.name}?page=1`} class="font-normal">
 					<span
+						on:click={currentPage.reset}
+						on:keydown={currentPage.reset}
 						class={clsx(
 							"m-0",
 							$page.params.slug === category.name
