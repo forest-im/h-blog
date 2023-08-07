@@ -63,6 +63,10 @@
 		@apply box-border max-h-screen;
 	}
 
+	sub {
+		color: gray;
+	}
+
 	header {
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 	}
