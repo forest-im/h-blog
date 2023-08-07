@@ -386,3 +386,103 @@ function groupBy(array, f) {
 	return ret;
 }
 ```
+
+---
+
+전형적으로 함수형 프로그래밍의 자격 요건에는 관계형 정의뿐 아니라 타입, 패턴 매치, 불변성, 순수성 같은 명확히 다른 자격 요건들도 들어간다. 각각의 특성이 함수형 프로그래밍 언어의 특정 부분을 설명할 수는 있지만 포괄적인 함수형 프로그래밍 언어를 대변할 수는 없다.
+
+프로그램을 여러 구성 요소로 분해하고, 추상화된 함수를 이용해서 본래의 기능을 수행하도록 재조립하는 것이 함수형 프로그래밍이다.
+
+## 메타프로그래밍
+
+코드가 어떤 동작을 하도록 구현하는 것을 프로그래밍이라고 한다면 어떤 것이 해석되는 방식을 바꾸도록 코드를 구현하는 것을 메타프로그래밍이라고 한다.
+
+---
+
+## 중첩된 데이터에 함수형 도구 사용하기
+
+```js
+function doubleField(item, field) {
+  const value = item[field];
+  const newValue = value + 1;
+  const newItem = objectSet(item, field, newValue);
+
+  return newItem;
+}
+function decrementField(item, field) {...}
+function doubleField(item, field) {...}
+function halveField(item, field) {...} // 본문들 다 비슷한 함수를 가지고 있다.
+```
+
+- 이 함수들은 목적은 다르지만 대부분 비슷하다. `함수 이름에 있는 암묵적 인자` 냄새와 비슷하다. 각 함수 이름에는 **동작**이름이 있다.
+
+```js
+function update(item, field, modify) {
+	const value = item[field];
+	const newValue = modify(value);
+	const newItem = objectSet(item, field, newValue);
+
+	return newItem;
+}
+
+function incrementField(item, field) {
+	return updateField(item, field, (value) => value + 1);
+}
+```
+
+- 모든 동작을 고차 함수 하나로 합쳤다. 이제 바꾸고 싶은 필드와 동작을 콜백으로 전달할 수 있다.
+- 이 함수는 `objectSet()`을 사용하기 때문에 카피-온-라이트 원칙을 따른다.
+
+### 중첩된 객체라서 `update`함수를 여러번 사용해야 한다면?
+
+```js
+function updateX(object, keys, modify) {
+	if (keys.length === 0) {
+		return modify(object);
+	}
+
+	const key1 = keys[0];
+	const restOfKeys = drop_first(keys);
+
+	return update(object, key1, function (value) {
+		return updateX(value1, restOfKeys, modify); // 재귀 호출
+	});
+}
+```
+
+- 재귀 호출을 사용하면 키 길이에 상관없이 사용할 수 있다.
+- `updateX`보다 `nestedUpdate`라고 사용하는 것이 더 일반적일 수 있다.
+
+## 깊이 중첩된 데이터에 추상화 벽 사용하기
+
+주어진 ID로 블로그를 변경하는 함수가 있다고 생각해보자.
+
+```js
+function updatePostById(category, id, modifyPost) {
+	return nestedUpdate(category, ["posts", id], modifyPost);
+}
+```
+
+- `["posts", id]`로 분류의 구조 같은 구체적인 부분은 추상화 벽 뒤로 숨긴다.
+- 블로그 글 구조에 대해서는 콜백에 맡긴다.
+
+```js
+function updateAuthor(post, modifyUser) {
+	return update(post, "author", modifyUser);
+}
+
+function capitalizeName(user) {
+	return update(user, "name", capitalize);
+}
+```
+
+```js
+updatePostById(blogCategory, "12", (post) => updateAuthor(post, capitalizeUserName));
+```
+
+## 타임라인 격리하기
+
+### JavaScript의 단일 스레드
+
+JavaScript의 스레드 모델은 타임라인이 자원을 공유하면서 생기는 문제를 줄여준다. 하나의 메인 스레드만 있어서 대부분의 액션을 하나의 박스로 표현할 수 있다.
+하지만 비동기 콜백을 함께 사용한다면 문제가 생길 수 있다. 비동기 호출은 미래에 알 수 없는 시점에 런타임에 의해 실행된다.
