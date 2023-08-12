@@ -49,6 +49,9 @@ module.exports = {
 			boxShadow: {
 				customSm: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
 				customDarkSm: "rgba(171, 171, 171, 0.05) 0px 0px 0px 1px"
+			},
+			backgroundImage: {
+				me: "url(../src/lib/images/me.png)"
 			}
 		}
 	},
