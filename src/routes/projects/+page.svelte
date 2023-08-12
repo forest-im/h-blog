@@ -10,7 +10,7 @@
 				<ul class="leading-6 text-gray-300">
 					<li class="font-bold text-white">
 						<span
-							class="cursor-pointer rounded-xl border border-red-100 bg-white pl-1 pr-1 text-black hover:text-blue-500"
+							class="cursor-pointer rounded-xl border border-white pl-1 pr-1 hover:text-blue-500"
 						>
 							<a href="https://www.jaamtoast.click/" target="_blank">Jaam Toast ↗</a>
 						</span>
@@ -44,7 +44,7 @@
 				<ul class="leading-6 text-gray-300">
 					<li class="font-bold text-white">
 						<span
-							class="cursor-pointer rounded-xl border border-red-100 bg-white pl-1 pr-1 text-black hover:text-blue-500"
+							class="cursor-pointer rounded-xl border border-white pl-1 pr-1 hover:text-blue-500"
 						>
 							<a href="https://www.storystorage.me/" target="_blank">Story Storage ↗</a>
 						</span>
@@ -78,7 +78,7 @@
 				<ul class="leading-6 text-gray-300">
 					<li class="font-bold text-white">
 						<span
-							class="cursor-pointer rounded-xl border border-red-100 bg-white pl-1 pr-1 text-black hover:text-blue-500"
+							class="cursor-pointer rounded-xl border border-white pl-1 pr-1 hover:text-blue-500"
 						>
 							<a href="https://aoa.air-mind.live/" target="_blank">Air Mind ↗</a>
 						</span>
