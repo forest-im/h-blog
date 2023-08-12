@@ -15,7 +15,7 @@
 >
 	<div class={clsx("flex w-full items-center justify-between font-light ")}>
 		<div class="mx-5 flex w-full items-center justify-between">
-			<a href="/" class="block">
+			<a href="/categories/all?page=1" class="block">
 				<div class="flex items-center">
 					<img
 						on:click={currentPage.reset}
@@ -50,6 +50,18 @@
 						on:keydown={currentPage.reset}
 					>
 						TAGS
+					</div>
+				</a>
+				<a href="/about">
+					<div
+						class={clsx(
+							"cursor-pointer hover:text-pointColor-900",
+							$page?.route?.id?.includes("about") && "underline"
+						)}
+						on:click={currentPage.reset}
+						on:keydown={currentPage.reset}
+					>
+						ABOUT
 					</div>
 				</a>
 				<div>
