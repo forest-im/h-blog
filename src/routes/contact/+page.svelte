@@ -71,6 +71,7 @@
 		var data = formData.data;
 
 		if (!data.name || !data.email || !data.message) {
+			console.log(data);
 			alert("Please fill in the fields.");
 			return;
 		}
@@ -167,12 +168,12 @@
 				<input name="name" class="w-full text-black" id="name" type="text" />
 			</div>
 			<div>
-				<label for="name">Your Email Address</label>
-				<input name="email" class="w-full text-black" id="name" type="email" />
+				<label for="email">Your Email Address</label>
+				<input name="email" class="w-full text-black" id="email" type="email" />
 			</div>
 			<div>
-				<label for="name">Your Message</label>
-				<textarea name="message" class="h-[5rem] w-full text-black" />
+				<label for="message">Your Message</label>
+				<textarea name="message" class="h-[5rem] w-full text-black" id="message" />
 			</div>
 			<button class="mt-5 block h-10 w-full border border-white hover:text-blue-500" type="submit"
 				>Send Message</button
