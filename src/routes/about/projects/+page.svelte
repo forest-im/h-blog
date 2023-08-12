@@ -1,5 +1,5 @@
 <div
-	class="no-scrollbar mb-32 flex flex-col content-center items-center overflow-y-scroll min-[1100px]:mt-32"
+	class="no-scrollbar mb-32 flex flex-col content-center items-center overflow-y-scroll min-[1100px]:mt-10"
 >
 	<div class="mb-20 flex w-full max-w-[800px] flex-col gap-10 text-sm font-normal">
 		<div class="flex gap-3 max-[1100px]:flex-col">
