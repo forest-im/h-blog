@@ -4,6 +4,7 @@
 	import Footer from "$lib/components/Footer.svelte";
 	import ResponsiveLayer from "$lib/components/ResponsiveLayer.svelte";
 	import clsx from "clsx";
+	import githubIcon from "$lib/icons/github-mark-white.png";
 
 	import "../app.css";
 	import "../prism.css";
@@ -43,9 +44,10 @@
 						<div class="w-full">
 							<div class="flex w-full items-center justify-between">
 								<p class="text-6xl font-thin text-white max-[500px]:text-3xl">Hyunjung Im</p>
-								<div class="flex gap-2 max-[500px]:text-sm">
-									<span><a href="https://www.im-alex.dev/" target="_blank">Blog</a></span>
-									<span><a href="https://github.com/h-alex2" target="_blank">Github</a></span>
+								<div>
+									<a href="https://github.com/h-alex2" target="_blank"
+										><img class="m-0 h-8 w-8" src={githubIcon} alt="github" width="32px" /></a
+									>
 								</div>
 							</div>
 							<p class="pt-2 font-thin text-white">Frontend Developer</p>
