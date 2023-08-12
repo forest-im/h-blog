@@ -5,11 +5,14 @@
 	import { page } from "$app/stores";
 	import { currentPage } from "$lib/store";
 	import { DEFAULT_POSTS_COUNT } from "$lib/constants/postDefaultValue";
+	import { onMount } from "svelte";
+
+	export let posts;
+	let loading = !posts;
 
 	const getCurrentPosts = (posts, page) =>
 		posts.slice(DEFAULT_POSTS_COUNT * (page - 1), page * DEFAULT_POSTS_COUNT);
 
-	export let posts;
 	let currentPosts = getCurrentPosts(posts, $currentPage);
 
 	$: if ($currentPage) {
@@ -26,7 +29,7 @@
 	</div>
 	<hr />
 	{#each currentPosts as { slug, title, date, description, category, tag }}
-		<a href={slug && `/categories/${category}/${slug}`}>
+		<a href={slug && `/blog/categories/${category}/${slug}`}>
 			<div class="post-list-container">
 				<div>
 					<PostTitle {slug} {title} {category} />

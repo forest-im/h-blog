@@ -14,8 +14,8 @@
 	let slug = $page.params.slug;
 
 	onMount(() => {
-		if ($page.route.id === "/categories/[slug]") {
-			goto(`/categories/${slug}?page=${$page.url.searchParams.get("page")}`);
+		if ($page.route.id === "/blog/categories/[slug]") {
+			goto(`/blog/categories/${slug}?page=${$page.url.searchParams.get("page")}`);
 		}
 		currentPage.setPage(parseInt($page.url.searchParams.get("page")));
 	});
@@ -39,9 +39,9 @@
 		slug = $page.params.slug;
 
 		if (browser) {
-			$page.route.id === "/tags/[slug]"
-				? goto(`/tags/${slug}?page=${$currentPage}`)
-				: goto(`/categories/${slug}?page=${$currentPage}`);
+			$page.route.id === "/blog/tags/[slug]"
+				? goto(`/blog/tags/${slug}?page=${$currentPage}`)
+				: goto(`/blog/categories/${slug}?page=${$currentPage}`);
 		}
 	}
 </script>

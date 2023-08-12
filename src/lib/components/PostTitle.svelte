@@ -9,7 +9,7 @@
 		.toLowerCase()
 		.replace(/[^a-zA-Z ]/g, "")
 		.replace(/\s/g, "-");
-	const href = slug ? `/categories/${category}/${slug}` : "#" + id;
+	const href = slug ? `/blog/categories/${category}/${slug}` : "#" + id;
 </script>
 
 <h1

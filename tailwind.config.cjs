@@ -51,7 +51,7 @@ module.exports = {
 				customDarkSm: "rgba(171, 171, 171, 0.05) 0px 0px 0px 1px"
 			},
 			backgroundImage: {
-				me: "url(https://github.com/h-alex2/images/assets/84281505/d5c25740-1d08-4360-ba62-269d40f9917d)"
+				me: "url(/src/lib/images/me.jpg)"
 			}
 		}
 	},

@@ -4,7 +4,7 @@
 	export let tags;
 
 	function handleClick(tag) {
-		return goto(`/tags/${tag}`);
+		return goto(`/blog/tags/${tag}`);
 	}
 </script>
 

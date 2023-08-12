@@ -15,7 +15,7 @@
 >
 	<div class={clsx("flex w-full items-center justify-between font-light ")}>
 		<div class="mx-5 flex w-full items-center justify-between">
-			<a href="/categories/all?page=1" class="block">
+			<a href="/" class="block">
 				<div class="flex items-center">
 					<img
 						on:click={currentPage.reset}
@@ -28,7 +28,7 @@
 			</a>
 			<div class="flex h-full items-center gap-4">
 				<ToggleThemeInput />
-				<a href="/categories/all?page=1">
+				<a href="/blog/categories/all?page=1">
 					<div
 						on:click={currentPage.reset}
 						on:keydown={currentPage.reset}
@@ -40,7 +40,7 @@
 						POSTS
 					</div>
 				</a>
-				<a href="/tags">
+				<a href="/blog/tags">
 					<div
 						class={clsx(
 							"cursor-pointer hover:text-pointColor-900",
@@ -50,18 +50,6 @@
 						on:keydown={currentPage.reset}
 					>
 						TAGS
-					</div>
-				</a>
-				<a href="/about">
-					<div
-						class={clsx(
-							"cursor-pointer hover:text-pointColor-900",
-							$page?.route?.id?.includes("about") && "underline"
-						)}
-						on:click={currentPage.reset}
-						on:keydown={currentPage.reset}
-					>
-						ABOUT
 					</div>
 				</a>
 				<div>
