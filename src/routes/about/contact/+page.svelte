@@ -128,7 +128,7 @@
 
 	async function copyToClipboard() {
 		try {
-			await navigator.clipboard.writeText("alsdfjaldskfjlkdsf");
+			await navigator.clipboard.writeText("glowhyun1@gmail.com");
 			copySuccess = true;
 			setTimeout(() => {
 				copySuccess = false;
