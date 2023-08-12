@@ -89,18 +89,18 @@
 		xhr.setRequestHeader(
 			"Content-Type",
 			"application/x-www-form-urlencoded",
-			"Access-Control-Allow-Origin: https://www.im-alex.dev/*"
+			"Access-Control-Allow-Origin: https://www.im-alex.dev/contact"
 		);
-		xhr.onreadystatechange = function () {
-			if (xhr.readyState === 4) {
-				if (xhr.status === 200) {
-					form.reset();
-					alert("Form submitted successfully!");
-				} else {
-					alert("Form submission failed. Please try again.");
-				}
-			}
-		};
+		// xhr.onreadystatechange = function () {
+		// 	if (xhr.readyState === 4) {
+		// 		if (xhr.status === 200) {
+		// 			form.reset();
+		// 			alert("Form submitted successfully!");
+		// 		} else {
+		// 			alert("Form submission failed. Please try again.");
+		// 		}
+		// 	}
+		// };
 		// url encode form data for sending as post data
 		var encoded = Object.keys(data)
 			.map(function (k) {
