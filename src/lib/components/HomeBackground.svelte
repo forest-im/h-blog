@@ -6,7 +6,7 @@
 
 <div
 	class={clsx(
-		"absolute left-1/2 top-1/2 z-10 h-[calc(100%-3rem)] w-[calc(100%-3rem)] -translate-x-1/2 -translate-y-1/2 transform border-white bg-me bg-cover bg-center brightness-[50%]",
+		"absolute left-1/2 top-1/2 z-10 h-[calc(100%-3rem)] w-[calc(100%-3rem)] -translate-x-1/2 -translate-y-1/2 transform bg-me bg-cover bg-center brightness-[50%]",
 		hasBlur && "blur-md"
 	)}
 />

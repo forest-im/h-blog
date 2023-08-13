@@ -7,25 +7,31 @@
 	<div class="vignetting z-30" />
 	<div class="top-effect z-30" />
 	<div class="noise pointer-events-none z-50" />
+  
+
+	<!-- header -->
 	<div
-		class="absolute left-1/2 top-1/2 z-50 h-[calc(100%-3rem)] w-[calc(100%-3rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden border border-[0.3px] border-gray-300"
+		class="absolute left-1/2 top-[5rem] z-[99] w-[calc(100%-3.05rem)] -translate-x-1/2 -translate-y-1/2 p-5 text-white max-[500px]:top-[4.2rem] max-[500px]:p-2"
 	>
-		<div class="h-full w-full p-5 text-white max-[500px]:p-2">
-			<div class="flex justify-between">
-				<div class="w-full">
-					<div class="flex w-full items-center justify-between">
-						<p class="text-6xl font-thin text-white max-[500px]:text-3xl">Hyunjung Im</p>
-						<div>
-							<a href="https://github.com/h-alex2" target="_blank"
-								><img class="m-0 h-8 w-8" src={githubIcon} alt="github" width="32px" /></a
-							>
-						</div>
+		<div class="flex justify-between">
+			<div class="w-full">
+				<div class="flex w-full items-center justify-between">
+					<a href="/">
+						<p class="text-6xl font-thin text-white hover:font-extralight max-[500px]:text-3xl">
+							Hyunjung Im
+						</p>
+					</a>
+					<div>
+						<a class="z-[50] cursor-pointer" href="https://github.com/h-alex2" target="_blank"
+							><img class="m-0 h-8 w-8" src={githubIcon} alt="github" width="32px" /></a
+						>
 					</div>
-					<p class="pt-2 font-thin text-white">Frontend Developer</p>
 				</div>
+				<p class="pt-2 font-thin text-white">Frontend Developer</p>
 			</div>
 		</div>
 	</div>
+
 	<HomeCategory />
 	<slot />
 </div>

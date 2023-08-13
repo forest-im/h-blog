@@ -2,6 +2,9 @@
 	import HomeBackground from "$lib/components/HomeBackground.svelte";
 </script>
 
+<div
+	class="absolute left-1/2 top-1/2 z-50 h-[calc(100%-3rem)] w-[calc(100%-3rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden border border-[0.3px] border-gray-300"
+/>
 <div class="absolute bottom-12 right-12 z-[99] max-[500px]:bottom-9 max-[500px]:right-8">
 	<div class="flex max-w-[200px] flex-col text-sm font-normal text-white">
 		<p>

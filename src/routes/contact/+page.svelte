@@ -109,8 +109,6 @@
 			})
 			.join("&");
 		xhr.send(encoded);
-
-		alert("ok");
 	}
 
 	function loaded() {
@@ -177,8 +175,11 @@
 					<label for="message">Your Message</label>
 					<textarea name="message" class="h-[5rem] w-full text-black" id="message" />
 				</div>
-				<button class="mt-5 block h-10 w-full border border-white hover:text-blue-500" type="submit"
-					>Send Message</button
+				<div class="text-red-600">현재 기능 버그로 수정중입니다.🥲</div>
+
+				<button
+					class="mt-5 block h-10 w-full cursor-not-allowed border border-white hover:text-blue-500"
+					type="submit">Send Message</button
 				>
 			</form>
 		</div>
