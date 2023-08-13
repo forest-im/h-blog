@@ -27,7 +27,7 @@ date: 2022-04-26 00:24:48
 ## Tree 란?
 
 <a href="https://www.geeksforgeeks.org/introduction-to-tree-data-structure/" target="_blank">
-<img src = "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20201129105858/Tree-Basic-Terminology.png" /></a>
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20201129105858/Tree-Basic-Terminology.png" alt="tree" /></a>
 트리 구조란 그래프의 일종으로, 여러 노드가 한 노드를 가리킬 수 없는 구조입니다.
 엣지로 연결된 노드로 구성되어 있고 서로 다른 두 노드를 잇는 길이 하나뿐인 그래프를 트리라고 부릅니다. 일종의 계층적(Hierarchical) 데이터 구조입니다. 또한 트리 데이터 구조는 서로 연결된 뿌리(roots), 가지(branches), 잎(leaves)을 가지고 있다고 말할 수 있습니다.
 
@@ -115,7 +115,7 @@ date: 2022-04-26 00:24:48
 배열, 스택, 큐 및 연결 리스트와 같은 선형 데이터 구조는 데이터를 읽는 방법이 한 가지뿐입니다. 그러나 트리와 같은 계층적 데이터 구조는 다른 방식으로 탐색할 수 있습니다.
 
 <a href="https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/?ref=gcse" target="_blank">
-<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/2009/06/tree12.gif"></a>
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/2009/06/tree12.gif" alt="tree"></a>
 
 1. **Inorder** 중위 순회 (Left, Root, Right)
 

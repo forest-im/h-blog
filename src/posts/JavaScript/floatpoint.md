@@ -54,7 +54,7 @@ $ 1\over 3$ = 0.3333333333.... 무한대까지 0.33333이 반복됩니다.
 
 ## IEEE-754 : JavaScript가 숫자를 처리하는 방식
 
-<img src="https://media4.giphy.com/media/WRQBXSCnEFJIuxktnw/giphy.gif?cid=790b7611dba86eba46419305033df80ca327b0d1889a37b0&rid=giphy.gif&ct=g">
+<img src="https://media4.giphy.com/media/WRQBXSCnEFJIuxktnw/giphy.gif?cid=790b7611dba86eba46419305033df80ca327b0d1889a37b0&rid=giphy.gif&ct=g" alt="ieee">
 
 벌써부터 머리가 아프기 시작하지만 알아보도록 하겠습니다.  
 먼저 자바스크립트가 어떻게 숫자를 처리하는 방식에 대해서 알아보겠습니다.
@@ -120,7 +120,7 @@ IEEE 754는 전기 전자 기술자 협회 (IEEE)에서 개발한 **컴퓨터에
 IEEE 754의 부동 소수점 표현은 크게 세 부분으로 구성되는데, 최상위 비트는 부호를 표시하는 데 사용되며, 지수 부분(exponent)과 가수 부분(fraction/mantissa)이 있습니다.
 
 <a href = "https://commons.wikimedia.org/wiki/File:General_floating_point_ko.svg" target = "_blank">
-<img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/General_floating_point_ko.svg/750px-General_floating_point_ko.svg.png?20130725074047"></a>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/General_floating_point_ko.svg/750px-General_floating_point_ko.svg.png?20130725074047" alt="ieee" /></a>
 ( 맨 앞자리는 부호를 표시하는 데 사용되는데 1이면 음수 0이면 양수입니다.)
 
 - 정확도 문제

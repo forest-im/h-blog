@@ -49,7 +49,7 @@ description: Race condition에 대응할 수 있는 방법을 정리합니다.
 
 답은 Yes이다.
 
-<img src="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop/the_javascript_runtime_environment_example.svg" />
+<img src="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop/the_javascript_runtime_environment_example.svg" alt="race" />
 
 JavaScript는 단일 스레드 기반의 언어로, 한 번에 하나의 작업만을 처리할 수 있다(브라우저 기준) 그러나 비동기인 동작을 가능하게 하기 위해서 이벤트 루프와 메시지 큐라는 매커니즘을 사용한다.
 
@@ -70,7 +70,7 @@ JavaScript는 단일 스레드 기반의 언어로, 한 번에 하나의 작업�
 1. 각각의 데이터를 가져올 수 있는 버튼이 2개가 있다.
 2. 버튼을 누르면 그에 맞는 데이터를 화면에 보여준다.
 
-<img src="https://github.com/h-alex2/imgaes/assets/84281505/33dc4de6-e0a7-424b-b6f0-198be23736d9" />
+<img src="https://github.com/h-alex2/imgaes/assets/84281505/33dc4de6-e0a7-424b-b6f0-198be23736d9" alt="example" />
 
 ```js
 export default function Index() {
@@ -136,7 +136,7 @@ button2.addEventListener("click", async () => {
 
 DATA 1을 fetch할 때 delay(1000ms)를 적용해보자.
 
-<img src="https://github.com/h-alex2/imgaes/assets/84281505/d1758963-7649-4c9f-aa95-58a4cb681081" />
+<img src="https://github.com/h-alex2/imgaes/assets/84281505/d1758963-7649-4c9f-aa95-58a4cb681081" alt="example" />
 
 ```js
 function delay(ms) {
@@ -194,7 +194,7 @@ button1.addEventListener("click", async () => {
 <br />
 
 만약 DATA 1 데이터 fetch가 완료되기 전에 DATA 2를 누른다면 어떻게 될까?
-<img src="https://github.com/h-alex2/imgaes/assets/84281505/e2758052-e095-4e70-a4d7-e07c66709c99" />
+<img src="https://github.com/h-alex2/imgaes/assets/84281505/e2758052-e095-4e70-a4d7-e07c66709c99" alt="example" />
 
 DATA 2 데이터를 원했지만 DATA 1 의 데이터가 화면에 표시되게 된다. 이는 유저가 원했던 것이 아닐 것이다.
 

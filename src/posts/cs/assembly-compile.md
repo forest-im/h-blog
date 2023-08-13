@@ -4,14 +4,10 @@ tag: nodejs, nextjs
 date: 2023-03-03 17:58:37
 ---
 
-<script>
-  import lan from "$lib/images/posts/golang-01.png";
-  import Assembly from "$lib/images/posts/golang-02.png";
-</script>
-
 ## 어셈블리어란?
 
-![Assembly]({Assembly})
+<img width="436" alt="golang-02" src="https://github.com/h-alex2/images/assets/84281505/ba65ef1d-06da-426e-b65b-5d0e50ae5d51">
+
 어셈블리어는 기계어와 일대일 대응이 되는 컴퓨터 프로그래밍의 저급 언어입니다. 기계어는 컴퓨터 관점에서는 바로 읽을 수 있지만 인간의 관점에서는 사용이 불편한 언어라서 이를 보완해서 나온 것이 어셈블리어에요.
 
 어셈블리어는 op코드 (Operation Code)를 하나 하나 명령해줘야 하는 단점이 있어 이를 보완하기 위해 인간이 편리하게 사용할 수 있는 고수준 언어가 등장했어요. 고수준 언어는 어셈블리어를 제외한 나머지 언어를 말하고 인간의 언어 문법과 유사하게 프로그래밍 할 수 있어요. 우리가 아는 보통의 언어들(js, python, java, c, c++ 등..)이 고수준 언어에 해당하죠.
@@ -26,7 +22,7 @@ date: 2023-03-03 17:58:37
 
 고수준 언어가 등장해도 결국 그 언어를 사용하는 곳은 컴퓨터이기 때문에 컴파일을 거쳐 컴퓨터가 해석할 수 있는 기계어로 바꿔줘야 해요. 컴파일 시점에 따라 정적 컴파일 언어와 동적 컴파일 언어로 나뉘게 됩니다. 일반적으로 컴파일 언어는 정적 타입, 인터프리터 언어는 동적 타입을 사용해요.
 
-![lan]({lan})
+<img width="955" alt="golang-01" src="https://github.com/h-alex2/images/assets/84281505/c1d21b3c-dc39-47d9-b9d4-26b82c10bf35">
 
 ## 정적 컴파일 언어
 

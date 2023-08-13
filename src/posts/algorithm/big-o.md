@@ -10,7 +10,7 @@ date: 2022-04-06 00:24:48
 - 알고리즘의 성능을 수학적으로 표현해주는 표기법
 - 알고리즘의 시간과 공간 복잡도를 표현할 수 있습니다.
 
-<a href="https://betterprogramming.pub/a-beginners-guide-to-big-o-notation-pt-1-19ec031b698b" target='_black'><img src="https://miro.medium.com/max/1400/1*5VctXSES5PrSk-5lPb_CCg.jpeg" > </a>
+<a href="https://betterprogramming.pub/a-beginners-guide-to-big-o-notation-pt-1-19ec031b698b" target='_black'><img src="https://miro.medium.com/max/1400/1*5VctXSES5PrSk-5lPb_CCg.jpeg" alt="bigo"> </a>
 
 ## O(1) Constant time
 
@@ -100,7 +100,7 @@ let result2 = multiplyAll([1, 2, 3, 4], [5, 3, 1, 8]); // 170
 이 알고리즘은 확장성이 매우 좋지 않으므로 피하는 것이 좋지만 O(2^n)가 가장 최악의 Big O는 아닙니다.
 
 <a href="https://www.doabledanny.com/big-o-notation-in-javascript" target='_blank'>
-<img src = "https://www.doabledanny.com/static/445d073812759c19aa9b83d6ff239355/93d59/4.jpg"></a>
+<img src="https://www.doabledanny.com/static/445d073812759c19aa9b83d6ff239355/93d59/4.jpg" alt="o"></a>
 
 대표적인 것으로 피보나치수열이 있습니다.
 
@@ -132,7 +132,7 @@ fibonacci(5); // 5
 - 대표적인 것 : 이진탐색(binary search), 퀵정렬, 병합정렬
 
 <a href="https://www.doabledanny.com/big-o-notation-in-javascript" target='_blank'>
-<img src = "https://www.doabledanny.com/static/a2b0078d67cb6bcdfbbe8489a5c48b5f/93d59/5.jpg"></a>
+<img src="https://www.doabledanny.com/static/a2b0078d67cb6bcdfbbe8489a5c48b5f/93d59/5.jpg" alt="logn"></a>
 
 Log2(16) = x  
 2^x = 16  

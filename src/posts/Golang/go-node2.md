@@ -6,15 +6,7 @@ description: Golang에서 동시성 작업을 처리하는 방법에 대해 알�
 type: blog
 ---
 
-<script>
-  import gmp from "$lib/images/posts/golang-08.png";
-  import gmp2 from "$lib/images/posts/golang-09.png";
-  import gmp3 from "$lib/images/posts/golang-10.png";
-  import gmp4 from "$lib/images/posts/golang-11.jpg";
-  import node2 from "$lib/images/posts/golang-12.png";
-</script>
-
-![node2]({node2})
+<img width="758" alt="node-go" src="https://github.com/h-alex2/images/assets/84281505/20e98242-935b-4e09-9375-c5ad37dc8ddd">
 
 <br />
 
@@ -115,7 +107,8 @@ Go에서의 동시성 처리 시 동기화(concurrency synchronization)는 CSP(C
 
 ### GMP 구조체
 
-![gmp4]({gmp4})
+![golang-11](https://github.com/h-alex2/images/assets/84281505/f37c0f4a-717b-4d54-8dcb-f3b95f559897)
+
 Go의 스케줄러는 G, M, P로 구성되어 돌아가고 있습니다.
 
 **GMP가 뭐죠?**
@@ -136,14 +129,17 @@ Go의 스케줄러는 G, M, P로 구성되어 돌아가고 있습니다.
 
 ### Go 스케줄러가 고루틴을 관리하는 방법
 
-![gmp3]({gmp3})
+![golang-10](https://github.com/h-alex2/images/assets/84281505/8aecbe22-1039-49b9-a276-cbe4f0420352)
+
 고루틴이 생성되고 실행할 준비가 되면 스케줄러의 범용 실행 큐(global runner queue)에 위치합니다. 그리고 논리 프로세서(P)가 할당되어 해당 프로세서의 지역 실행 큐(Local runnable queue)에 위치합니다. 그리고 여기에서 논리 프로세서가 자신을 실행해줄 때까지 기다립니다.
 
-![gmp]({gmp})
+![golang-08](https://github.com/h-alex2/images/assets/84281505/d3b7af16-dc2f-4289-bcd1-9dcbf63e300a)
+
 Go 런타임 스케줄러는 하나의 운영체제 스레드에 바인딩된 논리적 프로세서에서 고루틴이 실행되도록 예약합니다. 고루틴이 실행 가능 상태가 되면 논리 프로세서의 실행 큐에 추가합니다.
 오른쪽 G들을 `runqueues`라고 부르는데 이 큐는 앞으로 실행될 고루틴을 쌓아두는 역할을 하고 P(context)에 종속되어 있습니다.
 
-![gmp]({gmp2})
+![golang-09](https://github.com/h-alex2/images/assets/84281505/af062ef4-b081-4310-bc6d-be2f9dccae56)
+
 간혹 실행 중인 고루틴이 파일을 여는 등 자신의 실행을 중단해야 하는 시스템 콜을 수행하는 경우가 있습니다. 이런 작업이 발생하면 blocking이 발생하게 되는데 이 경우 해당 스레드에 영향을 끼치기 때문에 성능 저하를 불러올 수 있게 됩니다. Go의 스케줄러는 계속해서 멈추지 않고 스케줄링을 할 수 있도록 syscall이 발생한 고루틴을 다른 스레드로 넘겨(hand off) 모든 고루틴이 정상적으로 작동할 수 있도록 보장합니다.
 
 앞서 수행한 시스템 콜이 리턴되면 실행 중인 고루틴은 다시 지역 실행 큐로 이동하며, 이때 나중에 다시 사용될 것을 대비해 고루틴이 실행 중이던 스레드도 함께 보관됩니다.

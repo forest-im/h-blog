@@ -1,15 +1,22 @@
 <script>
 	import { page } from "$app/stores";
+	import clsx from "clsx";
 	import Header from "$lib/components/Header.svelte";
 	import Footer from "$lib/components/Footer.svelte";
 	import ResponsiveLayer from "$lib/components/ResponsiveLayer.svelte";
-	import clsx from "clsx";
+	import PageHead from "$lib/components/PageHead.svelte";
 	import githubIcon from "$lib/icons/github-mark-white.png";
 
 	import "../app.css";
 	import "../prism.css";
 </script>
 
+<PageHead
+	title="Alex's Homepage"
+	description="공부한 내용을 정리합니다."
+	tag="development"
+	date="2022-12-23T09:12:21.158Z"
+/>
 <body>
 	{#if ($page.route.id && $page.route.id.includes("/categories")) || $page.route.id.includes("/tags")}
 		<div class="mx-auto flex min-h-[101vh] w-screen min-w-[350px] flex-col justify-center">

@@ -59,7 +59,7 @@ type: blog
 ### Reverse Proxy
 
 <figure>
-  <img width="851" alt="image" src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3msJRtqxDysQslvrKvEf8x/f7f54c9a2cad3e4586f58e8e0e305389/reverse_proxy_flow.png">
+  <img width="851" alt="reverse" src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3msJRtqxDysQslvrKvEf8x/f7f54c9a2cad3e4586f58e8e0e305389/reverse_proxy_flow.png">
   <figcaption align="center">
 
 이미지 출처: [역방향 프록시란? | 프록시 서버 설명 - Cloudflare](https://www.cloudflare.com/ko-kr/learning/cdn/glossary/reverse-proxy/)
@@ -121,7 +121,7 @@ server {
 이 코드는 간단하게 `*.jaamtoast.click`으로 오는 요청을 `http://localhost:8000/api`로 우회하겠다는 말이다. 이렇게 요청을 대상 서버에 전달하는 것이 리버스 프록시의 역할이다.
 
 <figure>
-  <img width="851" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/fa6275b5-a25d-4b84-90e4-9d9d4e19538e">
+  <img width="851" alt="nginx" src="https://github.com/h-alex2/imgaes/assets/84281505/fa6275b5-a25d-4b84-90e4-9d9d4e19538e">
   <figcaption align="center"> beanstalk의 경우 구성 - 업데이트, 모니터링 및 로깅 구성 설정에 가면 프록시 서버를 설정할 수 있는 곳이 있다. <br />Apache, Nginx가 바로 웹 서버이다. 기본 설정은 Nginx로 되어있다.
   </figcaption>
 </figure>

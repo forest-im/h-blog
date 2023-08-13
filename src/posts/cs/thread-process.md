@@ -6,43 +6,11 @@ description: 프로세스, 스레드에 대해 간단하게 알아봅니다.
 type: blog
 ---
 
-<script>
-  import process from "$lib/images/posts/process-00.gif";
-  import process01 from "$lib/images/posts/process-01.png";
-  import process02 from "$lib/images/posts/process-02.png";
-  import process03 from "$lib/images/posts/process-03.png";
-  import process04 from "$lib/images/posts/process-04.png";
-  import process05 from "$lib/images/posts/process-05.png";
-  import process06 from "$lib/images/posts/process-06.png";
-  import process07 from "$lib/images/posts/process-07.png";
-  import process08 from "$lib/images/posts/process-08.png";
-  import process09 from "$lib/images/posts/process-09.png";
-  import process10 from "$lib/images/posts/process-10.png";
-  import process11 from "$lib/images/posts/process-11.png";
-  import process12 from "$lib/images/posts/process-12.png";
-  import process13 from "$lib/images/posts/process-13.png";
-  import process14 from "$lib/images/posts/process-14.png";
-  import process15 from "$lib/images/posts/process-15.png";
-  import process17 from "$lib/images/posts/process-17.png";
-  import process18 from "$lib/images/posts/process-18.png";
-  import process19 from "$lib/images/posts/process-19.png";
-  import process20 from "$lib/images/posts/process-20.png";
-  import process22 from "$lib/images/posts/process-22.png";
-  import process23 from "$lib/images/posts/process-23.png";
-  import process24 from "$lib/images/posts/process-24.png";
-  import process25 from "$lib/images/posts/process-25.png";
-  import process26 from "$lib/images/posts/process-26.png";
-  import process27 from "$lib/images/posts/process-27.png";
-  import process28 from "$lib/images/posts/process-28.png";
-  import process29 from "$lib/images/posts/process-29.png";
-  import process30 from "$lib/images/posts/process-30.png";
-</script>
-
-
-23.01.20 - 발표했던 자료를 바탕으로 정리한 글입니다. 
+23.01.20 - 발표했던 자료를 바탕으로 정리한 글입니다.
 
 스레드, 프로세스에 대해 정리해보았습니다.
 프로세스나 스레드에 대해 알아보다 보면 아래와 같이 비슷한 단어들이 많이 나와요.
+
 - 프로세스
 - 프로그램
 - 프로세서
@@ -72,59 +40,70 @@ type: blog
 
 다들 윈도우 운영체제를 사용해 보셨나요?
 
-![window]({process01})
+<img width="835" alt="process-01" src="https://github.com/h-alex2/images/assets/84281505/e7d7611c-111c-4128-a1bd-c718012cafe9">
 
-윈도우 컴퓨터를 쓰다가 혹시 이런 화면을 만나신 적이 있으실까요? 
+윈도우 컴퓨터를 쓰다가 혹시 이런 화면을 만나신 적이 있으실까요?
 
-![window-error]({process02})
-아무리 기다려도 바뀌지 않을 때 컨트롤 알트 델 키를 한 번이라도 눌러본 적 있으실 거라 생각합니다. 
+<img width="696" alt="process-02" src="https://github.com/h-alex2/images/assets/84281505/ad41ab80-8b35-4ad8-ae8d-80d0c6a14700">
+아무리 기다려도 바뀌지 않을 때 컨트롤 알트 델 키를 한 번이라도 눌러본 적 있으실 거라 생각합니다.
 
-![작업관리자]({process03})
+<img width="639" alt="process-03" src="https://github.com/h-alex2/images/assets/84281505/f2d96ca0-ceef-4195-8620-0e1e2c961a12">
+
 눌러서 작업 관리자로 들어가면 이런 익숙한 화면이 나오게 되죠. 작업 관리자를 보면 현재 실행하고 있는 프로세스의 목록이 나옵니다.
-![작업관리자]({process04})
-맥북에서도 액티비티 모니터를 열면 이렇게 어떤 프로세스가 실행되고 있는지 나오죠. 
+
+<img width="647" alt="process-04" src="https://github.com/h-alex2/images/assets/84281505/23077ec1-26e7-4d11-b045-01c28d72ac70">
+
+맥북에서도 액티비티 모니터를 열면 이렇게 어떤 프로세스가 실행되고 있는지 나오죠.
 프로세스 목록을 보면 우리가 흔히 아는 프로그램들의 아이콘이 이렇게 나와 있어요.
 
 프로세스와 프로그램을 샌드위치에 비유하자면,
-![프로세스-프로그램]({process05})
+
+<img width="1392" alt="process-05" src="https://github.com/h-alex2/images/assets/84281505/211ce42d-d40c-4b08-a2bc-5f08b8561f47">
+
 프로그램은 샌드위치를 만드는 방법이 적혀있는 책이고 프로세스는 샌드위치를 요리하고 있는 것을 말합니다.
 프로그램은 실행하기 전엔 그저 코드일 뿐이죠. 프로그램을 실행하면 그것이 프로세스가 되는 것입니다.
 
 ## 스레드
+
 다음으로 스레드에 대해서 살펴볼게요. 스레드의 뜻을 찾아보면 아래와 같이 나옵니다.
 
 > 어떠한 프로그램 내에서, 특히 프로세스 내에서 실행되는 흐름의 단위를 말한다. 일반적으로 한 프로그램은 하나의 스레드를 가지고 있지만, 프로그램 환경에 따라 둘 이상의 스레드를 동시에 실행할 수 있다.
 
 샌드위치에 비교했을 때 만들고 있는 과정을 프로세스라고 한다더니 지금은 흐름을 스레드라고 하니까 헷갈리죠?
 
-왜냐면 예전엔 스레드가 없었어요. 
+왜냐면 예전엔 스레드가 없었어요.
 
-한동안 기술이 빠르게 발전하면서 하나의 프로그램 안에서 복잡한 기술을 요구하기 시작했고 그걸 해결하기 위해서 프로세스보다 더 작은 실행 단위 개념이 만들어지게 됐는데, 이게 바로 __스레드__ 에요.
+한동안 기술이 빠르게 발전하면서 하나의 프로그램 안에서 복잡한 기술을 요구하기 시작했고 그걸 해결하기 위해서 프로세스보다 더 작은 실행 단위 개념이 만들어지게 됐는데, 이게 바로 **스레드** 에요.
 
-![스레드]({process07})
+<img width="756" alt="process-07" src="https://github.com/h-alex2/images/assets/84281505/4564de7a-851e-4254-9d4e-bb7ba21194fa">
+
 헷갈리지만 중요한 점이 하나의 프로세스는 무조건 하나의 스레드를 가진다. 라는 거에요.
 
+<img width="549" alt="process-06" src="https://github.com/h-alex2/images/assets/84281505/a3e79b91-f23a-4c80-814a-5d8a4866077a">
 
-![스레드]({process06})
-우리가 노트북을 켜면 기본적으로 vscode를 클릭해서 실행을 시키죠. 
+우리가 노트북을 켜면 기본적으로 vscode를 클릭해서 실행을 시키죠.
 그럼 프로세스가 돼서 실행이 되고 있을 거에요. 종료하기 전까지 계속 실행이 되는데, 이 실행되는 흐름을 스레드라고 해요.
 
-![스레드]({process08})
+<img width="575" alt="process-08" src="https://github.com/h-alex2/images/assets/84281505/9c3a2f5e-22ac-4acb-a147-45e09f0da295">
+
 우리가 vscode를 실행할 때 그 안에서 코드를 작성함과 동시에 터미널을 열어서 사용하잖아요.
-이 두 가지의 작업을 실행 흐름이라고 생각하면 됩니다. 
+이 두 가지의 작업을 실행 흐름이라고 생각하면 됩니다.
 
-![스레드]({process09})
-이 작업이 같은 프로세스 안에 흐름이 여러 개 있는 걸 __멀티 스레드__ 라고 합니다.
+<img width="593" alt="process-09" src="https://github.com/h-alex2/images/assets/84281505/f44c460b-b665-43e0-b498-b72c0a23695a">
 
-그리고 보통 스레드를 __연산의 기본 단위__ 라고 합니다. 작업 되는 하나의 흐름을 __연산__ 이라고 해요.
+이 작업이 같은 프로세스 안에 흐름이 여러 개 있는 걸 **멀티 스레드** 라고 합니다.
 
-![스레드]({process10})
-각각의 프로세스는 독립적이에요. 
+그리고 보통 스레드를 **연산의 기본 단위** 라고 합니다. 작업 되는 하나의 흐름을 **연산** 이라고 해요.
+
+<img width="568" alt="process-10" src="https://github.com/h-alex2/images/assets/84281505/16d76f5f-fc81-4134-ad79-bfde63ac87f6">
+
+각각의 프로세스는 독립적이에요.
 간단하게 말해서 vscode를 실행하는 거랑 카카오톡을 실행하는 거랑 매우 다른 과정을 거치게 되겠죠? 서로 뭔가를 공유하기 힘든 존재라고 생각하면 될 것 같아요.
 
-![스레드]({process11})
+<img width="778" alt="process-11" src="https://github.com/h-alex2/images/assets/84281505/a813923a-f394-4ee0-9c31-6628cc812316">
+
 아까 프로세스를 샌드위치를 만드는 과정에 비유했었어요. 그럼 샌드위치를 만들려면 요리를 하는 사람과 재료가 필요하죠.
-여기서 이 요리사는 CPU 요리 재료는 메모리라고 비유할 수 있을 것 같아요. 근데 더 정확히 얘기하면 CPU는 __요리사가 있는 식당__ 이라고 할 수 있을 것 같아요.
+여기서 이 요리사는 CPU 요리 재료는 메모리라고 비유할 수 있을 것 같아요. 근데 더 정확히 얘기하면 CPU는 **요리사가 있는 식당** 이라고 할 수 있을 것 같아요.
 
 ## CPU Central Processing Unit
 
@@ -135,9 +114,10 @@ type: blog
 
 이렇게 코어가 2개 이상 있는 걸 멀티코어 라고 해요.
 
-그럼 __코어__ 가 뭘까요?
+그럼 **코어** 가 뭘까요?
 
-![cpu]({process13})
+<img width="894" alt="process-13" src="https://github.com/h-alex2/images/assets/84281505/d9d377a5-fcfd-4212-8af6-28b2b9ff08e3">
+
 코어는 요리사가 몇 명인지 나타내는 거라고 볼 수 있어요.
 요리사가 많으면 많을수록 한 번에 많은 요리를 할 수 있겠죠?
 요리사가 있는 곳 이 CPU를 프로세스를 처리한다고 해서 **프로세서** 라고 불러요.
@@ -148,27 +128,32 @@ type: blog
 그리고 여기 이 요리사들은 각자 한 번에 하나의 요리밖에 못 해서 지금 여기서 한 번에 할 수 있는 요리의 수는 최대 8개에요.
 그럼 코어가 하나라면? 한 번에 하나의 일만 할 수 있어요.
 
-![core]({process14})
+<img width="458" alt="process-14" src="https://github.com/h-alex2/images/assets/84281505/ca6127e0-bf91-498b-bf6f-e9cef885f974">
+
 코어를 조금 더 살펴보기 위해서 싱글 코어 CPU를 간단하게 표현해봤어요.
 
-하나의 요리에 관련된 레시피나 데이터를 __레지스터__ 에 보관하고 있어요. 진행하고 있는 하나의 정보만 보관하는 거죠.
+하나의 요리에 관련된 레시피나 데이터를 **레지스터** 에 보관하고 있어요. 진행하고 있는 하나의 정보만 보관하는 거죠.
 64비트 컴퓨터 32비트 컴퓨터 이런 말들을 들어보셨을텐데 저 64비트가 레지스터의 한 번에 처리할 수 있는 용량을 말합니다.
-레지스터가 속도는 엄청나게 빠르지만, 용량이 엄청나게 작아서 정보를 저장하는 곳이 따로 필요해요. 
+레지스터가 속도는 엄청나게 빠르지만, 용량이 엄청나게 작아서 정보를 저장하는 곳이 따로 필요해요.
 (추가로 위 CPU 평면도에 있는 캐시 메모리에 데이터를 좀 더 저장합니다.)
 
-그곳이 바로 __램 메모리__ 입니다.
+그곳이 바로 **램 메모리** 입니다.
 
 ## RAM Random Access Memory
-![ram]({process15})
+
+<img width="552" alt="process-15" src="https://github.com/h-alex2/images/assets/84281505/fae403f0-2e48-47ed-a710-72e74f04b3ad">
 
 램은 랜덤 액세스 메모리의 줄임말이고 1차 메모리 주메모리라고 합니다. 메모리의 경우에는 보통 크기와 속도가 비례한다고 해요. 레지스터 -> 램 -> SSD -> HD 의 순서로 속도를 나타낼 수 있어요. (레지스터는 너무 작아서 메모리라고 잘 부르는 것 같지는 않네요.) 램도 속도가 빠르지만, 레지스터의 속도는 램보다 50배정도 더 빠르다고 해요. 램과 레지스터는 휘발성 메모리라서 컴퓨터 전원을 끄거나 재시작 할 때 삭제됩니다.
 
 현재 실행되지 않는 다른 프로세스는 램에 넣어놓고 현재 실행되어야 하는 것의 정보만 램에서 cpu로 가져와요.
 
-![ram]({process17})
+<img width="840" alt="process-17" src="https://github.com/h-alex2/images/assets/84281505/4fd2604c-b980-45d7-a6c1-dd7fc77319b1">
+
 메모리가 프로세스를 만들 수 있는 재료라고 했었죠.
 프로그램을 이렇게 클릭해서 실행하게 되면 일부 메모리를 프로그램에 할당해줘요. 이걸 메모리에 올라왔다 라고 하기도 해요.
-![ram]({process18})
+
+<img width="725" alt="process-18" src="https://github.com/h-alex2/images/assets/84281505/8abbee07-76c9-413f-a8cd-c62ff30d510a">
+
 메모리를 할당받은 프로세스의 메모리 구조를 보시면 이런 메모리 구조를 가지게 됩니다.
 
 (여기서는 램 메모리로 한정 지었지만 정확히 얘기하자면 가상메모리를 프로세스에 할당합니다. 가상메모리란 램, 하드디스크 메모리를 합쳐서 하나의 메모리로 추상화하여 말하는 용어입니다. Virtual Memory라고 합니다.)
@@ -179,21 +164,24 @@ type: blog
 스택은 임시 데이터 저장장소라고 보시면 됩니다. 스택도 동적으로 커질 수도 있고, 작아질 수도 있습니다.
 
 이렇게 메모리 공간을 확보해서 프로세스가 되면 바로 실행되는 게 아니라 몇 가지 과정을 거치게 돼요.
-![ram]({process19})
+
+<img width="626" alt="process-19" src="https://github.com/h-alex2/images/assets/84281505/cf71b0c8-efa3-4dae-9d4e-d420e9736d3b">
+
 먼저 준비라는 과정을 거치는데 이 부분을 레디큐라고 해요. 속도가 중요하니 큐의 구현은 연결리스트로 되어있어요. 이 레디큐를 거치고 스케줄러가 디스패치를 하면 실행 단계로 가게 돼요. 디스패치 익숙하죠? 프로세스의 상태를 실행 상태로 바꿔주는 거에요.
 
 (그리고 그림엔 없지만 어떤 다른 프로그램(시스템 콜) 또는 입출력 장치에 의해 실행을 방해받으면 실행에 있던 프로세스가 다시 큐로 들어가고, 방해한 작업 즉 다른 프로세스가 실행 상태가 됩니다. 이걸 **인터럽트** 라고 해요.)
 
 그런데 우리가 사용하는 CPU의 코어 개수는 한정적일텐데, 많은 프로그램을 동시에 실행하고 있어요. 어떻게 그런 일이 가능할까요?
 
-![context-switch]({process})
+![process-00](https://github.com/h-alex2/images/assets/84281505/cc53ddf5-b780-46cf-bfbe-5983f8fa768b)
 
-이걸 위해서 cpu에는 스케줄러라는 게 있는데 스케줄러가 시분할로 아주 짧은 텀을 반복하면서 전환을 하며 연산을 합니다. 
+이걸 위해서 cpu에는 스케줄러라는 게 있는데 스케줄러가 시분할로 아주 짧은 텀을 반복하면서 전환을 하며 연산을 합니다.
 이 과정이 너무 빨라서 우리한테는 프로그램들이 동시에 실행되는 것처럼 보이게 되는 거죠.
 
-이렇게 cpu 할당이 되는 프로세스를 바꾸는 걸 __컨텍스트 스위치__ 라고 해요.  문맥 교환이라고 합니다.
+이렇게 cpu 할당이 되는 프로세스를 바꾸는 걸 **컨텍스트 스위치** 라고 해요. 문맥 교환이라고 합니다.
 
-![context-switch]({process20})
+<img width="344" alt="process-20" src="https://github.com/h-alex2/images/assets/84281505/1a4fd6d5-130b-4433-a23e-39ee115acf46">
+
 동시에 실행되는 것처럼 보이는 걸 동시성을 가진다. 라고 하고, 코어가 여러 개일 때 한 번에 여러 개를 실행하는 걸 병렬이라고 하죠.
 
 프로세스 안에 스레드가 여러 개 있어도 코어의 개수만큼만 병렬 실행이 되고, 나머지는 동시성을 가지게 됩니다.
@@ -202,58 +190,72 @@ type: blog
 (자세히 얘기하면 CPU의 코어 개수와 CPU의 스레드 개수와 연관이 됩니다. CPU의 스레드는 하드웨어 적인 스레드로, 앞서 얘기했던 스레드와는 조금 다른 개념을 가지고 있습니다.)
 
 ### Javascript는 병행 실행!
+
 Javascript는 싱글 스레드죠. 그래서 병렬이라고 하지만 병렬처럼 보이는 동시성을 가집니다. 너무 빨라서 병렬처럼 보이는 것뿐이에요.
+
 - 병렬 실행 🙅‍♂️
 - 병행 실행 🙆‍♀️
 
 ## 멀티 프로세스
+
 이제 멀티 프로세스에 관해서 얘기를 해볼게요.
 
 싱글 코어인 CPU로 vscode를 실행시킨다고 가정해볼게요.
 
-![process]({process22})
+<img width="640" alt="process-22" src="https://github.com/h-alex2/images/assets/84281505/a29a574a-d0d6-4aaa-9a43-a38568d4ee6d">
+
 단일 스레드인 상황에서 아까처럼 vscode에서 코드도 작성하고 터미널도 보는 작업은 어떻게 이뤄질까요?
 
-![process]({process23})
+<img width="668" alt="process-23" src="https://github.com/h-alex2/images/assets/84281505/ea5a94a7-beb7-43f1-a2b4-5046c48983c9">
+
 단일 스레드를 가진 프로세스 상황에서는 프로세스 자신을 복사하여 또 다른 독립적인 프로세스를 만들어냅니다.
 프로세스는 각각이 독립적이기 때문에 복사하게 되면 또 다른 메모리를 차지하게 됩니다.
 
-![process]({process24})
+<img width="883" alt="process-24" src="https://github.com/h-alex2/images/assets/84281505/7981b7a1-fc58-4540-a866-79b3651b586a">
+
 그럼 vscode와 관련된 일이 10개라면 10개를 복제하여 총 10개의 프로세스 메모리를 차지하게 됩니다.
-멀티 프로세스를 수행하기 위해서 10개의 프로세스가 서로 컨텍스트 스위칭을 하며 즉 왔다갔다 번갈아 가며 실행됩니다. 
+멀티 프로세스를 수행하기 위해서 10개의 프로세스가 서로 컨텍스트 스위칭을 하며 즉 왔다갔다 번갈아 가며 실행됩니다.
 
 ## 멀티 스레드
-![process]({process25})
+
+<img width="684" alt="process-25" src="https://github.com/h-alex2/images/assets/84281505/8e347c00-4cdb-4042-b677-a30571be4f9d">
 
 멀티 스레드는 프로세스가 가진 메모리로 공간이 한정됩니다. 프로세스의 자원을 공유하면서 스레드 각각이 컨텍스트 스위칭 또는 병렬로 작업을 진행하게 됩니다.
-그리고 멀티 프로세스처럼 독립적이지 않고 프로세스의 자원을 __공유__ 해요.
+그리고 멀티 프로세스처럼 독립적이지 않고 프로세스의 자원을 **공유** 해요.
 
 그림에는 스택이 표현되어 있지 않지만, 스레드는 각각 스택 공간을 가지게 됩니다. 이것이 Javascript에 콜스택이 하나 밖에 없는 이유입니다.
 
 ## 멀티 스레드 vs 멀티 프로세스
+
 멀티 프로세스는 보는 것과 같이 메모리를 많이 사용하게 됩니다. 이에 비해 멀티스레드는 자원을 공유할 수 있으니 굉장히 효율적이죠.
 이렇게 보면 효율적인 멀티스레드만 사용하면 될 것 같다는 생각이 들 수 있어요.
 
 하지만 각각 장단점이 있기에 현재 우리가 쓰는 컴퓨터는 멀티 프로세스와 멀티 스레드를 혼합하여 사용하게 됩니다.
 
 ### 예시) 크롬 브라우저
+
 우리가 매일 사용하는 구글 크롬을 예시로 들어볼게요.
-![process]({process26})
+
+<img width="542" alt="process-26" src="https://github.com/h-alex2/images/assets/84281505/0d065e6b-3c98-4ad1-96a2-fcfb1f06efd7">
 
 과제를 하다가 로컬호스트에서 스택오버플로우 에러가 났던 경험 한 번쯤은 있으시겠죠.? 이럴 경우 크롬이라면 먹통이 된 탭만 끈다면 다른 탭들은 문제 없이 잘 작동됨을 확인할 수 있어요. 이건 크롬의 모든 탭이 한 자원을 공유하는 멀티 스레드 형식이 아닌, 탭 마다 프로세스가 있는 멀티 프로세스 형식이기 때문이에요. 서로 독립된 상태로 실행되기 때문에 다른 탭에 영향을 주지 않죠.
 
-![process]({process27})
+<img width="917" alt="process-27" src="https://github.com/h-alex2/images/assets/84281505/67297606-1904-46c3-876e-ce9f4045da54">
+
 근데 만약 멀티 프로세스 형식이 아니라, 탭 개수 만큼 스레드가 있는 멀티 스레드 형식이라면 어떻게 될까요?
 
-![process]({process28})
-![process]({process29})
+<img width="669" alt="process-28" src="https://github.com/h-alex2/images/assets/84281505/ad5fa66e-6df7-4517-ac66-0f259f4cf878">
+
+<img width="660" alt="process-29" src="https://github.com/h-alex2/images/assets/84281505/13504672-e4ff-4b80-baf8-14998ee85b77">
 
 하나의 스레드가 문제가 생겼을 때 공유하고 있는 자원에 영향이 가게 되어 나머지 스레드들에도 문제가 생겨 크롬 자체가 먹통이 되어버릴 거에요.
 
-![process]({process30})
+<img width="439" alt="process-30" src="https://github.com/h-alex2/images/assets/84281505/1195bdc3-fcf6-4a95-903b-ee683e8bd0b6">
+
 그럼 이제 예전 인터넷 익스플로러를 썼을 때도 다른 탭에서는 음악을 듣기도 하고 여러 개의 작업을 동시에 할 수 있었어요. 근데 어떤 에러가 나게 되면 위와 같은 작동이 중지되었다는 에러가 자주 뜨곤 했었죠.. 이때는 단일 프로세스 멀티 스레드 방식이라는 걸 예측할 수 있습니다.
 
 ## 정리
+
 1. **프로그램**은 코드 조각이고 **프로세스**는 프로그램이 실행된 것이다.
 2. **프로세스** 내에는 최소 하나의 **스레드**가 있다.
 3. **스레드**는 CPU의 **연산 단위**이다.
@@ -264,6 +266,7 @@ Javascript는 싱글 스레드죠. 그래서 병렬이라고 하지만 병렬처
 
 ---
 
-> 요리사 그림, explorer 사진 출처  
+> 요리사 그림, explorer 사진 출처
+
 - [얄팍한 코딩사전](https://www.youtube.com/watch?v=iks_Xb9DtTM)
 - [[10분 테코톡] 🌷 코다의 Process vs Thread](https://www.youtube.com/watch?v=1grtWKqTn50)

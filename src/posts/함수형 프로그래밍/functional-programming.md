@@ -5,7 +5,7 @@ description: 함수형 프로그래밍이 무엇인지, 불변성과 계층형 �
 date: 2023-08-01 16:01:34
 ---
 
-<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791191600759.jpg" alt="book-image">
+<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791191600759.jpg" alt="book">
 쏙쏙 들어오는 함수형 코딩을 읽고 정리한 글입니다.
 
 ## 함수형 프로그래밍이란?
@@ -265,7 +265,7 @@ remove_item_by_name() calc_total() add_item() setPriceByName() // 장바구니�
 - `freeTieClip()` 함수가 알아야 할 필요가 없는 구체적인 내용을 담고 있다.
   - 마케팅 캠페인에 관련된 함수가 장바구니가 배열이라는 사실을 알아야 할까?
 
-<img width="993" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/d0291b8b-065c-4091-b231-4baf7316d28c">
+<img width="993" alt="pattern" src="https://github.com/h-alex2/imgaes/assets/84281505/d0291b8b-065c-4091-b231-4baf7316d28c">
 
 - `make_item()` 함수와 `add_item()`함수는 직접 만든 함수이다. 그리고 반복문이나 배열 인덱스 참조 기능은 언어에서 제공하는 기능이다. 직접 만든 함수와 언어 기능은 추상화 수준이 다르다.
 - 다이어그램으로 표현하면 위와 같다.
@@ -315,7 +315,7 @@ function isInCart(cart, name) {
 }
 ```
 
-<img width="809" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/945bc0a5-b4df-4c3d-b274-83f73ecbd231">
+<img width="809" alt="cart" src="https://github.com/h-alex2/imgaes/assets/84281505/945bc0a5-b4df-4c3d-b274-83f73ecbd231">
 
 - 개선된 함수에서는 장바구니가 배열인지 몰라도 된다. `freeTieClip()`이 사용하는 모든 함수는 장바구니가 배열인지 몰라도 된다.
   - 장바구니가 배열인지 몰라도 된다는 것은 함수가 모두 비슷한 계층에 있다는 것을 의미한다. 이처럼 함수가 모두 비슷한 계층에 있다면 직접 구현했다고 할 수 있다.
@@ -331,7 +331,7 @@ function isInCart(cart, name) {
 - 추상화 벽은 세부 구현을 감춘 함수로 이루어진 계층이다. 추상화 벽에 있는 함수를 사용할 때는 구현을 전혀 몰라도 함수를 쓸 수 있다.
 - 추상화 벽은 흔하게 사용하는 라이브러리나 API와 비슷하다.
 
-<img width="1171" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/6bfd652e-19a8-4516-95ac-d6e29d37cffe">
+<img width="1171" alt="wall" src="https://github.com/h-alex2/imgaes/assets/84281505/6bfd652e-19a8-4516-95ac-d6e29d37cffe">
 
 - 이 예제에서 추상화 벽이 의미하는 것은 추상화 벽 위에 있는 함수가 데이터 구조를 몰라도 된다는 것을 말한다. 그래서 추상화 벽 위에 있는 함수를 사용하는 사람에게 구조가 **배열에서 객체로** 바뀌었다는 것을 알리지 않아도 된다.
 - 추상화 벽을 가로지르는 화살표가 없다는 것이 중요하다.
@@ -364,12 +364,12 @@ function isInCart(cart, name) {
 
 ### 어떤 코드를 테스트 해야할까? -> 아래에 있는 코드
 
-<img width="822" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/5a48d8cc-70fb-43fd-bb00-6b7099a721ca">
+<img width="822" alt="test" src="https://github.com/h-alex2/imgaes/assets/84281505/5a48d8cc-70fb-43fd-bb00-6b7099a721ca">
 
 - 2번째 계층의 2번째 함수를 테스트하면 해당 함수가 사용하는 함수들이 잘 동작하는지 확인할 수 있다.
 - 만약 가장 아래의 함수를 테스트하면 해당 함수를 사용하는 함수는 더 믿고 쓸 수 있다.
 
-<img width="1011" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/113fa845-65c8-4cb4-a34c-6ff2c423088d">
+<img width="1011" alt="test" src="https://github.com/h-alex2/imgaes/assets/84281505/113fa845-65c8-4cb4-a34c-6ff2c423088d">
 
 - 테스트도 만들려면 시간이 걸리는 일이다. 그리고 일을 가능한 한 효율적으로 해야 한다. 위쪽에 있는 코드가 자주 바뀌면 해당 코드의 테스트 코드도 바뀐 행동에 맞게 고쳐줘야 한다. 하지만 아래쪽에 있는 코드는 자주 바뀌지 않기 때문에 테스트 코드도 자주 고칠 필요가 없다.
 - 패턴을 사용하면 테스트 가능성에 맞춰 코드를 계층화할 수 있다. 하위 계층으로 코드를 추출하거나 상위 계층에 함수를 만드는 일은 테스트의 가치를 결정한다.

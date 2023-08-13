@@ -4,10 +4,6 @@ tag: 알고리즘
 date: 2023-02-08 19:50:05
 ---
 
-<script>
-  import image from "$lib/images/posts/tree.png";
-</script>
-
 모든 경우의 수를 구하는 게 이해가 잘 되지 않아서 정리해봤다. 탐색이 굉장히 중요한 것 같은데 매번 막히는 게 너무 답답스.. 정리가 부족한 부분이 많은 것 같아 이번 기회에 정리해보았다. 확실히 짚고 넘어가는 것도 중요하지만 반복해서 하는 게 중요한 것 같다.
 
 <div class="table-wrapper">
@@ -47,7 +43,8 @@ function getPermutation(arr, selectNumber) {
 }
 ```
 
-![permutation]({image})
+<img width="1160" alt="tree" src="https://github.com/h-alex2/images/assets/84281505/44da5c4d-e424-4c76-9372-0dd62dac3eac">
+
 배열이 `[1, 2, 3, 4]`일 때 재귀 함수가 작동되는 순서를 그려보면 위와 같다. 빨간색 숫자가 함수가 작동되는 순서이다. 위에서 부터 숫자를 이어보면
 
 - `[1, 2, 3, 4]`

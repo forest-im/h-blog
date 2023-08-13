@@ -33,7 +33,7 @@ date: 2022-04-13 00:24:48
 - we use javascript plain objects in the place of Hash Table. 해시테이블 대신 일반 객체를 사용함 (자바스크립트에 있는 plain object가 해시테이블을 이용해 구현됐고 해시테이블과 유사한 성격을 가졌다고 합니다..)  -->
 
 <a href="https://en.wikipedia.org/wiki/Hash_table#Choosing_a_hash_function" target='_blank'> 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hash_table_3_1_1_0_1_0_0_SP.svg/1280px-Hash_table_3_1_1_0_1_0_0_SP.svg.png"></a>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hash_table_3_1_1_0_1_0_0_SP.svg/1280px-Hash_table_3_1_1_0_1_0_0_SP.svg.png" alt="hash"></a>
 
 ```js
 const table = {};
@@ -86,7 +86,7 @@ table["key2"] = "Hello";
 - 데이터의 수가 많아지면 linked list를 tree형태로 바꾸어 성능의 이슈를 해결할 수 있습니다.
 
 <a href="https://en.wikipedia.org/wiki/Hash_table#Choosing_a_hash_function" target='_blank'> 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hash_table_5_0_1_1_1_1_1_LL.svg/1280px-Hash_table_5_0_1_1_1_1_1_LL.svg.png"></a>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hash_table_5_0_1_1_1_1_1_LL.svg/1280px-Hash_table_5_0_1_1_1_1_1_LL.svg.png" alt="separate"></a>
 
 ## 2. Open addressing 개방 주소법
 
@@ -95,10 +95,10 @@ table["key2"] = "Hello";
 - index의 값은 해시함수에 의해서 정해지는 게 아닌 이전 값에 영향을 받게됩니다.
 
 <a href="https://en.wikipedia.org/wiki/Hash_table#Choosing_a_hash_function" target='_blank'> 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Hash_table_5_0_1_1_1_1_0_SP.svg/1024px-Hash_table_5_0_1_1_1_1_0_SP.svg.png"></a>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Hash_table_5_0_1_1_1_1_0_SP.svg/1024px-Hash_table_5_0_1_1_1_1_0_SP.svg.png" alt="addressing"></a>
 
 <a href="https://en.wikipedia.org/wiki/Hash_table#Choosing_a_hash_function" target='_blank'> 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/HASHTB12.svg/1920px-HASHTB12.svg.png"></a>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/HASHTB12.svg/1920px-HASHTB12.svg.png" alt="open"></a>
 
 ### probing
 

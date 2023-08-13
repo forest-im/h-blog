@@ -42,10 +42,6 @@
 {/if}
 
 <style lang="postcss">
-	li {
-		@apply mx-1;
-	}
-
 	.toggle-switch {
 		width: 50px;
 		height: 24px;

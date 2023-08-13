@@ -51,7 +51,7 @@ EC2 다룰 때는 절대적으로 보안에 주의하기. 꼭 root 유저가 아
 
 AWS EC2로 들어간다.
 
-<img width="328" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/9ae2ef10-f864-40b1-8dba-f39951415e82">
+<img width="328" alt="ec2" src="https://github.com/h-alex2/imgaes/assets/84281505/9ae2ef10-f864-40b1-8dba-f39951415e82">
 cloudfront를 사용한다면 버지니아 북부로 설정해야 한다. JaamToast에서는 cloudfront를 사용했기 때문에 버지니아 북부를 선택했다.  
 지역은 가까운 곳으로 설정해야 비용면에서 이득이 있는 걸로 알고 있다. 사용할 툴을 보고 지역이 제한되어있지는 않은지 체크한 후 위치를 선택해야 한다.
 
@@ -59,29 +59,29 @@ cloudfront를 사용한다면 버지니아 북부로 설정해야 한다. JaamTo
 
 ### 2. EC2 인스턴스 생성하기
 
-<img width="269" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/a2308295-7f7d-4b65-a18f-651a12c394ea">
+<img width="269" alt="ec2" src="https://github.com/h-alex2/imgaes/assets/84281505/a2308295-7f7d-4b65-a18f-651a12c394ea">
 
-<img width="977" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/e73004c1-be7a-474a-8eb4-46253d912f49">
+<img width="977" alt="ec2" src="https://github.com/h-alex2/imgaes/assets/84281505/e73004c1-be7a-474a-8eb4-46253d912f49">
 
 인스턴스 시작 클릭
 
 이름 작성
 
-<img width="754" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/3bfa2a1e-e55e-41d5-b4dd-b797863deb02">
+<img width="754" alt="ec2" src="https://github.com/h-alex2/imgaes/assets/84281505/3bfa2a1e-e55e-41d5-b4dd-b797863deb02">
 
 난 리눅스로 선택했다. 우분투 등 선택할 수 있는 설정이 많으니 취향껏 선택하면 된다. 만약 SSH 접속을 하게 된다면 환경에 따라 터미널 명령어가 달라지니 참고하기
 Amazon Machine Image(AMI)는 프리 티어 사용 가능 중에 고르면 된다. 본인에게 맞는 환경으로 선택하기.
 
-<img width="797" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/68b32780-643b-4e44-a584-b008f4c03518">
+<img width="797" alt="ec2" src="https://github.com/h-alex2/imgaes/assets/84281505/68b32780-643b-4e44-a584-b008f4c03518">
 
 인스턴스 유형 중에 프리 티어가 적용되는 t2.micro는 메모리가 굉장히 작다. 처음에 t2를 선택했다가 메모리가 부족해 t3로 변경했는데, 변경하게 되면 배포 셋팅을 다시 해야하니 굉장히 번거로웠다. 처음부터 너무 작은 사이즈 보다는 t3 이상을 선택하는 게 나을 수도 있다. (beanstalk으로 배포하게 되면 t3 인스턴스가 생성된다.) 시간당 요금이 적혀있으니 참고하여 선택하기
 
 키 페어는 없다면 새 키 페어 생성하기 클릭 - 기본 설정된 그대로 (RSA, .pem형식) 생성하기. pem키는 나중에 터미널로 SSH 연결하거나 할 때 필요하니 위치 기억하기. (키페어 절대 유출되지 않도록 조심히 관리하기)
 
-<img width="796" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/ab3eba80-5fb9-49d4-a139-27d74ac7914d">
+<img width="796" alt="ec2" src="https://github.com/h-alex2/imgaes/assets/84281505/ab3eba80-5fb9-49d4-a139-27d74ac7914d">
 SSH, HTTPS, HTTP 트래픽 허용에 체크해준다. 0.0.0.0/0 위치 무관으로 설정하면 경고 메시지가 뜨니 나중에 IP 주소를 설정하는 게 좋을듯.
 
-<img width="823" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/9a8c2470-7366-4f65-b373-0c5195019917">
+<img width="823" alt="ec2" src="https://github.com/h-alex2/imgaes/assets/84281505/9a8c2470-7366-4f65-b373-0c5195019917">
 
 인스턴스 "시작" 클릭하면 생성이 시작된다.
 
@@ -90,7 +90,7 @@ SSH, HTTPS, HTTP 트래픽 허용에 체크해준다. 0.0.0.0/0 위치 무관으
 ### 3. 인스턴스 내 환경 셋팅하기
 
 이제 인스턴스 내에 환경을 셋팅해야 한다. 생성된 인스턴스 클릭 후 "연결"을 클릭한다.
-<img width="850" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/b5b7219d-b391-4eb3-aee1-b64d0542e0ca">
+<img width="850" alt="ec2" src="https://github.com/h-alex2/imgaes/assets/84281505/b5b7219d-b391-4eb3-aee1-b64d0542e0ca">
 이런 화면이 나오면 그대로 연결 클릭하기.
 
 #### 1. root 모드로 변경하기
@@ -135,7 +135,7 @@ pm2는 Node.js 애플리케이션 프로세스 관리자 도구다. Node.js 애�
 - `service nginx start` nginx 시작하기
 - 인스턴스 페이지로 돌아가서 퍼블릭 IPv4 주소 복사하고 주소창에 입력하기
 
-<img width="1434" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/8acdf389-a928-4542-8be1-5f18e9121f98">
+<img width="1434" alt="ec2" src="https://github.com/h-alex2/imgaes/assets/84281505/8acdf389-a928-4542-8be1-5f18e9121f98">
 이런 화면 또는 nginX 관련 화면이 나온다면 nginX 설정 잘 된 것
 
 #### (선택) AMI 설정하기
@@ -173,14 +173,14 @@ echo 의 따옴표 안에 환경 변수 값을 넣어 그대로 입력한다.
 
 #### 1. 인스턴스 페이지로 들어가기
 
-<img width="1019" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/08e0af92-3d3a-4e6e-9baa-563e49ae30f2">
+<img width="1019" alt="instance" src="https://github.com/h-alex2/imgaes/assets/84281505/08e0af92-3d3a-4e6e-9baa-563e49ae30f2">
 밑에 보안 클릭
-<img width="905" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/a4427da2-6016-4449-90be-d6f143b09985">
+<img width="905" alt="instance" src="https://github.com/h-alex2/imgaes/assets/84281505/a4427da2-6016-4449-90be-d6f143b09985">
 저기 클릭
-<img width="1033" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/89708d4b-6b1d-46eb-ae4d-91d41f33fa4c">
+<img width="1033" alt="instance" src="https://github.com/h-alex2/imgaes/assets/84281505/89708d4b-6b1d-46eb-ae4d-91d41f33fa4c">
 순서대로 클릭
 
-<img width="854" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/394993da-0650-476f-a606-cb7e65774702">
+<img width="854" alt="instance" src="https://github.com/h-alex2/imgaes/assets/84281505/394993da-0650-476f-a606-cb7e65774702">
 규칙 추가 후 포트 번호 입력 후 저렇게 설정 (포트 번호는 자신의 프로젝트 포트 번호를 입력해야 함)
 
 - 다시 인스턴스 SSH로 돌아가기
@@ -195,49 +195,49 @@ echo 의 따옴표 안에 환경 변수 값을 넣어 그대로 입력한다.
 
 HTTPS을 연결하는 방법으로는 AWS 로드밸런서 말고도 certbot을 이용한 방법도 가능하다. 이 방법의 장점은 무료라는 점이고, 단점은 3개월에 한 번씩 갱신이 필요하다는 점이다. 무료로 인증서를 발급받고 싶다면 certbot을 이용한 방법을 찾아 적용하면 된다. certbot을 이용한 방법은 certbot과 nginX를 함께 사용해 적용할 수 있다. 난 로드밸런서를 이용한 방법을 택했다.
 
-<img width="238" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/689962cf-64b1-4030-a588-b45fde7b5178">
+<img width="238" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/689962cf-64b1-4030-a588-b45fde7b5178">
 EC2 메뉴에서 로드밸런서를 클릭 - 로드 밸런서 생성을 클릭한다.
 
-<img width="988" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/401567ec-cf5f-4439-9bcb-8d0750e4f4c5">
+<img width="988" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/401567ec-cf5f-4439-9bcb-8d0750e4f4c5">
 Application Load Balancer 생성을 클릭한다.
 
 > Application Load Balancer는 OSI(Open Systems Interconnection) 모델의 **7번째 계층인 애플리케이션 계층**에서 작동합니다. 로드 밸런서는 요청을 수신한 후 우선 순위에 따라 리스너 규칙을 평가하여 적용할 규칙을 결정한 다음 규칙 작업을 위해 대상 그룹에서 대상을 선택합니다. 애플리케이션 트래픽의 내용에 따라 요청을 다른 대상 그룹으로 라우팅하도록 리스너 규칙을 구성할 수 있습니다. 대상이 여러 대상 그룹에 등록된 경우에도 각 대상 그룹에 대해 라우팅이 독립적으로 수행됩니다. 대상 그룹 수준에서 사용되는 라우팅 알고리즘을 구성할 수 있습니다. 기본 라우팅 알고리즘은 라운드 로빈입니다. - [Application Load Balancer란 무엇입니까?](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
 
 설명을 보면 OSI 7번째 계층인 애플리케이션 계층에서 작동한다는 걸 알 수 있다. 그럼 다른 로드밸런서들도 어떤 계층에서 작동하는지 예측할 수 있다. 네트워크 로드밸런서는 3계층, 게이트웨이 로드밸런서는 4계층이라는 걸 예측할 수 있다. 그리고 부하분산 알고리즘은 라운드 로빈이라는 걸 알 수 있다.
 
-<img width="1111" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/0e3d3808-b117-4a6d-a094-391a5d482725">
+<img width="1111" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/0e3d3808-b117-4a6d-a094-391a5d482725">
 이름 입력하고 나머지는 그대로 놔두기
 
-<img width="1103" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/258ab747-830c-43b2-9e26-1875c45034a1">
+<img width="1103" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/258ab747-830c-43b2-9e26-1875c45034a1">
 - 4개 다 체크
 - ap-northeast-2a 여기서 northeast는 지역 이름으로 선택한 지역이름에 따라 다를 수 있음
 
-<img width="1106" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/1ccd4de6-6dab-4070-8c50-e272eae73355">
+<img width="1106" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/1ccd4de6-6dab-4070-8c50-e272eae73355">
 - 새 보안그룹 생성 클릭
 
-<img width="1285" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/1848f17d-dd71-4750-a189-4bcc1703ce05">
+<img width="1285" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/1848f17d-dd71-4750-a189-4bcc1703ce05">
 - 보안 그룹 이름, 설명 작성
 - 사진과 같이 HTTP, HTTPS, SSH 포트 설정
 
-<img width="1093" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/f998621b-836a-47a6-b528-ce6fc3786e3d">
+<img width="1093" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/f998621b-836a-47a6-b528-ce6fc3786e3d">
 - 생성한 보안그룹 추가
 
-<img width="1105" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/38aa70b0-bfab-403c-9a52-4c9555f2abe6">
+<img width="1105" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/38aa70b0-bfab-403c-9a52-4c9555f2abe6">
 - 대상 그룹 생성 클릭
 - 인스턴스 클릭하고, 대상 그룹 이름 적은 후  "다음" 클릭 (상태 검사 경로는 프로젝트 상태 경로에 따라 설정하기)
 - 생성한 인스턴스 체크
 
-<img width="1027" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/b648c4a3-4d38-4e3f-b0fc-fb6e2864ed55">
+<img width="1027" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/b648c4a3-4d38-4e3f-b0fc-fb6e2864ed55">
 - 대상 그룹 생성 클릭
 
-<img width="1111" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/823fd08a-b409-4fa8-a1bf-5eaa8c354380">
+<img width="1111" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/823fd08a-b409-4fa8-a1bf-5eaa8c354380">
 - 새로고침 클릭 후 생성한 대상 그룹 생성 클릭
 
-<img width="1108" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/fc79998c-e450-4d3d-8bcb-65f9dd95a460">
+<img width="1108" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/fc79998c-e450-4d3d-8bcb-65f9dd95a460">
 - 리스너 추가
 - HTTPS 추가
 
-<img width="1131" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/69100cf1-62ca-4a65-8520-265517646e10">
+<img width="1131" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/69100cf1-62ca-4a65-8520-265517646e10">
 - SSL 인증서 추가
 - 로드 밸런서 생성 클릭
 
@@ -246,13 +246,13 @@ Application Load Balancer 생성을 클릭한다.
 ### 6. 도메인 레코드 추가하기
 
 Route53으로 가서 - 호스팅 영역 - 도메인 클릭 - 레코드 생성 클릭
-<img width="1123" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/8a9a6250-154f-4f40-818d-e8869f6d6b36">
+<img width="1123" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/8a9a6250-154f-4f40-818d-e8869f6d6b36">
 
 - 레코드 유형은 A레코드로 설정한 후 "별칭" 을 클릭한다.
 - 레코드 이름에 서브 도메인을 입력한다.
 
-<img width="1092" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/3a81ff8a-5de3-4a63-b59b-3e08f790276b">
-<img width="982" alt="image" src="https://github.com/h-alex2/imgaes/assets/84281505/e9415646-668d-4f9c-98c2-d40d7575579f">
+<img width="1092" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/3a81ff8a-5de3-4a63-b59b-3e08f790276b">
+<img width="982" alt="load" src="https://github.com/h-alex2/imgaes/assets/84281505/e9415646-668d-4f9c-98c2-d40d7575579f">
 - region을 선택하고, 생성한 로드밸런서를 클릭한다.
 - 레코드 생성을 클릭한다.
 

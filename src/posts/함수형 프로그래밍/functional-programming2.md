@@ -5,7 +5,7 @@ description: 일급 함수와 고차 함수를 통해 리팩토링하기
 date: 2023-08-02 22:50:16
 ---
 
-<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791191600759.jpg" alt="book-image">
+<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791191600759.jpg" alt="book">
 쏙쏙 들어오는 함수형 코딩을 읽고 정리한 글입니다.
 
 ## 코드의 냄새 - 함수 이름에 있는 암묵적 인자
@@ -482,7 +482,50 @@ updatePostById(blogCategory, "12", (post) => updateAuthor(post, capitalizeUserNa
 
 ## 타임라인 격리하기
 
-### JavaScript의 단일 스레드
+## 타임라인 다이어그램
 
-JavaScript의 스레드 모델은 타임라인이 자원을 공유하면서 생기는 문제를 줄여준다. 하나의 메인 스레드만 있어서 대부분의 액션을 하나의 박스로 표현할 수 있다.
-하지만 비동기 콜백을 함께 사용한다면 문제가 생길 수 있다. 비동기 호출은 미래에 알 수 없는 시점에 런타임에 의해 실행된다.
+타임라인은 액션을 순서대로 나열한 것이다. 타임라인 다이어그램은 시간에 따른 액션 순서를 시각적으로 표시한 것이다.
+
+```js
+function add_item_to_cart(name, price, quantity) {
+	cart = add_item(cart, name, price, quantity);
+	calc_cart_total();
+}
+
+// cart 읽기
+// cart 쓰기
+
+function calc_cart_total() {
+	total = 0; // total = 0 쓰기
+	cost_ajax(cart, function (cast) {
+		// cart 읽기, cost_ajax() 부르기
+		total += cost; // total 읽기, 쓰기
+		shipping_ajax(cart, function (shipping) {
+			// cart 읽기, shipping_ajax() 부르기
+			total += shipping; // total 읽기, 쓰기
+			update_total_dom(total); // total 읽기, update_total_dom() 부르기
+		});
+	});
+}
+```
+
+- 인자는 함수를 부르기 전에 실행된다.
+- 저 짧은 코드에 13개의 액션이 있다. 그리고 비동기 콜백 두 개가 있다는 것도 **주의**해야 한다.
+- 비동기 콜백은 **새로운 타임라인에 표시해야 한다.**
+
+## 비동기 호출은 새로운 타임라인으로 그린다.
+
+```js
+saveUserAjax(user, function () {
+	// 서버에 사용자 저장
+	setUserLoadingDOM(false); // 사용자 로딩 표시 감추기
+});
+setUserLoadingDOM(true); // 사용자 로딩 표시 하기
+saveDocumentAjax(document, function () {
+	// 서버에 문서 저장
+	setDocLoadingDOM(false); // 문서 로딩 표시 감추기
+});
+setDocLoadingDOM(true); // 문서 로딩 표시 하기
+```
+
+

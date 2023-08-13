@@ -6,19 +6,7 @@ description: 단위 테스트 책을 읽고 정리한 글입니다.
 type: blog
 ---
 
-<script>
-  import coverageImage from "$lib/images/posts/coverage.png";
-  import test01 from "$lib/images/posts/test-01.png";
-  import test02 from "$lib/images/posts/test-02.png";
-  import test03 from "$lib/images/posts/test-03.png";
-  import test04 from "$lib/images/posts/test-04.png";
-  import test05 from "$lib/images/posts/test-05.png";
-  import test06 from "$lib/images/posts/test-06.png";
-  import test07 from "$lib/images/posts/test-07.png";
-  import unitTesting from "$lib/images/posts/unit-testing.png";
-</script>
-
-<img src={unitTesting} alt="unit-testing-book">
+<img width="768" alt="unit-testing" src="https://github.com/h-alex2/images/assets/84281505/1bf12725-0cdc-4fe8-be59-b27422f5337b">
 
 `Unit Testing` 책을 읽고 정리한 글입니다.
 
@@ -68,7 +56,7 @@ type: blog
 - 잘못 작성된 테스트 코드는 앞서 말한 이점을 누리기 힘들다.
 - 테스트 코드도 결국 유지 보수해야 할 코드이다.
 
-<img src={test01} alt="test">
+<img width="1006" alt="test-01" src="https://github.com/h-alex2/images/assets/84281505/391060f7-bcf5-4288-bc6f-ee7617233fa2">
 
 일부 테스트는 소프트웨어 품질에 많은 기여를 합니다. 그 밖에 다른 테스트는 그렇지 않을 수도 있습니다. 잘못된 경고가 발생하고, 회귀 오류를 알아내는 데 도움이 되지 않으며, 유지 보수를 어렵게 합니다. 프로젝트에 도움이 되는지 여부를 명확하게 파악하지 않고 단위 테스트를 작성하는 데만 빠져들기 쉬울 수 있습니다.
 
@@ -91,7 +79,7 @@ type: blog
 이전 프로젝트 때 커버리지 100%를 목표로 진행을 했었는데 100%는 달성하지 못하고 93.78%를 기록했어요. 이 책을 읽고 나니 커버리지 100%라는 목표가 얼마나 바보 같았는지 알게 됐네요🤪(책에서는 커버리지 100%는 거의 불가능하다고 나옵니다.)  
 커버리지 수치만 생각하고 테스트를 작성하다 보니 몇몇 컴포넌트에서 테스트를 작성하기 힘든 부분이 있었는데, 그 부분이 중요한 역할을 하지 않음에도 계속 시간을 끌며 진행했던 적이 많았어요. 단위 테스트에서 커버할 수 없는 영역이었던 부분도 많았던 것 같아요. 커버리지에만 집중하다 보니 코드 개선의 목적이 아닌, 커버리지만을 위한 테스트 코드를 작성하게 된 거죠.
 
-<img src={coverageImage} alt="coverage">
+<img width="702" alt="coverage" src="https://github.com/h-alex2/images/assets/84281505/511af34f-9a56-4bf1-ae45-1fcd8b187e95">
 제가 이 프로젝트에서 어떤 부분을 리팩토링 한다면 몇 개의 테스트 코드를 리팩토링 해야 할지.. 기대되네요..🥹
 
 <br />
@@ -232,12 +220,12 @@ if문은 테스트가 한 번에 너무 많은 것을 검증한다는 표시이�
 
 | 나쁜 테스트                                                                                                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <img src={test02} alt="unit-testing-book">                                                                                                                                      |
+| <img width="998" alt="test-02" src="https://github.com/h-alex2/images/assets/84281505/a0df8385-8816-4269-bcae-023511f653fa">                                                    |
 | 위와 같은 테스트는 특정 구현(결과 전달을 위해 테스트 대상이 수행해야 할 특정 단계)을 예상하므로 깨지기 쉽습니다. 테스트 대상을 리팩터링하면 모두 테스트 실패로 이어지게 됩니다. |
 
 | 좋은 테스트                                                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <img src={test03} alt="unit-testing-book">                                                                                                         |
+| <img width="932" alt="test-03" src="https://github.com/h-alex2/images/assets/84281505/bdc725ad-a2c8-4248-9370-1529b746529a">                       |
 | 구현 세부 사항이 아닌 테스트 대상의 식별할 수 있는 동작과 결합된 테스트. 이러한 테스트는 리팩터링 내성이 있고, 거짓 양성은 거의 발생하지 않습니다. |
 
 </div>
@@ -272,22 +260,27 @@ if문은 테스트가 한 번에 너무 많은 것을 검증한다는 표시이�
 
 ## 이상적인 테스트?
 
-<img src={test04} alt="unit-testing-book">
+<img width="816" alt="test-04" src="https://github.com/h-alex2/images/assets/84281505/c253de40-a046-4234-89e4-b2c18565b68a">
+
 이 세 가지 특성 중 두 가지를 극대화하는 테스트를 만들기는 매우 쉽지만, 나머지 특성 한 가지를 희생해야만 가능합니다. 안타깝게도 세 가지 특성 모두 완벽한 점수를 얻어서 이상적인 테스트를 만드는 것은 불가능합니다.
 
 <br />
 <br />
 
-**그럼 어떤 부분에 집중해야 할까요?**  
-<img src={test05} alt="unit-testing-book">
+**그럼 어떤 부분에 집중해야 할까요?**
+
+<img width="855" alt="test-05" src="https://github.com/h-alex2/images/assets/84281505/15ff1206-df8f-4e29-854d-5f785e0b27fb">
 
 ➡ **리팩터링 내성** 에 집중해야 합니다. E2E 테스트만 쓰거나 테스트가 상당히 빠르지 않는 한, 리팩터링 내성을 최대한 많이 갖는 것을 목표로 해야 합니다.
 
 - 리팩터링 내성을 포기할 수 없는 이유는 테스트가 이 특성을 갖고 있는지 여부는 대부분 이진 선택이기 때문입니다. 중간이 거의 없어 리팩터링 내성을 조금만 인정할 수는 없는 반면, 회귀 방지와 빠른 피드백에 대한 지표는 조절이 가능합니다.
 
-<img src={test07} alt="unit-testing-book">
+<img width="805" alt="test-07" src="https://github.com/h-alex2/images/assets/84281505/5df420c0-d961-416c-9243-e1e2146687e7">
+
 테스트 피라미드는 종종 세 가지 유형의 피라미드로 표현합니다. 테스트 유형에 따라 빠른 피드백과 회귀 방지 사이에서 선택을 합니다. 피라미드 상단의 테스트는 회귀 방지에 유리한 반면, 하단은 실행 속도를 강조합니다.
-<img src={test06} alt="unit-testing-book">
+
+<img width="726" alt="test-06" src="https://github.com/h-alex2/images/assets/84281505/c0ebff6c-7a5f-45c4-b559-072324f5f335">
+
 어느 계층도 리팩터링 내성을 포기하지 않습니다.
 테스트 유형 간의 정확한 비율은 각 팀과 프로젝트마다 다르지만, 일반적으로는 피라미드 형태를 유지해야 합니다.
 

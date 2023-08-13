@@ -5,7 +5,7 @@ tag: LocalStorage, SessionStorage, Cookies
 date: 2023-07-13 14:55:20
 ---
 
-<img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" width="600">
+<img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="cookie" width="600">
 
 쿠키, localStorage.. 매번 옵션에 대해 기억이 나질 않아 정리를 해본다🍪
 
