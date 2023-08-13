@@ -1,24 +1,16 @@
 <script>
 	import { page } from "$app/stores";
 	import { goto } from "$app/navigation";
-	import { browser } from "$app/environment";
 	import { currentPage } from "$lib/store";
 	import { DEFAULT_POSTS_COUNT, DEFAULT_PAGES_COUNT } from "$lib/constants/postDefaultValue";
 	import clsx from "clsx";
-	import { onMount } from "svelte";
 
 	export let count;
 
 	let pageArr = [];
 	let endOfPage;
 	let slug = $page.params.slug;
-
-	onMount(() => {
-		if ($page.route.id === "/blog/categories/[slug]") {
-			goto(`/blog/categories/${slug}?page=${$page.url.searchParams.get("page")}`);
-		}
-		currentPage.setPage(parseInt($page.url.searchParams.get("page")));
-	});
+	let url = $page.url.pathname;
 
 	function getPageArr(allPosts, currentPage, defaultPostsCount, defaultPagesCount) {
 		const currentPagesCount = Math.ceil(currentPage / defaultPagesCount);
@@ -37,12 +29,6 @@
 		endOfPage = Math.ceil(count / DEFAULT_POSTS_COUNT);
 		pageArr = getPageArr(count, $currentPage, DEFAULT_POSTS_COUNT, DEFAULT_PAGES_COUNT);
 		slug = $page.params.slug;
-
-		if (browser) {
-			$page.route.id === "/blog/tags/[slug]"
-				? goto(`/blog/tags/${slug}?page=${$currentPage}`)
-				: goto(`/blog/categories/${slug}?page=${$currentPage}`);
-		}
 	}
 </script>
 
@@ -60,9 +46,11 @@
 		<div
 			class="inline-flex w-10 cursor-pointer justify-center"
 			on:click={() => {
+				goto(`${url}?page=${page}`);
 				currentPage.clickPage(page);
 			}}
 			on:keydown={() => {
+				goto(`${url}?page=${page}`);
 				currentPage.clickPage(page);
 			}}
 		>
