@@ -1,6 +1,14 @@
 <script>
-	import loading from "$lib/images/loading.png";
 	import { onMount } from "svelte";
+	import loading from "$lib/images/loading.png";
+  import leo from "$lib/images/photos/01.jpg"
+  import flowers from "$lib/images/photos/02.jpg"
+  import cat from "$lib/images/photos/03.jpg"
+  import sky from "$lib/images/photos/04.jpg"
+  import sea from "$lib/images/photos/05.jpg"
+  import sea2 from "$lib/images/photos/06.jpg"
+  import leo2 from "$lib/images/photos/07.jpg"
+  import leo3 from "$lib/images/photos/08.jpg"
 
 	onMount(() => {
 		var lazyloadImages;
@@ -57,56 +65,56 @@
 	<img
 		class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 		src={loading}
-		data-src="https://github.com/h-alex2/images/assets/84281505/589f3427-4815-4a6e-a4d2-b07beb488dfc"
+		data-src={leo2}
 		alt="my-photo-07"
 		width="800"
 	/>
 	<img
 		class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 		src={loading}
-		data-src="https://github.com/h-alex2/images/assets/84281505/dfd495b4-4b69-408a-b8b5-14fbc80913b8"
+		data-src={leo}
 		alt="my-photo-01"
 		width="800"
 	/>
 	<img
 		class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 		src={loading}
-		data-src="https://github.com/h-alex2/images/assets/84281505/664d0d52-2d45-4801-bb58-38be0c54b73b"
+		data-src={flowers}
 		alt="my-photo-02"
 		width="800"
 	/>
 	<img
 		class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 		src={loading}
-		data-src="https://github.com/h-alex2/images/assets/84281505/6555e6fc-0ff9-47ed-ba85-e043eb2e1cfd"
+		data-src={cat}
 		alt="my-photo-03"
 		width="800"
 	/>
 	<img
 		class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 		src={loading}
-		data-src="https://github.com/h-alex2/images/assets/84281505/3c3037e3-3499-454a-814f-ad17b8272f7b"
+		data-src={sky}
 		alt="my-photo-04"
 		width="800"
 	/>
 	<img
 		class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 		src={loading}
-		data-src="https://github.com/h-alex2/images/assets/84281505/b7e1b028-1676-475d-a65f-4acd618d74cb"
+		data-src={sea}
 		alt="my-photo-05"
 		width="800"
 	/>
 	<img
 		class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 		src={loading}
-		data-src="https://github.com/h-alex2/images/assets/84281505/b3ef31cd-66a5-4bdc-8dae-9a0144696d5b"
+		data-src={sea2}
 		alt="my-photo-06"
 		width="800"
 	/>
 	<img
 		class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 		src={loading}
-		data-src="https://github.com/h-alex2/images/assets/84281505/9a37bd59-5b34-4e4d-af1c-e869990901ee"
+		data-src={leo3}
 		alt="my-photo-08"
 		width="800"
 	/>
