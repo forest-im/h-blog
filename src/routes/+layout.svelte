@@ -58,7 +58,7 @@
 					>
 						<a href="/"><li class="cursor-pointer">Home</li></a>
 						<a href="/blog/categories/all?page=1"><li class="cursor-pointer">Blog</li></a>
-						<a href="/projects"><li class="cursor-pointer">Project</li></a>
+						<a href="/projects"><li class="cursor-pointer">Projects</li></a>
 						<a href="/photos"><li class="cursor-pointer">Photos</li></a>
 						<a href="/contact"><li class="cursor-pointer">Contact</li></a>
 					</ul>
