@@ -87,7 +87,9 @@
 							<span
 								class="cursor-pointer rounded-xl border border-white pl-1 pr-1 hover:text-blue-500"
 							>
-								<a href="https://aoa.air-mind.live/" target="_blank">Air Mind ↗</a>
+								<a href="https://github.com/h-alex2/air-mind#service-demo" target="_blank"
+									>Air Mind</a
+								>
 							</span>
 						</li>
 						<li>마인드맵 공유가 가능한 실시간 업무 협업 플랫폼</li>
