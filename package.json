@@ -53,5 +53,8 @@
 	"main": "index.js",
 	"repository": "https://github.com/h-alex2/h-blog.git",
 	"author": "임현정 | Alex Im <84281505+h-alex2@users.noreply.github.com>",
-	"license": "MIT"
+	"license": "MIT",
+	"dependencies": {
+		"@emailjs/browser": "^3.11.0"
+	}
 }
