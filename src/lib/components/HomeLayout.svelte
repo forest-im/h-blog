@@ -26,7 +26,7 @@
 								class="flex h-8 w-8 items-center justify-center rounded-3xl bg-white max-[500px]:h-7 max-[500px]:w-7"
 							>
 								<p
-									class="translate-y-[1px] font-mono text-xs font-black text-[#1f1f1f] max-[500px]:text-[5px]"
+									class="translate-y-[1px] font-mono text-xs font-black text-[#1f1f1f] max-[500px]:text-[0.5rem]"
 								>
 									BLOG
 								</p>
