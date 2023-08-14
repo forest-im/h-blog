@@ -1,5 +1,7 @@
 <script>
 	import githubIcon from "$lib/icons/github-mark-white.png";
+	import resume from "$lib/icons/resume.png";
+	import blog from "$lib/icons/blog.png";
 	import HomeCategory from "./HomeCategory.svelte";
 </script>
 
@@ -7,7 +9,6 @@
 	<div class="vignetting z-30" />
 	<div class="top-effect z-30" />
 	<div class="noise pointer-events-none z-50" />
-  
 
 	<!-- header -->
 	<div
@@ -16,18 +17,44 @@
 		<div class="flex justify-between">
 			<div class="w-full">
 				<div class="flex w-full items-center justify-between">
-					<a href="/">
-						<p class="text-6xl font-thin text-white hover:font-extralight max-[500px]:text-3xl">
-							Hyunjung Im
-						</p>
-					</a>
-					<div>
+					<p class="text-6xl font-thin text-white max-[500px]:text-2xl max-[500px]:font-light">
+						Hyunjung Im
+					</p>
+					<div class="flex translate-y-[1px] items-center justify-center gap-3">
+						<a class="z-[50] cursor-pointer" href="/blog/categories/all?page=1" target="_blank">
+							<div
+								class="flex h-8 w-8 items-center justify-center rounded-3xl bg-white max-[500px]:h-7 max-[500px]:w-7"
+							>
+								<p
+									class="translate-y-[1px] font-mono text-xs font-black text-[#1f1f1f] max-[500px]:text-[5px]"
+								>
+									BLOG
+								</p>
+							</div>
+						</a>
+						<a class="z-[50] cursor-pointer" href="/resume" target="_blank">
+							<div
+								class="flex h-8 w-8 items-center justify-center rounded-3xl bg-white max-[500px]:h-7 max-[500px]:w-7"
+							>
+								<img
+									class="resume m-0 h-6 w-6 scale-125 rounded-full p-[0.5px] max-[500px]:h-5 max-[500px]:w-5"
+									src={resume}
+									alt="github"
+									width="32px"
+								/>
+							</div>
+						</a>
 						<a class="z-[50] cursor-pointer" href="https://github.com/h-alex2" target="_blank"
-							><img class="m-0 h-8 w-8" src={githubIcon} alt="github" width="32px" /></a
+							><img
+								class="m-0 h-8 w-8 max-[500px]:h-7 max-[500px]:w-7"
+								src={githubIcon}
+								alt="github"
+								width="32px"
+							/></a
 						>
 					</div>
 				</div>
-				<p class="pt-2 font-thin text-white">Frontend Developer</p>
+				<p class="pt-2 text-sm font-thin text-white max-[500px]:pt-0">Frontend Developer</p>
 			</div>
 		</div>
 	</div>
@@ -37,6 +64,16 @@
 </div>
 
 <style>
+	.blog {
+		-webkit-filter: opacity(0.5) drop-shadow(0 0 0 #ffffff);
+		filter: opacity(0.5) drop-shadow(0 0 0 #ffffff);
+	}
+
+	.resume {
+		-webkit-filter: opacity(0.5) drop-shadow(0 0 0 #1f1f1f);
+		filter: opacity(0.5) drop-shadow(0 0 0 #1f1f1f);
+	}
+
 	.vignetting {
 		position: fixed;
 		top: 0;
