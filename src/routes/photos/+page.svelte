@@ -10,6 +10,9 @@
 	import sea2 from "$lib/images/photos/06.jpg";
 	import leo2 from "$lib/images/photos/07.jpg";
 	import leo3 from "$lib/images/photos/08.jpg";
+	import flowers2 from "$lib/images/photos/09.jpg";
+	import leo4 from "$lib/images/photos/10.jpg";
+	import leo5 from "$lib/images/photos/11.jpg";
 	import HomeBackground from "$lib/components/HomeBackground.svelte";
 
 	onMount(() => {
@@ -89,6 +92,13 @@
 		<img
 			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 			src={loading}
+			data-src={flowers2}
+			alt="my-photo-09"
+			width="800"
+		/>
+		<img
+			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
+			src={loading}
 			data-src={cat}
 			alt="my-photo-03"
 			width="800"
@@ -119,6 +129,20 @@
 			src={loading}
 			data-src={leo3}
 			alt="my-photo-08"
+			width="800"
+		/>
+		<img
+			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
+			src={loading}
+			data-src={leo4}
+			alt="my-photo-10"
+			width="800"
+		/>
+		<img
+			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
+			src={loading}
+			data-src={leo5}
+			alt="my-photo-11"
 			width="800"
 		/>
 	</div>
