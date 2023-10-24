@@ -72,77 +72,77 @@
 			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 			src={loading}
 			data-src={leo2}
-			alt="my-photo-07"
+			alt="my-07"
 			width="800"
 		/>
 		<img
 			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 			src={loading}
 			data-src={leo}
-			alt="my-photo-01"
+			alt="my-01"
 			width="800"
 		/>
 		<img
 			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 			src={loading}
 			data-src={flowers}
-			alt="my-photo-02"
+			alt="my-02"
 			width="800"
 		/>
 		<img
 			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 			src={loading}
 			data-src={flowers2}
-			alt="my-photo-09"
+			alt="my-09"
 			width="800"
 		/>
 		<img
 			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 			src={loading}
 			data-src={cat}
-			alt="my-photo-03"
+			alt="my-03"
 			width="800"
 		/>
 		<img
 			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 			src={loading}
 			data-src={sky}
-			alt="my-photo-04"
+			alt="my-04"
 			width="800"
 		/>
 		<img
 			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 			src={loading}
 			data-src={sea}
-			alt="my-photo-05"
+			alt="my-05"
 			width="800"
 		/>
 		<img
 			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 			src={loading}
 			data-src={sea2}
-			alt="my-photo-06"
+			alt="my-06"
 			width="800"
 		/>
 		<img
 			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 			src={loading}
 			data-src={leo3}
-			alt="my-photo-08"
+			alt="my-08"
 			width="800"
 		/>
 		<img
 			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 			src={loading}
 			data-src={leo4}
-			alt="my-photo-10"
+			alt="my-10"
 			width="800"
 		/>
 		<img
 			class="lazy w-full max-w-[50rem] shadow-none hover:grayscale-0"
 			src={loading}
 			data-src={leo5}
-			alt="my-photo-11"
+			alt="my-11"
 			width="800"
 		/>
 	</div>
