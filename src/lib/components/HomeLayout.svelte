@@ -32,18 +32,6 @@
 								</p>
 							</div>
 						</a>
-						<a class="z-[50] cursor-pointer" href="/resume" target="_blank">
-							<div
-								class="flex h-8 w-8 items-center justify-center rounded-3xl bg-white max-[500px]:h-7 max-[500px]:w-7"
-							>
-								<img
-									class="resume m-0 h-6 w-6 scale-125 rounded-full p-[0.5px] max-[500px]:h-5 max-[500px]:w-5"
-									src={resume}
-									alt="github"
-									width="32px"
-								/>
-							</div>
-						</a>
 						<a class="z-[50] cursor-pointer" href="https://github.com/h-alex2" target="_blank"
 							><img
 								class="m-0 h-8 w-8 max-[500px]:h-7 max-[500px]:w-7"
