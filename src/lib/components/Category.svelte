@@ -17,7 +17,7 @@
 {/if}
 <aside
 	class={clsx(
-		"category prose-sm fixed bottom-0 right-0 top-0 z-50 flex h-full w-[300px] translate-x-full flex-col justify-between overflow-y-auto border-l-[1px] bg-pointColor-500 pt-0",
+		"category prose-sm fixed bottom-0 right-0 top-0 z-50 flex h-full w-[300px] translate-x-full flex-col justify-between overflow-y-auto border-l-[1px] bg-pointColor-500 pt-0 dark:bg-defaultColor-800",
 		$isOpenMenu && "active_category"
 	)}
 >
