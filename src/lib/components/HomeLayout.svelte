@@ -12,7 +12,7 @@
 
 	<!-- header -->
 	<div
-		class="absolute left-1/2 top-[5rem] z-[99] w-[calc(100%-3.05rem)] -translate-x-1/2 -translate-y-1/2 p-5 text-white max-[500px]:top-[4.2rem] max-[500px]:p-2"
+		class="absolute left-1/2 top-[5rem] z-[99] w-[calc(100%-3.05rem)] -translate-x-1/2 -translate-y-1/2 p-5 text-white max-[500px]:top-[3.25rem] max-[500px]:p-2"
 	>
 		<div class="flex justify-between">
 			<div class="w-full">
@@ -20,8 +20,10 @@
 					<p class="text-6xl font-thin text-white max-[500px]:text-2xl max-[500px]:font-light">
 						Hyunjung Im
 					</p>
-					<div class="flex translate-y-[1px] items-center justify-center gap-3">
-						<a class="z-[50] cursor-pointer" href="/blog/categories/all?page=1" target="_blank">
+					<div
+						class="flex -translate-y-1 transform items-center justify-center gap-3 max-[500px]:translate-y-1.5"
+					>
+						<!-- <a class="z-[50] cursor-pointer" href="/blog/categories/all?page=1" target="_blank">
 							<div
 								class="flex h-8 w-8 items-center justify-center rounded-3xl bg-white max-[500px]:h-7 max-[500px]:w-7"
 							>
@@ -31,7 +33,7 @@
 									BLOG
 								</p>
 							</div>
-						</a>
+						</a> -->
 						<a class="z-[50] cursor-pointer" href="https://github.com/h-alex2" target="_blank"
 							><img
 								class="m-0 h-8 w-8 max-[500px]:h-7 max-[500px]:w-7"

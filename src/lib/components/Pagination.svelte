@@ -32,7 +32,7 @@
 	}
 </script>
 
-<div class="my-10 flex justify-center">
+<div class="my-10 flex justify-center dark:text-defaultColor-600">
 	<div
 		class="inline-flex w-10 cursor-pointer justify-center"
 		on:click={currentPage.clickPrevMultiplePage}
