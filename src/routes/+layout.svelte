@@ -3,7 +3,6 @@
 	import Header from "$lib/components/Header.svelte";
 	import Footer from "$lib/components/Footer.svelte";
 	import ResponsiveLayer from "$lib/components/ResponsiveLayer.svelte";
-	import PageHead from "$lib/components/PageHead.svelte";
 	import HomeLayout from "$lib/components/HomeLayout.svelte";
 
 	import "../app.css";

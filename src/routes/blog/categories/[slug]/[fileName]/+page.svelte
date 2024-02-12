@@ -82,6 +82,7 @@
 	tag={data.metadata.tag}
 	date={data.metadata.date}
 	postImg={data.metadata.image}
+	url={data.metadata.url}
 />
 <Category categories={data.categories} postCount={data.postsCount} />
 {#if isOpenToc}

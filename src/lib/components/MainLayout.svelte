@@ -1,5 +1,4 @@
 <script>
-	import PageHead from "$lib/components/PageHead.svelte";
 	import Category from "$lib/components/Category.svelte";
 	import PostList from "$lib/components/PostList.svelte";
 	import Pagination from "$lib/components/Pagination.svelte";
