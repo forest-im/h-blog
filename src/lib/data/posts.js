@@ -42,6 +42,10 @@ export class Posts {
 			: this.filterModulesByCategory(category).modules.length;
 	}
 
+  parseTags(tags) {
+    return tags instanceof Array ? tags.map(tag => tag.trim()) : tags.split(",").map(tag => tag.trim());
+  }
+
 	getFormatPosts() {
 		return this.modules.map(([path, post]) => {
 			const splitPath = path.split("/");
@@ -50,7 +54,7 @@ export class Posts {
 
 			return {
 				...post.metadata,
-				tag: sortByRemovingDuplicates(post.metadata.tag.split(",").map((tag) => tag.trim())),
+				tag: sortByRemovingDuplicates(parseTags(post.metadata.tag)),
 				slug: slugFromPath(path),
 				category,
 				timeStamp: dateObj.getTime() / 1000,
