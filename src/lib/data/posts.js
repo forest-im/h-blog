@@ -43,7 +43,11 @@ export class Posts {
 	}
 
   parseTags(tags) {
-    return tags instanceof Array ? tags.map(tag => tag.trim()) : tags.split(",").map(tag => tag.trim());
+    if (tags.includes('#')) {
+      return match(/#([^"\n]+)/g).map(tag => tag.trim());
+    }
+
+    return tags.split(",").map(tag => tag.trim());
   }
 
 	getFormatPosts() {
