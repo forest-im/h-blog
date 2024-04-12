@@ -19,5 +19,5 @@ export const load = async ({ params }) => {
 		}
 	}
 
-	throw error(404, "Post not found");
+	error(404, "Post not found");
 };
