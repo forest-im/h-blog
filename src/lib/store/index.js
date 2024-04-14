@@ -57,6 +57,27 @@ export const isOpenMenu = (() => {
 	};
 })();
 
+export const noteCategories = (() => {
+	const { subscribe, update } = writable([]);
+
+	return {
+		subscribe,
+		setCategory: (category) => update(() => category)
+	};
+})();
+
+export const activeNoteCategory = (() => {
+	const { subscribe, update } = writable([]);
+
+	return {
+		subscribe,
+		toggleCategory: (category) =>
+			update((val) =>
+				val.includes(category) ? val.filter((c) => c !== category) : [...val, category]
+			)
+	};
+})();
+
 export const displaySize = (() => {
 	const { subscribe, update } = writable("desktop");
 
