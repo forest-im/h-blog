@@ -10,7 +10,7 @@
 </script>
 
 <body>
-	{#if $page.route.id && ($page.route.id.includes("/categories") || $page.route.id.includes("/tags"))}
+	<!-- {#if $page.route.id && ($page.route.id.includes("/categories") || $page.route.id.includes("/tags"))}
 		<div class="mx-auto flex min-h-[101vh] w-screen min-w-[350px] flex-col justify-center">
 			<main class="relative flex flex-1 flex-col">
 				<ResponsiveLayer>
@@ -34,5 +34,8 @@
 		<HomeLayout>
 			<slot />
 		</HomeLayout>
-	{/if}
+	{/if} -->
+	<HomeLayout>
+		<slot />
+	</HomeLayout>
 </body>

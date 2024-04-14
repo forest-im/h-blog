@@ -1,62 +1,110 @@
 <script>
+	import { page } from "$app/stores";
+	import clsx from "clsx";
 	import githubIcon from "$lib/icons/github-mark-white.png";
-	import resume from "$lib/icons/resume.png";
-	import blog from "$lib/icons/blog.png";
 	import HomeCategory from "./HomeCategory.svelte";
+	import HomeBackground from "$lib/components/HomeBackground.svelte";
+	import ToggleThemeInput from "$lib/components/ToggleThemeInput.svelte";
+	import { theme, isOpenMenu } from "$lib/store";
+	import { afterNavigate } from "$app/navigation";
+
+	const test = () => {
+		isOpenMenu.toggle();
+	};
 </script>
 
-<div class="relative left-0 top-0 h-screen w-full overflow-hidden bg-black">
-	<div class="vignetting z-30" />
-	<div class="top-effect z-30" />
-	<div class="noise pointer-events-none z-50" />
-
-	<!-- header -->
+<div class="relative left-0 top-0 h-screen w-full overflow-hidden">
+	<div class={clsx("z-50", $theme === "dark" ? "vignetting" : "")} />
+	<HomeBackground />
+	<!-- <div class="top-effect z-40" /> -->
+	<div class="noise pointer-events-none z-40 border border-white" />
 	<div
-		class="absolute left-1/2 top-[5rem] z-[99] w-[calc(100%-3.05rem)] -translate-x-1/2 -translate-y-1/2 p-5 text-white max-[500px]:top-[3.25rem] max-[500px]:p-2"
+		class="container-absolute relative bottom-0 left-0 right-0 top-0 z-50 box-border h-full overflow-auto px-10 py-7 pr-7 max-[500px]:p-3"
 	>
-		<div class="flex justify-between">
-			<div class="w-full">
-				<div class="flex w-full items-center justify-between">
-					<p class="text-6xl font-thin text-white max-[500px]:text-2xl max-[500px]:font-light">
-						Hyunjung Im
-					</p>
-					<div
-						class="flex -translate-y-1 transform items-center justify-center gap-3 max-[500px]:translate-y-1.5"
-					>
-						<!-- <a class="z-[50] cursor-pointer" href="/blog/categories/all?page=1" target="_blank">
-							<div
-								class="flex h-8 w-8 items-center justify-center rounded-3xl bg-white max-[500px]:h-7 max-[500px]:w-7"
-							>
-								<p
-									class="translate-y-[1px] font-mono text-xs font-black text-[#1f1f1f] max-[500px]:text-[0.5rem]"
-								>
-									BLOG
-								</p>
+		<div class="wrapper flex flex-col py-2 pr-3 max-[500px]:py-0 max-[500px]:pr-0">
+			<!-- Header -->
+			<div>
+				<div class="flex justify-between">
+					<div class="w-full">
+						<div class="flex w-full items-center justify-between">
+							<div class="flex gap-3">
+								<!-- 메뉴 아이콘 -->
+								<label class="swap swap-rotate min-[750px]:hidden">
+									<!-- this hidden checkbox controls the state -->
+									<input type="checkbox" on:change={isOpenMenu.toggle} />
+
+									<!-- hamburger icon -->
+									<svg
+										class="swap-off fill-current"
+										xmlns="http://www.w3.org/2000/svg"
+										width="32"
+										height="32"
+										viewBox="0 0 512 512"
+										><path
+											d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+										/></svg
+									>
+
+									<!-- close icon -->
+									<svg
+										class="swap-on fill-current"
+										xmlns="http://www.w3.org/2000/svg"
+										width="32"
+										height="32"
+										viewBox="0 0 512 512"
+										><polygon
+											points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"
+										/></svg
+									>
+								</label>
+								<div class="flex flex-col">
+									<a href="/">
+										<p class="text-5xl font-thin max-[750px]:text-2xl max-[750px]:font-light">
+											Hyunjung Im
+										</p>
+									</a>
+									<p class="pt-2 text-sm font-thin max-[750px]:hidden">Frontend Developer</p>
+								</div>
 							</div>
-						</a> -->
-						<a class="z-[50] cursor-pointer" href="https://github.com/h-alex2" target="_blank"
-							><img
-								class="m-0 h-8 w-8 max-[500px]:h-7 max-[500px]:w-7"
-								src={githubIcon}
-								alt="github"
-								width="32px"
-							/></a
-						>
+							<div
+								class="flex -translate-y-1 transform items-center justify-center gap-3 max-[500px]:translate-y-[1.4]"
+							>
+								<ToggleThemeInput />
+								<a class="z-[50] cursor-pointer" href="https://github.com/h-alex2" target="_blank"
+									><img
+										class="m-0 h-8 w-8 max-[500px]:h-7 max-[500px]:w-7"
+										src={githubIcon}
+										alt="github"
+										width="32px"
+									/></a
+								>
+							</div>
+						</div>
 					</div>
 				</div>
-				<p class="pt-2 text-sm font-thin text-white max-[500px]:pt-0">Frontend Developer</p>
+				<div class={clsx("divider max-[750px]:my-0", $page.route?.id === "/" && "invisible")}></div>
+			</div>
+			<!-- Content -->
+			<div class="relative flex flex-1 gap-10 overflow-hidden">
+				<HomeCategory />
+				<slot />
 			</div>
 		</div>
 	</div>
-
-	<HomeCategory />
-	<slot />
 </div>
 
 <style>
-	.blog {
-		-webkit-filter: opacity(0.5) drop-shadow(0 0 0 #ffffff);
-		filter: opacity(0.5) drop-shadow(0 0 0 #ffffff);
+	.container-absolute {
+		& * {
+			box-sizing: border-box;
+		}
+	}
+
+	.wrapper {
+		height: fill-available;
+		height: -webkit-fill-available;
+		overflow-y: auto;
+		overflow-x: hidden;
 	}
 
 	.resume {

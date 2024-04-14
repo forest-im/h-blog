@@ -42,51 +42,53 @@
 	}
 </script>
 
-<HomeSubLayout bgBlur={true}>
-	<div class="flex w-full items-center justify-center">
-		<div
-			class="mb-40 flex h-full w-[50rem] flex-col items-center overflow-hidden rounded-2xl border border-white p-5 text-white"
-		>
-			<div class="flex h-full w-full flex-col">
-				<p>My Email</p>
-				<div class="flex gap-3">
-					<p>glowhyun1@gmail.com</p>
-					<button class="cursor-pointer underline hover:text-blue-500" on:click={copyToClipboard}
-						>copy</button
-					>
-					{#if copySuccess}
-						<div class="text-blue-500">copied!</div>
-					{/if}
-				</div>
-			</div>
-			<form
-				class="gform mt-5 flex h-full w-full flex-col gap-5"
-				data-email="glowhyun1@gmail.com"
-				on:submit|preventDefault={sendEmail}
-			>
-				<div>
-					<label for="name">Your Name</label>
-					<input name="name" class="w-full text-black" id="name" type="text" />
-				</div>
-				<div>
-					<label for="email">Your Email Address</label>
-					<input name="email" class="w-full text-black" id="email" type="email" />
-				</div>
-				<div>
-					<label for="message">Your Message</label>
-					<textarea name="message" class="h-[5rem] w-full text-black" id="message" />
-				</div>
-				{#if sendResultMessage}
-					<div class="mx-auto text-blue-500">{sendResultMessage}</div>
-				{/if}
-				<button class="mt-5 block h-10 w-full border border-white hover:text-blue-500" type="submit"
-					>Send Message</button
+<!-- <HomeSubLayout bgBlur={true}> -->
+<div class="flex w-full">
+	<div
+		class="flex w-full max-w-[50rem] flex-col overflow-hidden rounded-2xl border border-white p-5 text-white"
+	>
+		<div class="flex w-full flex-col">
+			<p>My Email</p>
+			<div class="flex gap-3">
+				<p>glowhyun1@gmail.com</p>
+				<button class="cursor-pointer underline hover:text-blue-500" on:click={copyToClipboard}
+					>copy</button
 				>
-			</form>
+				{#if copySuccess}
+					<div class="text-blue-500">copied!</div>
+				{/if}
+			</div>
 		</div>
+		<form
+			class="gform mt-5 flex w-full flex-col gap-5"
+			data-email="glowhyun1@gmail.com"
+			on:submit|preventDefault={sendEmail}
+		>
+			<div>
+				<label for="name">Your Name</label>
+				<input name="name" class="w-full text-black" id="name" type="text" />
+			</div>
+			<div>
+				<label for="email">Your Email Address</label>
+				<input name="email" class="w-full text-black" id="email" type="email" />
+			</div>
+			<div>
+				<label for="message">Your Message</label>
+				<textarea name="message" class="h-[5rem] w-full text-black" id="message" />
+			</div>
+			{#if sendResultMessage}
+				<div class="mx-auto text-blue-500">{sendResultMessage}</div>
+			{/if}
+			<button class="mt-5 block h-10 w-full border border-white hover:text-blue-500" type="submit"
+				>Send Message</button
+			>
+		</form>
 	</div>
-</HomeSubLayout>
-<HomeBackground hasBlur={true} />
+</div>
+
+<!-- </HomeSubLayout> -->
+
+<!-- <HomeBackground hasBlur={true} /> -->
 
 <style>
 	input {

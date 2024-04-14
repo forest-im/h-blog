@@ -14,8 +14,8 @@
 
 <h1
 	class={clsx(
-		"m-1 ml-0 p-0",
-		"text-lg font-semibold text-defaultColor-900 dark:text-darkDefaultColor-900"
+		"m-1 ml-0 p-0 text-primary",
+		"text-lg font-semibold"
 	)}
 >
 	<a {href}>

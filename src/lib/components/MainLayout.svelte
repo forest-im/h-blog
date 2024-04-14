@@ -12,8 +12,8 @@
 	});
 </script>
 
-<Category categories={data.categories} postCount={data.postCount} />
+<!-- <Category categories={data.categories} postCount={data.postCount} /> -->
 <div>
 	<PostList posts={data.posts} />
-	<Pagination count={data.postCount} />
+	<!-- <Pagination count={data.postCount} /> -->
 </div>

@@ -13,7 +13,7 @@
 	class={"fixed top-0 z-30 mb-3 flex w-full max-w-[800px] justify-center bg-darkDefaultColor-900 dark:bg-defaultColor-900"}
 	bind:clientWidth={w}
 >
-	<div class={clsx("flex w-full items-center justify-between font-light ")}>
+	<div class={clsx("flex w-full items-center justify-between font-light")}>
 		<div class="mx-5 flex w-full items-center justify-between">
 			<a href="/" class="block">
 				<div class="flex items-center">
