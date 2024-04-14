@@ -7,7 +7,7 @@ import { DEFAULT_POSTS_COUNT } from "$lib/constants/postDefaultValue";
 export class Posts {
 	constructor() {
 		this.allModules = Object.entries(
-			import.meta.glob(`/src/posts/*/*.{md,svx,svelte.md}`, { eager: true })
+			import.meta.glob(`/src/notes/*/*.{md,svx,svelte.md}`, { eager: true })
 		).filter(([path, post]) => {
 			const splitPath = path.split("/");
 			const category = splitPath[splitPath.length - 2];
@@ -42,13 +42,13 @@ export class Posts {
 			: this.filterModulesByCategory(category).modules.length;
 	}
 
-  parseTags(tags) {
-    if (tags.includes('#')) {
-      return match(/#([^"\n]+)/g).map(tag => tag.trim());
-    }
+	parseTags(tags) {
+		if (Array.isArray(tags)) {
+			return tags.map((tag) => (tag[0] === "#" ? tag.slice(1).trim() : tag.trim()));
+		}
 
-    return tags.split(",").map(tag => tag.trim());
-  }
+		return tags?.split(",").map((tag) => tag.trim());
+	}
 
 	getFormatPosts() {
 		return this.modules.map(([path, post]) => {
@@ -58,7 +58,7 @@ export class Posts {
 
 			return {
 				...post.metadata,
-				tag: sortByRemovingDuplicates(parseTags(post.metadata.tag)),
+				tag: sortByRemovingDuplicates(this.parseTags(post.metadata.tag ?? post.metadata.tags)),
 				slug: slugFromPath(path),
 				category,
 				timeStamp: dateObj.getTime() / 1000,
@@ -97,7 +97,10 @@ export class Posts {
 			return Object.entries(
 				this.modules
 					.reduce((acc, [, post]) => {
-						const tags = post.metadata.tag.split(",");
+						const tags =
+							post.metadata.tags?.map((tag) =>
+								tag[0] === "#" ? tag.slice(1).trim() : tag.trim()
+							) ?? post.metadata.tag?.split(",");
 
 						return [...acc, ...tags];
 					}, [])
@@ -114,13 +117,29 @@ export class Posts {
 
 	getAllCategories() {
 		return Object.entries(
-			this.allModules.reduce((acc, [path]) => {
+			this.allModules.reduce((acc, cur) => {
+				const path = cur[0];
+				const metadata = cur[1].metadata;
 				const splitPath = path.split("/");
 				const category = splitPath[splitPath.length - 2];
-				acc[category] = acc[category] + 1 || 1;
+				const postTitle = metadata.title;
+
+				if (!acc[category]) {
+					acc[category] = {
+						count: 1,
+						posts: [{ title: postTitle, slug: slugFromPath(path) }]
+					};
+				} else {
+					acc[category].count += 1;
+					acc[category].posts.push({ title: postTitle, slug: slugFromPath(path) });
+				}
 
 				return acc;
 			}, {})
-		).map(([category, nums]) => ({ name: category, count: nums }));
+		).map(([category, { count, posts }]) => ({
+			name: category,
+			count,
+			posts: posts.sort((a, b) => a.title - b.title)
+		}));
 	}
 }
