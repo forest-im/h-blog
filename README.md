@@ -1,4 +1,3 @@
-블로그.. 보다는 가끔 기록용 사이트
+기록용
 
-<img src="https://www.im-alex.dev/_app/immutable/assets/08.e8a80ffa.jpg" alt="preview" style="width: 80%;">
-
+<img src="https://forest-hazel-bucket.s3.amazonaws.com/my-photos/01.jpg" alt="preview" style="width: 80%;">

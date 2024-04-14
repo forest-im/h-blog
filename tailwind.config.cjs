@@ -5,6 +5,9 @@ module.exports = {
 		"./src/**/**/*.{html,js,svelte,ts}",
 		"./src/**/**/**/**/*.{html,js,svelte,ts}"
 	],
+	daisyui: {
+		themes: ["lofi", "black"]
+	},
 	theme: {
 		extend: {
 			colors: {
@@ -51,9 +54,10 @@ module.exports = {
 				customDarkSm: "rgba(171, 171, 171, 0.05) 0px 0px 0px 1px"
 			},
 			backgroundImage: {
-				me: "url(/src/lib/images/me.jpg)"
+				me: "url(/src/lib/images/me.jpg)",
+				sky: "url(/src/lib/images/sky.jpg)"
 			}
 		}
 	},
-	plugins: [require("@tailwindcss/typography")]
+	plugins: [require("@tailwindcss/typography"), require("daisyui")]
 };
