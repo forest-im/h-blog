@@ -6,7 +6,6 @@
 	let mode;
 
 	onMount(() => {
-		console.log("hihi");
 		if (!localStorage.theme) {
 			localStorage.theme = "dark";
 			theme.changeTheme("dark");
@@ -14,7 +13,6 @@
 
 		mode = localStorage.theme;
 
-		console.log("mode", mode);
 		theme.changeTheme(mode);
 		setTheme();
 	});
@@ -53,7 +51,7 @@
 			</div>
 		</label>
 	</div> -->
-	<label class="swap swap-rotate">
+	<label class="swap-rotate swap">
 		<!-- this hidden checkbox controls the state -->
 		<input type="checkbox" on:change={handleToggle} checked={mode === "light" ? true : false} />
 		<!-- sun icon -->

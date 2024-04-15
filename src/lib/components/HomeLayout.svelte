@@ -29,7 +29,7 @@
 						<div class="flex w-full items-center justify-between">
 							<div class="flex gap-3">
 								<!-- 메뉴 아이콘 -->
-								<label class="swap swap-rotate min-[750px]:hidden">
+								<label class="swap-rotate swap min-[750px]:hidden">
 									<!-- this hidden checkbox controls the state -->
 									<input type="checkbox" on:change={isOpenMenu.toggle} />
 
@@ -70,9 +70,12 @@
 								class="flex -translate-y-1 transform items-center justify-center gap-3 max-[500px]:translate-y-[1.4]"
 							>
 								<ToggleThemeInput />
-								<a class="z-[50] cursor-pointer" href="https://github.com/h-alex2" target="_blank"
+								<a class="z-[50] cursor-pointer" href="https://github.com/forest-im" target="_blank"
 									><img
-										class="m-0 h-8 w-8 max-[500px]:h-7 max-[500px]:w-7"
+										class={clsx(
+											"m-0 h-8 w-8 max-[500px]:h-7 max-[500px]:w-7",
+											$theme === "light" && "invert"
+										)}
 										src={githubIcon}
 										alt="github"
 										width="32px"
@@ -82,7 +85,7 @@
 						</div>
 					</div>
 				</div>
-				<div class={clsx("divider max-[750px]:my-0", $page.route?.id === "/" && "invisible")}></div>
+				<div class={clsx("divider max-[750px]:my-0", $page.route?.id === "/" && "invisible")} />
 			</div>
 			<!-- Content -->
 			<div class="relative flex flex-1 gap-10 overflow-hidden">

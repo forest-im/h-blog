@@ -16,7 +16,7 @@
 					<div class="min-w-20 text-xs">
 						{date}
 					</div>
-					<h1 class="m-1 ml-0 p-0 text-lg">
+					<h1 class="m-1 ml-0 p-0">
 						{title}
 					</h1>
 				</div>

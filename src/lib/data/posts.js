@@ -7,7 +7,7 @@ import { DEFAULT_POSTS_COUNT } from "$lib/constants/postDefaultValue";
 export class Posts {
 	constructor() {
 		this.allModules = Object.entries(
-			import.meta.glob(`/src/notes/*/*.{md,svx,svelte.md}`, { eager: true })
+			import.meta.glob(`/src/posts/*/*.{md,svx,svelte.md}`, { eager: true })
 		).filter(([path, post]) => {
 			const splitPath = path.split("/");
 			const category = splitPath[splitPath.length - 2];

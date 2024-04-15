@@ -1,19 +1,14 @@
-<script>
-	import HomeBackground from "$lib/components/HomeBackground.svelte";
-	import HomeSubLayout from "$lib/components/HomeSubLayout.svelte";
-</script>
-
 <div
-	class="no-scrollbar mb-32 flex h-full w-full flex-col content-center overflow-y-scroll min-[1100px]:mt-10"
+	class="no-scrollbar mb-32 flex h-full w-full flex-col content-center items-center overflow-y-scroll min-[1100px]:mt-10"
 >
 	<div class="mb-20 flex w-full max-w-[800px] flex-col gap-10 text-sm font-normal">
 		<div class="flex gap-3 max-[1100px]:flex-col">
 			<div class="flex-[0.3]">
-				<p class="p-0 text-gray-300 text-white">23.03.07 - 23.05.12</p>
+				<p class="p-0">23.03.07 - 23.05.12</p>
 			</div>
 			<div class="flex-[0.7]">
-				<ul class="leading-6 text-gray-300">
-					<li class="font-bold text-white">
+				<ul class="leading-6">
+					<li class="font-bold">
 						<span
 							class="cursor-pointer rounded-xl border border-white pl-1 pr-1 hover:text-blue-500"
 						>
@@ -43,11 +38,11 @@
 		</div>
 		<div class="flex gap-3 max-[1100px]:flex-col">
 			<div class="flex-[0.3]">
-				<p class="p-0 text-gray-300 text-white">22.11.07 - 22.11.25</p>
+				<p class="p-0">22.11.07 - 22.11.25</p>
 			</div>
 			<div class="flex-[0.7]">
-				<ul class="leading-6 text-gray-300">
-					<li class="font-bold text-white">
+				<ul class="leading-6">
+					<li class="font-bold">
 						<span
 							class="cursor-pointer rounded-xl border border-white pl-1 pr-1 hover:text-blue-500"
 						>
@@ -77,11 +72,11 @@
 		</div>
 		<div class="flex gap-3 max-[1100px]:flex-col">
 			<div class="flex-[0.3]">
-				<p class="p-0 text-gray-300 text-white">22.10.10 - 22.10.28</p>
+				<p class="p-0">22.10.10 - 22.10.28</p>
 			</div>
 			<div class="flex-[0.7]">
-				<ul class="leading-6 text-gray-300">
-					<li class="font-bold text-white">
+				<ul class="leading-6">
+					<li class="font-bold">
 						<span
 							class="cursor-pointer rounded-xl border border-white pl-1 pr-1 hover:text-blue-500"
 						>

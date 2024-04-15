@@ -11,7 +11,8 @@
 
 <div
 	class={clsx(
-		"flex min-w-64 max-w-64 flex-col font-normal leading-8 max-[750px]:hidden max-[500px]:text-sm"
+		"flex flex-col font-normal leading-8 max-[750px]:hidden max-[500px]:text-sm",
+		$page.route?.id.includes("til") && "min-w-64"
 	)}
 >
 	<ul>
@@ -50,7 +51,7 @@
 							>
 								<path
 									d="M10 13.125a.624.624 0 0 1-.442-.183l-5-5 .884-.884L10 11.616l4.558-4.558.884.884-5 5a.624.624 0 0 1-.442.183Z"
-								></path>
+								/>
 							</svg></span
 						>
 						<span>{category.name}</span>
