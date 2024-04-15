@@ -100,7 +100,7 @@ mdsvex는 마크다운 파일을 import하여 컴포넌트처럼 쓸 수 있어 
 
 블로그 포스트와 공부용 포스트를 분리하기 위해서 TIL 메뉴를 만들었습니다. til 리스트 메뉴는 `sticky`로 고정하였습니다. 모바일 사이즈의 경우 메뉴 버튼을 눌렀을 때 til 리스트 메뉴를 모달로 띄우는 방법을 선택했습니다. 뒷 배경 또는 메뉴 버튼을 클릭하면 모달이 닫히도록 해주었습니다.
 
-<img src="./static/readme/modal-preview.png" alt="modal">
+<!-- <img src="./static/readme/modal-preview.png" alt="modal"> -->
 
 <br />
 

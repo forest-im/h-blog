@@ -1,7 +1,7 @@
-import { env } from "$env/dynamic/private";
+import { PRIVATE_EMAIL_URL } from "$env/static/private";
 
 export const load = async () => {
 	return {
-		emailUrl: env.PRIVATE_EMAIL_URL
+		emailUrl: PRIVATE_EMAIL_URL
 	};
 };
