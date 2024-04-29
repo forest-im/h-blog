@@ -5,17 +5,15 @@
 	import HomeCategory from "./HomeCategory.svelte";
 	import HomeBackground from "$lib/components/HomeBackground.svelte";
 	import ToggleThemeInput from "$lib/components/ToggleThemeInput.svelte";
-	import { theme, isOpenMenu } from "$lib/store";
+	import { isOpenMenu, theme } from "$lib/store";
 	import { afterNavigate } from "$app/navigation";
-
-	const test = () => {
-		isOpenMenu.toggle();
-	};
 </script>
 
 <div class="relative left-0 top-0 h-screen w-full overflow-hidden">
 	<div class={clsx("z-50", $theme === "dark" ? "vignetting" : "")} />
-	<HomeBackground />
+	{#if $theme === "dark"}
+		<HomeBackground />
+	{/if}
 	<!-- <div class="top-effect z-40" /> -->
 	<div class="noise pointer-events-none z-40 border border-white" />
 	<div
@@ -29,33 +27,35 @@
 						<div class="flex w-full items-center justify-between">
 							<div class="flex gap-3">
 								<!-- 메뉴 아이콘 -->
-								<label class="swap-rotate swap min-[750px]:hidden">
+								<label id="menu-icon" class="swap swap-rotate min-[750px]:hidden">
 									<!-- this hidden checkbox controls the state -->
-									<input type="checkbox" on:change={isOpenMenu.toggle} />
+									<input id="menu-icon" type="checkbox" on:change={isOpenMenu.toggle} />
 
 									<!-- hamburger icon -->
-									<svg
-										class="swap-off fill-current"
-										xmlns="http://www.w3.org/2000/svg"
-										width="32"
-										height="32"
-										viewBox="0 0 512 512"
-										><path
-											d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
-										/></svg
-									>
-
-									<!-- close icon -->
-									<svg
-										class="swap-on fill-current"
-										xmlns="http://www.w3.org/2000/svg"
-										width="32"
-										height="32"
-										viewBox="0 0 512 512"
-										><polygon
-											points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"
-										/></svg
-									>
+									{#if !$isOpenMenu}
+										<svg
+											class="fill-current"
+											xmlns="http://www.w3.org/2000/svg"
+											width="32"
+											height="32"
+											viewBox="0 0 512 512"
+											><path
+												d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+											/></svg
+										>
+									{:else}
+										<!-- close icon -->
+										<svg
+											class="fill-current"
+											xmlns="http://www.w3.org/2000/svg"
+											width="32"
+											height="32"
+											viewBox="0 0 512 512"
+											><polygon
+												points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"
+											/></svg
+										>
+									{/if}
 								</label>
 								<div class="flex flex-col">
 									<a href="/">
@@ -90,7 +90,9 @@
 			<!-- Content -->
 			<div class="relative flex flex-1 gap-10 overflow-hidden">
 				<HomeCategory />
-				<slot />
+				{#if !$isOpenMenu}
+					<slot />
+				{/if}
 			</div>
 		</div>
 	</div>
