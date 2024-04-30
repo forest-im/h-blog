@@ -14,7 +14,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		prerender: {
-			entries: ["*", "/sitemap.xml", "/rss.xml", "/blog/categories/all?page=1"]
+			entries: ["*", "/sitemap.xml", "/rss.xml"]
 		}
 	}
 };

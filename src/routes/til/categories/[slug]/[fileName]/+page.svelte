@@ -1,11 +1,8 @@
 <script>
 	import { onDestroy, onMount } from "svelte/internal";
 	import { afterUpdate } from "svelte/internal";
-	import { browser } from "$app/environment";
 	import PageHead from "$lib/components/PageHead.svelte";
 	import { noteCategories, currentToc, isOpenMenu, isOpenToc } from "$lib/store";
-	import Toc from "$lib/components/Toc.svelte";
-	import Category from "$lib/components/Category.svelte";
 
 	export let data;
 	let commentSection;
