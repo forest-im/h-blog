@@ -10,7 +10,7 @@
 			<a
 				href={$page.route?.id.includes("til")
 					? `/til/categories/${category}/${slug}`
-					: `/blog/categories/${category}/${slug}`}
+					: `/review/${slug}`}
 			>
 				<div class="flex items-center gap-10 hover:underline">
 					<div class="min-w-20 text-xs">

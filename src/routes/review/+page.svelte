@@ -15,6 +15,3 @@
 </script>
 
 <PostList posts={data.posts} />
-<!-- <HomeSubLayout bgBlur={true}>
-</HomeSubLayout> -->
-<!-- <HomeBackground hasBlur={true} /> -->
