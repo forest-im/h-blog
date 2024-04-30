@@ -15,8 +15,7 @@
 
 <div
 	class={clsx(
-		"flex flex-col gap-3 font-normal leading-8 max-[750px]:hidden max-[500px]:text-sm",
-		$page.route?.id.includes("til") && "min-w-64"
+		"flex w-64 flex-col gap-3 font-normal leading-8 max-[750px]:hidden max-[500px]:text-sm"
 	)}
 >
 	<ul>
@@ -29,7 +28,7 @@
 
 	{#if $page.route?.id.includes("til") && $noteCategories?.length}
 		<div class="divider">TIL Category</div>
-		<ul class="h-full overflow-y-scroll">
+		<ul class="p- h-full overflow-y-scroll pr-3">
 			{#each $noteCategories as category}
 				<li>
 					<div

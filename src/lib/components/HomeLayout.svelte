@@ -6,18 +6,14 @@
 	import HomeBackground from "$lib/components/HomeBackground.svelte";
 	import ToggleThemeInput from "$lib/components/ToggleThemeInput.svelte";
 	import { isOpenMenu, theme } from "$lib/store";
-	import { afterNavigate } from "$app/navigation";
 </script>
 
 <div class="relative left-0 top-0 h-screen w-full overflow-hidden">
 	<div class={clsx("z-50", $theme === "dark" ? "vignetting" : "")} />
-	{#if $theme === "dark"}
-		<HomeBackground />
-	{/if}
-	<!-- <div class="top-effect z-40" /> -->
-	<div class="noise pointer-events-none z-40 border border-white" />
+	<HomeBackground />
+	<div class={clsx("pointer-events-none z-40", !$page.route?.id?.includes("til") && "noise")} />
 	<div
-		class="container-absolute relative bottom-0 left-0 right-0 top-0 z-50 box-border h-full overflow-auto px-10 py-7 pr-7 max-[500px]:p-3"
+		class="container-absolute relative bottom-0 left-0 right-0 top-0 z-50 box-border h-full overflow-hidden px-10 py-7 pr-7 max-[500px]:p-3"
 	>
 		<div class="wrapper flex flex-col py-2 pr-3 max-[500px]:py-0 max-[500px]:pr-0">
 			<!-- Header -->
@@ -108,8 +104,7 @@
 	.wrapper {
 		height: fill-available;
 		height: -webkit-fill-available;
-		overflow-y: auto;
-		overflow-x: hidden;
+		overflow: hidden;
 	}
 
 	.resume {

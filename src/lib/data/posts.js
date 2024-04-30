@@ -5,15 +5,25 @@ import slugFromPath from "$lib/utils/slugFromPath";
 import { DEFAULT_POSTS_COUNT } from "$lib/constants/postDefaultValue";
 
 export class Posts {
-	constructor() {
-		this.allModules = Object.entries(
-			import.meta.glob(`/src/posts/*/*.{md,svx,svelte.md}`, { eager: true })
-		).filter(([path, post]) => {
-			const splitPath = path.split("/");
-			const category = splitPath[splitPath.length - 2];
+	constructor(type) {
+		this.allModules =
+			type === "review"
+				? Object.entries(
+						import.meta.glob("/src/review/*/*.{md,svx,svelte.md}", { eager: true })
+					).filter(([path, post]) => {
+						const splitPath = path.split("/");
+						const category = splitPath[splitPath.length - 2];
 
-			return (post.metadata?.published !== false && category !== "noPublished") || dev;
-		});
+						return (post.metadata?.published !== false && category !== "noPublished") || dev;
+					})
+				: Object.entries(
+						import.meta.glob("/src/posts/*/*.{md,svx,svelte.md}", { eager: true })
+					).filter(([path, post]) => {
+						const splitPath = path.split("/");
+						const category = splitPath[splitPath.length - 2];
+
+						return (post.metadata?.published !== false && category !== "noPublished") || dev;
+					});
 		this.modules = this.allModules;
 		this.allPostCount = this.modules.length;
 		this.posts = null;

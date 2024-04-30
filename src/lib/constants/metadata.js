@@ -6,6 +6,7 @@ export const NAME = "Alex";
 export const HOME_CATEGORIES = [
 	{ name: "Home", link: "/" },
 	{ name: "Note", link: "/til" },
+	{ name: "Review", link: "/review" },
 	{ name: "Projects", link: "/projects" },
 	{ name: "Photos", link: "/photos" }
 	// { name: "Contact", link: "/contact" }
