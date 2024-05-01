@@ -5,8 +5,6 @@
 	import "../prism.css";
 </script>
 
-<body>
-	<HomeLayout>
-		<slot />
-	</HomeLayout>
-</body>
+<HomeLayout>
+	<slot />
+</HomeLayout>

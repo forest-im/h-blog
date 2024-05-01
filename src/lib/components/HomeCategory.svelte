@@ -28,7 +28,7 @@
 
 	{#if $page.route?.id.includes("til") && $noteCategories?.length}
 		<div class="divider">TIL Category</div>
-		<ul class="p- h-full overflow-y-scroll pr-3">
+		<ul class="p- h-full overflow-y-scroll pb-20 pr-3">
 			{#each $noteCategories as category}
 				<li>
 					<div
@@ -97,7 +97,7 @@
 	</ul>
 	{#if $page.route?.id.includes("til") && $noteCategories?.length}
 		<div class="divider">TIL Category</div>
-		<ul class="h-full overflow-y-scroll">
+		<ul class="h-full overflow-y-scroll pb-20">
 			{#each $noteCategories as category}
 				<li class="cursor-pointer p-1">
 					<div

@@ -9,9 +9,14 @@
 </script>
 
 <div class="relative left-0 top-0 h-screen w-full overflow-hidden">
-	<div class={clsx("z-50", $theme === "dark" ? "vignetting" : "")} />
+	<div class={clsx("z-50 overflow-hidden", $theme === "dark" ? "vignetting" : "")} />
 	<HomeBackground />
-	<div class={clsx("pointer-events-none z-40", !$page.route?.id?.includes("til") && "noise")} />
+	<div
+		class={clsx(
+			"pointer-events-none z-40 overflow-hidden",
+			!$page.route?.id?.includes("til") && !$page.route?.id?.includes("review") && "noise"
+		)}
+	/>
 	<div
 		class="container-absolute relative bottom-0 left-0 right-0 top-0 z-50 box-border h-full overflow-hidden px-10 py-7 pr-7 max-[500px]:p-3"
 	>
