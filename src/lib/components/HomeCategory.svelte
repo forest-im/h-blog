@@ -15,7 +15,7 @@
 
 <div
 	class={clsx(
-		"flex w-64 flex-col gap-3 font-normal leading-8 max-[750px]:hidden max-[500px]:text-sm"
+		"z-50 flex w-64 flex-col gap-3 font-normal leading-8 max-[750px]:hidden max-[500px]:text-sm"
 	)}
 >
 	<ul>

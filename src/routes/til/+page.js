@@ -7,8 +7,6 @@ export const load = async (options) => {
 	const posts = new Posts();
 	const matchPosts = posts.getAllPosts(category);
 
-	console.log({ posts: posts.getAllCategories() });
-
 	if (!matchPosts.length) {
 		error(404, "Post not found");
 	}

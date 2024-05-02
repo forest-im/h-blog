@@ -63,7 +63,7 @@
 </script>
 
 <section
-	class="mb-40 flex min-h-[60vh] w-full flex-col items-center overflow-y-auto overflow-x-hidden border"
+	class="flex min-h-[60vh] w-full flex-1 flex-col items-center overflow-y-auto overflow-x-hidden"
 >
 	<div class="w-full max-w-[50rem] shadow-none hover:grayscale-0">
 		<img class="lazy" src={loading} data-src={leo2} alt="my-07" width="800" />

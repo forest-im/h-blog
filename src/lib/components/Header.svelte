@@ -81,7 +81,6 @@
 
 	.wrapper {
 		height: fill-available;
-		height: -webkit-fill-available;
 		overflow: hidden;
 	}
 

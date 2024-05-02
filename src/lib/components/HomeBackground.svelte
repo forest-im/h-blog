@@ -22,7 +22,7 @@
 		/>
 		<div
 			class={clsx(
-				"left-0 top-0 h-screen w-full bg-black bg-cover bg-center",
+				"left-0 top-0 h-full w-full bg-black bg-cover bg-center",
 				$theme === "dark" ? "bg-me brightness-[40%]" : "bg-sky",
 				$page.route?.id === "/" ? "blur-sm" : "blur-3xl"
 			)}

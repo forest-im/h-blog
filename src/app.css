@@ -61,7 +61,7 @@
 	}
 
 	html {
-		@apply box-border max-h-screen overflow-hidden;
+		@apply box-border overflow-hidden;
 	}
 
 	sub {
@@ -75,13 +75,13 @@
 	}
 
 	body {
-		min-height: 100%;
-		min-height: -webkit-fill-available;
+		@apply m-0 bg-darkDefaultColor-900 p-0 dark:bg-defaultColor-900;
 		transition:
 			background-color 0.2s ease-in-out,
 			color 0.2s ease-in-out;
-
-		@apply m-0 h-full overflow-hidden bg-darkDefaultColor-900 p-0 dark:bg-defaultColor-900;
+		height: calc(var(--vh, 1vh) * 100);
+		height: -moz-available;
+		height: -webkit-fill-available;
 	}
 
 	.all-prose {
