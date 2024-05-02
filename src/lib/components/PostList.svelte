@@ -4,7 +4,7 @@
 	export let posts;
 </script>
 
-<section class="flex min-h-[60vh] w-full flex-1 flex-col overflow-y-auto pb-20">
+<section class="flex min-h-[60vh] w-full flex-1 flex-col overflow-y-auto border pb-20">
 	<div>
 		{#each posts as { slug, title, date, description, category, tag }}
 			<a

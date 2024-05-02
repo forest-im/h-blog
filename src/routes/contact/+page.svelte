@@ -1,7 +1,5 @@
 <script>
 	import emailjs from "@emailjs/browser";
-	import HomeSubLayout from "$lib/components/HomeSubLayout.svelte";
-	import HomeBackground from "$lib/components/HomeBackground.svelte";
 
 	let copySuccess = false;
 	let sendResultMessage = null;
@@ -42,7 +40,6 @@
 	}
 </script>
 
-<!-- <HomeSubLayout bgBlur={true}> -->
 <div class="flex w-full">
 	<div
 		class="flex w-full max-w-[50rem] flex-col overflow-hidden rounded-2xl border border-white p-5 text-white"
@@ -85,10 +82,6 @@
 		</form>
 	</div>
 </div>
-
-<!-- </HomeSubLayout> -->
-
-<!-- <HomeBackground hasBlur={true} /> -->
 
 <style>
 	input {
