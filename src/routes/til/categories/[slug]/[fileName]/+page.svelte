@@ -84,7 +84,7 @@
 	url={data.metadata.url}
 />
 
-<div class="flex w-full overflow-y-auto">
+<div class="flex w-full overflow-y-auto justify-center">
 	<div class="all-prose flex w-full max-w-[850px] flex-1 flex-col items-center">
 		<h1 class="mb-1 pt-0 text-center text-2xl font-semibold">{data.metadata.title}</h1>
 		<p class="p-0 text-center text-sm text-neutral-500">{data.metadata.date.slice(0, 10)}</p>
@@ -93,7 +93,4 @@
 		</div>
 		<section bind:this={commentSection} class="my-10" />
 	</div>
-	<!-- {#if isOpenToc}
-		<Toc />
-	{/if} -->
 </div>
