@@ -1,4 +1,4 @@
-import MarkdownLayout from '@/components/MarkdownLayout'
+import MarkdownLayout, { Header } from '@/components/MarkdownLayout'
 import type { Metadata } from 'next'
 
 import './globals.css'
@@ -16,21 +16,22 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased`}>
+        <Header />
         <div
           className="prose 
-            prose-headings:mt-8 
+            prose-headings:mt-4 
             prose-headings:font-semibold 
             prose-headings:text-black 
-            prose-h1:text-4xl 
-            prose-h2:text-3xl 
-            prose-h3:text-2xl 
-            prose-h4:text-xl 
-            prose-h5:text-lg 
-            prose-h6:text-base 
+            prose-h1:text-3xl 
+            prose-h2:text-2xl 
+            prose-h3:text-xl 
+            prose-h4:text-lg 
+            prose-h5:text-base 
+            prose-h6:text-sm 
             dark:prose-headings:text-white 
+            prose-a:no-underline
             max-w-none
-            prose-lg
-            no-underline
+            prose-base
             "
         >
           <MarkdownLayout>{children}</MarkdownLayout>

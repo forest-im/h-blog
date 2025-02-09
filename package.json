@@ -10,6 +10,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "dependencies": {
+    "@mdx-js/loader": "^3.1.0",
     "@next/mdx": "^15.1.6",
     "@types/mdx": "^2.0.13",
     "date-fns": "^4.1.0",
@@ -18,7 +19,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rehype-pretty-code": "^0.14.0",
-    "remark-gfm": "^4.0.0"
+    "remark-gfm": "^4.0.0",
+    "shiki": "^2.3.2",
+    "sugar-high": "^0.9.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

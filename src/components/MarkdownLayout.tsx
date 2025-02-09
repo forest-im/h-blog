@@ -1,14 +1,42 @@
 import Link from 'next/link'
 
+export const Header = () => {
+  return (
+    <header className="border-b border-gray-100 sticky top-0 bg-white/5 backdrop-blur-sm py-2">
+      <div className="flex justify-between items-center max-w-4xl mx-auto px-9 ">
+        <div>
+          <Link href="/" className="block">
+            <h1 className="text-xl text-gray-600 my-2">Hyunjung Im</h1>
+            {/* <p className="text-gray-600 dark:text-gray-400 text-sm my-0">Frontend Developer</p> */}
+          </Link>
+        </div>
+        <a
+          href="https://github.com/forest-im"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+        </a>
+      </div>
+    </header>
+  )
+}
+
 export default function MarkdownLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="max-w-4xl mx-auto px-4">
-      <header>
-        <Link href="/" className="block no-underline">
-          <h1 className="text-2xl my-2">Hyunjung Im</h1>
-        </Link>
-        <p className="text-gray-600 dark:text-gray-400 text-sm -mt-1">Frontend Developer</p>
-      </header>
+    <div className="max-w-4xl mx-auto px-4 py-10">
       <main>{children}</main>
     </div>
   )

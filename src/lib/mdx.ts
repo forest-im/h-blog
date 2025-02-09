@@ -12,10 +12,11 @@ interface Post {
   slug: string
   category?: string
   metadata: Metadata
+  path: string
 }
 
-interface RecentPost extends Post {
-  path: string
+interface PostsByYear {
+  [year: string]: Post[]
 }
 
 const DOCS_PATH = path.join(process.cwd(), 'src/docs')
@@ -38,6 +39,7 @@ export async function getTilPosts(): Promise<Post[]> {
             slug: file.replace('.mdx', ''),
             category,
             metadata,
+            path: `til/${category}/${file.replace('.mdx', '')}`,
           }
         })
       )
@@ -61,6 +63,7 @@ export async function getReviewPosts(): Promise<Post[]> {
       return {
         slug: file.replace('.mdx', ''),
         metadata,
+        path: `review/${file.replace('.mdx', '')}`,
       }
     })
   )
@@ -70,22 +73,26 @@ export async function getReviewPosts(): Promise<Post[]> {
   )
 }
 
-export async function getRecentPosts(): Promise<RecentPost[]> {
+export async function getRecentPosts(): Promise<Post[]> {
   const tilPosts = await getTilPosts()
   const reviewPosts = await getReviewPosts()
 
-  const recentPosts = [
-    ...tilPosts.map((post) => ({
-      ...post,
-      path: `til/${post.category}/${post.slug}`,
-    })),
-    ...reviewPosts.map((post) => ({
-      ...post,
-      path: `review/${post.slug}`,
-    })),
-  ]
+  return [...tilPosts, ...reviewPosts]
     .sort((a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime())
     .slice(0, 10)
+}
 
-  return recentPosts
+export async function getAllPostsByYear(): Promise<PostsByYear> {
+  const tilPosts = await getTilPosts()
+  const reviewPosts = await getReviewPosts()
+  const allPosts = [...tilPosts, ...reviewPosts]
+
+  return allPosts.reduce((acc, post) => {
+    const year = new Date(post.metadata.date).getFullYear().toString()
+    if (!acc[year]) {
+      acc[year] = []
+    }
+    acc[year].push(post)
+    return acc
+  }, {} as PostsByYear)
 }
