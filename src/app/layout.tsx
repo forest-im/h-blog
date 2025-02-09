@@ -1,7 +1,6 @@
 import MarkdownLayout from '@/components/MarkdownLayout'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Inter } from 'next/font/google'
-import Link from 'next/link'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -46,21 +45,9 @@ export default async function RootLayout({
             no-underline
             "
         >
-          <Header />
           <MarkdownLayout>{children}</MarkdownLayout>
         </div>
       </body>
     </html>
-  )
-}
-
-export const Header = () => {
-  return (
-    <header>
-      <Link href="/" className="block no-underline">
-        <h1 className="text-2xl my-2">Hyunjung Im</h1>
-      </Link>
-      <p className="text-gray-600 dark:text-gray-400 text-sm -mt-1">Frontend Developer</p>
-    </header>
   )
 }
