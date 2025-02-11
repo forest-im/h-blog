@@ -1,21 +1,56 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import '../styles/github-dark-dimmed.css';
+@custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --foreground: #ffffff;
+  --background: #171717;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}
+
+.hljs {
+  color: #c9d1d9;
+  background: #0d1117;
+}
+
+pre:has(.hljs),
+.hljs {
+  font-size: 12px;
+  color: #c9d1d9;
+  background: #0d1117;
+}
+
+@font-face {
+  font-family: '42dotSans';
+  src: url('/fonts/42dotSans-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url('/fonts/NotoSansKR-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+body {
+  font-family: '42dotSans';
 }

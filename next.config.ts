@@ -1,5 +1,6 @@
 import createMDX from '@next/mdx'
 import type { NextConfig } from 'next'
+import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm'
 
 /** @type {import('next').NextConfig} */
@@ -10,14 +11,14 @@ const nextConfig: NextConfig = {
   // Note: Using the Rust compiler means we cannot use
   // rehype or remark plugins. For my app, this is fine.
   experimental: {
-    mdxRs: true,
+    mdxRs: false,
   },
 }
 
 const withMDX = createMDX({
   options: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [],
+    rehypePlugins: [[rehypeHighlight, { ignoreMissing: true }]],
   },
 })
 

@@ -17,7 +17,7 @@ export default async function Home() {
             .map((post) => (
               <Link
                 href={`/${post.path}`}
-                className="flex items-baseline gap-4 group hover:bg-green-50 cursor-pointer hover:text-green-600 rounded-lg"
+                className="flex items-baseline gap-4 group hover:bg-blue-50 cursor-pointer rounded-lg hover:dark:bg-blue-950 hover:dark:text-inherit hover:text-blue-700 transition-colors duration-100 dark:text-slate-300"
                 key={post.path}
               >
                 <article className="text-base p-5">
