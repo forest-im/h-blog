@@ -125,9 +125,26 @@ const components = {
       </code>
     )
   },
-  pre: (props: ComponentPropsWithoutRef<'pre'>) => (
-    <pre className="my-4 p-4 rounded-lg border-gray-800 border-1" {...props} />
-  ),
+  pre: ({ children, ...props }: ComponentPropsWithoutRef<'pre'>) => {
+    // children이 객체이고 props가 있는 경우 (코드 블록인 경우)
+
+    // const childrenProps = (children as any)?.props
+    // const className = childrenProps?.className || ''
+    // const title = className.match(/language-(\w+)/)?.[1] // "language-ts" 에서 "ts" 추출
+
+    return (
+      <div className="my-4">
+        {/* {title && <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">{title}</div>} */}
+        <pre
+          className="p-4 rounded-lg border-gray-800 border-1 max-w-full overflow-x-auto"
+          {...props}
+        >
+          {children}
+        </pre>
+      </div>
+    )
+  },
+  hr: (props: ComponentPropsWithoutRef<'hr'>) => <hr className="my-10" {...props} />,
 }
 
 declare global {

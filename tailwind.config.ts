@@ -14,7 +14,7 @@ const config: Config = {
         foreground: 'var(--foreground)',
       },
       fontFamily: {
-        sans: ['NotoSansKR', 'system-ui', 'sans-serif'],
+        sans: ['Liter-Regular', 'NotoSansKR', 'system-ui', 'sans-serif'],
       },
     },
   },

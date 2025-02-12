@@ -6,6 +6,7 @@ interface Metadata {
   tags: string[]
   date: string
   description?: string
+  visibility?: 'public' | 'private'
 }
 
 interface Post {
@@ -88,6 +89,8 @@ export async function getAllPostsByYear(): Promise<PostsByYear> {
   const allPosts = [...tilPosts, ...reviewPosts]
 
   return allPosts.reduce((acc, post) => {
+    if (post.metadata.visibility === 'private') return acc
+
     const year = new Date(post.metadata.date).getFullYear().toString()
     if (!acc[year]) {
       acc[year] = []
