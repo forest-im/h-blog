@@ -4,32 +4,32 @@ import { Canvas } from '@react-three/fiber'
 import { useControls } from 'leva'
 import * as THREE from 'three'
 
-import { useFrame, useThree } from '@react-three/fiber'
+// import { useFrame, useThree } from '@react-three/fiber'
 import { useRef } from 'react'
 
 function ThreeElement() {
-  const { size, gl, scene, camera } = useThree() // This will just crash
+  // const { size, gl, scene, camera } = useThree() // This will just crash
   const boxRef = useRef<THREE.Mesh>(null)
   const fbx = useFBX('/3d/coin3.fbx')
 
-  const box = useControls({
-    roation: { value: 0, min: -360, max: 360, step: 1 },
-  })
+  // const box = useControls({
+  //   roation: { value: 0, min: -360, max: 360, step: 1 },
+  // })
 
-  const light1 = new THREE.PointLight(0xf0ecdb, 1, 100)
+  // const light1 = new THREE.PointLight(0xf0ecdb, 1, 100)
 
-  const helper1 = new THREE.PointLightHelper(light1, 1)
+  // const helper1 = new THREE.PointLightHelper(light1, 1)
 
   // useHelper
 
-  useFrame((state, delta) => {
-    // boxRef.current.rotation.x += delta;
-    // boxRef.current.position.y -= 0.01;
-    // scene.rotation.z += delta
-    // boxRef.current.rotation.x -= 0.01
-    // scene.add(helper1)
-    // scene.position.x += 0.01;
-  })
+  // useFrame((state, delta) => {
+  //   // boxRef.current.rotation.x += delta;
+  //   // boxRef.current.position.y -= 0.01;
+  //   // scene.rotation.z += delta
+  //   // boxRef.current.rotation.x -= 0.01
+  //   // scene.add(helper1)
+  //   // scene.position.x += 0.01;
+  // })
 
   return (
     <>
@@ -78,8 +78,8 @@ function ThreeElement() {
 }
 
 export default function Three() {
-  const red = new THREE.MeshLambertMaterial({ color: 'red' })
-  const sphere = new THREE.SphereGeometry(1, 28, 28)
+  // const red = new THREE.MeshLambertMaterial({ color: 'red' })
+  // const sphere = new THREE.SphereGeometry(1, 28, 28)
 
   const color = useControls({
     value: 'white',
