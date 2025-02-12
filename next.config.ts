@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
   experimental: {
     mdxRs: false,
   },
+  transpilePackages: ['three'],
 }
 
 const withMDX = createMDX({
