@@ -8,7 +8,6 @@ export const Header = () => {
         <div>
           <Link href="/" className="block">
             <h1 className="text-xl text-gray-600 my-2">Hyunjung Im</h1>
-            {/* <p className="text-gray-600 dark:text-gray-400 text-sm my-0">Frontend Developer</p> */}
           </Link>
         </div>
         <div className="flex items-center gap-2">

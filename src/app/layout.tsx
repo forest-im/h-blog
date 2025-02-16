@@ -1,6 +1,7 @@
 import MarkdownLayout, { Header } from '@/components/MarkdownLayout'
 import { ThemeProvider } from '@/context/ThemeProvider'
 import { setInitialTheme } from '@/lib/setInitialTheme'
+import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import './globals.css'
 
@@ -18,11 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`antialiased`}>
         <ThemeProvider>
           <Header />
-          <div
-            className="
-              "
-          >
+          <div>
             <MarkdownLayout>{children}</MarkdownLayout>
+            <Analytics />
           </div>
         </ThemeProvider>
       </body>

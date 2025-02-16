@@ -119,8 +119,16 @@ const components = {
     // pre 태그 내부의 code인지 확인 (코드 블록)
     const isBlock = typeof children === 'object'
 
+    if (isBlock) {
+      return (
+        <code className={'hljs'} {...props}>
+          {children}
+        </code>
+      )
+    }
+
     return (
-      <code className={isBlock ? styles.code.block : styles.code.inline} {...props}>
+      <code className={styles.code.inline} {...props}>
         {children}
       </code>
     )
@@ -147,9 +155,7 @@ const components = {
   hr: (props: ComponentPropsWithoutRef<'hr'>) => <hr className="my-10" {...props} />,
 }
 
-declare global {
-  type MDXProvidedComponents = typeof components
-}
+type MDXProvidedComponents = typeof components
 
 export function useMDXComponents(): MDXProvidedComponents {
   return components
