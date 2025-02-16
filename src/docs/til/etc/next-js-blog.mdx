@@ -1,8 +1,347 @@
 export const metadata = {
-  title: 'next.js로 블로그 다시 만들기',
-  tags: ['#next.js', 'cursor.ai'],
-  date: '2025-02-10 02:01:52',
+  title: 'next/mdx로 블로그 만들기',
+  tags: ['#next.js', 'next/mdx'],
+  date: '2025-02-17 00:51:31',
 }
 
-- next.js 15로 블로그 다시 만드는 중..
-- Cursor ai와 함께 만드는 중.. 스타일링 작업 시간이 10/1로 줄어드는 마법을 경험하는 중..
+이전에 Svelte Kit + md 조합이었던 블로그를 Next.js + mdx 조합으로 다시 만들었다. 블로그의 첫 버전이 Next.js 13버전으로 만들었는데, 그 사이에 글이 늘어난 것은 별로 없고 환경만 2번 바뀐 셈이다.
+조합을 변경한 이유로는 아래와 같다.
+
+1. 스벨트 환경이 TS가 아닌 JS 환경이라, TS로 다 변경이 필요했던 점
+2. 블로그 말고는 스벨트를 사용할 일이 없는 점
+
+어차피 변경이 필요하다면 아예 새로 구축하는 게 나을듯 하여 Next.js로 새로 만들어버렸다.
+스벨트로는 마크다운 환경을 구축하기 위해서는 `mdsvex` npm을 사용해야 했는데, Next.js에서는 아예 next 패키지중 하나인 [next/mdx 패키지](https://github.com/vercel/next.js/tree/canary/packages/next-mdx)를 사용해 구축이 가능한 점도 메리트로 작용했다.
+
+주절주절이 길었지만, 결론은.. 다시 넥스트 쓰고 싶었다는 결론이다. 회사 환경은 어차피 v12이라 앱라우터는 꿈도 못꾸지만 일단은 써봐야 어떻게 변경할지 생각이라도 해볼 수 있다는 판단이었다.
+
+---
+
+## next/mdx를 사용하여 블로그 만들기
+
+https://nextjs.org/docs/pages/building-your-application/configuring/mdx 에서 자세하게 설명하고 있지만, 다시 정리할 겸 작성해본다.
+
+### 의존성 설치 및 next config 설정
+
+- 먼저 `npm install @next/mdx @mdx-js/loader @mdx-js/react @types/mdx` 를 설치한다.
+- next.config.mjs 업데이트 (아래와 같이 설정했다.)
+
+```ts
+import createMDX from '@next/mdx'
+import type { NextConfig } from 'next'
+import rehypeHighlight from 'rehype-highlight'
+import remarkGfm from 'remark-gfm'
+
+/** @type {import('next').NextConfig} */
+const nextConfig: NextConfig = {
+  // 마크다운 및 MDX 파일을 포함하도록 `pageExtensions`를 구성합니다
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  experimental: {
+    mdxRs: false,
+  },
+  transpilePackages: ['three'],
+}
+
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkGfm],
+    // rehypePlugins: [[rehypeHighlight, { ignoreMissing: true }, rehypeCodeTitles]],
+    rehypePlugins: [[rehypeHighlight, { ignoreMissing: true }]],
+  },
+})
+
+export default withMDX(nextConfig)
+```
+
+- `remarkGfm` 패키지는 마크다운에서 table 등 마크다운 문법을 해석할 수 있도록 해주므로 필수적으로 추가해준다.
+- `rehypeHighlight`는 코드 에디터 스타일링을 위해 추가했다.
+
+---
+
+### mdx-components.tsx 추가하기
+
+- 해당 파일은 `root` 에 추가해야한다.
+- `pages` 또는 `app` 폴더와 같은 레벨에 추가헤야한다.
+- 앱 라우트와 함께 사용하지 않으면 작동하지 않는다.
+- 해당 파일에서 스타일링을 지정할 수 있다.
+- 아래와 같이 설정했다. Cursor AI의 도움으로 빠르게 스타일링 할 수 있었다. code의 스타일링도 지정되어있긴 하지만, inline code만 아래 스타일링이 지정되고, inline이 아닌 경우에는 rehypeHighlight로 스타일링 된다.
+- [@tailwindcss/typography](https://tailwindcss.com/docs/adding-custom-styles#functional-utilities) 를 사용하면 따로 스타일링할 필요 없이 예쁘게 잘 나오지만, 커스텀이 조금 불편해서 처음부터 커스텀하기로 했다.
+
+```tsx
+import Link from 'next/link'
+import { ComponentPropsWithoutRef } from 'react'
+
+// 공통 스타일 변수
+const styles = {
+  text: {
+    base: 'text-base text-gray-800 dark:text-zinc-300 font-[500]',
+    heading: 'text-gray-800 dark:text-zinc-200 font-[600]',
+  },
+  spacing: {
+    heading: 'mt-6 mb-2',
+  },
+  link: {
+    base: 'text-blue-500 hover:text-blue-700 dark:text-gray-400 hover:dark:text-gray-300',
+    decoration: 'dark:underline dark:underline-offset-2 dark:decoration-gray-800',
+  },
+  list: {
+    base: 'text-base text-gray-800 dark:text-zinc-300 pl-5 space-y-1',
+  },
+  code: {
+    inline:
+      'px-1.5 py-0.5 rounded-md bg-gray-100 dark:bg-[#0d1117] font-mono text-sm border border-gray-200 dark:border-gray-700 mx-1',
+    block:
+      'p-4 rounded-lg bg-gray-100 dark:bg-zinc-800 overflow-x-auto text-xs border border-gray-200 dark:border-gray-700',
+  },
+}
+
+type HeadingProps = ComponentPropsWithoutRef<'h1'>
+type ParagraphProps = ComponentPropsWithoutRef<'p'>
+type ListProps = ComponentPropsWithoutRef<'ul'>
+type ListItemProps = ComponentPropsWithoutRef<'li'>
+type AnchorProps = ComponentPropsWithoutRef<'a'>
+type BlockquoteProps = ComponentPropsWithoutRef<'blockquote'>
+
+const components = {
+  h1: (props: HeadingProps) => <h1 className="font-medium text-2xl pt-10 mb-3" {...props} />,
+  h2: (props: HeadingProps) => (
+    <h2
+      className={`${styles.text.heading} font-medium text-xl ${styles.spacing.heading}`}
+      {...props}
+    />
+  ),
+  h3: (props: HeadingProps) => (
+    <h3
+      className={`${styles.text.heading} font-medium text-lg ${styles.spacing.heading}`}
+      {...props}
+    />
+  ),
+  h4: (props: HeadingProps) => (
+    <h4
+      className={`${styles.text.heading} font-medium text-base ${styles.spacing.heading}`}
+      {...props}
+    />
+  ),
+  p: (props: ParagraphProps) => (
+    <p className={`${styles.text.base} leading-relaxed my-4`} {...props} />
+  ),
+  ol: (props: ListProps) => <ol className={`${styles.list.base} list-decimal`} {...props} />,
+  ul: (props: ListProps) => <ul className={`${styles.list.base} list-disc`} {...props} />,
+  li: (props: ListItemProps) => <li className="pl-1" {...props} />,
+  em: (props: ComponentPropsWithoutRef<'em'>) => <em className="font-medium italic" {...props} />,
+  strong: (props: ComponentPropsWithoutRef<'strong'>) => (
+    <strong className="font-semibold" {...props} />
+  ),
+  a: ({ href, children, ...props }: AnchorProps) => {
+    const className = `${styles.link.base} ${styles.link.decoration}`
+
+    if (href?.startsWith('/')) {
+      return (
+        <Link href={href} className={className} {...props}>
+          {children}
+        </Link>
+      )
+    }
+    if (href?.startsWith('#')) {
+      return (
+        <a href={href} className={className} {...props}>
+          {children}
+        </a>
+      )
+    }
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className} {...props}>
+        {children}
+      </a>
+    )
+  },
+  blockquote: (props: BlockquoteProps) => (
+    <blockquote
+      className="ml-[0.075em] border-l-4 border-gray-300 pl-6 italic text-gray-700 dark:border-zinc-600 dark:text-zinc-300"
+      {...props}
+    />
+  ),
+  Table: ({ data }: { data: { headers: string[]; rows: string[][] } }) => (
+    <table className="w-full my-6 border-collapse">
+      <thead>
+        <tr className="border-b dark:border-zinc-700">
+          {data.headers.map((header, index) => (
+            <th key={index} className="py-2 px-4 text-left font-medium">
+              {header}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {data.rows.map((row, index) => (
+          <tr key={index} className="border-b dark:border-zinc-800">
+            {row.map((cell, cellIndex) => (
+              <td key={cellIndex} className="py-2 px-4">
+                {cell}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  ),
+  code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => {
+    // pre 태그 내부의 code인지 확인 (코드 블록)
+    const isBlock = typeof children === 'object'
+
+    return (
+      <code className={isBlock ? styles.code.block : styles.code.inline} {...props}>
+        {children}
+      </code>
+    )
+  },
+  pre: ({ children, ...props }: ComponentPropsWithoutRef<'pre'>) => {
+    return (
+      <div className="my-4">
+        {/* {title && <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">{title}</div>} */}
+        <pre
+          className="p-4 rounded-lg border-gray-800 border-1 max-w-full overflow-x-auto"
+          {...props}
+        >
+          {children}
+        </pre>
+      </div>
+    )
+  },
+  hr: (props: ComponentPropsWithoutRef<'hr'>) => <hr className="my-10" {...props} />,
+}
+
+type MDXProvidedComponents = typeof components
+
+export function useMDXComponents(): MDXProvidedComponents {
+  return components
+}
+```
+
+---
+
+### mdx의 메타데이터 설정하기
+
+기존 md파일에서 메타데이터를 설정할 때는 보통 상단에 아래와 같이 설정한다.
+
+```md
+---
+title: Java Script의 타입과 문법 (정리)
+tag: YOU DON'T KNOW JS, 책, JS
+date: 2022-12-23 19:40:54
+---
+```
+
+next/mdx를 사용하면서, 아래와 같이 설정할 수 있게되었다.
+
+```md
+export const metadata = {
+title: 'Java Script의 타입과 문법 (정리)',
+tags: ["#YOU DON'T KNOW JS", '#책', '#JS'],
+date: '2022-12-23 19:40:54',
+}
+```
+
+```tsx
+import BlogPost, { metadata } from '@/content/blog-post.mdx'
+
+export default function Page() {
+  console.log('metadata: ', metadata)
+  //=> { author: 'John Doe' }
+  return <BlogPost />
+}
+```
+
+- Next 홈페이지의 예시이며 위 import 방식처럼 metadata를 가져올 수 있다.
+
+하지만 보통 mdx 파일을 가져올 때는 하나씩 가져오지 않고 fs 모듈을 사용하는 경우가 많으므로 나도 아래와 같이 lib 모듈을 만들어서 가져오는 방식으로 사용했다.
+
+```ts
+const DOCS_PATH = path.join(process.cwd(), 'src/docs')
+
+export async function getTilPosts(): Promise<Post[]> {
+  const tilPath = path.join(DOCS_PATH, 'til')
+  const categories = fs.readdirSync(tilPath)
+
+  const posts = await Promise.all(
+    categories.flatMap(async (category) => {
+      const categoryPath = path.join(tilPath, category)
+      if (!fs.statSync(categoryPath).isDirectory()) return []
+
+      const files = fs.readdirSync(categoryPath).filter((file) => file.endsWith('.mdx'))
+
+      const categoryPosts = await Promise.all(
+        files.map(async (file) => {
+          const { metadata } = await import(`@/docs/til/${category}/${file}`)
+          return {
+            slug: file.replace('.mdx', ''),
+            category,
+            metadata,
+            path: `til/${category}/${file.replace('.mdx', '')}`,
+          }
+        })
+      )
+
+      return categoryPosts
+    })
+  )
+
+  return posts
+    .flat()
+    .sort((a, b) => new Date(b?.metadata?.date).getTime() - new Date(a.metadata.date).getTime())
+}
+```
+
+- `src/docs/til` 경로의 파일을 가져오도록 했고 `til` 폴더 다음의 폴더명이 카테고리명이므로 (ex `src/docs/til/category/example.mdx`) 해당 폴더명을 path 명으로 지정했고, 아래 코드 예시처럼 Link의 href로 사용했다.
+
+`app/page.tsx`
+
+```tsx
+import { getAllPostsByYear } from '@/lib/mdx'
+import Link from 'next/link'
+
+export default async function Home() {
+  const postsByYear = await getAllPostsByYear()
+  const years = Object.keys(postsByYear).sort((a, b) => b.localeCompare(a))
+
+  return (
+    <div>
+      {years.map((year) => (
+        <section key={year} className="not-prose text-base">
+          <h2 className="px-5 py-10 font-bold">{year}</h2>
+          {postsByYear[year]
+            .sort(
+              (a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
+            )
+            .map((post) => (
+              <Link
+                href={`/${post.path}`}
+                className="flex items-baseline gap-4 group hover:bg-blue-50 cursor-pointer rounded-lg hover:dark:bg-blue-950 hover:dark:text-inherit hover:text-blue-700 transition-colors duration-100 dark:text-slate-300"
+                key={post.path}
+              >
+                <article className="text-base p-5">
+                  <time className="text-sm text-gray-500 w-20">
+                    {new Date(post.metadata.date).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  <p className="font-medium my-0 ">{post.metadata.title}</p>
+                </article>
+              </Link>
+            ))}
+        </section>
+      ))}
+    </div>
+  )
+}
+```
+
+- 년도별로 포스트를 분류하여 보여주기 위해 `getAllPostsByYear` 함수를 만들어 사용했다.
+
+---
+
+![Image](https://github.com/user-attachments/assets/29487e7b-2714-4b6e-8f59-f297f434ed00)
+어찌저찌 위와 같은 홈페이지가 되었고, 블로그 v1과 거의 동일한 형태가 된 것 같기도 하다.😂
+
+다음 목표는 React Three Fiber를 사용해 블로그 인트로를 추가해보는 건데, 구상과 공부가 필요하니 조금 더 준비해보아야겠다.
