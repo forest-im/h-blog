@@ -1,5 +1,11 @@
 import BlogLayout from '@/components/BlogLayout'
+import { Header } from '@/components/MarkdownLayout'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <BlogLayout>{children}</BlogLayout>
+  return (
+    <>
+      <Header />
+      <BlogLayout>{children}</BlogLayout>
+    </>
+  )
 }
