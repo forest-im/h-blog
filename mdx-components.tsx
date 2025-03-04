@@ -91,12 +91,29 @@ const components = {
       {...props}
     />
   ),
+  table: (props: ComponentPropsWithoutRef<'table'>) => (
+    <table className="w-full my-6 border-collapse " {...props} />
+  ),
+  th: (props: ComponentPropsWithoutRef<'th'>) => (
+    <th className="py-2 px-4 text-left font-medium whitespace-nowrap " {...props} />
+  ),
+  td: (props: ComponentPropsWithoutRef<'td'>) => <td className="py-2 px-4" {...props} />,
+  tbody: (props: ComponentPropsWithoutRef<'tbody'>) => (
+    <tbody className="border-b border-gray-300 dark:border-zinc-800" {...props} />
+  ),
+  tr: (props: ComponentPropsWithoutRef<'tr'>) => (
+    <tr className="border-b border-gray-300 dark:border-zinc-800" {...props} />
+  ),
+  hr: (props: ComponentPropsWithoutRef<'hr'>) => (
+    <hr className="my-15 border-gray-100 dark:border-zinc-800 " {...props} />
+  ),
+
   Table: ({ data }: { data: { headers: string[]; rows: string[][] } }) => (
     <table className="w-full my-6 border-collapse">
       <thead>
         <tr className="border-b dark:border-zinc-700">
           {data.headers.map((header, index) => (
-            <th key={index} className="py-2 px-4 text-left font-medium">
+            <th key={index} className="py-2 px-4 text-left font-medium whitespace-nowrap">
               {header}
             </th>
           ))}
@@ -104,7 +121,7 @@ const components = {
       </thead>
       <tbody>
         {data.rows.map((row, index) => (
-          <tr key={index} className="border-b dark:border-zinc-800">
+          <tr key={index} className="border-b border-gray-300 dark:border-zinc-800">
             {row.map((cell, cellIndex) => (
               <td key={cellIndex} className="py-2 px-4">
                 {cell}
@@ -152,7 +169,6 @@ const components = {
       </div>
     )
   },
-  hr: (props: ComponentPropsWithoutRef<'hr'>) => <hr className="my-10" {...props} />,
 }
 
 type MDXProvidedComponents = typeof components
