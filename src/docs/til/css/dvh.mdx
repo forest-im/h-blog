@@ -1,0 +1,137 @@
+export const metadata = {
+  title: 'vh의 지옥에서 구해줄 dvh, lvh, svh',
+  tags: ['#dvh'],
+  date: '2025-03-01 22:26:08',
+}
+
+골칫덩이 vh의 문제점을 해결해줄 dvh, lvh, svh에 대해 정리해본다.
+
+---
+
+## 동적인 height를 가진 모바일 브라우저
+
+<img
+  src="https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/64a9ad90-e7f9-4848-aeb3-b001ad49af00/public"
+  alt="mobile-safari"
+/>
+
+모바일 브라우저에서는 보통 스크롤 발생시 주소 표시줄이 사라지고, 다시 나타날 때 뷰포트 높이가 변하는 경우가 있다. 이때 뷰포트 높이를 기준으로 하는 단위를 사용하면 뷰포트 높이가 변할 때마다 레이아웃이 깨지는 문제가 발생할 수 있다.
+
+### 100vh의 문제점
+
+- 100vh를 차지하고 하단에 고정된 요소가 있을 때, 주소 표시줄이 사라지면 뷰포트 높이가 줄어들어 하단에 고정된 요소가 화면 밖으로 사라지는 문제가 발생한다.
+
+### vh 변수 설정 + resize 이벤트로 해결하기
+
+- vh는 한 번 계산되고 끝이기 때문에 모바일에서 동적으로 변화하는 height를 계산하기 위해서는 JS를 사용해 동적 height값을 사용해 일일히 계산이 필요하다.
+
+```ts
+useEffect(() => {
+  const updateVh = () => {
+    const vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
+  }
+
+  updateVh()
+  window.addEventListener('resize', updateVh)
+
+  return () => window.removeEventListener('resize', updateVh)
+}, [])
+```
+
+```css
+/* css 설정 */
+.mobile-element {
+  height: calc(var(--vh, 1vh) * 100);
+}
+```
+
+```html
+<html style="--vh: ~px;">
+  <!-- //... -->
+</html>
+```
+
+- setProperty로 설정하면, 개발자 도구에서 style에 --vh가 추가되어 있는 것을 확인할 수 있다.
+
+### vh 변수 해결 방식의 문제점
+
+#### 성능 저하
+
+- 과도한 리렌더링: resize 이벤트는 브라우저 창 크기가 변경될 때마다 발생하므로, 불필요한 리렌더링이 빈번하게 발생할 수 있음
+- 레이아웃 스래싱: resize 이벤트 핸들러에서 요소의 크기를 읽고 스타일을 변경하면, 브라우저가 레이아웃을 반복적으로 계산해야 하므로 성능이 저하될 수 있음
+
+---
+
+## 모바일 브라우저의 고통에서 구해줄 dvh, lvh, svh
+
+### Viewport Height Units (vh, svh, dvh, lvh)
+
+- 뷰포트 높이를 기준으로 하는 단위
+
+| 단위 | 설명                         | 특징                                                                     |
+| ---- | ---------------------------- | ------------------------------------------------------------------------ |
+| vh   | Viewport Height의 1%         | 브라우저 창의 높이를 기준으로 함                                         |
+| svh  | Small Viewport Height의 1%   | 모바일 기기에서 주소 표시줄 등을 제외한 최소 뷰포트 높이                 |
+| dvh  | Dynamic Viewport Height의 1% | 모바일 기기에서 주소 표시줄 표시 여부에 따라 동적으로 변하는 뷰포트 높이 |
+| lvh  | Large Viewport Height의 1%   | 모바일 기기에서 주소 표시줄 등을 포함한 최대 뷰포트 높이                 |
+
+---
+
+## 사용 예제
+
+```css
+.box {
+  height: 100vh; /* 기본 뷰포트 높이 */
+}
+
+.box-svh {
+  height: 100svh; /* 최소 뷰포트 높이 */
+}
+
+.box-lvh {
+  height: 100lvh; /* 최대 뷰포트 높이 */
+}
+
+.box-dvh {
+  height: 100dvh; /* 동적 뷰포트 높이 */
+}
+```
+
+- dvh의 경우 뷰에 따라 뷰포트 높이가 변하므로, 스크롤이 발생하지 않는 Full 사이즈의 뷰에서는 svh를 사용하는 것이 성능적으로 유리할 수 있다.
+
+### support로 하위 버전, 상위 버전 구분하기
+
+```css
+/* svh 지원하지 않는 하위 버전은 100vh 사용 */
+@supports not (height: 100svh) {
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+/* svh를 지원하는 상위 버전은 svh 사용 */
+@supports (height: 100svh) {
+  height: 100svh;
+}
+```
+
+- support를 사용해 하위 버전과 상위 버전을 구분하여 사용할 수 있다.
+
+---
+
+## 지원 범위
+
+- [dvh 지원범위](https://caniuse.com/?search=dvh)
+- [svh 지원범위](https://caniuse.com/?search=svh)
+- [lvh 지원범위](https://caniuse.com/?search=lvh)
+
+아쉽게도.. 사파리에서는 `v16.4` 부터 지원된다. 회사 지원 버전이 `v17`부터면 좋겠지만.. 결국 위 vh 변수 설정 방식과 함께 사용해야만 한다.
+
+[iOS Versions Market Share in 2025](https://telemetrydeck.com/survey/apple/iOS/majorSystemVersions/) 링크에서 보면 2025년 01월 25일을 기준으로 iOS 16 버전 이하의 점유율은 5프로 정도이다.
+
+---
+
+## 참고
+
+- [[MDN] CSS 단위와 값](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Values_and_Units)
+
+- [[MDN] Relative length units based on viewport](https://developer.mozilla.org/en-US/docs/Web/CSS/length#relative_length_units_based_on_viewport)
