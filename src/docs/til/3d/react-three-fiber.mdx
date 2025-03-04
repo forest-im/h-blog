@@ -1,0 +1,118 @@
+export const metadata = {
+  title: 'react three fiber',
+  tags: ['#react three fiber'],
+  date: '2025-02-12 23:57:30',
+}
+
+회사 스터디로 React Three Fiber를 배우고 있다. 초반 목표는 Three.js 였지만, 빠르게 시도해보기 위해 React Three Fiber를 사용해보기로 했다.
+
+# react three fiber
+
+https://r3f.docs.pmnd.rs/getting-started/introduction
+
+## 소개
+
+react three fiber는 3d 모델링을 위한 라이브러리입니다.
+
+## [@react-three/drei](https://github.com/pmndrs/drei)
+
+## [leva](https://github.com/pmndrs/leva)
+
+- `useControl` 이라는 훅으로 GUI 추가 가능
+
+```ts
+three @react-three/fiber
+```
+
+### Geometry
+
+- triangles(삼각형)로 이루어져있다.
+
+  - 박스의 사각형도 삼각형으로 이루어져있다.
+  - [BoxGeometry](https://threejs.org/docs/index.html?q=geometry#api/en/geometries/BoxGeometry)
+  - buffer geometry(https://threejs.org/docs/index.html#api/en/core/BufferGeometry)를 상속받는다.
+
+- 삼각형을 줄일 수록 용량이 적어짐
+
+### Geometry를 만드는 방식
+
+```tsx
+import { Box, OrbitControls, useFBX } from '@react-three/drei'
+
+//...
+;<Box position={[-2, 0, 0]}>
+  <meshStandardMaterial color="green" />
+</Box>
+```
+
+- 3가지 방식이 있음
+- drei 사용하는 게 제일 간편
+
+## Wireframe으로 렌더링하는 방법
+
+```tsx
+<Box position={[-2, 0, 0]}>
+  <meshStandardMaterial color="green" wireframe />
+</Box>
+```
+
+box의 옵션을 leva로 조절하기
+
+```tsx
+<boxGeometry args={[2, 2, 1, 1, 1, 1]} />
+```
+
+## mesh
+
+```tsx
+        <meshBasicMaterial color="red" visible={true} transparent={true} opacity={0.5} />
+
+                <meshBasicMaterial
+          color="red"
+          visible={true}
+          transparent={true}
+          opacity={0.5}
+          side={THREE.FrontSide} // DoubleSide
+        />
+```
+
+바깥쪽이 front side
+둘다 렌더링은 double side
+기본은 front side
+
+          opacity={0.5}
+          side={THREE.FrontSide}
+          alphaTest={0.4}
+
+          alphaTest보다 오파시티가 낮으면 안보임
+
+- depthTest={true}
+
+- depthWrite = false
+  z 값에 대한 ordering을 하지 않음
+
+  ### fog
+
+  fog={true}
+
+  - 안개를 넣어져야햄
+  - `<fog attach="fog" args={['blue', 3, 10]} />`
+
+  zoom 값에 따라 near far 값이 바뀜
+
+## 빛에 대한 영향을 받는 머테리얼
+
+- meshLambdaMaterial
+
+- normal
+  각 면마다 방향으로 가는 방향 벡터를 담은 것
+  노말 벡터의 xyz값을 rgb값으로 변환해서 보여줌
+
+## PBR 물리 기반 렌더링
+
+meshStandardMaterial
+meshPhysicalMaterial
+
+난반사, 정반사, 광택, 거칠기, 빛의 강도, 빛의 색상
+거칠기(roughness)
+광택(metalness)
