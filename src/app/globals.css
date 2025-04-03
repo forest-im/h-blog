@@ -2,6 +2,13 @@
 @import '../styles/github-dark-dimmed.css';
 @custom-variant dark (&:where(.dark, .dark *));
 
+html,
+body,
+main {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 .dark {
   --foreground: #ffffff;
   --background: #171717;
@@ -12,6 +19,19 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
+}
+/* 테이블 외부 래퍼가 넘치지 않도록 */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+/* 기본 스타일 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
 }
 
 .hljs {
@@ -70,4 +90,57 @@ h6 {
 img {
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.bg-red {
+  background-color: #f87171;
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+}
+.bg-yellow {
+  background-color: #fde047;
+  color: black;
+  padding: 4px;
+  border-radius: 4px;
+}
+.bg-green {
+  background-color: #4ade80;
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+}
+.bg-blue {
+  background-color: #60a5fa;
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+}
+.bg-purple {
+  background-color: #c084fc;
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.text-red {
+  color: #f87171;
+  font-weight: bold;
+}
+
+.text-yellow {
+  color: #fde047;
+  font-weight: bold;
+}
+.text-green {
+  color: #4ade80;
+  font-weight: bold;
+}
+.text-blue {
+  color: #60a5fa;
+  font-weight: bold;
+}
+.text-purple {
+  color: #c084fc;
+  font-weight: bold;
 }

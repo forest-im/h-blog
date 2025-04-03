@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
       </head>
-      <body className={`antialiased`}>
+      <body className="antialiased">
         <ThemeProvider>
           {/* <Header /> */}
           {children}

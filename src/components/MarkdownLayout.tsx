@@ -3,7 +3,7 @@ import { ThemeToggle } from './ThemeToggle'
 
 export const Header = () => {
   return (
-    <header className="border-gray-50 sticky top-0 backdrop-blur-sm py-2 ">
+    <header className="border-gray-50 sticky top-0 backdrop-blur-sm py-2">
       <div className="flex justify-between items-center max-w-2xl mx-auto px-9 ">
         <div>
           <Link href="/" className="block">
@@ -28,8 +28,8 @@ export const Header = () => {
 
 export default function MarkdownLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="max-w-2xl mx-auto px-4 py-10">
-      <main>{children}</main>
+    <div className="max-w-2xl mx-auto px-4 pb-10">
+      <main className="max-w-none overflow-x-hidden">{children}</main>
     </div>
   )
 }

@@ -2,6 +2,8 @@ import createMDX from '@next/mdx'
 import type { NextConfig } from 'next'
 import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
@@ -15,9 +17,9 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkMath],
     // rehypePlugins: [[rehypeHighlight, { ignoreMissing: true }, rehypeCodeTitles]],
-    rehypePlugins: [[rehypeHighlight, { ignoreMissing: true }]],
+    rehypePlugins: [rehypeKatex, [rehypeHighlight, { ignoreMissing: true }]],
   },
 })
 

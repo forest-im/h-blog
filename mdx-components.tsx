@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import 'katex/dist/katex.min.css'
 import { ComponentPropsWithoutRef } from 'react'
 
 // 공통 스타일 변수
@@ -92,7 +93,9 @@ const components = {
     />
   ),
   table: (props: ComponentPropsWithoutRef<'table'>) => (
-    <table className="w-full my-6 border-collapse " {...props} />
+    <div className="table-wrapper">
+      <table {...props} />
+    </div>
   ),
   th: (props: ComponentPropsWithoutRef<'th'>) => (
     <th className="py-2 px-4 text-left font-medium whitespace-nowrap " {...props} />
@@ -108,30 +111,6 @@ const components = {
     <hr className="my-15 border-gray-100 dark:border-zinc-800 " {...props} />
   ),
 
-  Table: ({ data }: { data: { headers: string[]; rows: string[][] } }) => (
-    <table className="w-full my-6 border-collapse">
-      <thead>
-        <tr className="border-b dark:border-zinc-700">
-          {data.headers.map((header, index) => (
-            <th key={index} className="py-2 px-4 text-left font-medium whitespace-nowrap">
-              {header}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.rows.map((row, index) => (
-          <tr key={index} className="border-b border-gray-300 dark:border-zinc-800">
-            {row.map((cell, cellIndex) => (
-              <td key={cellIndex} className="py-2 px-4">
-                {cell}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  ),
   code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => {
     // pre 태그 내부의 code인지 확인 (코드 블록)
     const isBlock = typeof children === 'object'
