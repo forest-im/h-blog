@@ -1,0 +1,187 @@
+export const metadata = {
+  title: '구글 Apps Script로 뉴스레터 만들기',
+  tags: ['#Apps Script', '#앱스스크립트'],
+  date: '2025-04-05 01:55:29',
+}
+
+![mail](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/3545928c-c574-47f8-4133-eef2da2be200/public)  
+앱스 스크립트를 처음 써봤는데, 엄청 간단하고 좋네..  
+개발 관련 정보들을 메일로 한 번에 보고 싶어서 아침 7시 - 8시 사이에 메일로 받을 수 있는 스크립트를 만들었다.(물론 GPT가 다 만들어줌.) 하지만 미디엄을 사용하는 개발 블로그는 429 에러(too many requests)로 인해 되지 않았고 우아한 형제들은 403 에러로 인해 실패했음. 우아한 형제들은 막혀있는 것 같은데, 이후에 다시 살펴봐야겠다.
+
+## 포함된 기능
+
+- 시간 기준 필터링: 긱뉴스를 제외하고, 어제 아침 8시 ~ 오늘 아침 8시까지 올라온 글만 메일로 수집
+- 다국어 번역: Reddit 같은 해외 피드 제목은 한국어로 번역
+- 매일 아침 자동 발송: Google Apps Script 트리거로 매일 8시에 메일 발송
+
+```js
+function sendTechBlogNewsletter() {
+  // ✅ RSS 피드 URL과 이름 정의
+  const feedUrls = [
+    { name: '네이버 D2', url: 'https://d2.naver.com/d2.atom' },
+    { name: '마켓컬리', url: 'https://helloworld.kurly.com/feed.xml' },
+    { name: '카카오엔터프라이즈', url: 'https://tech.kakaoenterprise.com/feed' },
+    { name: '라인', url: 'https://engineering.linecorp.com/ko/feed/index.html' },
+    { name: '토스', url: 'https://toss.tech/rss.xml' },
+    { name: '뱅크샐러드', url: 'https://blog.banksalad.com/rss.xml' },
+    { name: 'Hyperconnect', url: 'https://hyperconnect.github.io/feed.xml' },
+    { name: '쏘카', url: 'https://tech.socarcorp.kr/feed' },
+    { name: 'NHN Cloud', url: 'https://meetup.nhncloud.com/rss' },
+    { name: '긱뉴스', url: 'https://feeds.feedburner.com/geeknews-feed', isGeekNews: true },
+    { name: 'Reddit - webdev', url: 'https://www.reddit.com/r/webdev/.rss', translate: true },
+    { name: 'Reddit - frontend', url: 'https://www.reddit.com/r/frontend/.rss', translate: true },
+    { name: 'dev', url: 'https://dev.to/feed' },
+    { name: 'Hacker News', url: 'https://hnrss.org/newest' },
+  ]
+
+  // ✅ 시간 설정
+  const now = new Date() // 현재 시각
+  const timezone = 'Asia/Seoul' // 한국 시간
+
+  const today8am = new Date(Utilities.formatDate(now, timezone, 'yyyy-MM-dd') + 'T08:00:00+09:00')
+  const yesterday8am = new Date(today8am.getTime() - 24 * 60 * 60 * 1000)
+
+  let emailBody = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; color: #333;">
+      <h2 style="background-color: #4CAF50; color: white; padding: 10px; text-align: center; border-radius: 4px;">
+        📰 오늘의 기술 블로그 - ${Utilities.formatDate(now, timezone, 'yyyy.MM.dd')}
+      </h2>
+      <p style="font-size: 14px; color: #555; text-align: center;">
+        오늘 아침 8시 기준으로 모은 따끈따끈한 기술 소식이에요!
+      </p>
+      <hr style="border: none; border-top: 1px solid #eee;" />
+  `
+
+  feedUrls.forEach((feed) => {
+    try {
+      const response = UrlFetchApp.fetch(feed.url)
+      const xml = response.getContentText()
+      const xmlClean = xml.replace(/[\x00-\x1F\x7F]/g, '')
+      const document = XmlService.parse(xmlClean)
+      const root = document.getRootElement()
+
+      let entries = []
+      const atomNamespace = XmlService.getNamespace('http://www.w3.org/2005/Atom')
+      const isAtomFeed = root.getName() === 'feed'
+
+      if (isAtomFeed) {
+        const entryElements = root.getChildren('entry', atomNamespace)
+        if (entryElements && entryElements.length > 0) {
+          entries = entryElements
+        }
+      } else if (root.getChild('channel')) {
+        const channelElement = root.getChild('channel')
+        const items = channelElement.getChildren('item')
+        if (items && items.length > 0) {
+          entries = items
+        }
+      }
+
+      if (entries.length === 0) {
+        Logger.log(`피드 항목 없음: ${feed.name}`)
+        return
+      }
+
+      const items = entries
+        .map((entry) => {
+          let title, link, pubDateText
+
+          if (isAtomFeed) {
+            title = entry.getChildText('title', atomNamespace)
+            const linkElement = entry.getChild('link', atomNamespace)
+            link = linkElement ? linkElement.getAttribute('href').getValue() : null
+            pubDateText = entry.getChildText('updated', atomNamespace)
+          } else {
+            title = entry.getChildText('title')
+            link = entry.getChildText('link')
+            pubDateText = entry.getChildText('pubDate')
+          }
+
+          const pubDate = pubDateText ? new Date(pubDateText) : null
+
+          return { title, link, pubDate }
+        })
+        .filter((item) => {
+          if (feed.isGeekNews) {
+            return true
+          }
+
+          if (!item.pubDate) return false
+
+          const pubTime = new Date(item.pubDate).getTime()
+
+          // 긱뉴스를 제외하고 어제 오전 8시 부터 오늘 오전 8시까지 발행된 글만 필터링
+          return pubTime > yesterday8am.getTime() && pubTime <= today8am.getTime()
+        })
+
+      if (items.length > 0) {
+        emailBody += `<h3 style="color: #4CAF50; border-bottom: 1px solid #eee; padding-bottom: 5px;">${feed.name}</h3><ul style="padding-left: 20px; margin-bottom: 20px;">`
+
+        items.forEach((item) => {
+          let translatedTitle = ''
+
+          if (feed.translate) {
+            try {
+              translatedTitle = LanguageApp.translate(item.title, 'en', 'ko')
+            } catch (error) {
+              Logger.log(`번역 오류: ${error}`)
+            }
+          }
+
+          if (translatedTitle) {
+            emailBody += `
+            <li style="margin-bottom: 8px;">
+              <a href="${item.link}" style="color: #1a73e8; text-decoration: none;" target="_blank">
+                ${translatedTitle} (${item.title})
+              </a>
+            </li>
+          `
+          } else {
+            emailBody += `
+            <li style="margin-bottom: 8px;">
+              <a href="${item.link}" style="color: #1a73e8; text-decoration: none;" target="_blank">
+                ${item.title}
+              </a>
+            </li>
+          `
+          }
+        })
+
+        emailBody += '</ul>'
+      }
+    } catch (e) {
+      Logger.log(`피드 처리 중 오류 (${feed.name}): ${e}`)
+    }
+  })
+
+  emailBody += `
+    <hr style="border: none; border-top: 1px solid #eee;" />
+    <p style="font-size: 12px; color: #999; text-align: center;">
+      본 메일은 자동으로 발송되었습니다 ✉️ <br/>
+      좋은 하루 되세요!
+    </p>
+  </div>
+  `
+
+  if (emailBody.includes('<li')) {
+    const today = Utilities.formatDate(now, timezone, 'yy.MM.dd')
+    const subject = `오늘 ${today}의 기술블로그야 꼭 읽어보렴🩵`
+    const recipient = Session.getActiveUser().getEmail()
+
+    MailApp.sendEmail({
+      to: recipient,
+      subject: subject,
+      htmlBody: emailBody,
+    })
+  }
+}
+```
+
+## 트리거 설정
+
+![트리거](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/e9fdb8e7-e1ec-4794-4a09-2d7c39a51700/public)
+
+## 백로그
+
+- 메일에 글 요약 추가
+- 미디엄 피드 추가

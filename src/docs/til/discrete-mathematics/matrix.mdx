@@ -1,0 +1,285 @@
+export const metadata = {
+  title: '이산 수학 - 행렬',
+  tags: ['#이산 수학, 행렬'],
+  date: '2025-04-03 14:32:15',
+}
+
+# 행렬
+
+- m, n이 양의 정수일 때, 다음과 같이 m개의 행과 n개의 열로 구성된 직사각형의 배열 A를 $m \times n$ 행렬(matrix)이라고 한다.
+- $A = \begin{bmatrix}
+  a_11 & a_12 & \cdots & a_1n \\
+  a_21 & a_22 & \cdots & a_2n \\
+  \vdots & \vdots & \ddots & \vdots \\
+  a_m1 & a_m2 & \cdots & a_mn
+  \end{bmatrix} $
+
+## 영행렬
+
+- 모든 원소가 0
+
+## 행렬의 합, 차, 스칼라 곱
+
+- 행렬의 합: 같은 위치의 A와 B의 원소를 더해서 구해지는 행렬
+- 행렬의 차: 같은 위치의 A와 B의 원소를 빼서 구해지는 행렬
+- 스칼라 곱: 행렬의 모든 원소에 스칼라를 곱한 행렬
+- 행렬의 합과 스칼라 곱은 실수의 연산과 유사한 성질(교환법칙, 결합법칙, 분배법칙 등)을 가지고 있다.
+
+## 행렬의 곱
+
+- A가 $m \times n$ 행렬이고 B가 $n \times p$ 행렬일 때, A와 B의 곱은 $m \times p$ 행렬 C로 정의된다.
+- 정의에 따라 행렬 A의 열의 개수와 B의 행의 개수가 같을 때에만 행렬의 곱 AB를 계산할 수 있다.
+- 두 행렬의 곱의 크기는 (A의 행의 개수) x (B의 열의 개수)이다.
+- AB = C일 때, C의 $(i, j)$원소는 A의 i번째 행과 B의 j열의 원소들을 서로 곱하고 그 곱한 결과들을 모두 합쳐서 구할 수 있다.
+
+  - AB곱의 $(i, j)$원소는 A의 i번째 행과 B의 j번째 열의 내적이다.
+
+- $AB = \begin{bmatrix}
+  2 & 1 \\
+  -4 & 0
+  \end{bmatrix} \begin{bmatrix}
+  2 & -1 & 3 \\
+  1 & 0 & 1 
+  \end{bmatrix}
+  $
+
+  - $= \begin{bmatrix}
+  2 \cdot 2 + 1 \cdot 1 & 2 \cdot -1 + 1 \cdot 0 & 2 \cdot 3 + 1 \cdot 1 \\
+  -4 \cdot 2 + 0 \cdot 1 & -4 \cdot -1 + 0 \cdot 0 & -4 \cdot 3 + 0 \cdot 1
+  \end{bmatrix}$
+  - $= \begin{bmatrix}
+  5 & -2 & 7 \\
+  -8 & 4 & -12
+  \end{bmatrix}$
+
+- <span className="text-red">행렬의 곱은 교환법칙이 성립하지 않는다.</span>
+- 일반적으로 <span className="text-red"> AB ≠ BA</span>
+- 실수의 곱셈은 곱셈의 결과가 0이라면 곱셈에 참여하는 실수 중 반드시 하나는 0이어야 하지만, 행렬곱에서는 행렬곱에 참여하는 행렬이 모두 영행렬이 아니더라도 그 결과가 영행렬이 되는 경우도 있다.
+
+### 행렬곱의 연산법칙
+
+- 곱의 결합법칙: $(AB)C = A(BC)$
+- 곱의 분배법칙: $A(B + C) = AB + AC$
+- 곱의 분배법칙: $(A + B)C = AC + BC$
+
+### 가우스 소거법
+
+- 행렬은 일차연립방정식의 풀이에 사용됨.
+- $-2x - 5y + 2z = -3$
+- $x + 3y = 4$
+- $y + 3z = 6$
+
+$\Rightarrow \begin{bmatrix}
+  -2 & -5 & 2 \\
+  1 & 3 & 0  \\
+  0 & 1 & 3 
+  \end{bmatrix} \begin{bmatrix}
+  x \\
+  y \\
+  z
+  \end{bmatrix} = \begin{bmatrix}
+  -3 \\
+  4 \\
+  6
+  \end{bmatrix}
+$
+
+$\Rightarrow AX = B$
+
+- A: 계수행렬
+  - 위에서 왼쪽의 3x3 행렬은 계수행렬이라고 함
+- X: 미지수 행렬
+  - (x,y,z)를 해(solution)
+- B: 상수행렬
+  - (-3,4,6)을 상수행렬이라고 함
+- $(A|B)$: 확대행렬
+
+  - 이 행렬을 확대행렬(augmented matrix)이라고 함
+  - 계수행렬과 상수행렬을 다음과 같이 묶어서 하나의 행렬로 만들 수 있다.  
+     $\Rightarrow \begin{bmatrix}
+-2 & -5 & 2 & -3 \\
+1 & 3 & 0 & 4 \\
+0 & 1 & 3 & 6
+\end{bmatrix}
+$
+
+### 기본행연산
+
+- 행 교환 연산
+  - 두 행을 서로 교환하는 연산
+- 행 스케일링 연산
+  - 하나의 행에 0이 아닌 스칼라를 곱하는 연산
+- 행 대체 연산
+  - 한 행에 스칼라 곱을 해서 다른 행에 더하는 연산
+
+일차연립방정식과 행렬의 관계
+
+- $L_1,L_2$: 일차연립방정식
+  - A: $L_1$의 확대행렬
+  - B: $L_2$의 확대행렬
+- $A \sim B \Rightarrow L_1 \sim L_2$
+  - 물결: 행렬 A에 기본행연산(3개 중에 하나)을 적용하여 B를 얻을 수 있음
+
+### 행제형 행렬
+
+- 아래 3가지 조건을 만족하는 행렬을 행사다리꼴(행제형)이라고 한다.
+
+  - 영행이 아닌 행은 영행의 위에 있다.
+  - 영행이 아닌 행의 첫 번째 0이 아닌 원소를 그 행의 선도원소라 하는데, 모든 선도원소는 1이다.
+  - 주어진 행의 선도원소는 그 아래의 행의 선도원소보다 왼쪽에 있다.
+
+- $\begin{bmatrix}
+  1 & 2 & 3 \\
+  0 & 0 & 1 \\
+  0 & 0 & 0
+  \end{bmatrix}
+$
+
+  ### 소거 행제형 행렬
+
+  - 위 조건에 더불어 + 선도원소가 포함된 <span className='text-red'>열</span>에서 선도원소를 제외한 모든 원소는 0이다.
+
+- $\begin{bmatrix}
+  1 & 0 & 0 \\
+  0 & 0 & 1 \\
+  0 & 0 & 0
+  \end{bmatrix}
+$
+
+---
+
+# 행렬의 종류
+
+## 정방행렬
+
+- 행의 수, 열의 수가 같은 $n \times n$ 행렬을 n차 정방행렬 이라고 함.
+  - n: 정방행렬의 차수(order)
+- 정방행렬의 $a_11, a_22, \cdots, a_nn$ 원소를 대각원소(diagonal element)라고 함.
+  - 대각원소를 포함하는 대각선을 주대각선(main diagonal)이라고 함.
+
+## 대각행렬(Diagonal Matrix)
+
+- n차 정방행렬에서 대각원소 이외의 모든 원소가 0인 행렬
+- $D = \begin{bmatrix}
+  d_1 & 0 & 0 \\
+  0 & d_2 & 0 \\
+  0 & 0 & d_3
+  \end{bmatrix}$
+
+## 단위행렬(Unit Matrix)
+
+- n차 정방행렬에서 대각원소가 모두 1이고 나머지 원소는 모두 0인 행렬을 n차 단위행렬이라 함. 기호로는 $I_n$로 나타냄.
+- $I_n = \begin{bmatrix}
+  1 & 0 & 0 \\
+  0 & 1 & 0 \\
+  0 & 0 & 1
+  \end{bmatrix}$
+- 단위행렬이면 대각행렬이기도 함.
+
+## 대칭행렬(Symmetric Matrix)
+
+- n차 정방행렬에서 $a_ij = a_ji$인 행렬을 대칭행렬이라 한다.
+  - $A = \begin{bmatrix}
+  1 & 2 & 3 \\
+  2 & 4 & 5 \\
+  3 & 5 & 6
+  \end{bmatrix}$
+
+## 비대칭행렬(skew symmetric matrix)
+
+- n차 정방행렬에서 $a_ij = -a_ji$이고 대각원소가 모두 0인 행렬
+- $A = \begin{bmatrix}
+  0 & -2 & -3 \\
+  2 & 0 & -5 \\
+  3 & 5 & 0
+  \end{bmatrix}$
+
+## 삼각행렬(Triangular Matrix)
+
+- 상삼각행렬: n차 정방행렬에서 주대각선 아래에 있는 모든 원소들이 0일 경우
+- $A = \begin{bmatrix}
+  1 & 2 & 3 \\
+  0 & 4 & 5 \\
+  0 & 0 & 6
+  \end{bmatrix}$
+- 하삼각행렬: n차 정방행렬에서 주대각선 위에 있는 모든 원소들이 0일 경우
+- $A = \begin{bmatrix}
+  1 & 0 & 0 \\
+  2 & 3 & 0 \\
+  4 & 5 & 6
+  \end{bmatrix}$
+
+- 상삼각행렬이나 하삼각행렬을 삼각행렬이라고 부른다.
+
+## 전치행렬(transpose matrix)
+
+- $m \times n$크기의 행렬 A가 주어졌을 때, A의 행과 열을 서로 교환한 행렬을 A의 전치행렬이라고 한다.
+- 기호로는 $A^T$로 나타낸다.
+- 행과 열이 교환되어 있기 때문에 $A^T$는 $n \times m$크기의 행렬이 된다.
+- $A = \begin{bmatrix}
+  1 & 2 & 3 \\
+  4 & 5 & 6
+  \end{bmatrix}$
+- $A^T = \begin{bmatrix}
+  1 & 4 \\
+  2 & 5 \\
+  3 & 6
+  \end{bmatrix}$
+
+## 역행렬(Inverse Matrix)
+
+- n차 정방행렬 A, B가 주어졌을 때 $AB = BA = I_n$인 행렬 B가 존재하는 경우 행렬 A를 역가능하다고 하고, B를 A의 역행렬이라고 한다.
+- 기호로는 $A^{-1}$로 나타낸다.
+- 행렬 A와 역행렬 A의 곱은 <span className="text-red">항상 단위행렬</span>이 된다.
+
+- 예) 다음 행렬 A의 역행렬 구하기
+  $A = \begin{bmatrix}
+  2 & 3 \\
+  3 & 5
+  \end{bmatrix}$
+
+- $A^{-1} = \begin{bmatrix}
+a & b \\
+  c & d
+  \end{bmatrix}$ 라고 하자. 그러면 $AA^{-1} = \begin{bmatrix}
+  2 & 3 \\
+  3 & 5
+  \end{bmatrix} \begin{bmatrix}
+  a & b \\
+  c & d
+  \end{bmatrix} = \begin{bmatrix}
+  1 & 0 \\
+  0 & 1
+  \end{bmatrix}$이 된다.
+
+- $2a + 3c = 1$
+- $2b + 3d = 0$
+- $3a + 5c = 0$
+- $3b + 5d = 1$
+- 위의 4개의 연립방정식을 풀면 $A^{-1} = \begin{bmatrix}
+  5 & -3 \\
+  -3 & 2
+  \end{bmatrix}$가 된다.
+
+# 부울행렬
+
+- 행렬의 모든 원소가 0 또는 1인 행렬
+
+## 부울행렬의 합
+
+- 행렬 $A = [a_{ji}], B = [b_{ij}]$가 부울행렬일 때
+  - <u>A와 B의 크기가 서로 같을 경우</u> A와 B의 합은 (i, j)원소가 $a_{ij} \lor b_{ij}$인
+    부울행렬이며, $A \lor B$로 나타낸다.
+
+## 부울행렬의 교차
+
+- 행렬 $A = [a_{ji}], B = [b_{ij}]$가 부울행렬일 때
+  - <u>A와 B의 크기가 서로 같을 경우</u> A와 B의 교차는 (i, j)원소가 $a_{ij} \land b_{ij}$인
+    부울행렬이며, $A \land B$로 나타낸다.
+
+## 부울행렬의 곱
+
+- $m \times n$크기의 행렬 $A = [a_{ij}]$와 $n \times l$크기의 행렬 $B = [b_{ij}]$의 부울곱은 (i,j) 원소 $c_{ij}$가 다음과 같이 정의되는 $m \times l$크기의 부울행렬
+  - $c_{ij} = (a_i1 \land b_1j) \lor (a_i2 \land b_2j) \lor \cdots \lor (a_in \land b_nj)$
+- $A \odot B$로 나타낸다.
+- A의 열의 크기, B의 행의 크기가 같을 때에만 부울곱을 계산할 수 있다.
