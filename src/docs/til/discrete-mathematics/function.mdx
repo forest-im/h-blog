@@ -1,0 +1,232 @@
+export const metadata = {
+  title: '이산수학 - 함수',
+  tags: ['#함수'],
+  date: '2025-04-05 21:10:32',
+}
+
+import Mermaid from '@/components/Mermaid.tsx'
+
+# 함수
+
+![함수](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/87c86c0c-5bdb-43c3-60b8-10cee5bcfa00/public)
+
+- 집합 X와 Y가 주어졌을 때, X에서 Y로의 함수 f는 X의 모든 원소가 각각 Y의 오직 하나의 원소와 대응되는 관계이고, $f: X \rightarrow Y$로 표기한다.
+
+  - X: 함수 f의 <span className="text-red">정의역(domain)</span>
+  - Y: 함수 f의 <span className="text-red">공역(codomain)</span>
+  - 함수 f에 의해 정의역의 원소 x가 공역의 원소 y와 대응하는 것을 $xfy, (x,y) \in f$ 또는 $f(x) = y$로 표기한다.
+    - y를 x에 대한 <span className="text-red">상(image)</span>이라고 한다.
+  - 정의역 X의 원소 x에 대한 모든 상의 집합 $\{f(x)|x \in X\}$를 <span className="text-red">치역(range)</span>이라고 한다.
+    - 치역은 공역의 부분집합임[]
+  - x를 y의 <span className="text-red">역상(preimage)</span>이라고 한다.
+
+- 집합 X에서 Y로의 관계 $f \subseteq X \times Y$가 함수가 되기 위한 조건
+  - $\forall x \in X, !\exists y \in Y, f(x) = y$
+    - (∃!: 존재하고 유일하다. ∃: 존재한다. !: 유일하다.)
+    - 정의역의 모든 원소가 공역의 원소에 각각 하나씩 대응해야 한다는 것
+  - $∀x ∈ X, ∃!y ∈ Y$ : 어떤 $x ∈ X$에 대해, 그에 대응되는 $y ∈ Y$가 정확히 하나 존재한다.
+
+---
+
+## 상수 함수
+
+- $f: X \rightarrow Y, \forall x \in X, f(x) = c$
+- 정의역의 값에 관계없이 항상 동일한 값이 나오는 함수
+  - 예) f(x) = 1
+
+## 항등 함수
+
+- $f: X \rightarrow X, \forall x \in X, f(x) = x$
+- 어떠한 값을 입력하든 항상 그대로의 값이 나오는 함수
+
+## 제곱 함수
+
+- $f: \mathbb{R} \rightarrow \mathbb{R}$은 x에 대해 $f(x) = x^2$로 정의되는 함수
+- f의 출력값은 항상 입력값의 제곱을 출력
+
+## 함수의 상등
+
+- 정의역과 공역이 같도 정의역의 임이의 원소 x에 대해 f(x) = g(x)의 값이 같을 때, 두 함수 f와 g는 서로 상등하다고 함
+  - 동일한 입력값에 대해 두 함수가 동일한 출력값을 낸다는 것을 의미함
+- f = g 는 언제 같다고 할 수 있을까?
+- $f: X \rightarrow Y, g: X \rightarrow Y$가 함수일 때 (정의역: X, 공역: Y)
+
+  - $X = A, Y = B$ (정의역끼리 같아야하고, 공역끼리 같아야함)
+  - $\forall x \in X, f(x) = g(x)$
+
+  - f와 g는 상등하다 (서로 같다.)
+
+---
+
+## 전사함수(surjective function, <span className='text-blue'>onto function</span>)
+
+![전사함수](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/3954e098-3b53-4a31-c150-4c31fed12a00/public)
+
+- 공역과 치역이 일치하는 함수
+- 함수 $f: X \rightarrow Y$가 전사함수(surjective)일 때, Y의 모든 원소가 X의 원소에 의해 대응된다.
+
+  - $\Leftrightarrow \forall y \in Y, \exists x \in X, f(x) = y$
+  - $f(X) = Y$
+  - $f$의 치역이 $Y$와 같다.
+
+## 단사함수 (injective function, <span className='text-blue'>one to one function</span>)
+
+![단사함수](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/904fa897-fa8a-402e-1f84-a20251d5d200/public)
+
+- 정의역에 있는 모든 원소가 서로 다른 상을 갖는 함수
+- 치역의 임의의 원소 y에 대응하는 정의역의 원소가 하나뿐일 경우
+  - 동일한 상을 가지는 정의역의 원소가 없다는 것
+- 하나당 한개씩
+- 함수 $f: X \rightarrow Y$가 단사함수(injective function)
+
+  - $\forall x_1, \forall x_2 \in X, f(x_1) = f(x_2) \Rightarrow x_1 = x_2$
+    - 같은 값을 가지면 원래 입력도 같다.
+  - $\forall x_1, \forall x_2 \in X, x_1 \neq x_2 \Rightarrow f(x_1) \neq f(x_2)$
+    - 입력이 다르면 출력도 다르다.
+  - $f(x_1) = f(x_2) \Rightarrow x_1 = x_2$ 이것과 $x_1 \neq x_2 \Rightarrow f(x_1) \neq f(x_2)$은 서로 대우 관계이다.
+
+- one to one 함수
+
+## 전단사함수(bijective function, <span className='text-blue'>one to one correspondence function</span>)
+
+![전단사함수](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/df554f7a-955e-456e-fa08-158ce9214800/public)
+
+- 함수 $f: X \rightarrow Y$가 전사함수이면서 단사함수일 경우 f를 전단사함수라고 한다.
+- $\forall y \in Y, \exists x \in X, f(x) = y$이고, $\forall a, \forall b \in X, (fa) = f(b)$일 경우 $a = b$이다.
+- 전단사함수가 있다면 그것의 역함수도 존재하고, 역함수도 전단사함수이다.
+
+---
+
+## 함수의 합과 스칼라 곱의 연산법칙
+
+- 함수의 합과 스칼라 곱은 실수의 연산과 유사한 성질을 가지고 있다.
+- 함수의 함과 스칼라 곱은 함수 $f, g, h$에 대해 다음과 같은 연산 법칙들을 만족한다(단, a, b는 실수이다)
+
+| 연산 법칙                     |                             |
+| ----------------------------- | --------------------------- |
+| 합의 교환법칙                 | $f + g = g + f$             |
+| 합의 결합법칙                 | $f + (g + h) = (f + g) + h$ |
+| 합의 항등원 존재(0은 영함수)  | $f + 0 = f$                 |
+| 합의 역원 존재($g \equiv -f$) | $f + (-f) = 0$              |
+| 스칼라 곱의 결합법칙          | $a(bf) = (ab)f$             |
+| 스칼라 곱의 분배법칙          | $(a+b)f = af + ag$          |
+| 스칼라 곱의 분배법칙          | $a(f + g) = af + ag$        |
+
+## 역함수
+
+![역함수](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/c5778480-a997-4173-705b-339e2a8b7d00/public)
+
+- 함수 $f: X \rightarrow Y$가 전단사함수 일 때, $f$의 역관계 $f^{-1}$를 $f$의 역함수라고 한다.
+- 정의: $\forall x \in X, \forall y \in Y, f(x) = y$일 때, $(f^{-1})^{-1} = f$
+- 역관계란 함수가 수행한 일을 원래대로 되돌리는 역할을 수행하는 관계로서, f의 결과값을 넣으면 원래의 입력값이 나오는 관계이다.
+  - 단, 역관계는 때떄로 함수가 아닐 수 있다.
+- 함수가 전단사함수일 경우 역관계도 함수가 되며, 이러한 역관계를 역함수라 한다.
+- 역함수가 존재하는 함수를 <span className="text-red">가역적</span>이라고 한다.
+  - 함수 f가 가역적이면 역함수가 존재하고, $f(a) = b$라면 $f^{-1}(b) = a$가 된다.
+
+## 합성함수
+
+- 두 함수
+- $X, Y, Y\prime, Z$집합, $Y\prime \in Y$ ($Y\prime$: Y 집합의 부분집합이라는 의미)
+  - 두 함수 $f: X \rightarrow Y\prime$와 $g: Y \rightarrow Z$에 대해 다음과 같이 정의되는 함수
+    - $g \circ f: X \rightarrow Z$를 $f$와 $g$의 합성함수(composite function)라고 한다.
+      - $g \circ f$은 합성함수를 의미한다. 즉 함수 f를 먼저 적용하고 그 결과에 함수 g를 적용하는 것
+  - $\forall x \in X, (g \circ f)(x) \equiv g(f(x))$
+
+### 전사함수의 합성함수
+
+- 두 함수 $f \rightarrow Y, g: Y \rightarrow Z$가 전사함수일 때, $\Rightarrow g \circ f: X \rightarrow Z$도 전사함수이다.
+
+### 단사함수의 합성함수
+
+- 두 함수 $f: X \rightarrow Y, g: Y \rightarrow Z$가 단사함수일 때, $\Rightarrow g \circ f: X \rightarrow Z$도 단사함수이다.
+
+### 함수 곱의 연산법칙
+
+- 함수 $f: X \rightarrow Y, g: Y \rightarrow Z, h: Z \rightarrow W$에 대하여, 합성함수는 다음과 같은 연산법칙을 만족한다. (단 I는 합성함수이다.)
+
+1. 곱의 결합법칙 - $f \circ (g \circ h) = (f \circ g) \circ h$
+2. 곱의 항등원 - $I \circ f = f \circ I = f$
+3. 곱의 역원 - $f \circ f^{-1} = f^{-1} \circ f = I$
+
+- 행렬 곱에서 교환법칙이 성립하지 않는 것처럼, 합성함수는 일종의 함수라는 새로운 수에 대한 곱셈이라고 생각하면 좋음
+
+  - 함수는 <span className="text-red">곱에 대한 교환법칙이 성립하지 않는다.</span>
+  - $f \circ g \neq g \circ f$
+
+### 항등함수와 합성함수
+
+- 함수: $f: X \rightarrow Y$
+- 항등함수: $I_x: X \rightarrow X$
+- 항등함수: $I_y: Y \rightarrow Y$
+
+  - $f = f \circ I_x = I_y \circ f$
+  - 행렬과 비교해보기
+
+### 역함수와 합성함수
+
+- 전단사함수 $f: X \rightarrow Y$
+- 전단사함수 $g: Y \rightarrow Z$
+- $f^{-1} \circ f = I_x, f \circ f^{-1} = I_y$
+- $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$
+
+---
+
+# 함수의 종류
+
+## 계승함수(factorial)
+
+- 음이 아닌 정수 n에 대해서 계승함수 $n!$은 다음과 같이 정의된다.
+- $n! = \sum_{k=1}^{n} k(n \geq 1)$
+  - $= 1 \times 2 \times \cdots \times n$
+  - $= n \times (n - 1)!$
+
+## 바닥함수
+
+- 실수 x에 대해, <span className='text-blue'>x보다 작거나 같으면서 가장 큰 정수를 구하는 함수</span>
+- $\lfloor x \rfloor = max\{m \in \mathbb{Z} | m \leq x\}$
+
+- 예
+  - $\lfloor 3.5 \rfloor = 3$
+  - $\lfloor 3.0 \rfloor = 3$
+
+### 바닥함수의 성질
+
+- $\forall x \in \mathbb{R}, x - 1 < \lfloor x \rfloor \leq x$
+  - 실수 x에 대해, x보다 작거나 같으면서 가장 큰 정수는 x보다 작거나 같고, x - 1보다 크다.
+- $\forall k \in \mathbb{Z}, \forall x \in \mathbb{R}, \lfloor k + x \rfloor = k + \lfloor x \rfloor$
+  - 정수 k에 대해, k + x의 바닥함수는 k와 x의 바닥함수를 더한 것과 같다.
+- x의 반올림은 $\lfloor x + 0.5 \rfloor$로 표현할 수 있다.
+
+## 천장함수
+
+- 실수 x에 대해, <span className='text-blue'>x보다 크거나 같으면서 가장 작은 정수를 구하는 함수</span>
+- $\lceil x \rceil = min\{n \in \mathbb{Z} | x \leq n\}$
+- 예
+  - $\lceil 2.6 \rceil = 3$
+  - $\lceil 3.0 \rceil = 3$
+  - $\lceil -2.6 \rceil = -2$
+
+### 천장함수의 성질
+
+- $\forall x \in \mathbb{R}, x \leq \lceil x \rceil < x + 1$
+  - 실수 x에 대해, x보다 크거나 같으면서 가장 작은 정수는 x보다 크고, x + 1보다 작다.
+- $\forall k \in \mathbb{Z}, \forall x \in \mathbb{R}, \lceil k + x \rceil = k + \lceil x \rceil$
+  - 정수 k에 대해, k + x의 천장함수는 k와 x의 천장함수를 더한 것과 같다.
+- 천장함수는 $\lceil x \rceil = - \lfloor -x \rfloor$와 같이 바닥함수와 서로 바꾸어 쓸 수 있다.
+
+## 나머지 함수
+
+- 정수 두개를 주고 그것을 나눴을 때 나머지를 찾는 것
+- 정수 n과 양의 정수 m에 대해 n을 m으로 나누었을 때의 나머지를 구하는 함수를 나머지 함수(modulo function)`[모듈로 함수/mod 함수]`
+  - $n  mod  m$으로 표기함
+- 두 정수 $n, m(m \neq 0)$에 대해
+
+  - $n mod m = n - m\lfloor \frac{n}{m} \rfloor$
+  - (n을 m으로 나눌 때)
+
+- $5mod(-3)$
+  - $5 - (-3)\lfloor \frac{5}{-3} \rfloor$
+  - $= 5 - (-3)(-2)$
+  - $= 5 - 6$
+  - $= -1$
