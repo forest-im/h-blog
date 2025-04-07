@@ -1,38 +1,51 @@
-Hi
+# H-Blog
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+**H-Blog**에 오신 것을 환영합니다. 이 블로그는 [Next.js](https://nextjs.org)로 제작되었으며, 지식, 통찰, 경험을 공유하기 위해 설계되었습니다.
 
-## Getting Started
+## 주요 기능
 
-First, run the development server:
+- **3D 콘텐츠**: `/src/app/3d` 섹션에서 인터랙티브 3D 모델을 탐험하세요.
+- **TIL (Today I Learned)**: `/src/app/til`에 카테고리별로 정리된 학습 내용을 확인하세요.
+- **리뷰**: `/src/app/review`에서 심도 있는 리뷰와 회고를 확인하세요.
+- **문서화**: `/docs`에서 포괄적인 가이드와 노트를 제공합니다.
+- **커스텀 컴포넌트**: `BlogLayout`, `Mermaid`, `ThemeToggle`과 같은 재사용 가능한 컴포넌트를 제공합니다.
+- **다크 모드**: `ThemeProvider`를 사용하여 원활한 테마 전환을 지원합니다.
+
+## 시작하기
+
+개발 서버를 실행하려면 다음 명령어를 사용하세요:
 
 ```bash
 npm run dev
-# or
+# 또는
 yarn dev
-# or
+# 또는
 pnpm dev
-# or
+# 또는
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000)에서 로컬 블로그를 확인할 수 있습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 폴더 구조
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **`src/app`**: 블로그의 페이지와 레이아웃을 포함합니다.
+- **`docs`**: 마크다운 기반의 문서와 노트를 포함합니다.
+- **`public`**: 이미지, 폰트, 3D 모델과 같은 정적 자산을 포함합니다.
+- **`components`**: 재사용 가능한 React 컴포넌트를 포함합니다.
+- **`lib`**: 유틸리티 함수와 헬퍼를 포함합니다.
+- **`styles`**: 전역 및 컴포넌트별 스타일을 포함합니다.
 
-## Learn More
+## 배포
 
-To learn more about Next.js, take a look at the following resources:
+[버셀(Vercel)](https://vercel.com)을 사용하여 블로그를 손쉽게 배포하고 프로덕션 환경에서 실행하세요.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 기여하기
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+기여는 언제나 환영입니다! 리포지토리를 포크하고 풀 리퀘스트를 제출하세요.
 
-## Deploy on Vercel
+## 라이선스
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+이 프로젝트는 MIT 라이선스를 따릅니다.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+이 리드미는 copilot을 이용하여 작성하였습니다.
