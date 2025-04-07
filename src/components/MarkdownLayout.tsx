@@ -1,13 +1,19 @@
 import Link from 'next/link'
 import { ThemeToggle } from './ThemeToggle'
 
-export const Header = () => {
+interface HeaderProps {
+  title?: string
+}
+
+export const Header = ({ title }: HeaderProps) => {
   return (
-    <header className="border-gray-50 sticky top-0 backdrop-blur-sm py-2">
+    <header className="border-gray-50 sticky top-0 backdrop-blur-sm py-2 z-10">
       <div className="flex justify-between items-center max-w-2xl mx-auto px-9 ">
         <div>
           <Link href="/" className="block">
-            <h1 className="text-xl text-gray-600 my-2">Hyunjung Im</h1>
+            <h1 className={`${title ? 'text-m' : 'text-xl'} text-gray-600 my-2 line-clamp-1`}>
+              {title ?? 'Hyunjung Im'}
+            </h1>
           </Link>
         </div>
         <div className="flex items-center gap-2">
