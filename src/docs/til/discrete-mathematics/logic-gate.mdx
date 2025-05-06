@@ -1,0 +1,516 @@
+export const metadata = {
+  title: '논리 게이트',
+  tags: ['#논리 게이트'],
+  date: '2025-03-24 00:22:34',
+}
+
+import Mermaid from '@/components/Mermaid.tsx'
+
+# 논리회로
+
+- 입력 신호의 논리 연산을 통해 출력 신호를 생성하는 회로
+- 입력 및 출력 신호는 0 또는 1과 같이 2진 신호를 사용함
+  - 17세기 독일 수학자 고트프리트 라이프니츠(Gottfried Wilhelm Leibniz)가 2진법을 제안
+
+## AND 게이트 - 논리곱(Conjunction)
+
+![AND gate](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/e0abb046-13b0-4042-4c40-653c74607800/public)
+
+- 모든 입력이 1(참)이면 1(참) 출력
+
+- $F = X \cdot Y$
+- $F = XY$
+
+| 입력 | 입력 | 출력 |
+| ---- | ---- | ---- |
+| X    | Y    | F    |
+| 0    | 0    | 0    |
+| 0    | 1    | 0    |
+| 1    | 0    | 0    |
+| 1    | 1    | 1    |
+
+- 둘 다 참일 때에만 참
+
+## OR 게이트 - 논리합(Disjunction)
+
+![OR gate](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/4cb0d797-8047-46af-0784-19517dc14200/public)
+
+- $F = X + Y$
+
+- 하나라도 1(참)이면 1(참) 출력
+  | 입력 | 입력 | 출력 |
+  | ---- | ---- | ---- |
+  | X | Y | F |
+  | 0 | 0 | 0 |
+  | 0 | 1 | 1 |
+  | 1 | 0 | 1 |
+  | 1 | 1 | 1 |
+
+## NOT 게이트 - 부정(Negation)
+
+![NOT gate](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/38212452-1e0d-4d32-7d6d-6da106595000/public)
+
+- 입력을 반전(부정)하여 출력
+- 기본적으로 NOT 게이트는 그림에 앞에 동그라미 표시로 나타냄
+- $F = \overline{X}$
+
+| 입력 | 출력 |
+| ---- | ---- |
+| X    | F    |
+| 0    | 1    |
+| 1    | 0    |
+
+## NAND 게이트 - NOT AND
+
+![NAND gate](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/6c9e645d-0da8-467f-87cc-0e113409ae00/public)
+
+- AND 게이트에 NOT 게이트를 결합한 것
+- AND 게이트의 출력을 반전시킨 것
+- AND 그림 앞에 동그라미 표시 추가
+- $F = \overline{X \cdot Y}$
+- $F = \overline{XY}$
+- $F = \overline{X} + \overline{Y}$ (드모르간의 법칙)
+
+![NAND gate2](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/219bfe25-56f2-43ea-5560-b6ce31b5dd00/public)
+
+- 드모르간의 법칙에 따르면 위와 같은 형태로도 표현 가능
+
+| 입력 | 입력 | 출력 |
+| ---- | ---- | ---- |
+| X    | Y    | F    |
+| 0    | 0    | 1    |
+| 0    | 1    | 1    |
+| 1    | 0    | 1    |
+| 1    | 1    | 0    |
+
+## NOR 게이트 - NOT OR
+
+![NOR gate](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/aac6063a-8f4b-432c-88fb-115e3d60b800/public)
+
+- OR 게이트의 출력을 반전시킨 것
+- $F = \overline{X + Y}$
+
+  | 입력 | 입력 | 출력 |
+  | ---- | ---- | ---- |
+  | X    | Y    | F    |
+  | 0    | 0    | 1    |
+  | 0    | 1    | 0    |
+  | 1    | 0    | 0    |
+  | 1    | 1    | 0    |
+
+## XOR 게이트 - 배타적 논리합(Exclusive OR)
+
+![XOR gate](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/54293191-79a6-4ce7-6eee-ca6e0cbdcb00/public)
+
+- 앞에 스크린 기호가 있음
+
+  - 둘 다 1일 때를 배제시키기 위해서 마치 스크린을 단 것 처럼
+
+- 입력이 서로 다를 때만 1(참)을 출력
+- 논리적으로 서로 다른 것을 선택하는 연산
+- $F = X \oplus Y$
+- $F = \overline XY + X \overline Y$
+
+| 입력 | 입력 | 출력 |
+| ---- | ---- | ---- |
+| X    | Y    | F    |
+| 0    | 0    | 0    |
+| 0    | 1    | 1    |
+| 1    | 0    | 1    |
+| 1    | 1    | 0    |
+
+## XNOR 게이트 - Exclusive NOR
+
+![XOR gate](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/c1a78ebb-0ae8-4e13-88ab-7aac5b955600/public)
+
+- XOR 게이트의 출력을 반전시킨 것
+- 논리적으로 서로 같은 것을 선택하는 연산법칙
+- $F = \overline{X \oplus Y}$
+- $F = \overline {\overline XY + X \overline Y}$
+  - $= X \overline Y \cdot  \overline XY$
+  - $= (X + \overline Y) \cdot (\overline X + Y)$
+  - $= (X \overline X) + (XY) + (\overline Y \overline X) + (\overline YY)$
+  - $= \overline X \overline Y + XY$
+
+| 입력 | 입력 | 출력 |
+| ---- | ---- | ---- |
+| X    | Y    | F    |
+| 0    | 0    | 1    |
+| 0    | 1    | 0    |
+| 1    | 0    | 0    |
+| 1    | 1    | 1    |
+
+## 논리합(OR)과 배타적 논리합(XOR)
+
+| OR게이트                   | XOR게이트                |
+| -------------------------- | ------------------------ |
+| 둘 중 하나라도 참이라면 참 | 입력이 서로 다를 때만 참 |
+|                            | 서로 배타적일 때만 OK    |
+
+# 부울대수 (Boolean Algebra)
+
+- 부울 상수
+- 부울 변수
+- 부울 집합
+- 부울 연산
+  - AND, OR, NOT..
+- 부울의 대수법칙
+- 부울식
+
+- 0과 1의 값을 갖는 논리변수와 논리연산을 다루는 대수
+- 이진 논리(binary logic)을 기반으로 한 수학적 체계
+- 모든 값을 참과 거짓으로 나타내며, 이를 논리 연산으로 조작하는 이론
+
+| 특징      | 내용                                                   |
+| --------- | ------------------------------------------------------ |
+| 값의 범위 | 각 변수 및 표현식이 0 또는 1                           |
+| 논리 연산 | AND, OR 등의 논리 연산자에 의해 정의                   |
+| 이진 논리 | 0과 1 두개의 값만 처리하여 이진수와 직접적 연관이 있음 |
+
+## 부울식
+
+부울식은 다음과 같이 순환적으로 정의한다.
+
+- 부울상수 0, 1은 부울식이다
+- 부울변수는 부울식이다.
+- X, Y가 부울식일 때,
+
+  - $X + Y$, $X \cdot Y$, $\overline X, (X)$는 부울식이다.
+
+### 부울대수의 기본 정리
+
+- $X + 0 = X$
+- $X \cdot 1 = X$
+- $X + 1 = 1$
+- $X \cdot 0 = 0$
+- $X + X = X$
+- $X \cdot X = X$
+- $X + \overline X = 1$
+- $X \cdot \overline X = 0$
+- $\overline {\overline X} = X$
+- $X + Y = Y + X$
+- $X \cdot Y = Y \cdot X$
+- $(X + Y) + Z = X + (Y + Z)$
+- $(X \cdot Y) \cdot Z = X \cdot (Y \cdot Z)$
+- $X(Y + Z) = XY + XZ$
+- $X + YZ = (X + Y)(X + Z)$ (일반적으로 실수에서는 성립하지 않음)
+  - 분배법칙을 써서 전개해보면
+    - $X \cdot X + X \cdot Z + Y \cdot X + Y \cdot Z$
+    - $X \cdot X = X, X \cdot Z = XZ, Y \cdot X = XY$이므로 $X + XZ + XY + YZ$
+    - 흡수법칙이 작용하여 $X + XZ = X$가 된다. $X + XY + YZ = X + YZ = (X + Y)(X + Z)$
+- $\overline {X + Y} = \overline X \cdot \overline Y$
+- $\overline {X \cdot Y} = \overline X + \overline Y$
+- $X + X \cdot Y = X$
+  - 흡수법칙
+  - 어떤 값 X가 있고, 거기에 X와 Y를 AND 연산한 값을 더하면 X가 된다.
+    - $X = 1 \rightarrow 1 + 1 \cdot Y = 1 + Y = 1$
+    - $X = 0 \rightarrow 0 + 0 \cdot Y = 0 + 0 = 0$
+- $X \cdot (X + Y) = X$
+
+  - 흡수법칙
+  - 분배법칙을 써서 전개해보면
+    - $X \cdot X + X \cdot Y = X + XY$ (부울대수에서 $X \cdot X = X$)
+    - $X + X \cdot Y = X$ 가 위에서 증명이 되었으니 X가 된다.
+
+---
+
+### 논리와 부울대수의 관련성
+
+- $p, q, r \Leftrightarrow X, Y, Z$
+- $p \land q \Leftrightarrow X \cdot Y$
+- $p \lor q \Leftrightarrow X + Y$
+- $ \sim p \Leftrightarrow \overline X$
+
+#### 항등법칙
+
+#### 지배법칙
+
+#### 멱등법칙
+
+#### 부정법칙
+
+#### 교환법칙
+
+#### 결합법칙
+
+#### 분배법칙
+
+#### 드모르간의 법칙
+
+#### 흡수법칙
+
+## 쌍대성 원리 및 보수
+
+쌍대성 원리
+
+- 부울식에서 논리곱과 논리합을 서로 바꾸고 논리상수 0, 1을 서로 바꾸면 원래 부울식의 쌍대(dual)를 얻게 됨
+- 주어진 부울식과 그것의 쌍대는 진리값이 서로 같다.
+- 덧셈에 대한 것만 생각하면 됨
+- $X + 0 = X \leftrightarrow X \cdot 1 = X$
+- $X + 1 = 1 \leftrightarrow X \cdot 0 = 0$
+
+부울함수의 보수
+
+- 부울함수 F의 보수는 $\overline F$로 나타냄
+- 드모르간의 법칙 이용하기
+  - 부울함수 $F = \overline XY \overline Z + \overline X \overline YZ$의 보수를 구하시오
+    - $\overline F = \overline{\overline XY \overline Z + \overline X \overline YZ}$
+      - 수식 전체를 NOT으로 감싸면 됨
+    - $= \overline{\overline XY \overline Z} \cdot \overline{\overline X \overline YZ}$
+      - 드모르간의 법칙을 사용해 NOT을 분배, 중간의 논리합을 논리곱(AND)으로 바꿈
+    - $= (X + \overline Y + Z)(X + Y + \overline Z)$
+      - 반전의 반전
+- 쌍대 형태로 변환
+  - $F = \overline XY \overline Z + \overline X \overline YZ$
+    - $\overline F = (X + \overline Y + Z) \cdot (X + Y + \overline Z)$
+      - 각 변수의 보수화
+
+## 부울함수 (Boolean Function)
+
+- 부울대수를 기반으로 입력 값의 조함에 따라 참 또는 거짓을 출력하는 함수
+  - 하나 이상의 부울연산 조합으로 구성
+- 논리 변수의 상호 관계를 나타내기 위한 대수적 표현
+  - 0,1을 어떻게 나타낼 것인지
+  - 입력받은 논리값을 어떻게 처리할 것인지
+- 부울 변수(0 or 1), 부울연산기호, 괄호, 등호 등으로 나타냄
+
+| 특징      | 내용                                                 |
+| --------- | ---------------------------------------------------- |
+| 입력      | 하나 이상의 부울변수, 각 변수는 0 또는 1의 값을 가짐 |
+| 출력      | 논리 연산에 따라 결정, 항상 0 또는 1 중 하나         |
+| 논리 연산 | AND, OR 등의 논리 연산을 사용해 표현                 |
+
+- 부울함수의 예시:
+  - $F = X \cdot \overline Y + X \cdot Y \cdot Z + \overline X \cdot Y \cdot Z$
+- 부울함수는 논리 게이트로 구성되는 논리회로도로 작성할 수 있음
+
+### 연산 우선순위
+
+| 우선순위 | 논리연산  |
+| -------- | --------- |
+| 1        | `()` 괄호 |
+| 2        | NOT       |
+| 3        | AND, NAND |
+| 4        | OR, NOR   |
+| 5        | XOR, XNOR |
+
+- $F = X \cdot \overline Y + X \cdot Y \cdot Z + \overline X \cdot Y \cdot Z$
+
+  - $(X \cdot \overline Y) + (X \cdot Y \cdot Z) + (\overline X \cdot Y \cdot Z)$
+
+- 각각의 부울함수마다 하나의 진리표가 존재한다.
+
+## 부울함수의 대수적 간소화
+
+- 부울함수, 논리회로는 1:1 대응 관계
+- 진리표와 부울함수는 1:1 대응 관계가 아님
+
+### 부울함수와 진리표와의 관계
+
+- 어떠한 부울함수에 대한 진리표는 하나
+- 부울함수의 형태에 따라 여러 부울함수가 동일한 진리표를 공유할 수 있음
+- 따라서, 단일 진리표에 대한 논리회로도는 여러 개가 될 수 있음
+- 부울함수를 구성하는 부울연산과 부울변수의 개수는 게이트 및 각 게이트의 입력 개수와 직접적인 관계가 있음
+  - 동일한 결과를 추렭하는데 게이트와 입력의 수가 많아질 수록 복잡해지며, 비효율적
+  - 비용도 증가하고, 물리적인 면적을 더 많이 사용하고
+- 부울함수가 간단해질 수록 논리게이트의 복잡도는 낮아짐
+- 이에 따라, 부울함수의 간소화가 필수적
+
+- $F = X \cdot \overline Y + X \cdot Y \cdot Z + \overline X \cdot Y \cdot Z$
+  - $= X \cdot \overline Y + Y \cdot Z$
+
+### 부울함수의 간소화 방법
+
+- 대수적인 방법
+- 도표를 이용한 방법
+- 테이블을 이용한 방법
+
+![간소화](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/4b2648d8-c951-401a-4fc8-7924414c9600/public)
+
+1. 항결합
+2. 문자 소거
+3. 중복항 첨가  
+   a. 부울함수의 진리값이 변하지 않도록 하면서 간소화를 위한 적절한 향을 첨가하는 방법  
+   b. $F = F + X \overline X$  
+   c. $F + X = F + X + XY$ (흡수법칙)
+
+### 부울대수의 기본 공식
+
+- 교환법칙
+- 결합법칙
+- 분배법칙
+- 드모르간의 법칙
+- 흡수정리
+
+### 부울대수의 쌍대성 원리
+
+- 어떤 식이 성립하면, 그것의 쌍대(Dual) 형태도 항상 성립하는 원리
+- 특정 변환을 적용해도 동일한 연산 성질이 유지되는 것
+- 논리학에서 OR과 AND, 참과 거짓을 바꿔도 연산 성질이 성립됨
+- $X + 0 = X  \leftrightarrow X \cdot 1 = X$
+
+### 항 결합 예제
+
+- $F = X \cdot \overline Y + X \cdot Y \cdot Z + \overline X \cdot Y \cdot Z$
+  - $= X \overline Y + (X + \overline X)YZ$
+  - $= X \overline Y + 1 \cdot YZ$
+  - $= X \overline Y + YZ$
+
+### 문자 소거 예제
+
+- $X + \overline XY = (X + \overline X)(X + Y) = 1 \cdot (X + Y) = X + Y$
+- $X(\overline X + \overline Y) = X \overline X + XY = 0 + XY = XY$
+
+- $F = (X + XY + Y)(X + \overline XYZ)$
+  - $= (X(1 + Y) + Y)(X + \overline XYZ)$
+    - 논리합에서 X가 1이면 무조건 1이므로 $X(1 + Y) = X$
+  - $= (X + Y)(X + \overline XYZ)$
+  - $= (X + Y)(X + \overline X)(X + YZ)$
+  - $= (X + Y)1(X + YZ)$
+  - $= (X + Y)(X + YZ)$
+  - $= (X + Y)(X + Y)(X + Z)$
+  - $= (X + Y)(X + Z)$
+
+![대수적 간소화](https://imagedelivery.net/5LG7d9X3kuXKRQ06TLYDSg/3565acf3-64ac-4f39-27ae-877dae877500/public)
+
+- (마지막: X + Y)
+
+### 부울함수 F의 보수는 $\overline F$
+
+- $F = \overline XY \overline Z + \overline X \overline YZ$
+  - $\overline F = \overline{\overline XY \overline Z + \overline X \overline YZ}$
+    - 수식 전체를 NOT으로 감싸면 됨
+  - $= \overline{\overline XY \overline Z} \cdot \overline{\overline X \overline YZ}$
+    - 드모르간의 법칙을 사용해 NOT을 분배, 중간의 논리합을 논리곱(AND)으로 바꿈
+  - $= (X + \overline Y + Z)(X + Y + \overline Z)$
+    - 반전의 반전
+
+### 쌍대성을 활용
+
+- F의 쌍대: $(\overline X + Y + \overline Z) \cdot (\overline X + \overline Y + Z)$
+  - $\overline F = (X + \overline Y + Z) \cdot (X + Y + \overline Z)$: 각 변수의 보수화
+  - 쌍대 형태로 변환
+
+---
+
+# 논리회로
+
+- 입력 신호의 논리 연산을 통해 출력 신호를 생성하는 회로
+- 입력 및 출력 신호는 0 똔ㄴ 1과 같이 2진 신호를 사용함
+
+## AND 게이트 - 논리곱(Conjunction)
+
+- 모든 입력이 1(참)이면 1(참) 출력
+
+- $F = X \circ Y$
+- $F = XY$
+
+| 입력 | 입력 | 출력 |
+| ---- | ---- | ---- |
+| X    | Y    | F    |
+| 0    | 0    | 0    |
+| 0    | 1    | 0    |
+| 1    | 0    | 0    |
+| 1    | 1    | 1    |
+
+- 둘 다 참일 때에만 참
+
+## OR 게이트 - 논리합(Disjunction)
+
+- $F = X + Y$
+
+- 하나라도 1(참)이면 1(참) 출력
+  | 입력 | 입력 | 출력 |
+  | ---- | ---- | ---- |
+  | X | Y | F |
+  | 0 | 0 | 0 |
+  | 0 | 1 | 1 |
+  | 1 | 0 | 1 |
+  | 1 | 1 | 1 |
+
+## NOT 게이트 - 부정(Negation)
+
+- 입력을 반전(부정)하여 출력
+- 기본적으로 NOT 게이트는 그림에 앞에 동그라미 표시로 나타냄
+- $F = \overline{X}$
+
+| 입력 | 출력 |
+| ---- | ---- |
+| X    | F    |
+| 0    | 1    |
+| 1    | 0    |
+
+## NAND 게이트 - NOT AND
+
+- AND 게이트의 출력을 반전시킨 것
+- AND 그림 앞에 동그라미 표시 추가
+- $F = \overline{X \cdot Y}$
+- $F = \overline{XY}$
+
+| 입력 | 입력 | 출력 |
+| ---- | ---- | ---- |
+| X    | Y    | F    |
+| 0    | 0    | 1    |
+| 0    | 1    | 1    |
+| 1    | 0    | 1    |
+| 1    | 1    | 0    |
+
+## NOR 게이트 - NOT OR
+
+- OR 게이트의 출력을 반전시킨 것
+- $F = \overline{X + Y}$
+
+  | 입력 | 입력 | 출력 |
+  | ---- | ---- | ---- |
+  | X    | Y    | F    |
+  | 0    | 0    | 1    |
+  | 0    | 1    | 0    |
+  | 1    | 0    | 0    |
+  | 1    | 1    | 0    |
+
+## XOR 게이트 - 배타적 논리합(Exclusive OR)
+
+- 입력이 서로 다를 때만 1(참)을 출력
+- 논리적으로 서로 다른 것을 선택하는 연산
+- $F = X \oplus Y$
+
+| 입력 | 입력 | 출력 |
+| ---- | ---- | ---- |
+| X    | Y    | F    |
+| 0    | 0    | 0    |
+| 0    | 1    | 1    |
+| 1    | 0    | 1    |
+| 1    | 1    | 0    |
+
+## XNOR 게이트 - Exclusive NOR
+
+- XOR 게이트의 출력을 반전시킨 것
+- 논리적으로 서로 같은 것을 선택하는 연산법칙
+- $F = \overline{X \oplus Y}$
+
+| 입력 | 입력 | 출력 |
+| ---- | ---- | ---- |
+| X    | Y    | F    |
+| 0    | 0    | 1    |
+| 0    | 1    | 0    |
+| 1    | 0    | 0    |
+| 1    | 1    | 1    |
+
+## 논리합(OR)과 배타적 논리합(XOR)
+
+| OR게이트                   | XOR게이트                |
+| -------------------------- | ------------------------ |
+| 둘 중 하나라도 참이라면 참 | 입력이 서로 다를 때만 참 |
+|                            | 서로 배타적일 때만 OK    |
+
+# 부울대수 (Boolean Algebra)
+
+- 0과 1의 값을 갖는 논리변수와 논리연산을 다루는 대수
+- 이진 논리(binary logic)을 기반으로 한 수학적 체계
+- 모든 값을 참과 거짓으로 나타내며, 이를 논리 연산으로 조작하는 이론
+
+| 특징      | 내용                                                   |
+| --------- | ------------------------------------------------------ |
+| 값의 범위 | 각 변수 및 표현식이 0 또는 1                           |
+| 논리 연산 | AND, OR 등의 논리 연산자에 의해 정의                   |
+| 이진 논리 | 0과 1 두개의 값만 처리하여 이진수와 직접적 연관이 있음 |
