@@ -37,19 +37,19 @@ const components = {
   h1: (props: HeadingProps) => <h1 className="font-medium text-2xl pt-10 mb-3" {...props} />,
   h2: (props: HeadingProps) => (
     <h2
-      className={`${styles.text.heading} font-medium text-xl ${styles.spacing.heading}`}
+      className={`${styles.text.heading} font-medium text-2xl ${styles.spacing.heading}`}
       {...props}
     />
   ),
   h3: (props: HeadingProps) => (
     <h3
-      className={`${styles.text.heading} font-medium text-lg ${styles.spacing.heading}`}
+      className={`${styles.text.heading} font-medium text-xl ${styles.spacing.heading}`}
       {...props}
     />
   ),
   h4: (props: HeadingProps) => (
     <h4
-      className={`${styles.text.heading} font-medium text-base ${styles.spacing.heading}`}
+      className={`${styles.text.heading} font-medium text-lg ${styles.spacing.heading}`}
       {...props}
     />
   ),
