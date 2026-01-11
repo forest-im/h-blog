@@ -41,11 +41,18 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cz-conventional-emoji": "^1.1.8",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8.5.1",
     "prettier": "^3.4.2",
     "tailwindcss": "^4.0.3",
     "typescript": "^5"
+  },
+  "config": {
+    "commitizen": {
+      "disableScopeLowerCase": true,
+      "path": "./node_modules/cz-conventional-emoji"
+    }
   }
 }
