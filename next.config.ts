@@ -1,9 +1,9 @@
 import createMDX from '@next/mdx'
 import type { NextConfig } from 'next'
 import rehypeHighlight from 'rehype-highlight'
+import rehypeKatex from 'rehype-katex'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
-import rehypeKatex from 'rehype-katex'
 
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
     mdxRs: false,
   },
   transpilePackages: ['three'],
+  eslint: {
+    // 빌드 시 ESLint를 비활성화하고 Biome 사용
+    ignoreDuringBuilds: true,
+  },
 }
 
 const withMDX = createMDX({
