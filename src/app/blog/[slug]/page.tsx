@@ -2,12 +2,12 @@ import { createMetadata } from '@/lib/createMetadata'
 import { Metadata } from 'next'
 
 interface PageProps {
-  params: Promise<{ category: string; slug: string }>
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const slug = (await params).slug
-  const post = await import(`@/docs/reviews/${slug}.mdx`)
+  const post = await import(`@/docs/review/${slug}.mdx`)
 
   return createMetadata({ post })
 }
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function Page({ params }: PageProps) {
   const slug = (await params).slug
 
-  const { default: Post } = await import(`@/docs/reviews/${slug}.mdx`)
+  const { default: Post } = await import(`@/docs/review/${slug}.mdx`)
 
   return <Post />
 }
