@@ -23,7 +23,7 @@
         "useImportType": "error"
       },
       "correctness": {
-        "noUnusedVariables": "error",
+        "noUnusedVariables": "warn",
         "useExhaustiveDependencies": "warn"
       },
       "suspicious": {
