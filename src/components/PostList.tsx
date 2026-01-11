@@ -1,18 +1,6 @@
+import type { PostsByYear } from '@/lib/mdx';
 import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
-
-interface Post {
-  path: string;
-  metadata: {
-    title: string;
-    date: string;
-  };
-  type?: 'til' | 'blog';
-}
-
-interface PostsByYear {
-  [year: string]: Post[];
-}
 
 interface PostListProps {
   postsByYear: PostsByYear;

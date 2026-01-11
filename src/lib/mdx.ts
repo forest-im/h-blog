@@ -9,7 +9,7 @@ interface Metadata {
   visibility?: 'public' | 'private';
 }
 
-interface Post {
+export interface Post {
   slug: string;
   category?: string;
   metadata: Metadata;
@@ -17,7 +17,7 @@ interface Post {
   type: string;
 }
 
-interface PostsByYear {
+export interface PostsByYear {
   [year: string]: Post[];
 }
 
