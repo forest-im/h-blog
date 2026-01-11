@@ -1,7 +1,49 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // 1. Biome 기본 포맷터 설정
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
+
+  "biome.lsp.bin": "./node_modules/@biomejs/biome/bin/biome",
+
+  // 다른 확장 프로그램들의 코드 액션 비활성화
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    // 저장할 때 Biome이 린트 에러 수정 + Import 정리(병합/정렬) 수행
+    "source.organizeImports.biome": "explicit",
+    "source.removeUnusedImports": "explicit",
+    "source.fixAll.biome": "explicit",
+
+    // 충돌 방지를 위해 다른 도구의 저장 시 액션 차단
+    "source.fixAll.eslint": "never",
+    "source.fixAll.tslint": "never",
+    "source.addMissingImports": "never"
+  },
+
+  // Tailwind CSS IntelliSense 최적화
+  "tailwindCSS.emmetCompletions": false,
+  "tailwindCSS.codeActions": false,
+
+  // TypeScript 언어 서버 최적화
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "typescript.validate.enable": true,
+
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  "editor.tabSize": 2,
+
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/.git/**": true,
+    "**/packages/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/packages": true
   }
 }
