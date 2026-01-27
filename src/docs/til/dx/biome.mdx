@@ -1,0 +1,128 @@
+export const metadata = {
+  title: 'Biome + 모노레포 조합으로 쉽게 고통받는 방법',
+  tags: ['#biome'],
+  date: '2026-01-27 22:02:46',
+}
+
+쉽게 고통받는 방법은 biome 2.0.6 버전을 설치하고 React, Vue가 섞인 모노레포를 사용하는 것이다. 
+
+---
+
+현재 회사 서비스 레포를 모노레포로 변경하고있다. 주요 서비스 프로젝트에서는 biome으로 포맷터+린터 구성을 다 통일한 상태이지만, 다른 서비스 중 Vue 프로젝트가 있어 biome으로 모두 통일을 하지 못한 상태이다. 
+
+이유로는.. biome이 아직 Vue 프로젝트를 실험적으로만 지원하기 때문이다. 
+![biome_support.png](/images/dx/biome_01.png)
+
+여기서 내 고통은 시작되었다.
+
+
+
+실험적이라도 사용할 수 있을 정도만 되면 상관없다 생각했으나.. 
+![biome_vue_lint_error.png](/images/dx/biome_02.png)
+
+![biome_vue_lint_error2.png](/images/dx/biome_03.png)
+
+아직은 갈 길이 멀어보인다.ㅠ html 영역에서 import warning이 발생하고, unused 에러가 변수 또는 함수의 위치가 아닌 곳에 줄이 그어지는 등의 버그가 보인다.
+
+결국엔 Vue 프로젝트에서는 prettier를 사용하게 되었다.
+
+```jsx
+// settings.json
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+```
+
+formatter만 prettier를 사용하고 linter는 biome을 사용할까 했지만.. 아직.. 못쓰겠더라. Vue 프로젝트에서는 eslint 설정도 추가해야하는데, 갈 길이 먼 것 같다.
+
+---
+
+## 내게 고통을 준 biome의 files.includes 버그
+
+
+여기서 고통받았던 건 통일하지 못한 부분은 아니고, files.includes 설정부분 때문이었다. 
+
+```jsx
+// biome.json
+  "files": {
+    "includes": [
+      "**",
+      "!apps/vue"
+    ]
+  },
+```
+
+이 시기에는 biome 2.0.6 버전을 사용중이었는데, 분명히 문서대로 해도.. 문서와 똑같이 해도!! Vue 프로젝트에서 biome의 warning, error 밑줄이 사라지지 않는 것이었다.
+
+
+<br />
+
+[files.includes 공식 문서 링크](https://biomejs.dev/reference/configuration/#filesincludes)
+- 공식 문서 내의 내용
+
+```jsx
+{
+  "files": {
+    "includes": ["**", "!**/*.test.js", "**/special.test.js", "!test"]
+  }
+}
+
+
+This example specifies that:
+
+1. All files inside all (sub)folders are processed, thanks to the `*` pattern…
+    1. 모든 폴더(하위)내의 파일이 * 패턴으로 인해 처리될거임
+2. … *except* when those files have a `.test.js` extension…
+    1. .test.js 확장자를 가진 파일은 제외됨
+3. … but the file `special.test.ts` *is* still processed…
+    1. 하지만 special.test.ts 파일은 처리됨
+4. … *except* when it occurs in the folder named `test`, because *no* files inside that folder are processed.
+    1. 폴더 이름이 test라는 이름일 때는 해당 폴더 내 파일은 처리되지 않을 거임
+
+```
+
+
+라고 분명 적혀있었는데. 4번에 분명 저리 적혀있었는데! 계속 Vue 프로젝트 내부에서 biome 린트가 적용되는 고통스런 버그가 있었고, settings.json과 biome.json의 무한 수정을 거치며 아래와 같이 1차적으로 해결했다.
+
+```jsx
+  "overrides": [
+    {
+      "includes": ["apps/vue/**"],
+      "assist": {
+        "enabled": false
+      },
+      "formatter": {
+        "enabled": false
+      },
+      "linter": {
+        "enabled": false
+      }
+    }
+  ]
+```
+
+여기서 또 머리가 깨지는 것은 문서로 이해한 건 file에서 ignore 처리하면 안되는데 위 방법으로 처리하면 되니, 혼란스러웠다. 
+
+### 해결 방법
+
+결국 해결방법은 버전업이었다.. <strong>그저 버그였던 것</strong>이었다.
+
+https://biomejs.dev/internals/changelog/version/2-0-6...latest/#2-1-0
+- https://github.com/biomejs/biome/pull/6989
+- 2.1.0에서 해결된 것으로 보인다.
+- The change in the scanner also has a more nuanced impact: Previously, if you used `files.includes` to ignore a file in an included folder, the scanner would still index this file. Now the file is fully ignored, *unless you import it*.
+  - ignore한 파일도 스캐너가 작동한 부분이 수정되었다고 한다.
+
+그래서 깨달은 것은, 문서와 다르다면 changelog를 잘 확인하자. 그리고 버전업을 열심히 하자는 것.
+
+## 작고 귀여운 고통. 팀원과의 settings.json 불일치
+
+이것은 사소한 고통이었는데 아무리 팀내 공유되는 settings.json을 변경해도 팀원의 biome formatting + linter 작동이 되지 않는 이슈가 있었다. 알고보니 팀원 개인의 settings.json에서만 설정된 다른 옵션으로 인해 포맷팅이 먹히지 않는 문제였고.. 이런 문제도 발생할 수 있구나 하는 작은 고통 케이스였다. 
+
+
+---
+
+## 결론
+포맷터 때문에 코드 작성이 힘들어져 사용하기 편하도록 수정해보고 싶었는데, 드디어 모두 고쳐진 것 같다. 기존에는 codeActionsOnSave 작동시 saving 시간이 1분도 넘게 지연되는 경우도 있었다. 해당 부분은 vscode내의 TS 기존 설정과 biome이 충돌하여 발생했던 케이스라는 것을 이해하니 해결할 수 있었다.
+
+사실 사소한 부분이지만 팀내에서 함께 사용하다 보니, 이슈도 빠르게 맞닿을 수 있고 조금은 번거로운 부분이 많기도 했다. 그래도 biome 등을 계속 살펴보며 진행하다보니 새롭게 알게되는 부분도 많고 그저 설정만 하며 진행했던 부분을 이해하며 사용할 수 있는 좋은 계기가 되었다고 생각한다.
