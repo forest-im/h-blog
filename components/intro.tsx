@@ -5,18 +5,29 @@ import Link from "next/link";
 import Lenis from "lenis";
 import Objet, { type ObjetState } from "@/components/objet";
 
-// 인트로 — 무의미한 파티클 오브제 + 스크롤 안무.
-// 1막(0~40%): 오브제 자전 + 마우스 시차.
-// 2막(40~80%): 스크롤하면 카메라가 파고들며 입자가 흩어짐(통과).
-// 3막(70~100%): TIL/BLOG 입구 페이드 인.
+// 인트로 — 차원 상승 스크롤 안무.
+// 스크롤할수록 입자가 0D 점 → 1D 선 → 2D 원 → 3D 매듭 → 4D 테서랙트로
+// 모핑하고, 하단 라벨이 현재 차원을 표시. 끝에서 TIL/BLOG 입구 페이드 인.
 // prefers-reduced-motion: 스크롤 트랙 없이 정적 1화면.
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 const smooth = (t: number) => t * t * (3 - 2 * t);
+
+// 차원 라벨 (전환 중간점 기준으로 스위칭)
+const DIMS = [
+  "0D — POINT",
+  "1D — LINE",
+  "2D — CIRCLE",
+  "3D — CUBE",
+  "4D — TESSERACT",
+];
+const dimAt = (p: number) =>
+  p < 0.13 ? 0 : p < 0.33 ? 1 : p < 0.53 ? 2 : p < 0.77 ? 3 : 4;
 
 export default function Intro() {
   const trackRef = useRef<HTMLDivElement>(null);
   const hintRef = useRef<HTMLSpanElement>(null);
   const actsRef = useRef<HTMLDivElement>(null);
+  const dimRef = useRef<HTMLSpanElement>(null);
   const stateRef = useRef<ObjetState>({ p: 0, mx: 0, my: 0, active: false });
 
   useEffect(() => {
@@ -25,6 +36,7 @@ export default function Intro() {
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       track.classList.add("is-static");
+      if (dimRef.current) dimRef.current.textContent = DIMS[3]; // 정적 = 정육면체
       return;
     }
 
@@ -54,9 +66,14 @@ export default function Intro() {
       const p = max > 0 ? clamp01(lenis.scroll / max) : 0;
       stateRef.current.p = p;
 
-      const a3 = smooth(clamp01((p - 0.7) / 0.3));
+      const a3 = smooth(clamp01((p - 0.88) / 0.12));
       if (hintRef.current)
         hintRef.current.style.opacity = String(clamp01(1 - p * 10));
+      if (dimRef.current) {
+        const label = DIMS[dimAt(p)];
+        if (dimRef.current.textContent !== label)
+          dimRef.current.textContent = label;
+      }
       if (actsRef.current) {
         actsRef.current.style.opacity = String(a3);
         actsRef.current.style.transform = `translateY(${(1 - a3) * 32}px)`;
@@ -112,6 +129,9 @@ export default function Intro() {
         {/* 하단 메타 */}
         <footer className="mt-auto flex items-end justify-between p-6 sm:p-8">
           <span className="intro-meta">INTRO — 2026</span>
+          <span ref={dimRef} className="intro-meta text-[var(--signal)]">
+            0D — POINT
+          </span>
           <span ref={hintRef} className="intro-meta">
             [ SCROLL ↓ ]
           </span>
