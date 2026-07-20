@@ -1,0 +1,27 @@
+---
+title: 강력 새로고침은 서비스워커를 우회하지 못함
+date: 2026-07-03
+summary: Cmd+Shift+R은 HTTP 캐시만 비운다. SW·CacheStorage는 Unregister + Clear site data로.
+---
+
+## 문제
+
+- 배포 후 구·신 모듈 혼합 로드 → 크래시
+- Cmd+Shift+R 반복해도 안 풀림 / 시크릿 창은 정상
+
+## 원인
+
+- 강력 새로고침 = HTTP 캐시만 비움
+- SW·CacheStorage → 안 지워짐 → SW가 네트워크 가로채 옛 모듈 서빙
+- 시크릿 = SW 미등록 → 정상
+
+## 확인
+
+- 시크릿 창 정상 = SW/캐시 원인 (코드 아님)
+
+## 해결
+
+- Application → Service Workers → **Unregister**
+- Application → Storage → **Clear site data** (CacheStorage 포함)
+- 리로드
+- 개발 중: Service Workers → **Update on reload** 체크

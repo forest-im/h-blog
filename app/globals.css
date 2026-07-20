@@ -2,25 +2,170 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
+  --muted: #6b7280;
+  --border: #e7e7e7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b0b0b;
+    --foreground: #ededed;
+    --muted: #8b8b8b;
+    --border: #262626;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  line-height: 1.7;
 }
+
+/* ── 활자 중력 인트로 — .intro 스코프 ── */
+.intro {
+  --signal: #3d8bff;
+  background: #04060b;
+  color: #dfe9ff;
+}
+
+.intro-track {
+  height: 300vh; /* 스크롤 안무 트랙 */
+}
+.intro-track.is-static {
+  height: 100vh; /* reduced-motion: 정적 1화면 */
+}
+
+.intro-acts {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 필름 그레인 노이즈 — 스테이지 최상단 오버레이 */
+.intro-grain {
+  position: absolute;
+  inset: -100%;
+  width: 300%;
+  height: 300%;
+  pointer-events: none;
+  opacity: 0.09;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: intro-grain 0.7s steps(6) infinite;
+}
+
+@keyframes intro-grain {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-4%, 3%);
+  }
+  40% {
+    transform: translate(3%, -5%);
+  }
+  60% {
+    transform: translate(-5%, -2%);
+  }
+  80% {
+    transform: translate(4%, 4%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-grain {
+    animation: none;
+  }
+}
+
+.intro-meta {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(223, 233, 255, 0.55);
+}
+
+.intro-enter {
+  color: #dfe9ff;
+  transition: color 0.25s ease;
+}
+.intro-enter:hover {
+  color: var(--signal);
+}
+
+/* MDX 본문 스타일 — 미니멀 기본. 여기서부터 디자인을 다듬으면 됨 */
+.post-content > * + * {
+  margin-top: 1.25rem;
+}
+.post-content h2 {
+  margin-top: 2.5rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.post-content h3 {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.post-content a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.post-content ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.post-content ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+}
+.post-content code {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.9em;
+  background: color-mix(in srgb, var(--muted) 15%, transparent);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.post-content pre {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.85rem;
+  background: color-mix(in srgb, var(--muted) 12%, transparent);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.post-content pre code {
+  background: transparent;
+  padding: 0;
+}
+.post-content blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1rem;
+  color: var(--muted);
+}
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+---
+title: monorepo에서 firebase가 두 벌 로드된 이유
+date: 2026-07-03
+summary: peer >=10인데도 죽음. peer 선언과 번들 해석은 다른 층이라 dedupe로 집행해야 함.
+---
+
+## 증상
+
+- 배포하면 크래시: `Service database is not available`
+- auth는 됨 / database만 안 됨 / 배포에서도 재현 → 캐시 아니라 코드
+
+## 원인
+
+- 한 번들에 `@firebase/app` 두 벌
+  - 앱(main-web): `firebase@10.14.1` (롤백됨)
+  - 패키지(direct-message, devDep): `firebase@12.13.0`
+- 레지스트리 갈라짐 → database 등록 사본 ≠ 앱 초기화 사본
+
+## 왜 peer `>=10`인데 안 됐나
+
+- peerDependency = "선언" 층 / 번들러 = "해석" 층 → 서로 다름
+- 앱은 패키지를 `dist`로 소비 → Vite가 dist 파일 기준 nearest `node_modules` = 패키지 devDep v12
+- 버전 같을 땐 pnpm이 같은 사본 링크 → 결함 숨어있다가 롤백으로 표면화
+
+## 해결
+
+- Vite `resolve.dedupe: ['firebase']`
+- 서브패키지(`@firebase/*`) 직접 dedupe ✕ → root에 없어 pnpm 해석 깨짐
+- `'firebase'` 하나면 서브패스 import 전부 앱 사본으로 수렴
+
+## 교훈
+
+- 배포에서도 나면 캐시 아니라 코드
+- peer 선언은 계약서일 뿐 → 번들 해석 층에서 dedupe로 집행해야 지켜짐
+- 의존성 소유권 앱→패키지 이동 시: 버전 정합 CI 검증 or 빌드 후 부팅 스모크
