@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Lenis from "lenis";
 import Objet, { type ObjetState } from "@/components/objet";
+import TopBar from "@/components/top-bar";
 
 // 인트로 — 차원 상승 스크롤 안무.
 // 스크롤할수록 입자가 0D 점 → 1D 선 → 2D 원 → 3D 매듭 → 4D 테서랙트로
@@ -111,25 +112,8 @@ export default function Intro() {
     <div ref={trackRef} className="intro intro-track">
       {/* 무대 — sticky는 iOS에서 안 붙는 경우가 있어 fixed로 뷰포트에 고정 */}
       <div className="fixed inset-0 flex flex-col overflow-hidden">
-        {/* 상단 메타 */}
-        <header className="flex items-start justify-between p-6 sm:p-8">
-          <span className="intro-meta">
-            HAZEL<span className="text-[var(--signal)]">®</span>
-          </span>
-          <div className="flex items-center gap-6">
-            <nav className="flex items-center gap-5">
-              <Link href="/til" className="intro-enter intro-meta">
-                [ TIL ]
-              </Link>
-              <Link href="/blog" className="intro-enter intro-meta">
-                [ BLOG ]
-              </Link>
-            </nav>
-            <span className="intro-meta hidden sm:inline">
-              37.57°N 126.98°E
-            </span>
-          </div>
-        </header>
+        {/* 상단 바 (사이트 공용) */}
+        <TopBar />
 
         {/* 3D 오브제 — 입력은 window에서 받으므로 클릭 통과 (헤더 nav 가림 방지) */}
         <div className="pointer-events-none absolute inset-0">

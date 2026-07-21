@@ -207,11 +207,14 @@ export default function Objet({
 
       const { a, b, s: mix } = blend(s.p);
 
-      // 0D 점 구간에서 심장박동처럼 맥동 (다음 차원으로 갈수록 소멸)
+      // 0D 점 구간: 심장박동 맥동 + 호흡 + 위성 입자 궤도.
+      // reduce에서도 "죽은 화면"으로 보이지 않게 절반 속도의 완화 버전 유지
+      const calm = reduce ? 0.45 : 1;
       const pointness = a === 0 ? (b === 0 ? 1 : 1 - mix) : 0;
-      const beat = reduce ? 0.5 : 0.5 + 0.5 * Math.sin(tp);
-      mat.size = 0.065 * (1 + pointness * 0.9 * beat);
-      mat.opacity = reduce ? 1 : 1 - pointness * 0.25 * (1 - beat);
+      const beat = 0.5 + 0.5 * Math.sin(tp * calm);
+      const breath = 1 + pointness * 0.5 * Math.sin(tp * 0.8 * calm);
+      mat.size = 0.065 * (1 + pointness * 1.2 * beat);
+      mat.opacity = 1 - pointness * 0.3 * (1 - beat);
 
       // 4D 구간이면 테서랙트를 4차원 회전 후 3D로 투영
       if (a === 4 || b === 4) {
@@ -262,11 +265,31 @@ export default function Objet({
         }
       }
 
+      const ORBITERS = 140; // 점 주위를 도는 위성 입자 수
       for (let i = 0; i < count; i++) {
         const j = i * 3;
-        const bx = A[j] + (B[j] - A[j]) * mix;
-        const by = A[j + 1] + (B[j + 1] - A[j + 1]) * mix;
-        const bz = A[j + 2] + (B[j + 2] - A[j + 2]) * mix;
+        let bx = A[j] + (B[j] - A[j]) * mix;
+        let by = A[j + 1] + (B[j + 1] - A[j + 1]) * mix;
+        let bz = A[j + 2] + (B[j + 2] - A[j + 2]) * mix;
+
+        // 0D 구간: 코어는 호흡하고, 앞쪽 일부 입자는 궤도를 돎
+        if (pointness > 0.001) {
+          bx *= breath;
+          by *= breath;
+          bz *= breath;
+          if (i < ORBITERS) {
+            const ang =
+              tp * calm * (0.35 + ((i % 9) / 9) * 0.5) + i * 2.399963;
+            const r = 0.5 + ((i * 53) % 97) / 97;
+            const tilt = (((i * 29) % 89) / 89) * Math.PI;
+            const ox = Math.cos(ang) * r;
+            const oy = Math.sin(ang) * r * Math.cos(tilt);
+            const oz = Math.sin(ang) * r * Math.sin(tilt);
+            bx += (ox - bx) * pointness;
+            by += (oy - by) * pointness;
+            bz += (oz - bz) * pointness;
+          }
+        }
 
         let txp = 0;
         let typ = 0;

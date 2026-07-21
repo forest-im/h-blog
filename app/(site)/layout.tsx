@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { TRACKS } from "@/lib/posts";
+import TopBar from "@/components/top-bar";
 
 export default function SiteLayout({
   children,
@@ -9,27 +8,7 @@ export default function SiteLayout({
   return (
     <div className="flex min-h-screen flex-col">
       <div className="site-grain" aria-hidden />
-      <header className="border-b border-border">
-        <div className="mx-auto flex w-full max-w-2xl items-center justify-between px-5 py-5">
-          <Link href="/" className="meta-label text-foreground">
-            HAZEL<span className="text-[var(--signal)]">®</span>
-          </Link>
-          <nav className="meta-label flex items-center gap-5">
-            <Link
-              href="/til"
-              className="text-muted transition-colors hover:text-[var(--signal)]"
-            >
-              [ {TRACKS.til.label} ]
-            </Link>
-            <Link
-              href="/blog"
-              className="text-muted transition-colors hover:text-[var(--signal)]"
-            >
-              [ {TRACKS.blog.label} ]
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <TopBar />
       <main className="mx-auto w-full max-w-2xl flex-1 px-5 py-12">
         {children}
       </main>
