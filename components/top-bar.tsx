@@ -14,9 +14,11 @@ export default function TopBar() {
         <Link href="/blog" className="intro-enter intro-meta">
           [ BLOG ]
         </Link>
-        <Link href="/about" className="intro-enter intro-meta">
-          [ ABOUT ]
-        </Link>
+        {process.env.NODE_ENV !== "production" && (
+          <Link href="/about" className="intro-enter intro-meta">
+            [ ABOUT ]
+          </Link>
+        )}
       </nav>
     </header>
   );
