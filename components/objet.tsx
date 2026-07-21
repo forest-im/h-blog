@@ -177,6 +177,8 @@ export default function Objet({
       const h = mount.clientHeight;
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
+      // 세로 화면은 가로 시야가 좁으므로 카메라를 뒤로 빼서 오브제를 화면에 맞춤
+      camera.position.z = Math.min(32, 14 * Math.max(1, 0.95 / camera.aspect));
       camera.updateProjectionMatrix();
     };
     resize();

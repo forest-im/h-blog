@@ -40,9 +40,15 @@ export default function Intro() {
     if (!track) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // 정적 1화면: 정육면체 + 입구를 바로 보여줌 (스크롤 안무 없음)
       track.classList.add("is-static");
-      if (dimRef.current) dimRef.current.textContent = DIMS[3]; // 정적 = 정육면체
-      if (dimsMapRef.current) dimsMapRef.current.style.display = "none"; // 스크롤 없음
+      if (dimRef.current) dimRef.current.textContent = DIMS[3];
+      if (dimsMapRef.current) dimsMapRef.current.style.display = "none";
+      if (hintRef.current) hintRef.current.style.display = "none";
+      if (actsRef.current) {
+        actsRef.current.style.opacity = "1";
+        actsRef.current.style.pointerEvents = "auto";
+      }
       return;
     }
 
