@@ -131,8 +131,8 @@ export default function Intro() {
           </div>
         </header>
 
-        {/* 3D 오브제 */}
-        <div className="absolute inset-0">
+        {/* 3D 오브제 — 입력은 window에서 받으므로 클릭 통과 (헤더 nav 가림 방지) */}
+        <div className="pointer-events-none absolute inset-0">
           <Objet stateRef={stateRef} />
         </div>
 
