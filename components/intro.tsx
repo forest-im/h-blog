@@ -116,7 +116,19 @@ export default function Intro() {
           <span className="intro-meta">
             HAZEL<span className="text-[var(--signal)]">®</span>
           </span>
-          <span className="intro-meta">37.57°N 126.98°E</span>
+          <div className="flex items-center gap-6">
+            <nav className="flex items-center gap-5">
+              <Link href="/til" className="intro-enter intro-meta">
+                [ TIL ]
+              </Link>
+              <Link href="/blog" className="intro-enter intro-meta">
+                [ BLOG ]
+              </Link>
+            </nav>
+            <span className="intro-meta hidden sm:inline">
+              37.57°N 126.98°E
+            </span>
+          </div>
         </header>
 
         {/* 3D 오브제 */}
