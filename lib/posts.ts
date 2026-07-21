@@ -25,6 +25,7 @@ export type PostMeta = {
   title: string;
   date: string;
   summary: string;
+  tags: string[];
 };
 
 export type Post = PostMeta & { content: string };
@@ -57,8 +58,23 @@ export function getPost(track: Track, slug: string): Post {
           ? data.date.toISOString().slice(0, 10)
           : '',
     summary: typeof data.summary === 'string' ? data.summary : '',
+    tags: Array.isArray(data.tags)
+      ? data.tags.filter((t): t is string => typeof t === 'string')
+      : [],
     content,
   };
+}
+
+export function getAllTags(): string[] {
+  const tags = new Set<string>();
+  for (const post of getAllPosts()) {
+    for (const t of post.tags) tags.add(t);
+  }
+  return [...tags].sort();
+}
+
+export function getPostsByTag(tag: string): PostMeta[] {
+  return getAllPosts().filter((post) => post.tags.includes(tag));
 }
 
 export function getPostsByTrack(track: Track): PostMeta[] {

@@ -45,6 +45,19 @@ export default async function PostPage({
         {post.date && <time>{post.date}</time>}
       </div>
       <h1 className="text-2xl font-semibold tracking-tight">{post.title}</h1>
+      {post.tags.length > 0 && (
+        <div className="mt-3 flex flex-wrap items-center gap-3 font-mono text-xs">
+          {post.tags.map((tag) => (
+            <Link
+              key={tag}
+              href={`/tags/${encodeURIComponent(tag)}`}
+              className="text-muted transition-colors hover:text-[var(--signal)]"
+            >
+              #{tag}
+            </Link>
+          ))}
+        </div>
+      )}
       <div className="post-content mt-8">
         <MDXRemote source={post.content} />
       </div>
