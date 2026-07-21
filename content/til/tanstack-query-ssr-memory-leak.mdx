@@ -1,0 +1,48 @@
+---
+title: SSR에서 QueryClient 싱글턴이 만든 메모리 누수
+date: 2026-07-21
+summary: 서버 메모리가 요청량과 무관하게 계속 차서 주 1회 배포로 리셋하며 버팀. 원인은 모든 요청이 공유하던 QueryClient 싱글턴이었음.
+tags: [tanstack-query, ssr, nextjs, memory]
+ai: draft
+---
+
+## 문제
+
+- SSR 서버 메모리가 시간이 지날수록 계속 차오름
+- request 횟수는 비례해서 늘지 않음 → 트래픽 증가 때문이 아니었음
+- 원인을 못 찾는 동안 **주 1회 배포로 메모리를 리셋**하며 버팀
+
+## 원인
+
+- SSR 환경에서 `QueryClient`를 모듈 레벨 싱글턴으로 생성하고 있었음
+
+```typescript
+// ❌ 서버에서 모든 요청이 이 한 개를 공유함
+export const queryClient = new QueryClient();
+```
+
+- 브라우저에선 싱글턴이 정상임. 탭 하나 = 유저 하나 = 캐시 하나
+- 서버에선 얘기가 다름 — **프로세스가 살아있는 동안 모든 요청의 쿼리 캐시가 같은 인스턴스에 쌓임**
+- 요청은 끝나도 캐시는 해제되지 않음 → 캐시 수명 = 프로세스 수명 → 누수처럼 보이는 누적
+- 덤으로 유저 A의 캐시가 유저 B 응답에 섞일 수 있는 보안 문제도 있음
+
+## 해결
+
+- 서버에서는 **요청(렌더)마다 새 QueryClient를 생성**함
+
+```typescript
+// ✅ 서버: 요청마다 생성 / 브라우저: 재사용
+let browserQueryClient: QueryClient | undefined;
+
+export function getQueryClient() {
+  if (typeof window === 'undefined') return new QueryClient();
+  return (browserQueryClient ??= new QueryClient());
+}
+```
+
+- 요청이 끝나면 그 요청의 클라이언트도 함께 GC 대상이 됨 → 누적 소멸
+
+## 배운 점
+
+- 싱글턴 자체가 나쁜 게 아님. **어디서의 싱글턴인가**가 문제임 — 서버의 모듈 스코프는 요청 스코프가 아니라 프로세스 스코프임
+- 메모리 그래프가 요청량과 비례하지 않고 단조증가하면 → 프로세스 수명에 묶인 캐시/전역 누적부터 의심할 것
