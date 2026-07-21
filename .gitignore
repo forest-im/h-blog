@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 로컬 전용 드래프트 (_로 시작하는 글은 커밋되지 않음)
+content/**/_*

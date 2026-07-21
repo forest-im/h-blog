@@ -49,3 +49,8 @@
 - frontmatter: `title` / `date`(YYYY-MM-DD) / `summary`.
 - 파일 위치가 곧 메뉴: `content/til/` 또는 `content/blog/`.
 - 파일명은 kebab-case.
+
+## 로컬 드래프트
+
+- 파일명이 `_`로 시작하면 **로컬 전용 드래프트** — git에 커밋되지 않고 로컬 dev에서만 보임.
+- 발행하려면 `_` 접두어를 제거.
