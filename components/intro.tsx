@@ -39,20 +39,12 @@ export default function Intro() {
     const track = trackRef.current;
     if (!track) return;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      // 정적 1화면: 정육면체 + 입구를 바로 보여줌 (스크롤 안무 없음)
-      track.classList.add("is-static");
-      if (dimRef.current) dimRef.current.textContent = DIMS[3];
-      if (dimsMapRef.current) dimsMapRef.current.style.display = "none";
-      if (hintRef.current) hintRef.current.style.display = "none";
-      if (actsRef.current) {
-        actsRef.current.style.opacity = "1";
-        actsRef.current.style.pointerEvents = "auto";
-      }
-      return;
-    }
-
-    const lenis = new Lenis({ autoRaf: false });
+    // reduced-motion: 스크롤 여정(사용자 조작)은 유지하되
+    // 저절로 움직이는 것들(부드러운 스크롤 보간)만 끔 — 네이티브 스크롤 사용
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const lenis = reduce ? null : new Lenis({ autoRaf: false });
     lenisRef.current = lenis;
 
     const onMove = (e: PointerEvent) => {
@@ -73,10 +65,11 @@ export default function Intro() {
 
     let raf = 0;
     const tick = (time: number) => {
-      lenis.raf(time);
+      if (lenis) lenis.raf(time);
 
       const max = track.offsetHeight - window.innerHeight;
-      const p = max > 0 ? clamp01(lenis.scroll / max) : 0;
+      const scroll = lenis ? lenis.scroll : window.scrollY;
+      const p = max > 0 ? clamp01(scroll / max) : 0;
       stateRef.current.p = p;
 
       const a3 = smooth(clamp01((p - 0.88) / 0.12));
@@ -105,7 +98,7 @@ export default function Intro() {
 
     return () => {
       cancelAnimationFrame(raf);
-      lenis.destroy();
+      lenis?.destroy();
       lenisRef.current = null;
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onMove);
@@ -166,10 +159,11 @@ export default function Intro() {
               aria-label={label}
               onClick={() => {
                 const track = trackRef.current;
-                const lenis = lenisRef.current;
-                if (!track || !lenis) return;
+                if (!track) return;
                 const max = track.offsetHeight - window.innerHeight;
-                lenis.scrollTo(max * DIM_TARGETS[i]);
+                const target = max * DIM_TARGETS[i];
+                if (lenisRef.current) lenisRef.current.scrollTo(target);
+                else window.scrollTo({ top: target });
               }}
             >
               {i}D

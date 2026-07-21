@@ -195,6 +195,7 @@ export default function Objet({
     const render = () => {
       const s = stateRef.current;
 
+      // reduce: 자동 회전·맥동만 끄고 스크롤 모핑(사용자 조작)은 유지
       t += 0.0035;
       tp += 0.055;
       if (!reduce) {
@@ -204,15 +205,13 @@ export default function Objet({
         group.rotation.set(0.4, 0.6, 0);
       }
 
-      const { a, b, s: mix } = reduce
-        ? { a: 3, b: 3, s: 0 }
-        : blend(s.p);
+      const { a, b, s: mix } = blend(s.p);
 
       // 0D 점 구간에서 심장박동처럼 맥동 (다음 차원으로 갈수록 소멸)
       const pointness = a === 0 ? (b === 0 ? 1 : 1 - mix) : 0;
-      const beat = 0.5 + 0.5 * Math.sin(tp);
+      const beat = reduce ? 0.5 : 0.5 + 0.5 * Math.sin(tp);
       mat.size = 0.065 * (1 + pointness * 0.9 * beat);
-      mat.opacity = 1 - pointness * 0.25 * (1 - beat);
+      mat.opacity = reduce ? 1 : 1 - pointness * 0.25 * (1 - beat);
 
       // 4D 구간이면 테서랙트를 4차원 회전 후 3D로 투영
       if (a === 4 || b === 4) {
@@ -245,9 +244,9 @@ export default function Objet({
       const A = a === 4 ? tess3 : states[a];
       const B = b === 4 ? tess3 : states[b];
 
-      // 커서를 오브제 평면(z=0)으로 역투영 → 그룹 로컬 좌표
+      // 커서를 오브제 평면(z=0)으로 역투영 → 그룹 로컬 좌표 (사용자 조작이라 reduce에도 유지)
       let hasCursor = false;
-      if (s.active && !reduce) {
+      if (s.active) {
         cursorWorld.set(s.mx, -s.my, 0.5).unproject(camera);
         cursorWorld.sub(camera.position).normalize();
         const dz = cursorWorld.z;
@@ -295,13 +294,9 @@ export default function Objet({
       geo.attributes.position.needsUpdate = true;
 
       renderer.render(scene, camera);
-      if (!reduce) raf = requestAnimationFrame(render);
+      raf = requestAnimationFrame(render); // 스크롤 반응을 위해 상시 렌더
     };
-    if (reduce) {
-      render();
-    } else {
-      raf = requestAnimationFrame(render);
-    }
+    raf = requestAnimationFrame(render);
 
     return () => {
       cancelAnimationFrame(raf);

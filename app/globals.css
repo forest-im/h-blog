@@ -58,9 +58,6 @@ body {
 .intro-track {
   height: 300vh; /* 스크롤 안무 트랙 */
 }
-.intro-track.is-static {
-  height: 100vh; /* reduced-motion: 정적 1화면 */
-}
 
 .intro-acts {
   position: absolute;
@@ -211,6 +208,7 @@ body {
   padding-left: 1rem;
   color: var(--muted);
 }
+
 
 
 
