@@ -1,0 +1,164 @@
+export const metadata = {
+  title: 'TypeScript satisfies',
+  tags: ['#TypeScript'],
+  date: '2025-12-25 17:45:47',
+}
+
+# TypeScript `satisfies` 키워드
+
+`satisfies`는 TypeScript 4.9에서 도입된 키워드로, 값이 특정 타입을 만족하는지 검증하면서도 **타입 추론을 유지**할 수 있게 해줍니다.
+
+## `as const` vs `satisfies` vs 둘 다 사용
+
+### 1. `as const`만 사용
+
+```typescript
+const THEME_COLORS = {
+  PRIMARY: '#3b82f6',
+  SECONDARY: '#8b5cf6',
+  SUCCESS: '#10b981',
+} as const;
+
+// 타입: { readonly PRIMARY: "#3b82f6"; readonly SECONDARY: "#8b5cf6"; readonly SUCCESS: "#10b981"; }
+장점: 정확한 리터럴 타입 추론
+단점: 타입 검증 없음 (오타나 잘못된 값을 실수로 넣어도 알 수 없음)
+2. 타입 단언만 사용
+
+type ColorPalette = Record<string, string>;
+
+const THEME_COLORS: ColorPalette = {
+  PRIMARY: '#3b82f6',
+  SECONDARY: '#8b5cf6',
+  SUCCESS: '#10b981',
+};
+
+// 타입: Record<string, string>
+장점: 타입 검증 가능
+단점: 구체적인 타입 정보 손실 (THEME_COLORS.PRIMARY의 타입이 string으로만 추론됨)
+3. as const satisfies (Best Practice!)
+
+type ColorPalette = Record<string, string>;
+
+const THEME_COLORS = {
+  PRIMARY: '#3b82f6',
+  SECONDARY: '#8b5cf6',
+  SUCCESS: '#10b981',
+} as const satisfies ColorPalette;
+
+// 타입: { readonly PRIMARY: "#3b82f6"; readonly SECONDARY: "#8b5cf6"; readonly SUCCESS: "#10b981"; }
+장점: 타입 검증 + 정확한 리터럴 타입 추론 둘 다!
+실제 사용 예시
+예시 1: 사용자 역할 관리
+
+type UserRole = 'admin' | 'editor' | 'viewer';
+
+// ❌ 오타가 있지만 에러 없음
+const ROLE_PERMISSIONS_BAD = {
+  admin: ['read', 'write', 'delete'],
+  editor: ['read', 'write'],
+  viewerr: ['read'], // 오타!
+} as const;
+
+// ✅ 컴파일 타임에 오류 감지
+const ROLE_PERMISSIONS = {
+  admin: ['read', 'write', 'delete'],
+  editor: ['read', 'write'],
+  viewer: ['read'],
+} as const satisfies Record<UserRole, readonly string[]>;
+예시 2: API 엔드포인트 설정
+
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
+// ✅ 모든 메서드가 정의되었는지 검증
+const API_ENDPOINTS = {
+  GET: '/api/users',
+  POST: '/api/users',
+  PUT: '/api/users/:id',
+  DELETE: '/api/users/:id',
+} as const satisfies Record<HttpMethod, string>;
+
+// ❌ 하나라도 빠지면 에러
+const INCOMPLETE_ENDPOINTS = {
+  GET: '/api/products',
+  POST: '/api/products',
+  // PUT, DELETE가 없음!
+} as const satisfies Record<HttpMethod, string>;
+// Error: Type '{ GET: "/api/products"; POST: "/api/products"; }' does not satisfy...
+예시 3: 반응형 브레이크포인트
+
+type Breakpoint = 'mobile' | 'tablet' | 'desktop';
+
+const BREAKPOINTS = {
+  mobile: 320,
+  tablet: 768,
+  desktop: 1024,
+} as const satisfies Record<Breakpoint, number>;
+
+// ✅ BREAKPOINTS.mobile의 타입은 320 (리터럴!)
+// ✅ 잘못된 브레이크포인트 이름을 쓰면 컴파일 에러
+// ✅ 숫자가 아닌 값을 넣으면 컴파일 에러
+예시 4: 폼 유효성 검사 규칙
+
+type ValidationRule = {
+  required: boolean;
+  minLength?: number;
+  maxLength?: number;
+};
+
+const FORM_VALIDATION = {
+  username: { required: true, minLength: 3, maxLength: 20 },
+  email: { required: true },
+  password: { required: true, minLength: 8 },
+} as const satisfies Record<string, ValidationRule>;
+
+// username 필드의 타입이 정확히 추론됨:
+// { readonly required: true; readonly minLength: 3; readonly maxLength: 20 }
+핵심 정리
+방법	타입 검증	정확한 타입 추론
+as const	❌	✅
+: Type	✅	❌
+as const satisfies Type	✅	✅
+실무 팁
+1. 상수 객체 정의 시
+
+type Status = 'pending' | 'active' | 'completed';
+
+const STATUS_LABELS = {
+  pending: '대기중',
+  active: '진행중',
+  completed: '완료',
+} as const satisfies Record<Status, string>;
+2. 설정 객체 검증
+
+type AppConfig = {
+  apiUrl: string;
+  timeout: number;
+  retries: number;
+};
+
+const CONFIG = {
+  apiUrl: 'https://api.example.com',
+  timeout: 5000,
+  retries: 3,
+} as const satisfies AppConfig;
+3. 라우트 정의
+
+type RoutePath = '/home' | '/about' | '/contact';
+
+const ROUTES = {
+  '/home': { title: '홈', icon: 'home' },
+  '/about': { title: '소개', icon: 'info' },
+  '/contact': { title: '연락처', icon: 'mail' },
+} as const satisfies Record<RoutePath, { title: string; icon: string }>;
+결론
+as const satisfies를 사용하면 타입 안전성과 구체적인 타입 추론을 동시에 얻을 수 있습니다!
+
+// 이렇게 사용하세요!
+const MY_CONSTANTS = {
+  FOO: 'bar',
+  BAZ: 42,
+} as const satisfies Record<string, string | number>;
+언제 사용할까?
+상수 객체를 정의할 때
+모든 케이스가 정의되었는지 확인하고 싶을 때
+타입 안전성과 자동완성을 모두 원할 때
