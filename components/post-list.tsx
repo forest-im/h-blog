@@ -13,17 +13,14 @@ const PostList = ({ posts, showBadge = true }: Props) => {
 
   return (
     <ul className="flex flex-col">
-      {posts.map((post, i) => {
+      {posts.map((post) => {
         const track = TRACKS[post.track];
         return (
           <li key={`${post.track}/${post.slug}`} className="border-b border-border">
             <Link
               href={`/${post.track}/${post.slug}`}
-              className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-4 py-5"
+              className="group grid grid-cols-[1fr_auto] items-baseline gap-4 py-5"
             >
-              <span className="font-mono text-xs text-muted transition-colors group-hover:text-[var(--signal)]">
-                [#{String(i + 1).padStart(2, "0")}]
-              </span>
               <span className="min-w-0">
                 <span className="text-[15px] text-foreground transition-colors group-hover:text-[var(--signal)]">
                   {post.title}
