@@ -122,7 +122,7 @@ export default function Intro() {
 
         {/* 3막 콘텐츠 */}
         <div ref={actsRef} className="intro-acts">
-          <p className="intro-meta">LEARNING LOG — SEOUL</p>
+          <p className="intro-meta">LEARNING LOG</p>
           <nav className="mt-6 flex items-center gap-8">
             <Link href="/til" className="intro-enter intro-meta text-sm">
               [ TIL ↵ ]

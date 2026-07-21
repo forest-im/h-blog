@@ -14,7 +14,7 @@ export default function SiteLayout({
       </main>
       <footer className="border-t border-border">
         <div className="meta-label mx-auto w-full max-w-2xl px-5 py-6 text-muted">
-          LEARNING LOG — SEOUL
+          LEARNING LOG
         </div>
       </footer>
     </div>
