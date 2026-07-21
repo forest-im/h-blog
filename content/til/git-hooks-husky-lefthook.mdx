@@ -1,0 +1,233 @@
+---
+title: Git Hooks와 Husky, Lefthook 비교
+date: 2026-01-11
+summary: 모노레포에서 Husky 대신 Lefthook을 고른 이유 정리함.
+tags: [git, husky, lefthook]
+ai: human
+---
+
+## Git Hooks란?
+
+https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
+
+Git의 특정 작업이 발생할 때 사용자 정의 스크립트를 실행할 수 있는 방법이다. Git 공식 문서에 따르면 클라이언트 측과 서버측 2가지로 나뉜다.
+
+### 클라이언트 측
+
+commit, merge 등의 작업 시 실행되는 훅이다.
+
+- **pre-commit**: 커밋이 실행되기 전에 실행되며, 코드 검사나 테스트 등을 수행할 수 있다
+- **prepare-commit-msg**: 커밋 메시지 편집기가 열리기 전에 실행되며, 기본 커밋 메시지를 수정할 수 있다
+- **commit-msg**: 커밋 메시지를 검증할 때 사용된다
+- **post-commit**: 커밋이 완료된 후 실행된다
+
+### 서버측
+
+push된 커밋을 수신할 때 실행되는 훅이다.
+
+- **pre-receive**: 클라이언트의 푸시 요청을 처리할 때 가장 먼저 실행되는 스크립트이며, 푸시를 거부할 수 있다
+- **update**: 각 브랜치마다 한 번씩 실행되며, 브랜치별로 푸시를 제어할 수 있다
+- **post-receive**: 푸시가 완료된 후 실행되며, 알림이나 배포 등을 트리거할 수 있다
+
+## 대표적인 Hooks 관리자 Husky, Lefthook 비교
+
+npm 다운로드 수를 비교했을 때 Husky가 압도적으로 많았으며, 다른 도구들과는 비교할 수 없는 수준이었다. 최신 업데이트 주기를 보면 Husky는 연 단위로 업데이트되는 반면, Lefthook은 일 단위로 활발하게 업데이트되고 있었다.
+
+### 여기서 잠깐
+
+Husky는 Git 훅 트리거 기능에만 초점이 맞춰져 있어서, 실무에서는 보통 lint-staged와 함께 조합하여 사용했다. 따라서 여기서는 Husky + lint-staged 조합과 Lefthook을 비교했다.
+
+### Husky
+
+https://typicode.github.io/husky/
+
+Husky의 주요 특징은 다음과 같다:
+
+- JavaScript로 작성되었다
+- 병렬 실행을 지원했다
+- 유연한 설정이 가능했다
+- 종속성 없이 2KB의 가벼운 용량이었다
+- 단독으로 사용되기보다는 보통 lint-staged와 조합하여 사용되었다
+- 단순히 Git hook을 실행하는 러너 역할만 했다
+
+### lint-staged
+
+lint-staged는 Husky와 함께 자주 사용되는 도구로, 다음과 같은 특징이 있다:
+
+- staged된 파일만 처리하는 전용 도구였다
+- glob 패턴 매칭을 지원했다
+- 경로별로 다른 linter를 실행할 수 있었다
+- Node.js 기반으로 작성되었다
+
+### Lefthook
+
+https://lefthook.dev/
+
+Lefthook의 주요 특징은 다음과 같다:
+
+- Go 언어로 작성되어 실행 속도가 빨랐다
+- 병렬 실행을 쉽게 설정할 수 있었다
+  - 린트만 실행하는 경우엔 큰 차이가 없지만, 복잡한 작업에서는 유리했다
+- 크로스 플랫폼을 지원했다
+- 의존성 없는 단일 바이너리 파일로 가볍고 다양한 환경에서 사용 가능했다
+- glob 패턴을 지원하여 유연한 설정이 가능했다
+- lint-staged 없이도 staged된 파일만 검사할 수 있었다
+- 훅 매니저 기능과 lint-staged 기능을 모두 가지고 있었다
+- `stage_fixed: true` 옵션으로 자동 수정된 파일을 자동으로 stage하는 기능이 있었다
+
+## 사용 방식 비교 및 정리
+
+### 기본 Husky 방식
+
+```bash
+#!/bin/sh
+echo "Start Linting and Formatting 💥"
+
+npm run lint
+
+if [ $? -eq 0 ]; then
+  echo "✅ Complete! 🚀"
+else
+  echo "❌ Error! 🛑"
+  exit 1
+fi
+```
+
+이 방식의 문제점은 커밋된 영역만이 아니라 프로젝트 전체에 대해 lint가 실행된다는 것이었다. Husky는 staged된 파일만 필터링하는 기능이 없었기 때문이다.
+
+**해결 방법**: lint-staged를 이용해 staged된 파일만 처리하도록 하면 속도를 크게 향상시킬 수 있었다.
+
+### husky + lint-staged 조합으로 개선
+
+```bash
+#!/bin/sh
+echo "Start Linting and Formatting 💥"
+
+npx lint-staged
+
+if [ $? -eq 0 ]; then
+  echo "✅ Complete! 🚀"
+else
+  echo "❌ Error! 🛑"
+  exit 1
+fi
+```
+
+```json
+// package.json
+{
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,scss}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
+```
+
+**장점**
+
+- staged된 파일만 검사해서 빠름
+- 내가 수정한 파일만 검사
+- 가장 널리 사용되는 방식 (레퍼런스 많음)
+- npm/pnpm 생태계와 잘 맞음
+- 안정적이고 검증됨
+
+**단점**
+
+- husky와 lint-staged 두 개의 도구 필요
+- 설정이 package.json과 .husky 폴더로 분산
+- husky는 bash 스크립트 기반이라 가독성이 떨어짐
+
+### lefthook으로 개선
+
+프로젝트 루트에 lefthook.yml 파일을 생성
+
+```yaml
+# lefthook.yml
+
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: "*.{js,jsx,ts,tsx,json,css,scss}"
+      run: npm run lint {staged_files}
+```
+
+**장점**
+
+- staged된 파일만 검사해서 빠름
+- 하나의 도구로 모든 것 관리 (lint-staged 불필요)
+- YAML 기반 설정으로 가독성 좋음
+- parallel: true로 병렬 실행 가능
+- Go로 작성되어 실행 속도가 더 빠름
+- 더 많은 기능 (skip, follow, interactive 등)
+
+**단점**
+
+- husky보다 덜 대중적 (레퍼런스 적음)
+- 팀원들이 익숙하지 않을 수 있음
+
+## 모노레포 설정
+
+```yaml
+# lefthook.yml
+
+pre-commit:
+  skip: # GUI 도구에서 설정되지 않도록
+    - run: test -z "$TERM" || test "$TERM" = "dumb"
+      reason: "Skipping in GUI environment (Fork, SourceTree, etc.)"
+  parallel: true
+  commands:
+    # 프론트엔드 앱
+    lint-frontend:
+      glob: "apps/frontend/**/*.{js,jsx,ts,tsx,json,css,scss}"
+      run: eslint --fix {staged_files}
+
+    # 관리자 대시보드
+    lint-admin:
+      glob: "apps/admin/**/*.{js,ts,vue,json,css,scss}"
+      run: pnpm exec prettier --check {staged_files}
+
+    # 모바일 웹
+    lint-mobile:
+      glob: "apps/mobile/**/*.{js,jsx,ts,tsx}"
+      root: "apps/mobile/"
+      run: pnpm exec eslint {staged_files}
+
+    # API 서버
+    lint-api:
+      glob: "apps/api/**/*.{js,ts,json}"
+      run: eslint --fix {staged_files}
+
+    # 공통 패키지
+    lint-packages:
+      glob: "packages/**/*.{js,jsx,ts,tsx,json,css,scss}"
+      run: eslint --fix {staged_files}
+
+    # 루트 설정 파일
+    lint-root-config:
+      glob: "*.{json,yml,yaml,md}"
+      run: prettier --check {staged_files}
+
+pre-push:
+  skip:
+    - run: test -z "$TERM" || test "$TERM" = "dumb"
+      reason: "Skipping in GUI environment (Fork, SourceTree, etc.)"
+  parallel: true
+  commands:
+    # 프론트엔드 테스트
+    test-frontend:
+      glob: "apps/frontend/**/*"
+      run: pnpm --filter frontend test
+
+    # 관리자 대시보드 테스트
+    test-admin:
+      glob: "apps/admin/**/*"
+      run: pnpm --filter admin test
+
+    # API 서버 테스트
+    test-api:
+      glob: "apps/api/**/*"
+      run: pnpm --filter api test
+```

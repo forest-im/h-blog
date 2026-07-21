@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
+import AiLabel from "@/components/ai-label";
 import { notFound } from "next/navigation";
 import {
   TRACK_ORDER,
@@ -43,6 +44,7 @@ export default async function PostPage({
           {meta.label.toLowerCase()}/
         </Link>
         {post.date && <time>{post.date}</time>}
+        <AiLabel level={post.ai} />
       </div>
       <h1 className="text-2xl font-semibold tracking-tight">{post.title}</h1>
       {post.tags.length > 0 && (

@@ -39,9 +39,14 @@ const PostList = ({ posts, showBadge = true }: Props) => {
                   </span>
                 )}
               </span>
-              {post.date && (
-                <time className="font-mono text-xs text-muted">{post.date}</time>
-              )}
+              <span className="flex items-baseline gap-2 font-mono text-xs">
+                {post.ai !== "human" && (
+                  <span className="text-[var(--signal)]" title="AI 초안/보조">
+                    ai
+                  </span>
+                )}
+                {post.date && <time className="text-muted">{post.date}</time>}
+              </span>
             </Link>
           </li>
         );

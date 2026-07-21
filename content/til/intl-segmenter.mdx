@@ -1,0 +1,78 @@
+---
+title: 국제화 API 사용해서 문자 단위로 자르기
+date: 2025-03-05
+summary: 이모지 섞인 문자열을 length로 자르면 서로게이트 쌍이 깨져 URIError 남. Intl.Segmenter로 해결함.
+tags: [js, intl, unicode]
+ai: human
+---
+
+문자열을 length 단위로 자르는 로직이 위험하다는 걸 오늘 깨닫고, 안전하게 자르는 방식에 대해 정리해본다.
+
+### 사건의 발단..
+
+특수 문자가 가능한 문자열을 15자 내외로 잘라 사용해야 했는데, 특정 케이스에서 테스트를 하던 중 `URIError: URI malformed` 에러가 발생했다.
+
+> URIError: `decodeURIComponent`, `encodeURIComponent` 함수는 URI 형식의 문자열을 처리하는 함수로, URIError는 이 함수가 잘못된 URI 형식의 문자열을 처리할 때 발생한다.
+
+로직 내에서 decode, encode를 사용중이었고, 확인해보니 유저가 입력한 문자열 마지막에 이모지 "🙇‍♀️"가 포함되어 있었기 때문에 발생한 에러였다. 이모지는 2바이트 이상의 유니코드 문자열이기 때문에, `length`로 문자열을 자르게되어 이모지 유니코드가 잘려 `decodeURIComponent`에서 정상적으로 해석할 수 없어 오류가 발생한 거였다.
+
+---
+
+## Intl 국제화 API(Internationalization API)
+
+- Intl API는 ECMAScript Internationalization API의 약자로, 문자열을 다양한 언어로 변환하거나, 숫자, 날짜, 통화 등을 다양한 언어로 표현할 수 있는 API이다.
+- ECMAScript 2015(ES6)에서 추가되었으며, `Intl` 객체를 통해 사용할 수 있다.
+
+굉장히 다양한 API를 담고 있는데, 일단은 오늘 사용한 Segmenter API를 중심으로 정리해본다.
+
+## Intl.Segmenter
+
+- `Intl.Segmenter`는 문자열을 단어, 문장, grapheme 단위로 분리할 수 있는 API이다.
+- `Intl.Segmenter`는 `segment` 메서드를 통해 문자열을 분리할 수 있다.
+
+### 파라미터 설명
+
+- `locale`: 문자열을 분리할 때 사용할 언어 코드
+- `options`: 분리할 단위를 설정할 수 있는 객체
+  - `granularity`: 분리할 단위를 설정할 수 있다. `grapheme`, `word`, `sentence` 중 하나를 선택할 수 있다.
+
+#### granularity 옵션별 예시
+
+```js
+const segmenter = new Intl.Segmenter('ko-KR', { granularity: 'grapheme' })
+const segments = segmenter.segment('안녕하세요🙇‍♀️')
+for (const { segment } of segments) {
+  console.log(segment)
+}
+// 안
+// 녕
+// 하
+// 세
+// 요
+// 🙇‍♀️
+```
+
+```js
+const segmenter = new Intl.Segmenter('ko-KR', { granularity: 'word' })
+const segments = segmenter.segment('안녕하세요🙇‍♀️')
+for (const { segment } of segments) {
+  console.log(segment)
+}
+// 안녕하세요
+// 🙇‍♀️
+```
+
+```js
+const segmenter = new Intl.Segmenter('ko-KR', { granularity: 'sentence' })
+const segments = segmenter.segment('안녕하세요🙇‍♀️')
+for (const { segment } of segments) {
+  console.log(segment)
+}
+// 안녕하세요🙇‍♀️
+```
+
+### 참고
+
+- [[MDN] Intl.Segmenter() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter/Segmenter#grapheme)
+- [[MDN] Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locale_identification_and_negotiation)
+- [[MDN] Internationalization](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Internationalization)

@@ -19,6 +19,16 @@ export const TRACK_ORDER: Track[] = ['til', 'blog'];
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 
+// AI 기여도 — human: 직접 씀 / assist: 사람 주도 + AI 보조 / draft: AI 초안 + 사람 검수
+export type AiLevel = 'human' | 'assist' | 'draft';
+
+// 생략 시 트랙 기본값: til은 AI 초안 가능, blog는 직접 작성 (WRITING.md 규칙)
+const AI_DEFAULT: Record<Track, AiLevel> = { til: 'draft', blog: 'human' };
+
+function isAiLevel(v: unknown): v is AiLevel {
+  return v === 'human' || v === 'assist' || v === 'draft';
+}
+
 export type PostMeta = {
   track: Track;
   slug: string;
@@ -26,6 +36,7 @@ export type PostMeta = {
   date: string;
   summary: string;
   tags: string[];
+  ai: AiLevel;
 };
 
 export type Post = PostMeta & { content: string };
@@ -61,6 +72,7 @@ export function getPost(track: Track, slug: string): Post {
     tags: Array.isArray(data.tags)
       ? data.tags.filter((t): t is string => typeof t === 'string')
       : [],
+    ai: isAiLevel(data.ai) ? data.ai : AI_DEFAULT[track],
     content,
   };
 }
