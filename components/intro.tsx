@@ -116,7 +116,8 @@ export default function Intro() {
 
   return (
     <div ref={trackRef} className="intro intro-track">
-      <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
+      {/* 무대 — sticky는 iOS에서 안 붙는 경우가 있어 fixed로 뷰포트에 고정 */}
+      <div className="fixed inset-0 flex flex-col overflow-hidden">
         {/* 상단 메타 */}
         <header className="flex items-start justify-between p-6 sm:p-8">
           <span className="intro-meta">
