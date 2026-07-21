@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* .gitignore된 로컬 전용 페이지도 Tailwind가 클래스를 스캔하도록 명시 */
+@source "./(site)/about";
+
 /* 인트로와 같은 블루 블랙 무드로 사이트 전체 통일 */
 :root {
   --background: #04060b;
@@ -208,6 +211,7 @@ body {
   padding-left: 1rem;
   color: var(--muted);
 }
+
 
 
 
