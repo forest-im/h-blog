@@ -20,8 +20,10 @@ export default async function TrackPage({
   return (
     <div>
       <section className="mb-10">
-        <h1 className="text-2xl font-semibold tracking-tight">{meta.label}</h1>
-        <p className="mt-2 text-muted">{meta.description}</p>
+        <h1 className="font-mono text-lg text-foreground">
+          {meta.label.toLowerCase()}/
+        </h1>
+        <p className="mt-2 text-sm text-muted">{meta.description}</p>
       </section>
       <PostList posts={posts} showBadge={false} />
     </div>

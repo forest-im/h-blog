@@ -1,19 +1,12 @@
 @import "tailwindcss";
 
+/* 인트로와 같은 블루 블랙 무드로 사이트 전체 통일 */
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  --muted: #6b7280;
-  --border: #e7e7e7;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0b0b0b;
-    --foreground: #ededed;
-    --muted: #8b8b8b;
-    --border: #262626;
-  }
+  --background: #04060b;
+  --foreground: #dfe9ff;
+  --muted: #8b9bbf;
+  --border: rgba(223, 233, 255, 0.12);
+  --signal: #3d8bff;
 }
 
 @theme inline {
@@ -30,6 +23,29 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   line-height: 1.7;
+}
+
+::selection {
+  background: var(--signal);
+  color: #fff;
+}
+
+/* 모노 대문자 메타 라벨 — 사이트 공통 */
+.meta-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* 읽기 페이지용 정적 그레인 (인트로와 톤 통일, 애니메이션 없음) */
+.site-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* ── 활자 중력 인트로 — .intro 스코프 ── */
@@ -163,6 +179,7 @@ body {
   padding-left: 1rem;
   color: var(--muted);
 }
+
 
 
 

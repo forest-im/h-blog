@@ -8,17 +8,24 @@ export default function SiteLayout({
 }>) {
   return (
     <div className="flex min-h-screen flex-col">
+      <div className="site-grain" aria-hidden />
       <header className="border-b border-border">
         <div className="mx-auto flex w-full max-w-2xl items-center justify-between px-5 py-5">
-          <Link href="/" className="font-semibold tracking-tight">
-            블로그
+          <Link href="/" className="meta-label text-foreground">
+            HAZEL<span className="text-[var(--signal)]">®</span>
           </Link>
-          <nav className="flex items-center gap-4 text-sm">
-            <Link href="/til" className="text-muted hover:text-foreground">
-              {TRACKS.til.label}
+          <nav className="meta-label flex items-center gap-5">
+            <Link
+              href="/til"
+              className="text-muted transition-colors hover:text-[var(--signal)]"
+            >
+              [ {TRACKS.til.label} ]
             </Link>
-            <Link href="/blog" className="text-muted hover:text-foreground">
-              {TRACKS.blog.label}
+            <Link
+              href="/blog"
+              className="text-muted transition-colors hover:text-[var(--signal)]"
+            >
+              [ {TRACKS.blog.label} ]
             </Link>
           </nav>
         </div>
@@ -27,8 +34,8 @@ export default function SiteLayout({
         {children}
       </main>
       <footer className="border-t border-border">
-        <div className="mx-auto w-full max-w-2xl px-5 py-6 text-sm text-muted">
-          학습 로그 · TIL / blog
+        <div className="meta-label mx-auto w-full max-w-2xl px-5 py-6 text-muted">
+          LEARNING LOG — SEOUL
         </div>
       </footer>
     </div>

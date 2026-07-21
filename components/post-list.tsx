@@ -8,25 +8,39 @@ type Props = {
 
 const PostList = ({ posts, showBadge = true }: Props) => {
   if (posts.length === 0) {
-    return <p className="text-muted">아직 글이 없어요.</p>;
+    return <p className="font-mono text-sm text-muted">// 아직 비어 있음</p>;
   }
 
   return (
-    <ul className="flex flex-col divide-y divide-border">
-      {posts.map((post) => {
+    <ul className="flex flex-col">
+      {posts.map((post, i) => {
         const track = TRACKS[post.track];
         return (
-          <li key={`${post.track}/${post.slug}`} className="py-5">
-            <Link href={`/${post.track}/${post.slug}`} className="group block">
-              <div className="mb-1 flex items-center gap-2 text-xs text-muted">
-                {showBadge && <span>{track.label}</span>}
-                {post.date && <time>{post.date}</time>}
-              </div>
-              <h2 className="text-lg font-medium group-hover:underline underline-offset-4">
-                {post.title}
-              </h2>
-              {post.summary && (
-                <p className="mt-1 text-sm text-muted">{post.summary}</p>
+          <li key={`${post.track}/${post.slug}`} className="border-b border-border">
+            <Link
+              href={`/${post.track}/${post.slug}`}
+              className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-4 py-5"
+            >
+              <span className="font-mono text-xs text-muted transition-colors group-hover:text-[var(--signal)]">
+                [#{String(i + 1).padStart(2, "0")}]
+              </span>
+              <span className="min-w-0">
+                <span className="text-[15px] text-foreground transition-colors group-hover:text-[var(--signal)]">
+                  {post.title}
+                </span>
+                {showBadge && (
+                  <span className="ml-2 font-mono text-xs text-muted">
+                    {track.label.toLowerCase()}/
+                  </span>
+                )}
+                {post.summary && (
+                  <span className="mt-1 block text-sm text-muted">
+                    {post.summary}
+                  </span>
+                )}
+              </span>
+              {post.date && (
+                <time className="font-mono text-xs text-muted">{post.date}</time>
               )}
             </Link>
           </li>

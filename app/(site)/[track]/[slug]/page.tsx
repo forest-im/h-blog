@@ -35,16 +35,14 @@ export default async function PostPage({
 
   return (
     <article>
-      <div className="mb-2 flex items-center gap-2 text-sm text-muted">
-        <Link href={`/${track}`} className="hover:text-foreground">
-          {meta.label}
+      <div className="mb-3 flex items-center gap-3 font-mono text-xs text-muted">
+        <Link
+          href={`/${track}`}
+          className="transition-colors hover:text-[var(--signal)]"
+        >
+          {meta.label.toLowerCase()}/
         </Link>
-        {post.date && (
-          <>
-            <span aria-hidden>·</span>
-            <time>{post.date}</time>
-          </>
-        )}
+        {post.date && <time>{post.date}</time>}
       </div>
       <h1 className="text-2xl font-semibold tracking-tight">{post.title}</h1>
       <div className="post-content mt-8">
