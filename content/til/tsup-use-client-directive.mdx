@@ -1,0 +1,54 @@
+---
+title: tsup 빌드에서 "use client" 지시어가 사라지는 문제
+date: 2026-07-21
+summary: esbuild 구버전 버그 + splitting 청크 분리, 원인이 두 겹이었음. onSuccess 후처리로 클라이언트 엔트리에만 주입해서 해결함.
+tags: [tsup, esbuild, nextjs, monorepo]
+ai: draft
+---
+
+## 문제
+
+- tsup(esbuild 기반)으로 UI 패키지를 빌드하면 소스 상단의 `"use client"`가 결과물에서 사라짐
+- Next.js App Router는 지시어 없으면 서버 컴포넌트로 인식 → `useState`, `useEffect` 쓰는 순간 런타임 에러
+
+## 원인 1 — esbuild 버그
+
+- esbuild v0.17.6 이하가 `"use client"` 같은 비표준 지시어를 번들링 때 제거함
+- [tsup #835](https://github.com/egoist/tsup/issues/835) → [PR #925](https://github.com/egoist/tsup/pull/925)에서 esbuild v0.17.19+로 올리며 해결 (tsup v7.0.0 반영)
+
+## 원인 2 — splitting 파생 문제
+
+- tsup v7+ 이후에도 `splitting: true`면 재발함
+- 코드가 청크로 분리되면서 지시어가 엔트리가 아닌 공유 청크에 남음 → 엔트리에서 유실
+
+## 해결
+
+- `onSuccess` 훅에서 빌드 후 클라이언트 엔트리에만 수동 주입함
+
+```typescript
+// tsup.config.ts
+const CLIENT_ENTRIES = ['sidebar'];
+
+export default defineConfig({
+  splitting: true,
+  async onSuccess() {
+    for (const entry of CLIENT_ENTRIES) {
+      const filePath = `dist/${entry}.mjs`;
+      const content = await fs.readFile(filePath, 'utf8');
+      if (!content.startsWith("'use client'")) {
+        await fs.writeFile(filePath, `'use client';\n${content}`);
+      }
+    }
+  },
+});
+```
+
+## banner 옵션이 안 되는 이유
+
+- `banner: { js: '"use client";' }`는 모든 엔트리에 일괄 적용됨 → 서버 컴포넌트에도 붙어버림
+- 클라이언트 엔트리에만 선택 주입이 필요해서 후처리가 맞음
+
+## 참고
+
+- tsup v8.5.0 기준 `splitting: false`면 지시어 보존됨 (esbuild fix 덕분)
+- `splitting: true`일 때만 후처리 필요
