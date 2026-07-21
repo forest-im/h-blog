@@ -189,10 +189,12 @@ export default function Objet({
 
     let raf = 0;
     let t = 0;
+    let tp = 0; // 맥동 시계
     const render = () => {
       const s = stateRef.current;
 
       t += 0.0035;
+      tp += 0.055;
       if (!reduce) {
         group.rotation.y = t;
         group.rotation.x = t * 0.6;
@@ -203,6 +205,12 @@ export default function Objet({
       const { a, b, s: mix } = reduce
         ? { a: 3, b: 3, s: 0 }
         : blend(s.p);
+
+      // 0D 점 구간에서 심장박동처럼 맥동 (다음 차원으로 갈수록 소멸)
+      const pointness = a === 0 ? (b === 0 ? 1 : 1 - mix) : 0;
+      const beat = 0.5 + 0.5 * Math.sin(tp);
+      mat.size = 0.065 * (1 + pointness * 0.9 * beat);
+      mat.opacity = 1 - pointness * 0.25 * (1 - beat);
 
       // 4D 구간이면 테서랙트를 4차원 회전 후 3D로 투영
       if (a === 4 || b === 4) {

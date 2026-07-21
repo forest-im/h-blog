@@ -23,11 +23,16 @@ const DIMS = [
 const dimAt = (p: number) =>
   p < 0.13 ? 0 : p < 0.33 ? 1 : p < 0.53 ? 2 : p < 0.77 ? 3 : 4;
 
+// 차원 지도 클릭 시 점프할 스크롤 진행률 (각 유지 구간 중심)
+const DIM_TARGETS = [0, 0.23, 0.43, 0.65, 0.95];
+
 export default function Intro() {
   const trackRef = useRef<HTMLDivElement>(null);
   const hintRef = useRef<HTMLSpanElement>(null);
   const actsRef = useRef<HTMLDivElement>(null);
   const dimRef = useRef<HTMLSpanElement>(null);
+  const dimsMapRef = useRef<HTMLElement>(null);
+  const lenisRef = useRef<Lenis | null>(null);
   const stateRef = useRef<ObjetState>({ p: 0, mx: 0, my: 0, active: false });
 
   useEffect(() => {
@@ -37,10 +42,12 @@ export default function Intro() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       track.classList.add("is-static");
       if (dimRef.current) dimRef.current.textContent = DIMS[3]; // 정적 = 정육면체
+      if (dimsMapRef.current) dimsMapRef.current.style.display = "none"; // 스크롤 없음
       return;
     }
 
     const lenis = new Lenis({ autoRaf: false });
+    lenisRef.current = lenis;
 
     const onMove = (e: PointerEvent) => {
       stateRef.current.mx = (e.clientX / window.innerWidth - 0.5) * 2;
@@ -69,10 +76,16 @@ export default function Intro() {
       const a3 = smooth(clamp01((p - 0.88) / 0.12));
       if (hintRef.current)
         hintRef.current.style.opacity = String(clamp01(1 - p * 10));
+      const dim = dimAt(p);
       if (dimRef.current) {
-        const label = DIMS[dimAt(p)];
+        const label = DIMS[dim];
         if (dimRef.current.textContent !== label)
           dimRef.current.textContent = label;
+      }
+      if (dimsMapRef.current) {
+        const items = dimsMapRef.current.children;
+        for (let i = 0; i < items.length; i++)
+          items[i].classList.toggle("on", i === dim);
       }
       if (actsRef.current) {
         actsRef.current.style.opacity = String(a3);
@@ -87,6 +100,7 @@ export default function Intro() {
     return () => {
       cancelAnimationFrame(raf);
       lenis.destroy();
+      lenisRef.current = null;
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onMove);
       window.removeEventListener("pointerup", onUp);
@@ -122,6 +136,27 @@ export default function Intro() {
             </Link>
           </nav>
         </div>
+
+        {/* 차원 지도 — 현재 위치 표시 + 클릭 점프 */}
+        <nav ref={dimsMapRef} className="intro-dims" aria-label="차원 이동">
+          {DIMS.map((label, i) => (
+            <button
+              key={i}
+              type="button"
+              className={"intro-dim" + (i === 0 ? " on" : "")}
+              aria-label={label}
+              onClick={() => {
+                const track = trackRef.current;
+                const lenis = lenisRef.current;
+                if (!track || !lenis) return;
+                const max = track.offsetHeight - window.innerHeight;
+                lenis.scrollTo(max * DIM_TARGETS[i]);
+              }}
+            >
+              {i}D
+            </button>
+          ))}
+        </nav>
 
         {/* 필름 그레인 */}
         <div className="intro-grain" aria-hidden />

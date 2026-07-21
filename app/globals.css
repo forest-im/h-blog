@@ -73,6 +73,38 @@ body {
   pointer-events: none;
 }
 
+/* 차원 지도 — 우측 세로 인디케이터 */
+.intro-dims {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.intro-dim {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(223, 233, 255, 0.3);
+  cursor: pointer;
+  padding: 0.15rem 0.3rem;
+  border-left: 2px solid transparent;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+.intro-dim:hover {
+  color: rgba(223, 233, 255, 0.7);
+}
+.intro-dim.on {
+  color: var(--signal);
+  border-left-color: var(--signal);
+}
+
 /* 필름 그레인 노이즈 — 스테이지 최상단 오버레이 */
 .intro-grain {
   position: absolute;
@@ -179,6 +211,7 @@ body {
   padding-left: 1rem;
   color: var(--muted);
 }
+
 
 
 
