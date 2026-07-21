@@ -60,7 +60,7 @@ export default function Objet({
     renderer.setClearColor(0x000000, 0);
     mount.appendChild(renderer.domElement);
 
-    const count = 14000;
+    const count = 36000;
 
     // n-큐브의 모서리 목록: 꼭짓점 = {±1}^n, 모서리 = 한 좌표만 다른 쌍
     const cubeEdges = (bits: number): [number[], number[]][] => {
@@ -158,7 +158,7 @@ export default function Objet({
     })();
 
     const mat = new THREE.PointsMaterial({
-      size: 0.065,
+      size: 0.032,
       map: sprite,
       vertexColors: true,
       transparent: true,
@@ -213,7 +213,7 @@ export default function Objet({
       const pointness = a === 0 ? (b === 0 ? 1 : 1 - mix) : 0;
       const beat = 0.5 + 0.5 * Math.sin(tp * calm);
       const breath = 1 + pointness * 0.5 * Math.sin(tp * 0.8 * calm);
-      mat.size = 0.065 * (1 + pointness * 1.2 * beat);
+      mat.size = 0.032 * (1 + pointness * 1.2 * beat);
       mat.opacity = 1 - pointness * 0.3 * (1 - beat);
 
       // 4D 구간이면 테서랙트를 4차원 회전 후 3D로 투영
@@ -265,7 +265,7 @@ export default function Objet({
         }
       }
 
-      const ORBITERS = 140; // 점 주위를 도는 위성 입자 수
+      const ORBITERS = 260; // 점 주위를 도는 위성 입자 수
       for (let i = 0; i < count; i++) {
         const j = i * 3;
         let bx = A[j] + (B[j] - A[j]) * mix;
