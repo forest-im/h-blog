@@ -175,7 +175,7 @@ export default function Objet({
     const resize = () => {
       const w = mount.clientWidth;
       const h = mount.clientHeight;
-      renderer.setSize(w, h, false);
+      renderer.setSize(w, h); // 캔버스 CSS 크기도 함께 갱신 (레티나에서 2배로 커지는 것 방지)
       camera.aspect = w / h;
       // 세로 화면은 가로 시야가 좁으므로 카메라를 뒤로 빼서 오브제를 화면에 맞춤
       camera.position.z = Math.min(32, 14 * Math.max(1, 0.95 / camera.aspect));
